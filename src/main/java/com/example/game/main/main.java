@@ -28,12 +28,11 @@ public class main extends Application {
     public static void main(String[] args) {
         launch(args);
 
-
     }
 
     public void start(Stage primaryStage) throws Exception {
 
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
 
         int width = (int)size.getWidth();
 
@@ -49,12 +48,7 @@ public class main extends Application {
         enemy.setFill(Color.BLUE);
         root.getChildren().add(enemy);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, n);
-            }
-        }).start();
+        new Thread(() -> enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, n)).start();
 
         stage.setTitle("Game");
         stage.setFullScreen(true);
@@ -75,45 +69,25 @@ public class main extends Application {
         });
     }
 
-    public void controls() {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if (key.getCode() == KeyCode.W) {
-                updatePosition(0, -10, rectangle);
-            } else if (key.getCode() == KeyCode.S) {
-                updatePosition(0, 10, rectangle);
-            } else if (key.getCode() == KeyCode.A) {
-                updatePosition(-10, 0, rectangle);
-            } else if (key.getCode() == KeyCode.D) {
-                updatePosition(10, 0, rectangle);
-            }
-        });
-    }
-
     public  void updatePosition(int x, int y, Rectangle rectangle) {
         int oldX = (int) rectangle.getX();
         int oldY = (int) rectangle.getY();
         rectangle.setX(oldX+x);
         rectangle.setY(oldY+y);
-        update();
     }
 
-    public void update(){
-        stage.show();
-    }
 
-    public void enumo2v1(Enum t, int sp, Rectangle rectangle, int n){
+    public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight){
 
-        for (int x = 1980; x> 0; x-= sp*10){
+        for (int x = 1980; x> 0; x-= speed*10){
 
-            double y = MobMove.bew(t,n, x);
-            int y1 = (int)y;
+            double y = MobMove.bew(movementType,spawnHight, x);
             rectangle.setX(x);
             rectangle.setY(y);
             Test.sleep2(100);
         }
 
+
     }
-
-
 
 }
