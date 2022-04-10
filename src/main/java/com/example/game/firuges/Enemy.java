@@ -23,8 +23,7 @@ public class Enemy {
     int hp; // health points
     int updateSpeed = 5; // speed of calculation
 
-    Rectangle enemy = new Rectangle(200, 100, width, height);
-    addRectangleToRoot(enemy);
+
 
 
 
@@ -53,24 +52,14 @@ public class Enemy {
     public void enemyMain(){
 
 
-        enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, spawnHight);
-    }
 
-    public Rectangle getObject(){
-        return enemy;
     }
 
 
-    public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight) {
 
-        for (int x = 1980; x > 0; x -= speed) {
 
-            double y = MobMove.bew(movementType, spawnHight, x);
-            rectangle.setX(x);
-            rectangle.setY(y);
-            Test.sleep2(updateSpeed);
-        }
-    }
+
+
 
     private void getScreenWidth() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size

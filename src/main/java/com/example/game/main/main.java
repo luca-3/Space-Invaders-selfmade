@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class main extends Application {
     Group root = new Group();
-    Scene scene = new Scene(root, Color.BLACK);
+    Scene scene = new Scene(root);
     Stage stage = new Stage();
     Rectangle rectangle = new Rectangle(100, 100, 100, 100);
 
@@ -45,11 +45,17 @@ public class main extends Application {
         Rectangle rectangle = new Rectangle(100, 100, 100, 100);
         rectangle.setFill(Color.RED);
 
+        Random zufall = new Random();
+        int spawnHight = zufall.nextInt(980);
 
         Enemy name = new Enemy(EnemyEnum.BANNANE);
 
-        root.getChildren().add(name.getObject());
-        new Thread(() -> name.start()).start();
+
+
+        Rectangle enemy = new Rectangle(width-200, spawnHight, 100, 100);
+        enemy.setFill(Color.BLUE);
+        root.getChildren().add(enemy);
+        new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, spawnHight)).start();
 
 
 
@@ -92,4 +98,14 @@ public class main extends Application {
         rectangle.setY(oldY+y);
     }
 
-}
+    public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight) {
+
+        for (int x = 1980; x > 0; x -= speed) {
+
+            double y = MobMove.bew(movementType, spawnHight, x);
+            rectangle.setX(x);
+            rectangle.setY(y);
+
+            Test.sleep2(5);
+        }
+}}
