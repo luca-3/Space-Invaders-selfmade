@@ -1,10 +1,16 @@
 package com.example.game.test;
 
+import java.io.File;
 import java.util.Random;
-
 import static com.example.game.test.MobMove.HDMOVE;
 import static com.example.game.test.MobMove.NMOVE;
 import static java.lang.Integer.parseInt;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Test {
 
@@ -12,8 +18,9 @@ public class Test {
 
 
        //enumo1v1();
-        enumo2v1(HDMOVE, HDMOVE.getSpeed());
+        //enumo2v1(HDMOVE, HDMOVE.getSpeed());
        // bla();
+        //bild();
     }
 
 
@@ -39,5 +46,24 @@ public class Test {
         double y = MobMove.bew(t, n, x);
            y=  Math.round(y*100)/100.0;
         System.out.println("("+x+"|"+y+")");}
+    }
+
+    public static void bild () throws IOException {
+        File file = new File("C:\\Users\\David\\Downloads\\115-0.jpg");
+        BufferedImage bufferedImage = ImageIO.read(file);
+
+        ImageIcon imageIcon = new ImageIcon(bufferedImage);
+        JFrame jFrame = new JFrame();
+
+        jFrame.setLayout(new FlowLayout());
+
+        jFrame.setSize(500, 500);
+        JLabel jLabel = new JLabel();
+
+        jLabel.setIcon(imageIcon);
+        jFrame.add(jLabel);
+        jFrame.setVisible(true);
+
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

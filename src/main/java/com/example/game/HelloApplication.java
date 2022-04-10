@@ -1,4 +1,4 @@
-package com.example.game.test;
+package com.example.game;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

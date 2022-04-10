@@ -4,8 +4,8 @@ public enum MobMove {
 
     NMOVE(1), //Normel Move
     HDMOVE(1), // High Down Move
-    SMOVE(2)
-
+    SMOVE(2), // Speed Move
+    PMOVE(1) // parabel Move
     ;
 
 
@@ -27,11 +27,16 @@ public enum MobMove {
         double y;
 
         if (MobMove.NMOVE.equals(move)) {
-            y = n;
-            return y;
+           return y = n;
+
         } else if (MobMove.HDMOVE.equals(move)) {
-            y = Math.sin(x) + 2 + n;
-            return y;
+            return y = Math.sin(x) + 2 + n;
+
+        } else if (MobMove.SMOVE.equals(move)) {
+           return y = n;
+        }
+        else if (MobMove.PMOVE.equals(move)) {
+            return y = -x*x+n;
         }
         return 0;
     }

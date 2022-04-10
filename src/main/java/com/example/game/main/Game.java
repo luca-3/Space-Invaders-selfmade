@@ -1,7 +1,5 @@
 package com.example.game.main;
 
-import com.example.game.test.HelloApplication;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
