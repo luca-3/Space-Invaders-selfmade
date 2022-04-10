@@ -33,13 +33,12 @@ public class main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
-
         int width = (int)size.getWidth();
-
         int height = (int)size.getHeight();
 
+
         Random zufall = new Random();
-        int n = zufall.nextInt(1080);
+        int n = zufall.nextInt(980);
         Rectangle rectangle = new Rectangle(100, 100, 100, 100);
         rectangle.setFill(Color.RED);
         root.getChildren().add(rectangle);
@@ -79,12 +78,12 @@ public class main extends Application {
 
     public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight){
 
-        for (int x = 1980; x> 0; x-= speed*10){
+        for (int x = 1980; x> 0; x-= speed){
 
             double y = MobMove.bew(movementType,spawnHight, x);
             rectangle.setX(x);
             rectangle.setY(y);
-            Test.sleep2(100);
+            Test.sleep2(5);
         }
 
 

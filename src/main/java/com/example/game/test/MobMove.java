@@ -23,19 +23,19 @@ public enum MobMove {
 
 
 
-    public static double bew(Enum move, int spawnHight, int x){
+    public static double bew(Enum move, int spawnHight, double x){
 
         if (MobMove.NMOVE.equals(move)) {
            return spawnHight;
 
         } else if (MobMove.HDMOVE.equals(move)) {
-            return Math.sin(x/5)*50;
+            return Math.sin(x/100)*100+spawnHight;
 
         } else if (MobMove.SMOVE.equals(move)) {
            return spawnHight;
         }
         else if (MobMove.PMOVE.equals(move)) {
-            return -x*x;
+            return -x*x+spawnHight;
         }
         return 0;
     }
