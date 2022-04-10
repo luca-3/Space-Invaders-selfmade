@@ -2,9 +2,12 @@ package com.example.game.test;
 
 public enum MobMove {
 
-    NMOVE(1),
-    HDMOVE(1)
+    NMOVE(1), //Normel Move
+    HDMOVE(1), // High Down Move
+    SMOVE(2)
+
     ;
+
 
     private final int speed;
 
@@ -13,7 +16,7 @@ public enum MobMove {
         this.speed = speed;
 
     }
-    public int gibSpeed(){
+    public int getSpeed(){
         return this.speed;
     }
 
