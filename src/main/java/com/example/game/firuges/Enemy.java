@@ -10,13 +10,39 @@ import java.util.Random;
 
 public class Enemy {
 
+    Random zufall = new Random();
+    int spawnHight = zufall.nextInt(980);
+
+    String skin = ""; //skin of the enemy
+
+    int height;
+    int width;
+    int hp; // health points
+    int updateSpeed = 5; // speed of calculation
+
+
+    public Enemy(Enum Type) {
+        if (Type == Enum.Type1) {
+            skin = Enum.Type1.getSkin();
+            height = Enum.Type1.getHeight();
+            width = Enum.Type1.getWidth();
+            hp = Enum.Type1.getHp();
+
+        }else if (Type == Enum.Type2) {
+            skin = Enum.Type2.getSkin();
+            height = Enum.Type2.getHeight();
+            width = Enum.Type2.getWidth();
+            hp = Enum.Type2.getHp();
+        }
+
+        enemyMain();
+
+    }
+
     public void enemyMain(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
         int width = (int)size.getWidth();
         int height = (int)size.getHeight();
-
-        Random zufall = new Random();
-        int n = zufall.nextInt(980);
 
 
         Rectangle enemy = new Rectangle(width-200, n, 100, 100);
@@ -37,7 +63,7 @@ public class Enemy {
             double y = MobMove.bew(movementType, spawnHight, x);
             rectangle.setX(x);
             rectangle.setY(y);
-            Test.sleep2(5);
+            Test.sleep2(updateSpeed);
         }
     }
 }

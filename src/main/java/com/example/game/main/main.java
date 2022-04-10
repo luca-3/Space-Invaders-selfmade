@@ -38,14 +38,12 @@ public class main extends Application {
         int height = (int)size.getHeight();
 
 
-
         Rectangle rectangle = new Rectangle(100, 100, 100, 100);
         rectangle.setFill(Color.RED);
         root.getChildren().add(rectangle);
 
+        new Thread(() -> Enemy name = new Enemy()).start();
 
-
-        new Thread(() -> Enemy.enemyMain()).start();
 
         stage.setTitle("Game");
         stage.setFullScreen(true);
@@ -72,11 +70,5 @@ public class main extends Application {
         rectangle.setX(oldX+x);
         rectangle.setY(oldY+y);
     }
-
-
-
-
-
-
 
 }
