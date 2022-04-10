@@ -3,8 +3,7 @@ package com.example.game.test;
 public enum Beispiel {
 
     ENUM1(3, true, "Hallo"),
-    ENUM2(6000, false, "Bye")
-    ;
+    ENUM2(6000, false, "Bye");
 
     private final int bspInt;
     private final boolean bspBool;
