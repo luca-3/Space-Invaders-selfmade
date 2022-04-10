@@ -11,16 +11,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.Color;
+import javax.swing.JColorChooser;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
        //enumo1v1();
         //enumo2v1(HDMOVE, HDMOVE.getSpeed());
        // bla();
-        //bild();
+        bild();
     }
 
 
@@ -53,16 +55,20 @@ public class Test {
         BufferedImage bufferedImage = ImageIO.read(file);
 
         ImageIcon imageIcon = new ImageIcon(bufferedImage);
-        JFrame jFrame = new JFrame();
+        JFrame jFrame = new JFrame("Hadiuz made it");
 
         jFrame.setLayout(new FlowLayout());
+        jFrame.add(new JLabel("Hallo"));
 
-        jFrame.setSize(500, 500);
+        jFrame.setSize(550, 620);
         JLabel jLabel = new JLabel();
 
         jLabel.setIcon(imageIcon);
         jFrame.add(jLabel);
         jFrame.setVisible(true);
+        Color farbe = JColorChooser.showDialog(null,
+                "Farbauswahl", null);
+        System.out.println(farbe);
 
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
