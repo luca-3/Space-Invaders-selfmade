@@ -18,9 +18,7 @@ public class Player {
         this.hp = hp;
         this.size = size;
         this.speed = speed;
-
         this.items = items;
-        this.skin = skin;
     }
 
     //methods to get and set parameters
