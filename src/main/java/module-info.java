@@ -10,4 +10,6 @@ module com.example.game {
     opens com.example.game.firuges to javafx.fxml;
     opens com.example.game.test to javafx.fxml;
     exports com.example.game.test;
+    exports com.example.game.main;
+    opens com.example.game.main to javafx.fxml;
 }
