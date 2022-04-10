@@ -30,7 +30,7 @@ public enum MobMove {
            return y = n;
 
         } else if (MobMove.HDMOVE.equals(move)) {
-            return y = Math.sin(x);
+            return y = Math.sin(x/100)*100;
 
         } else if (MobMove.SMOVE.equals(move)) {
            return y = n;
