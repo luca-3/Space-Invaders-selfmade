@@ -1,4 +1,4 @@
 package com.example.game.firuges;
 
-public class enemy {
+public class Enemy {
 }
