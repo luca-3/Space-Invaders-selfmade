@@ -1,5 +1,6 @@
 package com.example.game.firuges;
 
+import com.example.game.main.main;
 import com.example.game.test.MobMove;
 import com.example.game.test.Test;
 import javafx.scene.paint.Color;
@@ -12,6 +13,8 @@ public class Enemy {
 
     Random zufall = new Random();
     int spawnHight = zufall.nextInt(980);
+    int screenWidth;
+    int screenHeight;
 
     String skin = ""; //skin of the enemy
 
@@ -20,8 +23,13 @@ public class Enemy {
     int hp; // health points
     int updateSpeed = 5; // speed of calculation
 
+    Rectangle enemy = new Rectangle(200, 100, width, height);
+    addRectangleToRoot(enemy);
+
+
 
     public Enemy(EnemyEnum Type) {
+        getScreenWidth();
         if (Type == EnemyEnum.AFFE) {
             skin = EnemyEnum.AFFE.getSkin();
             height = EnemyEnum.AFFE.getHeight();
@@ -35,25 +43,22 @@ public class Enemy {
             hp = EnemyEnum.BANNANE.getHp();
         }
 
+    }
+
+    public void start(){
         enemyMain();
 
     }
 
     public void enemyMain(){
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
-        int width = (int)size.getWidth();
-        int height = (int)size.getHeight();
 
 
-        Rectangle enemy = new Rectangle(width-200, n, 100, 100);
-        enemy.setFill(Color.BLUE);
-        root.getChildren().add(enemy);
-
-
-
-        enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, n);
+        enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, spawnHight);
     }
 
+    public Rectangle getObject(){
+        return enemy;
+    }
 
 
     public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight) {
@@ -66,4 +71,11 @@ public class Enemy {
             Test.sleep2(updateSpeed);
         }
     }
+
+    private void getScreenWidth() {
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
+        this.screenWidth = (int) size.getWidth();
+        this.screenHeight = (int) size.getHeight();
+    }
+
 }

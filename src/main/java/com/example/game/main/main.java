@@ -20,16 +20,19 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.Random;
 
-
 public class main extends Application {
     Group root = new Group();
-    Scene scene = new Scene(root);
+    Scene scene = new Scene(root, Color.BLACK);
     Stage stage = new Stage();
     Rectangle rectangle = new Rectangle(100, 100, 100, 100);
 
     public static void main(String[] args) {
         launch(args);
 
+    }
+
+    public void addRectangleToRoot(Rectangle rectangle) {
+        root.getChildren().add(rectangle);
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -41,13 +44,30 @@ public class main extends Application {
 
         Rectangle rectangle = new Rectangle(100, 100, 100, 100);
         rectangle.setFill(Color.RED);
-        root.getChildren().add(rectangle);
 
-        new Thread(() -> new Enemy(EnemyEnum.BANNANE)).start();
+
+        Enemy name = new Enemy(EnemyEnum.BANNANE);
+
+        root.getChildren().add(name.getObject());
+        new Thread(() -> name.start()).start();
+
+
+
+        /*
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Enemy name = new Enemy(EnemyEnum.BANNANE);
+                root.getChildren().add(name.getObject());
+            }
+        }).start(); */
+
+
 
 
         stage.setTitle("Game");
         stage.setFullScreen(true);
+
 
         stage.setScene(scene);
         stage.show();
