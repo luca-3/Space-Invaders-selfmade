@@ -21,18 +21,18 @@ public class Enemy {
     int updateSpeed = 5; // speed of calculation
 
 
-    public Enemy(Enum Type) {
-        if (Type == Enum.Type1) {
-            skin = Enum.Type1.getSkin();
-            height = Enum.Type1.getHeight();
-            width = Enum.Type1.getWidth();
-            hp = Enum.Type1.getHp();
+    public Enemy(EnemyEnum Type) {
+        if (Type == EnemyEnum.AFFE) {
+            skin = EnemyEnum.AFFE.getSkin();
+            height = EnemyEnum.AFFE.getHeight();
+            width = EnemyEnum.AFFE.getWidth();
+            hp = EnemyEnum.AFFE.getHp();
 
-        }else if (Type == Enum.Type2) {
-            skin = Enum.Type2.getSkin();
-            height = Enum.Type2.getHeight();
-            width = Enum.Type2.getWidth();
-            hp = Enum.Type2.getHp();
+        }else if (Type == EnemyEnum.BANNANE) {
+            skin = EnemyEnum.BANNANE.getSkin();
+            height = EnemyEnum.BANNANE.getHeight();
+            width = EnemyEnum.BANNANE.getWidth();
+            hp = EnemyEnum.BANNANE.getHp();
         }
 
         enemyMain();

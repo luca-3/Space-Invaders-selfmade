@@ -2,6 +2,7 @@ package com.example.game.main;
 
 
 import com.example.game.firuges.Enemy;
+import com.example.game.firuges.EnemyEnum;
 import com.example.game.test.MobMove;
 import com.example.game.test.Test;
 import javafx.application.Application;
@@ -42,7 +43,7 @@ public class main extends Application {
         rectangle.setFill(Color.RED);
         root.getChildren().add(rectangle);
 
-        new Thread(() -> Enemy name = new Enemy()).start();
+        new Thread(() -> new Enemy(EnemyEnum.BANNANE)).start();
 
 
         stage.setTitle("Game");
