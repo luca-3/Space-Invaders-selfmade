@@ -1,6 +1,7 @@
 package com.example.game.main;
 
 
+import com.example.game.firuges.Enemy;
 import com.example.game.test.MobMove;
 import com.example.game.test.Test;
 import javafx.application.Application;
@@ -37,17 +38,14 @@ public class main extends Application {
         int height = (int)size.getHeight();
 
 
-        Random zufall = new Random();
-        int n = zufall.nextInt(980);
+
         Rectangle rectangle = new Rectangle(100, 100, 100, 100);
         rectangle.setFill(Color.RED);
         root.getChildren().add(rectangle);
 
-        Rectangle enemy = new Rectangle(width-200, n, 100, 100);
-        enemy.setFill(Color.BLUE);
-        root.getChildren().add(enemy);
 
-        new Thread(() -> enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, n)).start();
+
+        new Thread(() -> Enemy.enemyMain()).start();
 
         stage.setTitle("Game");
         stage.setFullScreen(true);
@@ -76,17 +74,9 @@ public class main extends Application {
     }
 
 
-    public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight){
-
-        for (int x = 1980; x> 0; x-= speed){
-
-            double y = MobMove.bew(movementType,spawnHight, x);
-            rectangle.setX(x);
-            rectangle.setY(y);
-            Test.sleep2(5);
-        }
 
 
-    }
+
+
 
 }
