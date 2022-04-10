@@ -15,4 +15,13 @@ public enum Beispiel {
         this.bspString = bspString;
     }
 
+    public int getBspInt(){
+        return this.bspInt;
+    }
+    public boolean getBspBool(){
+        return this.bspBool;
+    }
+    public String getBspString(){
+        return this.bspString;
+    }
 }

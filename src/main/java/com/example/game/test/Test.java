@@ -1,10 +1,17 @@
 package com.example.game.test;
 
+import java.util.Random;
+
+import static com.example.game.test.MobMove.NMOVE;
+import static java.lang.Integer.parseInt;
+
 public class Test {
 
     public static void main(String[] args) {
 
-       Enum1(Beispiel.ENUM1);
+
+       //enumo1v1();
+        enumo2v1();
        // bla();
     }
 
@@ -16,8 +23,19 @@ public class Test {
         }
 
     }
-    public static void Enum1(Enum enum1){
+    public static void enumo1v1(){
+        int a = Beispiel.ENUM1.getBspInt();
+        boolean b = Beispiel.ENUM1.getBspBool();
+        String c = Beispiel.ENUM1.getBspString();
+        System.out.println(a+" "+b+" "+c);
+    }
+    public static void enumo2v1(){
 
-        System.out.println(enum1);
+        Random zufall = new Random();
+        int n = zufall.nextInt(10);
+
+        for (int x = 20; x> 0; x--){
+        double y = MobMove.bew(NMOVE, n, x);
+        System.out.println(y);}
     }
 }
