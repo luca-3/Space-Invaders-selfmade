@@ -52,7 +52,7 @@ public class main extends Application {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                enumo2v1(MobMove.NMOVE, MobMove.NMOVE.getSpeed(), enemy);
+                enumo2v1(MobMove.NMOVE, MobMove.NMOVE.getSpeed(), enemy, n);
             }
         }).start();
 
@@ -101,17 +101,17 @@ public class main extends Application {
         stage.show();
     }
 
-    public void enumo2v1(Enum t, int sp, Rectangle rectangle){
+    public void enumo2v1(Enum t, int sp, Rectangle rectangle, int n){
 
 
 
-        for (int x = 200; x> 0; x-= sp){
+        for (int x = 1980; x> 0; x-= sp*10){
 
-            int x1= -sp*20;
-            double y = MobMove.bew(t, x);
+            double y = MobMove.bew(t,n, x);
 
             int y1 = (int)y;
-            updatePosition(10 , 10, rectangle);
+            rectangle.setX(x);
+            rectangle.setY(y);
 
 
             Test.sleep2(1000);
