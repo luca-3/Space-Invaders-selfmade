@@ -11,7 +11,6 @@ public class Player {
     private int speed; //speed of player
     private ArrayList<String> items; //items collected
     private String skin; //path to skin of player
-    private int score; //score of player
 
     public Player(int x, int y, int hp, int size, int speed, ArrayList<String> items) { //constructor
         this.x = x;
@@ -22,7 +21,6 @@ public class Player {
 
         this.items = items;
         this.skin = skin;
-        this.score = score;
     }
 
     //methods to get and set parameters
@@ -75,20 +73,5 @@ public class Player {
         this.items = items;
     }
 
-    public String getSkin() {
-        return skin;
-    }
-
-    public void setSkin(String skin) {
-        this.skin = skin;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 }
 
