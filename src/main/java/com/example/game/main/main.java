@@ -56,8 +56,8 @@ public class main extends Application {
         Rectangle enemy = new Rectangle(width-200, spawnHight, 100, 100);
         enemy.setFill(Color.BLUE);
         root.getChildren().add(enemy);
-        new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, spawnHight)).start();
-
+        Thead it = new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, spawnHight));
+        it.start;
 
 
         /*
