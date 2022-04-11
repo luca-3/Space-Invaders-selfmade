@@ -17,9 +17,15 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.util.Random;
 
+
+
 public class main extends Application {
+    Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
+    int width = (int)size.getWidth();
+    int height = (int)size.getHeight();
+
     Group root = new Group();
-    Scene scene = new Scene(root);
+    Scene scene = new Scene(root, width, height);
     Stage stage = new Stage();
     Rectangle rectangle = new Rectangle(100, 100, 100, 100);
 
@@ -33,6 +39,11 @@ public class main extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
+
+        stage.setTitle("Game");
+        stage.setFullScreen(true);
+        stage.setScene(scene);
+        stage.show();
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
         int width = (int)size.getWidth();
@@ -54,41 +65,26 @@ public class main extends Application {
         enemy.setFill(Color.BLUE);
         root.getChildren().add(enemy);
         Thread enemyThread = new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, zufall.nextInt(980), width-200));
-        enemyThread.start();
+
 
 
         Rectangle affe = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.AFFE.getWidth(), EnemyEnum.AFFE.getHeight());
         affe.setFill(Color.BROWN);
         root.getChildren().add(affe);
         Thread affeThread = new Thread(() ->  enumo2v1(MobMove.EHDMOVE, MobMove.EHDMOVE.getSpeed(), affe, zufall.nextInt(980), width-200));
-        affeThread.start();
+
 
         Rectangle bannane = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.BANNANE.getWidth(), EnemyEnum.BANNANE.getHeight());
         bannane.setFill(Color.YELLOW);
-
         Thread bannaneThread = new Thread(() ->  bannane(affe, bannane));
-        bannaneThread.start();
-
-        /*
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Enemy name = new Enemy(EnemyEnum.BANNANE);
-                root.getChildren().add(name.getObject());
-            }
-        }).start(); */
 
 
 
+        Thread mainEnemyThread = new Thread(() -> spawn(enemyThread, affeThread, bannaneThread));
+        mainEnemyThread.start();
 
-        stage.setTitle("Game");
-        stage.setFullScreen(true);
 
-
-        stage.setScene(scene);
-        stage.show();
-
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+                scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.W) {
                 updatePosition(0, -10, rectangle);
             } else if (key.getCode() == KeyCode.S) {
@@ -99,6 +95,7 @@ public class main extends Application {
                 updatePosition(10, 0, rectangle);
             }
         });
+
     }
 
     public  void updatePosition(int x, int y, Rectangle rectangle) {
@@ -117,6 +114,7 @@ public class main extends Application {
             rectangle.setY(y);
 
             Test.sleep2(5);
+
         }
 }
     public void bannane(Rectangle affe, Rectangle bannane){
@@ -127,9 +125,23 @@ public class main extends Application {
            bannane.setX(affeX);
            bannane.setY(affeY);
            enumo2v1(MobMove.SMOVE, MobMove.SMOVE.getSpeed(), bannane, affeY, affeX);
-           Test.sleep2(10000);
+           Test.sleep2(1000);
        }
     }
 
+    public void spawn(Thread enemyThread, Thread affeThread, Thread bannaneThread){
+        Random zufall = new Random();
+        while (true) {
+            int z = zufall.nextInt(3);
+            if (z == 1) {
+                enemyThread.start();
+            } else if (z == 2) {
+                affeThread.start();
+                bannaneThread.start();
+            }
+            System.out.println(z);
+            Test.sleep2(5000);
+        }
+    }
 
 }
