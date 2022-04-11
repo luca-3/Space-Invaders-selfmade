@@ -11,12 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.Random;
 
@@ -53,12 +50,24 @@ public class main extends Application {
 
 
 
-        Rectangle enemy = new Rectangle(width-200, spawnHight, 100, 100);
+        Rectangle enemy = new Rectangle(width-200, zufall.nextInt(980), 100, 100);
         enemy.setFill(Color.BLUE);
         root.getChildren().add(enemy);
-        Thread it = new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, spawnHight));
-        it.start();
+        Thread enemyThread = new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, zufall.nextInt(980), width-200));
+        enemyThread.start();
 
+
+        Rectangle affe = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.AFFE.getWidth(), EnemyEnum.AFFE.getHeight());
+        affe.setFill(Color.BROWN);
+        root.getChildren().add(affe);
+        Thread affeThread = new Thread(() ->  enumo2v1(MobMove.EHDMOVE, MobMove.EHDMOVE.getSpeed(), affe, zufall.nextInt(980), width-200));
+        affeThread.start();
+
+        Rectangle bannane = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.BANNANE.getWidth(), EnemyEnum.BANNANE.getHeight());
+        bannane.setFill(Color.YELLOW);
+
+        Thread bannaneThread = new Thread(() ->  bannane(affe, bannane));
+        bannaneThread.start();
 
         /*
         new Thread(new Runnable() {
@@ -99,9 +108,9 @@ public class main extends Application {
         rectangle.setY(oldY+y);
     }
 
-    public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight) {
+    public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight, int spawnWidth) {
 
-        for (int x = 1980; x > 0; x -= speed) {
+        for (int x = spawnWidth; x > 0; x -= speed) {
 
             double y = MobMove.bew(movementType, spawnHight, x);
             rectangle.setX(x);
@@ -109,4 +118,18 @@ public class main extends Application {
 
             Test.sleep2(5);
         }
-}}
+}
+    public void bannane(Rectangle affe, Rectangle bannane){
+       while(affe.getX()!=10) {
+           int affeX = (int) affe.getX();
+           int affeY = (int) affe.getY();
+           root.getChildren().add(bannane);
+           bannane.setX(affeX);
+           bannane.setY(affeY);
+           enumo2v1(MobMove.SMOVE, MobMove.SMOVE.getSpeed(), bannane, affeY, affeX);
+           Test.sleep2(10000);
+       }
+    }
+
+
+}
