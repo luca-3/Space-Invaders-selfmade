@@ -30,16 +30,16 @@ public class Enemy {
     public Enemy(EnemyEnum Type) {
         getScreenWidth();
         if (Type == EnemyEnum.AFFE) {
-            skin = EnemyEnum.AFFE.getSkin();
-            height = EnemyEnum.AFFE.getHeight();
-            width = EnemyEnum.AFFE.getWidth();
-            hp = EnemyEnum.AFFE.getHp();
+            this.skin = EnemyEnum.AFFE.getSkin();
+            this.height = EnemyEnum.AFFE.getHeight();
+            this.width = EnemyEnum.AFFE.getWidth();
+            this.hp = EnemyEnum.AFFE.getHp();
 
         }else if (Type == EnemyEnum.BANNANE) {
-            skin = EnemyEnum.BANNANE.getSkin();
-            height = EnemyEnum.BANNANE.getHeight();
-            width = EnemyEnum.BANNANE.getWidth();
-            hp = EnemyEnum.BANNANE.getHp();
+            this.skin = EnemyEnum.BANNANE.getSkin();
+            this.height = EnemyEnum.BANNANE.getHeight();
+            this.width = EnemyEnum.BANNANE.getWidth();
+            this.hp = EnemyEnum.BANNANE.getHp();
         }
 
     }
