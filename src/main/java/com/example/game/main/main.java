@@ -44,6 +44,7 @@ public class main extends Application {
 
         Rectangle rectangle = new Rectangle(100, 100, 100, 100);
         rectangle.setFill(Color.RED);
+        root.getChildren().add(rectangle);
 
         Random zufall = new Random();
         int spawnHight = zufall.nextInt(980);
