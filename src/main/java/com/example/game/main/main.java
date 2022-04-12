@@ -21,6 +21,7 @@ import java.util.Random;
 
 
 public class main extends Application {
+
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
     int width = (int) size.getWidth();
     int height = (int) size.getHeight();
@@ -35,9 +36,6 @@ public class main extends Application {
         launch(args);
     }
 
-    public void addRectangleToRoot(Rectangle rectangle) {
-        root.getChildren().add(rectangle);
-    }
 
     public void start(Stage primaryStage) throws Exception {
 
@@ -89,18 +87,6 @@ public class main extends Application {
         Thread bannaneThread = new Thread(() -> bannane(test.getRectangle(), bannane));
         bannaneThread.start();
 
-        /*
-        if (this.key.w) {
-            updatePosition(0, -10, rectangle);
-        } else if (this.key.s) {
-            updatePosition(0, 10, rectangle);
-        } else if (this.key.a) {
-            updatePosition(-10, 0, rectangle);
-        } else if (this.key.d) {
-            updatePosition(10, 0, rectangle);
-        }
-
-        */
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 

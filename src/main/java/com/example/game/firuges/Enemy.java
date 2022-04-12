@@ -11,13 +11,10 @@ import java.util.Random;
 
 public class Enemy {
 
-    Random zufall = new Random();
-    int spawnHight = zufall.nextInt(980);
+    int spawnHight; // spawn height of enemy on the right side of the screen
     int screenWidth;
     int screenHeight;
-
     String skin = ""; //skin of the enemy
-
     int height;
     int width;
     int hp; // health points
@@ -41,6 +38,9 @@ public class Enemy {
             this.hp = EnemyEnum.BANNANE.getHp();
             this.enemy = new Rectangle(this.width, this.height, EnemyEnum.BANNANE.getColor());
         }
+
+        Random zufall = new Random();
+        this.spawnHight = zufall.nextInt(980);
 
     }
 
