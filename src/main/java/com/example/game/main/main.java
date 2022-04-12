@@ -22,8 +22,8 @@ import java.util.Random;
 
 public class main extends Application {
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
-    int width = (int)size.getWidth();
-    int height = (int)size.getHeight();
+    int width = (int) size.getWidth();
+    int height = (int) size.getHeight();
 
     KeyEventHandler key = new KeyEventHandler();
     Group root = new Group();
@@ -47,8 +47,8 @@ public class main extends Application {
         stage.show();
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
-        int width = (int)size.getWidth();
-        int height = (int)size.getHeight();
+        int width = (int) size.getWidth();
+        int height = (int) size.getHeight();
 
 
         Rectangle rectangle = new Rectangle(100, 100, 100, 100);
@@ -78,44 +78,52 @@ public class main extends Application {
         */
 
 
-
         Enemy test = new Enemy(EnemyEnum.AFFE);
         root.getChildren().add(test.getRectangle());
-        Thread affeThread = new Thread(() ->  moveEnemy(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), test.getRectangle(), 500, width));
+        Thread affeThread = new Thread(() -> moveEnemy(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), test.getRectangle(), 500, width));
         affeThread.start();
 
 
-        Rectangle bannane = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.BANNANE.getWidth(), EnemyEnum.BANNANE.getHeight());
+        Rectangle bannane = new Rectangle(width - 200, zufall.nextInt(980), EnemyEnum.BANNANE.getWidth(), EnemyEnum.BANNANE.getHeight());
         bannane.setFill(Color.YELLOW);
-        Thread bannaneThread = new Thread(() ->  bannane(test.getRectangle(), bannane));
+        Thread bannaneThread = new Thread(() -> bannane(test.getRectangle(), bannane));
         bannaneThread.start();
 
 
-
+        if (this.key.w) {
+            updatePosition(0, -10, rectangle);
+        } else if (this.key.s) {
+            updatePosition(0, 10, rectangle);
+        } else if (this.key.a) {
+            updatePosition(-10, 0, rectangle);
+        } else if (this.key.d) {
+            updatePosition(10, 0, rectangle);
+        }
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 
-            if (this.key.w) {
+            if (key.getCode() == KeyCode.W) {
                 updatePosition(0, -10, rectangle);
-            } else if (this.key.s) {
+            } else if (key.getCode() == KeyCode.S) {
                 updatePosition(0, 10, rectangle);
-            } else if (this.key.a) {
+            } else if (key.getCode() == KeyCode.A) {
                 updatePosition(-10, 0, rectangle);
-            } else if (this.key.d) {
+            } else if (key.getCode() == KeyCode.D) {
                 updatePosition(10, 0, rectangle);
             }
-        });
 
+
+        });
     }
 
-    public void updatePosition(int x, int y, Rectangle rectangle) {
+    public void updatePosition( int x, int y, Rectangle rectangle){
         int oldX = (int) rectangle.getX();
         int oldY = (int) rectangle.getY();
-        rectangle.setX(oldX+x);
-        rectangle.setY(oldY+y);
+        rectangle.setX(oldX + x);
+        rectangle.setY(oldY + y);
     }
 
-    public void moveEnemy(Enum movementType, int speed, Rectangle rectangle, int spawnHight, int spawnWidth) {
+    public void moveEnemy (Enum movementType,int speed, Rectangle rectangle,int spawnHight, int spawnWidth){
 
         for (int x = spawnWidth; x > 0; x -= speed) {
 
@@ -128,22 +136,22 @@ public class main extends Application {
         }
         rectangle.setX(1920);
     }
-    public void bannane(Rectangle affe, Rectangle bannane){
-       while(affe.getX()!=10) {
-           int affeX = (int) affe.getX();
-           int affeY = (int) affe.getY();
-           root.getChildren().add(bannane);
-           bannane.setX(affeX);
-           bannane.setY(affeY);
-           moveEnemy(MobMove.SMOVE, MobMove.SMOVE.getSpeed(), bannane, affeY, affeX);
-           Test.sleep2(1000);
-       }
+    public void bannane (Rectangle affe, Rectangle bannane){
+        while (affe.getX() != 10) {
+            int affeX = (int) affe.getX();
+            int affeY = (int) affe.getY();
+            root.getChildren().add(bannane);
+            bannane.setX(affeX);
+            bannane.setY(affeY);
+            moveEnemy(MobMove.SMOVE, MobMove.SMOVE.getSpeed(), bannane, affeY, affeX);
+            Test.sleep2(1000);
+        }
     }
 
 
 
-    /*
-     Random zufall = new Random();
+        /*
+        Random zufall = new Random();
         while (true) {
             int z = zufall.nextInt(3);
             if (z == 1) {
@@ -154,6 +162,8 @@ public class main extends Application {
             System.out.println(z);
             Test.sleep2(5000);
         }
-     */
+        */
+
 
 }
+
