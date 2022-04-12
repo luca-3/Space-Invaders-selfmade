@@ -5,7 +5,6 @@ import com.example.game.firuges.Enemy;
 import com.example.game.firuges.EnemyEnum;
 import com.example.game.test.MobMove;
 import com.example.game.test.Test;
-import com.example.game.main.KeyEventHandler;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,17 +19,15 @@ import java.util.Random;
 
 
 
-public class main extends Application {
+public class Main extends Application {
 
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
     int width = (int) size.getWidth();
     int height = (int) size.getHeight();
 
-    KeyEventHandler key = new KeyEventHandler();
     Group root = new Group();
     Scene scene = new Scene(root, width, height);
     Stage stage = new Stage();
-    Rectangle rectangle = new Rectangle(100, 100, 100, 100);
 
     public static void main(String[] args) {
         launch(args);

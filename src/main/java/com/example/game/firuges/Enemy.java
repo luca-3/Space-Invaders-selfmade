@@ -1,9 +1,5 @@
 package com.example.game.firuges;
 
-import com.example.game.main.main;
-import com.example.game.test.MobMove;
-import com.example.game.test.Test;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
@@ -18,20 +14,19 @@ public class Enemy {
     int height;
     int width;
     int hp; // health points
-    int updateSpeed = 5; // speed of calculation
     Rectangle enemy;
 
 
-    public Enemy(EnemyEnum Type) {
+    public Enemy(EnemyEnum type) {
         getScreenWidth();
-        if (Type == EnemyEnum.AFFE) {
+        if (type == EnemyEnum.AFFE) {
             this.skin = EnemyEnum.AFFE.getSkin();
             this.height = EnemyEnum.AFFE.getHeight();
             this.width = EnemyEnum.AFFE.getWidth();
             this.hp = EnemyEnum.AFFE.getHp();
             this.enemy = new Rectangle(this.width, this.height, EnemyEnum.AFFE.getColor());
 
-        }else if (Type == EnemyEnum.BANNANE) {
+        }else if (type == EnemyEnum.BANNANE) {
             this.skin = EnemyEnum.BANNANE.getSkin();
             this.height = EnemyEnum.BANNANE.getHeight();
             this.width = EnemyEnum.BANNANE.getWidth();
@@ -44,17 +39,10 @@ public class Enemy {
 
     }
 
-    public void start() {
-        enemyMain();
-    }
-
     public Rectangle getRectangle() {
         return enemy;
     }
 
-    public void enemyMain(){
-
-    }
 
     private void getScreenWidth() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size
