@@ -95,13 +95,13 @@ public class main extends Application {
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 
-            if ( == true) {
+            if (this.key.w) {
                 updatePosition(0, -10, rectangle);
-            } else if (key.getCode() == KeyCode.S) {
+            } else if (this.key.s) {
                 updatePosition(0, 10, rectangle);
-            } else if (key.getCode() == KeyCode.A) {
+            } else if (this.key.a) {
                 updatePosition(-10, 0, rectangle);
-            } else if (key.getCode() == KeyCode.D) {
+            } else if (this.key.d) {
                 updatePosition(10, 0, rectangle);
             }
         });
