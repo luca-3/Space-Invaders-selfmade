@@ -5,6 +5,7 @@ import com.example.game.firuges.Enemy;
 import com.example.game.firuges.EnemyEnum;
 import com.example.game.test.MobMove;
 import com.example.game.test.Test;
+import com.example.game.main.KeyEventHandler;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ public class main extends Application {
     int width = (int)size.getWidth();
     int height = (int)size.getHeight();
 
+    KeyEventHandler key = new KeyEventHandler();
     Group root = new Group();
     Scene scene = new Scene(root, width, height);
     Stage stage = new Stage();
@@ -93,15 +95,7 @@ public class main extends Application {
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 
-            if (key.getCode() == KeyCode.W && key.getCode() == KeyCode.D) {
-                updatePosition(6, -6 , rectangle);
-            } else if (key.getCode() == KeyCode.W && key.getCode() == KeyCode.A) {
-                updatePosition(-6, -6 , rectangle);
-            } else if (key.getCode() == KeyCode.S && key.getCode() == KeyCode.D) {
-                updatePosition(6, 6 , rectangle);
-            } else if (key.getCode() == KeyCode.S && key.getCode() == KeyCode.A) {
-                updatePosition(-6, 6 , rectangle);
-            } else if (key.getCode() == KeyCode.W) {
+            if ( == true) {
                 updatePosition(0, -10, rectangle);
             } else if (key.getCode() == KeyCode.S) {
                 updatePosition(0, 10, rectangle);
@@ -110,16 +104,6 @@ public class main extends Application {
             } else if (key.getCode() == KeyCode.D) {
                 updatePosition(10, 0, rectangle);
             }
-        });
-
-
-        //method for object movement with boolean
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            boolean w, a, s, d;
-            w = key.getCode() == KeyCode.W;
-            a = key.getCode() == KeyCode.A;
-            s = key.getCode() == KeyCode.S;
-            d = key.getCode() == KeyCode.D;
         });
 
     }
