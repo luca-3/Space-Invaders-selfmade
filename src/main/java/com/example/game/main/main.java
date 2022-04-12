@@ -78,10 +78,13 @@ public class main extends Application {
         bannane.setFill(Color.YELLOW);
         Thread bannaneThread = new Thread(() ->  bannane(affe, bannane));
 
+        enemyThread.start();
+        affeThread.start();
+        bannaneThread.start();
 
 
-        Thread mainEnemyThread = new Thread(() -> spawn(enemyThread, affeThread, bannaneThread));
-        mainEnemyThread.start();
+
+
 
 
                 scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
@@ -129,19 +132,20 @@ public class main extends Application {
        }
     }
 
-    public void spawn(Thread enemyThread, Thread affeThread, Thread bannaneThread){
-        Random zufall = new Random();
+
+
+    /*
+     Random zufall = new Random();
         while (true) {
             int z = zufall.nextInt(3);
             if (z == 1) {
-                enemyThread.start();
+
             } else if (z == 2) {
-                affeThread.start();
-                bannaneThread.start();
+
             }
             System.out.println(z);
             Test.sleep2(5000);
         }
-    }
+     */
 
 }
