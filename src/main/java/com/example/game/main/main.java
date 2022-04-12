@@ -89,7 +89,7 @@ public class main extends Application {
         Thread bannaneThread = new Thread(() -> bannane(test.getRectangle(), bannane));
         bannaneThread.start();
 
-
+        /*
         if (this.key.w) {
             updatePosition(0, -10, rectangle);
         } else if (this.key.s) {
@@ -99,6 +99,8 @@ public class main extends Application {
         } else if (this.key.d) {
             updatePosition(10, 0, rectangle);
         }
+
+        */
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
 
