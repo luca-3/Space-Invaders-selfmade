@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 
 public enum EnemyEnum {
     AFFE("File", 200, 100, 1, Color.BROWN),
-    BANNANE("File", 50, 50, 1, Color.YELLOW),
+    BANNANE("src/main/resources/com/example/game/enemy/Bannane.png", 50, 50, 1, Color.YELLOW),
     ;
     private final String skin; //skin of the enemy
 

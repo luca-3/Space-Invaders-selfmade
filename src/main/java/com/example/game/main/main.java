@@ -71,18 +71,19 @@ public class main extends Application {
         root.getChildren().add(affe);
         Thread affeThread = new Thread(() ->  enumo2v1(MobMove.EHDMOVE, MobMove.EHDMOVE.getSpeed(), affe, zufall.nextInt(980), width-200));
 
-
-        Rectangle bannane = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.BANNANE.getWidth(), EnemyEnum.BANNANE.getHeight());
-        bannane.setFill(Color.YELLOW);
-        Thread bannaneThread = new Thread(() ->  bannane(affe, bannane));
-
-        enemyThread.start();
+          enemyThread.start();
         affeThread.start();
-        bannaneThread.start();
         */
+
+
 
         Enemy test = new Enemy(EnemyEnum.AFFE);
         root.getChildren().add(test.getRectangle());
+
+        Rectangle bannane = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.BANNANE.getWidth(), EnemyEnum.BANNANE.getHeight());
+        bannane.setFill(Color.YELLOW);
+        Thread bannaneThread = new Thread(() ->  bannane(test.getRectangle(), bannane));
+        bannaneThread.start();
 
 
         Thread affeThread = new Thread(() ->  moveEnemy(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), test.getRectangle(), 500, width));
