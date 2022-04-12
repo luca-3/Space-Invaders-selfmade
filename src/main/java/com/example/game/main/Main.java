@@ -1,6 +1,5 @@
 package com.example.game.main;
 
-
 import com.example.game.firuges.Enemy;
 import com.example.game.firuges.EnemyEnum;
 import com.example.game.test.MobMove;
@@ -16,8 +15,6 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.Random;
-
-
 
 public class Main extends Application {
 
@@ -108,7 +105,7 @@ public class Main extends Application {
         rectangle.setY(oldY + y);
     }
 
-    public void moveEnemy (Enum movementType,int speed, Rectangle rectangle,int spawnHight, int spawnWidth){
+    public void moveEnemy (Enum movementType, int speed, Rectangle rectangle, int spawnHight, int spawnWidth){
 
         for (int x = spawnWidth; x > 0; x -= speed) {
 
@@ -119,7 +116,8 @@ public class Main extends Application {
             Test.sleep2(5);
 
         }
-        rectangle.setX(1920);
+        //delete rectangle
+
     }
     public void bannane (Rectangle affe, Rectangle bannane){
         while (affe.getX() != 10) {
