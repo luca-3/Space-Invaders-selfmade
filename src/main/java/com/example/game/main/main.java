@@ -79,6 +79,9 @@ public class main extends Application {
 
         Enemy test = new Enemy(EnemyEnum.AFFE);
         root.getChildren().add(test.getRectangle());
+        Thread affeThread = new Thread(() ->  moveEnemy(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), test.getRectangle(), 500, width));
+        affeThread.start();
+
 
         Rectangle bannane = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.BANNANE.getWidth(), EnemyEnum.BANNANE.getHeight());
         bannane.setFill(Color.YELLOW);
@@ -86,8 +89,7 @@ public class main extends Application {
         bannaneThread.start();
 
 
-        Thread affeThread = new Thread(() ->  moveEnemy(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), test.getRectangle(), 500, width));
-        affeThread.start();
+
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.W) {
@@ -121,7 +123,7 @@ public class main extends Application {
             Test.sleep2(5);
 
         }
-        rectangle = null;
+        rectangle.setX(1920);
     }
     public void bannane(Rectangle affe, Rectangle bannane){
        while(affe.getX()!=10) {
