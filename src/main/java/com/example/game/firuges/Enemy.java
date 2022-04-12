@@ -22,6 +22,8 @@ public class Enemy {
     int width;
     int hp; // health points
     int updateSpeed = 5; // speed of calculation
+    Rectangle enemy;
+
 
 
 
@@ -34,19 +36,24 @@ public class Enemy {
             this.height = EnemyEnum.AFFE.getHeight();
             this.width = EnemyEnum.AFFE.getWidth();
             this.hp = EnemyEnum.AFFE.getHp();
+            this.enemy = new Rectangle(this.width, this.height, EnemyEnum.AFFE.getColor());
 
         }else if (Type == EnemyEnum.BANNANE) {
             this.skin = EnemyEnum.BANNANE.getSkin();
             this.height = EnemyEnum.BANNANE.getHeight();
             this.width = EnemyEnum.BANNANE.getWidth();
             this.hp = EnemyEnum.BANNANE.getHp();
+            this.enemy = new Rectangle(this.width, this.height, EnemyEnum.BANNANE.getColor());
         }
 
     }
 
-    public void start(){
+    public void start() {
         enemyMain();
+    }
 
+    public Rectangle getRectangle() {
+        return enemy;
     }
 
     public void enemyMain(){

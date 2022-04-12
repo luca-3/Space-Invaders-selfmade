@@ -31,7 +31,6 @@ public class main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     public void addRectangleToRoot(Rectangle rectangle) {
@@ -60,12 +59,11 @@ public class main extends Application {
         Enemy name = new Enemy(EnemyEnum.BANNANE);
 
 
-
+        /*
         Rectangle enemy = new Rectangle(width-200, zufall.nextInt(980), 100, 100);
         enemy.setFill(Color.BLUE);
         root.getChildren().add(enemy);
         Thread enemyThread = new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), enemy, zufall.nextInt(980), width-200));
-
 
 
         Rectangle affe = new Rectangle(width-200, zufall.nextInt(980), EnemyEnum.AFFE.getWidth(), EnemyEnum.AFFE.getHeight());
@@ -81,13 +79,17 @@ public class main extends Application {
         enemyThread.start();
         affeThread.start();
         bannaneThread.start();
+        */
+
+        Enemy test = new Enemy(EnemyEnum.AFFE);
+        Rectangle testR = test.getRectangle();
+        root.getChildren().add(testR);
 
 
+        Thread affeThread = new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), testR, 500, width));
+        affeThread.start();
 
-
-
-
-                scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             if (key.getCode() == KeyCode.W) {
                 updatePosition(0, -10, rectangle);
             } else if (key.getCode() == KeyCode.S) {
