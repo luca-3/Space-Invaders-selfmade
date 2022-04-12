@@ -25,10 +25,6 @@ public class Enemy {
     Rectangle enemy;
 
 
-
-
-
-
     public Enemy(EnemyEnum Type) {
         getScreenWidth();
         if (Type == EnemyEnum.AFFE) {
@@ -58,15 +54,7 @@ public class Enemy {
 
     public void enemyMain(){
 
-
-
     }
-
-
-
-
-
-
 
     private void getScreenWidth() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize(); // get screen size

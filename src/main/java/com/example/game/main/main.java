@@ -92,7 +92,16 @@ public class main extends Application {
 
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if (key.getCode() == KeyCode.W) {
+
+            if (key.getCode() == KeyCode.W && key.getCode() == KeyCode.D) {
+                updatePosition(6, -6 , rectangle);
+            } else if (key.getCode() == KeyCode.W && key.getCode() == KeyCode.A) {
+                updatePosition(-6, -6 , rectangle);
+            } else if (key.getCode() == KeyCode.S && key.getCode() == KeyCode.D) {
+                updatePosition(6, 6 , rectangle);
+            } else if (key.getCode() == KeyCode.S && key.getCode() == KeyCode.A) {
+                updatePosition(-6, 6 , rectangle);
+            } else if (key.getCode() == KeyCode.W) {
                 updatePosition(0, -10, rectangle);
             } else if (key.getCode() == KeyCode.S) {
                 updatePosition(0, 10, rectangle);
@@ -103,9 +112,19 @@ public class main extends Application {
             }
         });
 
+
+        //method for object movement with boolean
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            boolean w, a, s, d;
+            w = key.getCode() == KeyCode.W;
+            a = key.getCode() == KeyCode.A;
+            s = key.getCode() == KeyCode.S;
+            d = key.getCode() == KeyCode.D;
+        });
+
     }
 
-    public  void updatePosition(int x, int y, Rectangle rectangle) {
+    public void updatePosition(int x, int y, Rectangle rectangle) {
         int oldX = (int) rectangle.getX();
         int oldY = (int) rectangle.getY();
         rectangle.setX(oldX+x);
