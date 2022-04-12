@@ -82,11 +82,10 @@ public class main extends Application {
         */
 
         Enemy test = new Enemy(EnemyEnum.AFFE);
-        Rectangle testR = test.getRectangle();
-        root.getChildren().add(testR);
+        root.getChildren().add(test.getRectangle());
 
 
-        Thread affeThread = new Thread(() ->  enumo2v1(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), testR, 500, width));
+        Thread affeThread = new Thread(() ->  moveEnemy(MobMove.HDMOVE, MobMove.HDMOVE.getSpeed(), test.getRectangle(), 500, width));
         affeThread.start();
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
@@ -110,7 +109,7 @@ public class main extends Application {
         rectangle.setY(oldY+y);
     }
 
-    public void enumo2v1(Enum movementType, int speed, Rectangle rectangle, int spawnHight, int spawnWidth) {
+    public void moveEnemy(Enum movementType, int speed, Rectangle rectangle, int spawnHight, int spawnWidth) {
 
         for (int x = spawnWidth; x > 0; x -= speed) {
 
@@ -121,7 +120,8 @@ public class main extends Application {
             Test.sleep2(5);
 
         }
-}
+        rectangle = null;
+    }
     public void bannane(Rectangle affe, Rectangle bannane){
        while(affe.getX()!=10) {
            int affeX = (int) affe.getX();
@@ -129,7 +129,7 @@ public class main extends Application {
            root.getChildren().add(bannane);
            bannane.setX(affeX);
            bannane.setY(affeY);
-           enumo2v1(MobMove.SMOVE, MobMove.SMOVE.getSpeed(), bannane, affeY, affeX);
+           moveEnemy(MobMove.SMOVE, MobMove.SMOVE.getSpeed(), bannane, affeY, affeX);
            Test.sleep2(1000);
        }
     }
