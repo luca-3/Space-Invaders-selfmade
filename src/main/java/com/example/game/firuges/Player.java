@@ -7,7 +7,7 @@ public class Player {
     private int x; //x coordinate
     private int y; //y coordinate
     private int hp; //health points
-    private int size; //size of player
+    private int penisSize; //size of penis
     private int speed; //speed of player
     private ArrayList<String> items; //items collected
     private String skin; //path to skin of player
@@ -23,7 +23,7 @@ public class Player {
 
     //methods to get and set parameters
 
-    public int getX() {
+    public int getX()    {
         return x;
     }
 

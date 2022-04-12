@@ -7,14 +7,14 @@ import java.util.Random;
 
 public class Enemy {
 
-    int spawnHight; // spawn height of enemy on the right side of the screen
-    int screenWidth;
-    int screenHeight;
-    String skin = ""; //skin of the enemy
-    int height;
-    int width;
-    int hp; // health points
-    Rectangle enemy;
+    private int spawnHight; // spawn height of enemy on the right side of the screen
+    private int screenWidth;
+    private int screenHeight;
+    private String skin = ""; //skin of the enemy
+    private int height;
+    private int width;
+    private int hp; // health points
+    private Rectangle enemy;
 
 
     public Enemy(EnemyEnum type) {

@@ -116,7 +116,7 @@ public class Main extends Application {
             Test.sleep2(5);
 
         }
-        //delete rectangle
+        //delete rectangleß
 
     }
     public void bannane (Rectangle affe, Rectangle bannane){
