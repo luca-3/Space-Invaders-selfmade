@@ -1,3 +1,5 @@
+package com.example.game.test.vorlage;
+
 import javax.swing.JPanel;
 import java.awt.*;
 

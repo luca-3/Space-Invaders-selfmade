@@ -1,6 +1,6 @@
 package com.example.game.test.vorlage;
 
-import com.example.game.test.Gamescreen;
+import com.example.game.test.vorlage.Gamescreen;
 
 public class GUI {
 

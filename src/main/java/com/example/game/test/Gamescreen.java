@@ -1,7 +1,3 @@
-package com.example.game.test;
-
-public class Gamescreen {
-}
 
 /*
 class Game = new GUI;
