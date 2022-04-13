@@ -11,9 +11,9 @@ public class ThreadBsp {
             Thread it4 = new Thread(()-> v1(2));
             it1.start();
             it2.start();
-            it2.start();
+            it3.start();
             it4.start();
-            System.out.println("main ende");
+            System.out.println("main end");
         }
         public static void v1(int a) {
             for(int i = 0; i< 5; i++) {

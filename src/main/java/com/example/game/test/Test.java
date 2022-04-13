@@ -21,7 +21,7 @@ public class Test {
         //enumo1v1();
         //enumo2v1(HDMOVE, HDMOVE.getSpeed());
         // bla();
-        //bild();
+        bild();
     }
 
 
@@ -52,10 +52,10 @@ public class Test {
     }*/
 
     public static void bild() throws IOException {
-        File file = new File("C:\\Users\\David\\Downloads\\115-0.jpg");
+        File file = new File("src/main/resources/com/example/game/enemy/Bannane.png");
         BufferedImage bufferedImage = ImageIO.read(file);
-
         ImageIcon imageIcon = new ImageIcon(bufferedImage);
+
         JFrame jFrame = new JFrame("Hadiuz made it");
 
         jFrame.setLayout(new FlowLayout());
@@ -67,9 +67,9 @@ public class Test {
         jLabel.setIcon(imageIcon);
         jFrame.add(jLabel);
         jFrame.setVisible(true);
-        Color farbe = JColorChooser.showDialog(null,
+      /*  Color farbe = JColorChooser.showDialog(null,
                 "Farbauswahl", null);
-        System.out.println(farbe);
+        System.out.println(farbe);*/
 
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
