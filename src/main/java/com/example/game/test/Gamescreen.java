@@ -9,6 +9,4 @@ paintComponent = ruft sich selbst auf
 zb bei tastendruck rePaint methode
 g Objekt zum zeichnen
 
-
-
  */

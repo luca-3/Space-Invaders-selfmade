@@ -16,8 +16,6 @@ import javax.swing.JColorChooser;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-
-
         //enumo1v1();
         //enumo2v1(HDMOVE, HDMOVE.getSpeed());
         // bla();

@@ -13,6 +13,11 @@ public class Gamescreen extends JPanel{
     //ZEICHENMETHODE
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        g.drawRect(300, 300, 100, 100);
+        g.draw
+
+
       
     }
 }
