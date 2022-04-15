@@ -43,7 +43,7 @@ public class Move extends JFrame implements KeyListener {
 
     public void collition(){
         while (true){
-            sleep2(100);
+            sleep2(10);
             //System.out.println(mainChar.getX()+100+" "+enemy.getX());
             if(mainChar.getX()+100>=enemy.getX()&&mainChar.getY()+100>=enemy.getY()&&mainChar.getX()<=enemy.getX()&&mainChar.getY()<=enemy.getY()||
                     mainChar.getX()+100>=enemy.getX()&&mainChar.getY()+100>=enemy.getY()+100&&mainChar.getX()<=enemy.getX()&&mainChar.getY()<=enemy.getY()+100||
@@ -83,13 +83,18 @@ public class Move extends JFrame implements KeyListener {
     public void keyTyped(KeyEvent e) {
         //keyTyped = Invoked when a key is typed. Uses KeyChar, char output
         switch(e.getKeyChar()) {
-            case 'a': mainChar.setLocation(mainChar.getX()-10, mainChar.getY());
+            case 'a': if(mainChar.getX()-10>0){
+                mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());}
                 break;
-            case 'w': mainChar.setLocation(mainChar.getX(), mainChar.getY()-10);
+            case 'w':if(mainChar.getY()-10>30){
+                mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);
+        }
                 break;
-            case 's': mainChar.setLocation(mainChar.getX(), mainChar.getY()+10);
+            case 's': if(mainChar.getY()+110<1040){
+                mainChar.setLocation(mainChar.getX(), mainChar.getY()+10);}
                 break;
-            case 'd': mainChar.setLocation(mainChar.getX()+10, mainChar.getY());
+            case 'd': if(mainChar.getX()+10<1900){
+                mainChar.setLocation(mainChar.getX()+10, mainChar.getY());}
                 break;
         }
 
@@ -98,7 +103,7 @@ public class Move extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         //keyPressed = Invoked when a physical key is pressed down. Uses KeyCode, int output
-        switch(e.getKeyCode()) {
+       /* switch(e.getKeyCode()) {
             case 37: mainChar.setLocation(mainChar.getX()-10, mainChar.getY());
                 break;
             case 38: mainChar.setLocation(mainChar.getX(), mainChar.getY()-10);
@@ -107,7 +112,7 @@ public class Move extends JFrame implements KeyListener {
                 break;
             case 40: mainChar.setLocation(mainChar.getX(), mainChar.getY()+10);
                 break;
-        }
+        }*/
     }
 
     @Override
