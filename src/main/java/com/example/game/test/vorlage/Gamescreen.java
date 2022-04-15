@@ -1,13 +1,15 @@
 package com.example.game.test.vorlage;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 
-public class Gamescreen extends JPanel{
+public class Gamescreen extends JPanel {
 
+    JLabel mainChar;
+    ImageIcon icon;
     //ATTRIBUTE
     public Gamescreen(Frame f){
-  
+
     }
 
     //ZEICHENMETHODE
