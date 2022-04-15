@@ -12,15 +12,17 @@ public class Move extends JFrame implements KeyListener {
     }
 
     JLabel mainChar;
+    JLabel enemy;
     ImageIcon icon;
 
     public Move(){
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500,500);
+        this.setSize(1900, 1000);
+
         this.setLayout(null);
         this.addKeyListener(this);
-
+        this.getContentPane().setBackground(Color.black);
         // icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
 
         mainChar = new JLabel();
@@ -28,10 +30,51 @@ public class Move extends JFrame implements KeyListener {
         mainChar.setIcon(icon);
         mainChar.setBackground(Color.red);
         mainChar.setOpaque(true);
-        this.getContentPane().setBackground(Color.black);
+
         this.add(mainChar);
         this.setVisible(true);
+        enemy = new JLabel();
+        Thread t = new Thread(()->enemy());
+        t.start();
+        Thread t1 = new Thread(()->collition());
+        t1.start();
+
     }
+
+    public void collition(){
+        while (true){
+            sleep2(100);
+            //System.out.println(mainChar.getX()+100+" "+enemy.getX());
+            if(mainChar.getX()+100>=enemy.getX()&&mainChar.getY()+100>=enemy.getY()&&mainChar.getX()<=enemy.getX()&&mainChar.getY()<=enemy.getY()
+            ){
+                mainChar.setLocation(10, 500);
+                System.out.println("So What");
+            }
+        }
+    }
+
+    public void enemy(){
+        enemy = new JLabel();
+        enemy.setBounds(500, 500, 100, 100);
+
+        enemy.setBackground(Color.GREEN);
+        enemy.setOpaque(true);
+
+        this.add(enemy);
+        this.setVisible(true);
+        enemyMove();
+    }
+
+    public void enemyMove(){
+        for (double x = 1900; x > -3; x--) {
+            double y = Math.sin(x/100)*100+500;
+
+            enemy.setLocation((int) x , (int) y);
+            if (x==0){x=1920;}
+            sleep2(10);
+        }
+    }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -67,7 +110,17 @@ public class Move extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         //keyReleased = called whenever a button is released
-        System.out.println("You released key char: " + e.getKeyChar());
-        System.out.println("You released key code: " + e.getKeyCode());
+        //System.out.println("You released key char: " + e.getKeyChar());
+        //System.out.println("You released key code: " + e.getKeyCode());
+    }
+
+    public static Exception sleep2(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ignored) {
+            return ignored;
+        }
+        return null;
     }
 }
+
