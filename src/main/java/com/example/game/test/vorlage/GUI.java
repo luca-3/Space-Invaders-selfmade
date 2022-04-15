@@ -12,5 +12,7 @@ public class GUI {
         this.painting = new Gamescreen(this.f);
         this.f.getContentPane().add(this.painting);
         this.f.setupFrame();
+
+
     }
 }

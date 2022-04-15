@@ -15,7 +15,7 @@ public class Gamescreen extends JPanel{
         super.paintComponent(g);
 
         g.drawRect(300, 300, 100, 100);
-        g.draw
+        g.fillRect(100, 100, 100, 100);
 
 
       
