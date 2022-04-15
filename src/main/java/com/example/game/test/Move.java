@@ -45,7 +45,10 @@ public class Move extends JFrame implements KeyListener {
         while (true){
             sleep2(100);
             //System.out.println(mainChar.getX()+100+" "+enemy.getX());
-            if(mainChar.getX()+100>=enemy.getX()&&mainChar.getY()+100>=enemy.getY()&&mainChar.getX()<=enemy.getX()&&mainChar.getY()<=enemy.getY()
+            if(mainChar.getX()+100>=enemy.getX()&&mainChar.getY()+100>=enemy.getY()&&mainChar.getX()<=enemy.getX()&&mainChar.getY()<=enemy.getY()||
+                    mainChar.getX()+100>=enemy.getX()&&mainChar.getY()+100>=enemy.getY()+100&&mainChar.getX()<=enemy.getX()&&mainChar.getY()<=enemy.getY()+100||
+                    mainChar.getX()+100>=enemy.getX()+100&&mainChar.getY()+100>=enemy.getY()&&mainChar.getX()<=enemy.getX()+100&&mainChar.getY()<=enemy.getY()||
+                    mainChar.getX()+100>=enemy.getX()+100&&mainChar.getY()+100>=enemy.getY()+100&&mainChar.getX()<=enemy.getX()+100&&mainChar.getY()<=enemy.getY()+100
             ){
                 mainChar.setLocation(10, 500);
                 System.out.println("So What");
