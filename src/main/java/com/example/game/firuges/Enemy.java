@@ -22,6 +22,8 @@ public class Enemy {
             this.speed = EnemyE.AFFE.getSpeed();
             this.width = EnemyE.AFFE.getWidth();
             this.height = EnemyE.AFFE.getHeight();
+            this.hp = EnemyE.AFFE.getHp();
+            this.skin = EnemyE.AFFE.getSkin();
 
         }else if (type == EnemyE.BANANE) {
             // Data from Enum
