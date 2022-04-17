@@ -13,6 +13,7 @@ public class Move extends JFrame implements KeyListener {
 
     JLabel mainChar;
     JLabel enemy;
+    JLabel shot;
     ImageIcon icon;
     public Move() {
 
@@ -22,18 +23,19 @@ public class Move extends JFrame implements KeyListener {
         this.setLayout(null);
         this.addKeyListener(this);
         this.getContentPane().setBackground(Color.black);
+        this.setVisible(true);
         // icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
 
         //PLAYER
         mainChar = new JLabel();
-        mainChar.setBounds(0, 0, 100, 100);
+        mainChar.setBounds(100, 100, 100, 100);
         //mainChar.setIcon(icon);
         //mainChar.setBackground();
         Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
         mainChar.setIcon(icon);
         mainChar.setOpaque(true);
         this.add(mainChar);
-        this.setVisible(true);
+
 
         //ENEMY
         Enemy enemyR = new Enemy(EnemyE.AFFE, 600, 300);
@@ -44,14 +46,24 @@ public class Move extends JFrame implements KeyListener {
         //enemy.setIcon(enemyR.getSkin());
         enemy.setOpaque(true);
         this.add(enemy);
-        this.setVisible(true);
+        //this.setVisible(true);
+
+
 
         //THREAD
         Thread t = new Thread(() -> enemyMove());
         t.start();
         Thread t1 = new Thread(() -> collision());
         t1.start();
+
+        shot = new JLabel();
+        shot.setBackground(Color.ORANGE);
+        shot.setBounds(0,0,40,20);
+        shot.setOpaque(true);
+        sleep(1000);
+
     }
+
 
     public static void main(String[] args) {
         new Move();
@@ -79,6 +91,14 @@ public class Move extends JFrame implements KeyListener {
                 mainChar.setLocation(10, 500);
                 System.out.println("So What");
             }
+        }
+    }
+
+    public void shot(){
+       int y = shot.getY();
+        for(int x = shot.getX(); x<1900; x+=4){
+            shot.setLocation(x, y);
+            sleep(10);
         }
     }
 
@@ -119,7 +139,15 @@ public class Move extends JFrame implements KeyListener {
                     mainChar.setLocation(mainChar.getX() + 10, mainChar.getY());
                 }
                 break;
+            case ' ':
+                shot.setLocation(mainChar.getX()+100, mainChar.getY()+50);
+                add(shot);
+                Thread t1 = new Thread(() ->   shot());
+                t1.start();
+
+                System.out.println("Hallo");
         }
+
 
     }
 
