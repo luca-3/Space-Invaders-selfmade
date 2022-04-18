@@ -25,6 +25,7 @@ public class Move extends JFrame implements KeyListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1500, 800);
         this.setResizable(false);
+        setExtendedState(MAXIMIZED_BOTH);
         this.setLayout(null);
         this.addKeyListener(this);
         this.getContentPane().setBackground(Color.black);
@@ -112,7 +113,7 @@ public class Move extends JFrame implements KeyListener {
                 System.out.println("Colision was detected!");
             }
             for (int i = 0; i < shot.length; i++) {
-                if (enemy.getX() + enemy.getWidth() >= shot[i].getX() + shot[i].getWidth() && enemy.getY() + getHeight() >= shot[i].getY() + (shot[i].getHeight() / 2)
+                if (enemy.getX() + enemy.getWidth() >= shot[i].getX() + shot[i].getWidth() && enemy.getY() + enemy.getHeight() >= shot[i].getY() + (shot[i].getHeight() / 2)
                 && enemy.getX() <= shot[i].getX() + shot[i].getWidth()&&enemy.getY()<=shot[i].getY()+(shot[i].getHeight()/2)){
                     c=true;
 
@@ -126,7 +127,7 @@ public class Move extends JFrame implements KeyListener {
         int k1 = k;
         int y = shot[k1].getY();
         for(int x = shot[k1].getX(); x<1900; x+=4){
-            if (c){x=2000;}
+            //if (c){x=2000;}
             shot[k1].setLocation(x, y);
             sleep(10);
 
