@@ -17,7 +17,7 @@ public class Move extends JFrame implements KeyListener {
     JLabel[] shot = new JLabel[5];
     Random random = new Random();
     ImageIcon icon;
-    int k = 0;
+    int k = -1;
     public Move() {
 
         //init settings JFrame
@@ -164,7 +164,7 @@ public class Move extends JFrame implements KeyListener {
 
 
                 sleep(20);
-                if(k==4){k=1;}
+                if(k==4){k=-1;}
 
                 System.out.println("Hallo");
         }
