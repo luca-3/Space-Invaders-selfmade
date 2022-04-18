@@ -13,12 +13,12 @@ import java.util.Random;
 public class Move extends JFrame implements KeyListener {
 
     JLabel mainChar;
-    JLabel enemy;
+    JLabel[] enemy = new JLabel[3];
     JLabel[] shot = new JLabel[10];
     Random random = new Random();
     ImageIcon icon;
     int k = -1;
-    boolean c = false;
+    boolean[] c = new boolean[3];
     public Move() {
 
         //init settings JFrame
@@ -45,20 +45,29 @@ public class Move extends JFrame implements KeyListener {
 
         //ENEMY
         Enemy enemyR = new Enemy(EnemyE.AFFE, 600, 300);
-        enemy = new JLabel();
-        enemy.setBounds(enemyR.getX(), enemyR.getY(), enemyR.getWidth(), enemyR.getHeight());
-        enemy.setBackground(Color.GREEN);
-        //Icon iconB = new ImageIcon("src/main/resources/com/example/game/enemy/Bannane.png");
-        //enemy.setIcon(enemyR.getSkin());
-        enemy.setOpaque(true);
-        this.add(enemy);
-        //this.setVisible(true);
+        for (int i = 0; i < enemy.length; i++) {
+            enemy[i] = new JLabel();
+            enemy[i].setBounds(enemyR.getX(), enemyR.getY()*i, enemyR.getWidth(), enemyR.getHeight());
+            enemy[i].setBackground(Color.GREEN);
+            //Icon iconB = new ImageIcon("src/main/resources/com/example/game/enemy/Bannane.png");
+            //enemy.setIcon(enemyR.getSkin());
+            enemy[i].setOpaque(true);
+            this.add(enemy[i]);
+
+        }
+
+
 
 
 
         //THREAD
-        Thread t = new Thread(() -> enemyMove());
-        t.start();
+        Thread[] t = new Thread[3];
+        for (int i = 0; i < t.length; i++) {
+            int s = i;
+            t[i]= new Thread(() -> enemyMove(s));
+            t[i].start();
+        }
+
         Thread t1 = new Thread(() -> collision());
         t1.start();
 
@@ -96,16 +105,19 @@ public class Move extends JFrame implements KeyListener {
             //System.out.println(mainChar.getX()+100+" "+enemy.getX());
 
 
-
-            if (PvE(mainChar, enemy)) {
-                mainChar.setLocation(10, 500);
-                System.out.println("Colision was detected!");
+            for (int i = 0; i < enemy.length; i++) {
+                if (PvE(mainChar, enemy[i])) {
+                    mainChar.setLocation(10, 500);
+                    System.out.println("Colision was detected!");
+                }
             }
-            for (int i = 0; i < shot.length; i++) {
-                if (enemy.getX() + enemy.getWidth() >= shot[i].getX() + shot[i].getWidth() && enemy.getY() + enemy.getHeight() >= shot[i].getY() + (shot[i].getHeight() / 2)
-                && enemy.getX() <= shot[i].getX() + shot[i].getWidth()&&enemy.getY()<=shot[i].getY()+(shot[i].getHeight()/2)){
-                    c=true;
 
+            for (int i = 0; i < shot.length; i++) {
+                for (int j = 0; j < enemy.length; j++) {
+                    if (enemy[j].getX() + enemy[j].getWidth() >= shot[i].getX() + shot[i].getWidth() && enemy[j].getY() + enemy[j].getHeight() >= shot[i].getY() + (shot[i].getHeight() / 2)
+                     && enemy[j].getX() <= shot[i].getX() + shot[i].getWidth()&&enemy[j].getY()<=shot[i].getY()+(shot[i].getHeight()/2)) {
+                    c[j] = true;
+                    }
                 }
             }
         }
@@ -144,13 +156,21 @@ public class Move extends JFrame implements KeyListener {
     }
 
 
-    public void enemyMove() {
+    public void enemyMove(int i) {
+        int[] base = new int[3];
+
+            base[i] = enemy[i].getY();
+
+
         for (double x = 1600; x > -3; x--) {
-            double y = Math.sin(x / 100) * 100 + 300;
-            enemy.setLocation((int) x, (int) y);
-            if (c){x=1600;c=false;}
-            if (x==0){x=1600;}
-            sleep(5);
+
+                double y = Math.sin(x / 100) * 100 + base[i];
+                enemy[i].setLocation((int) x, (int) y);
+                if (c[i]){x=1600;c[i]=false;}
+                if (x==0){x=1600;}
+                sleep(5);
+
+
         }
     }
 
@@ -196,6 +216,7 @@ public class Move extends JFrame implements KeyListener {
 
                 System.out.println("Hallo");
         }
+
 
 
     }
