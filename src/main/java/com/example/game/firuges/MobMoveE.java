@@ -2,7 +2,7 @@ package com.example.game.firuges;
 
 public enum MobMoveE {
 
-    NMOVE(EnemyE.AFFE), //Normel Move
+    NMOVE(EnemyE.AFFE), // Normel Move
     HDMOVE(null), // High Down Move
     SMOVE(null), // Speed Move
     PMOVE(null),// parabel Move

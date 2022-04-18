@@ -2,11 +2,13 @@ package com.example.game.firuges;
 
 public class Player {
 
+
     private int x;
     private int y;
     private int width;
     private int speed;
-    private int hp;
+    public static int hp;
+    public static int score;
 
 
     public Player(int x, int y, int width, int speed, int hp){

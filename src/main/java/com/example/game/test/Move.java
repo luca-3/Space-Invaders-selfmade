@@ -14,7 +14,7 @@ public class Move extends JFrame implements KeyListener {
 
     JLabel mainChar;
     JLabel enemy;
-    JLabel[] shot = new JLabel[5];
+    JLabel[] shot = new JLabel[10];
     Random random = new Random();
     ImageIcon icon;
     int k = -1;
@@ -23,7 +23,8 @@ public class Move extends JFrame implements KeyListener {
 
         //init settings JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1200, 800);
+        this.setSize(1500, 800);
+        this.setResizable(false);
         this.setLayout(null);
         this.addKeyListener(this);
         this.getContentPane().setBackground(Color.black);
@@ -71,7 +72,6 @@ public class Move extends JFrame implements KeyListener {
             add(shot[i]);
         }
 
-
     }
 
 
@@ -83,7 +83,7 @@ public class Move extends JFrame implements KeyListener {
         try {
             Thread.sleep(millis);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -93,17 +93,26 @@ public class Move extends JFrame implements KeyListener {
             sleep(10);
 
             //System.out.println(mainChar.getX()+100+" "+enemy.getX());
-            if (mainChar.getX() + 100 >= enemy.getX() && mainChar.getY() + 100 >= enemy.getY() && mainChar.getX() <= enemy.getX() && mainChar.getY() <= enemy.getY() ||
-                    mainChar.getX() + 100 >= enemy.getX() && mainChar.getY() + 100 >= enemy.getY() + 100 && mainChar.getX() <= enemy.getX() && mainChar.getY() <= enemy.getY() + 100 ||
-                    mainChar.getX() + 100 >= enemy.getX() + 100 && mainChar.getY() + 100 >= enemy.getY() && mainChar.getX() <= enemy.getX() + 100 && mainChar.getY() <= enemy.getY() ||
-                    mainChar.getX() + 100 >= enemy.getX() + 100 && mainChar.getY() + 100 >= enemy.getY() + 100 && mainChar.getX() <= enemy.getX() + 100 && mainChar.getY() <= enemy.getY() + 100
+            final int hitboxWidth = enemy.getWidth();
+            final int hitboxHeight = enemy.getHeight();
+            final int X_OBJ_ONE = mainChar.getX();
+            final int Y_OBJ_ONE = mainChar.getY();
+            final int X_OBJ_TWO = enemy.getX();
+            final int Y_OBJ_TWO = enemy.getY();
+
+
+
+            if (X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO ||
+                    X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxWidth && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxWidth ||
+                    X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO ||
+                    X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxWidth && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxWidth
             ) {
                 mainChar.setLocation(10, 500);
-                System.out.println("So What");
+                System.out.println("Colision was detected!");
             }
             for (int i = 0; i < shot.length; i++) {
-                if (enemy.getX()+enemy.getWidth()>=shot[i].getX()+shot[i].getWidth()&&enemy.getY()+getHeight()>=shot[i].getY()+(shot[i].getHeight()/2)
-                &&enemy.getX()<=shot[i].getX()+shot[i].getWidth()&&enemy.getY()<=shot[i].getY()+(shot[i].getHeight()/2)){
+                if (enemy.getX() + enemy.getWidth() >= shot[i].getX() + shot[i].getWidth() && enemy.getY() + getHeight() >= shot[i].getY() + (shot[i].getHeight() / 2)
+                && enemy.getX() <= shot[i].getX() + shot[i].getWidth()&&enemy.getY()<=shot[i].getY()+(shot[i].getHeight()/2)){
                     c=true;
 
                 }
@@ -114,7 +123,7 @@ public class Move extends JFrame implements KeyListener {
     public void shot(){
       //int k =  random.nextInt(4);
         int k1 = k;
-       int y = shot[k1].getY();
+        int y = shot[k1].getY();
         for(int x = shot[k1].getX(); x<1900; x+=4){
             if (c){x=2000;}
             shot[k1].setLocation(x, y);
@@ -172,7 +181,7 @@ public class Move extends JFrame implements KeyListener {
 
 
                 sleep(20);
-                if(k==4){k=-1;}
+                if(k==9){k=-1;}
 
                 System.out.println("Hallo");
         }
@@ -202,4 +211,3 @@ public class Move extends JFrame implements KeyListener {
         //System.out.println("You released key code: " + e.getKeyCode());
     }
 }
-
