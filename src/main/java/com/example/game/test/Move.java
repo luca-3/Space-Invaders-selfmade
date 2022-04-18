@@ -111,17 +111,21 @@ public class Move extends JFrame implements KeyListener {
                     System.out.println("Colision was detected!");
                 }
             }
-
             for (int i = 0; i < shot.length; i++) {
                 for (int j = 0; j < enemy.length; j++) {
-                    if (enemy[j].getX() + enemy[j].getWidth() >= shot[i].getX() + shot[i].getWidth() && enemy[j].getY() + enemy[j].getHeight() >= shot[i].getY() + (shot[i].getHeight() / 2)
-                     && enemy[j].getX() <= shot[i].getX() + shot[i].getWidth()&&enemy[j].getY()<=shot[i].getY()+(shot[i].getHeight()/2)) {
+                    if (PvB(enemy[j], shot[i])) {
                     c[j] = true;
                     }
                 }
             }
+
         }
     }
+        public boolean PvB(JLabel Player, JLabel Bullet){
+            if (Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
+                    && Player.getX() <= Bullet.getX() + Bullet.getWidth()&&Player.getY()<=Bullet.getY()+(Bullet.getHeight()/2)){return true;}
+            return false;
+        }
         public boolean PvE(JLabel mobA, JLabel mobB){
         //mobA = hitbox; mobB = points
 

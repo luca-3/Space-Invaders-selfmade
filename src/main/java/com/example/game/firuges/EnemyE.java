@@ -29,21 +29,34 @@ public enum EnemyE {
     public int getSpeed() {
         return speed;
     }
-
     public int getHp() {
         return hp;
     }
-
     public int getWidth() {
         return width;
     }
-
     public int getHeight() {
         return height;
     }
-
     public Icon getSkin() {
         return skin;
+    }
+
+
+    public static int getSpeed(EnemyE a) {
+        return a.getSpeed();
+    }
+    public static int getHp(EnemyE a) {
+        return a.getHp();
+    }
+    public static int getWidth(EnemyE a) {
+        return a.getWidth();
+    }
+    public static int getHeight(EnemyE a) {
+        return a.getHeight();
+    }
+    public static Icon getSkin(EnemyE a) {
+        return a.getSkin();
     }
 
 }

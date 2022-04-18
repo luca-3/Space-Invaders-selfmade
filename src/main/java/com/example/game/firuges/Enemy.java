@@ -16,19 +16,16 @@ public class Enemy {
 
     public Enemy(EnemyE type, int x, int y) {
 
-        if (type == EnemyE.AFFE) {
+
             this.x = x;
             this.y = y;
-            this.speed = EnemyE.AFFE.getSpeed();
-            this.width = EnemyE.AFFE.getWidth();
-            this.height = EnemyE.AFFE.getHeight();
-            this.hp = EnemyE.AFFE.getHp();
-            this.skin = EnemyE.AFFE.getSkin();
+            this.speed = EnemyE.getSpeed(type);
+            this.width = EnemyE.getWidth(type);
+            this.height = EnemyE.getHeight(type);
+            this.hp = EnemyE.getHp(type);
+            this.skin = EnemyE.getSkin(type);
 
-        }else if (type == EnemyE.BANANE) {
-            // Data from Enum
 
-        }
 
     }
 

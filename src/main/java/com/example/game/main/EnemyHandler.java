@@ -8,7 +8,8 @@ public class EnemyHandler {
     }
 
     public void start() {
-        // TODO
+
     }
+
 
 }

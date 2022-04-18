@@ -39,17 +39,17 @@ public class Screen extends JFrame {
 
         score = new JLabel("Score: " + Player.score);
         score.setBounds(10, 10, 100, 20);
-        score.setForeground(Color.black);
+        score.setForeground(Color.white);
         add(score);
 
         lives = new JLabel("Lives: " + Player.hp);
         lives.setBounds(10, 30, 100, 20);
-        lives.setForeground(Color.black);
+        lives.setForeground(Color.white);
         add(lives);
 
         level = new JLabel("Level: " + EnemyHandler.level);
         level.setBounds(10, 50, 100, 20);
-        level.setForeground(Color.black);
+        level.setForeground(Color.white);
         add(level);
     }
 
