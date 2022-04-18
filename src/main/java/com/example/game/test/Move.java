@@ -111,7 +111,8 @@ public class Move extends JFrame implements KeyListener {
         }
     }
         public boolean PvE(JLabel mobA, JLabel mobB){
-        //mobA = Hitbox; mobB = Punkte
+        //mobA = hitbox; mobB = points
+
             final int hitboxWidth = mobB.getWidth();
             final int hitboxHeight = mobB.getHeight();
             final int X_OBJ_ONE = mobA.getX();

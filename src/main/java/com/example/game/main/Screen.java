@@ -24,28 +24,32 @@ public class Screen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+
         setLocationRelativeTo(null);
         setLayout(null);
         setVisible(true);
         setBackground(Color.black);
         background = new JLabel();
         background.setBounds(0, 0, 800, 600);
-        background.setIcon(new ImageIcon("src/main/resources/background.png"));
+        //background.setForeground(Color.black);
+        getContentPane().setBackground(Color.black);
+        //background.setIcon(new ImageIcon("src/main/resources/background.png"));
         add(background);
 
         score = new JLabel("Score: " + Player.score);
         score.setBounds(10, 10, 100, 20);
-        score.setForeground(Color.white);
+        score.setForeground(Color.black);
         add(score);
 
         lives = new JLabel("Lives: " + Player.hp);
         lives.setBounds(10, 30, 100, 20);
-        lives.setForeground(Color.white);
+        lives.setForeground(Color.black);
         add(lives);
 
         level = new JLabel("Level: " + EnemyHandler.level);
         level.setBounds(10, 50, 100, 20);
-        level.setForeground(Color.white);
+        level.setForeground(Color.black);
         add(level);
     }
 
