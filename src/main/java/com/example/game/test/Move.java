@@ -18,6 +18,7 @@ public class Move extends JFrame implements KeyListener {
     Random random = new Random();
     ImageIcon icon;
     int k = -1;
+    boolean c = false;
     public Move() {
 
         //init settings JFrame
@@ -100,6 +101,12 @@ public class Move extends JFrame implements KeyListener {
                 mainChar.setLocation(10, 500);
                 System.out.println("So What");
             }
+            for (int i = 0; i < shot.length; i++) {
+                if (enemy.getX()+enemy.getWidth()>=shot[i].getX()+shot[i].getWidth()&&enemy.getY()+getHeight()>=shot[i].getY()+(shot[i].getHeight()/2)
+                &&enemy.getX()<=shot[i].getX()+shot[i].getWidth()&&enemy.getY()<=shot[i].getY()+(shot[i].getHeight()/2)){
+                    c=true;
+                }
+            }
         }
     }
 
@@ -115,14 +122,12 @@ public class Move extends JFrame implements KeyListener {
 
 
     public void enemyMove() {
-        for (double x = 600; x > -3; x--) {
+        for (double x = 1600; x > -3; x--) {
             double y = Math.sin(x / 100) * 100 + 300;
-
             enemy.setLocation((int) x, (int) y);
-            if (x == 0) {
-                x = 600;
-            }
-            sleep(10);
+            if (c){x=1600;c=false;}
+            if (x==0){x=1600;}
+            sleep(5);
         }
     }
 
