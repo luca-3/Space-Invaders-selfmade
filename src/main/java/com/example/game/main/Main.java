@@ -27,8 +27,8 @@ public class Main {
         Thread screen = new Thread(() -> s.start());
         screen.start();
 
-        Thread t1 = new Thread(() -> collision());
-        t1.start();
+        Thread eH = new Thread(() -> enemyHandler.start());
+        eH.start();
 
 
     }
