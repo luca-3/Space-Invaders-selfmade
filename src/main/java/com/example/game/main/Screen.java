@@ -24,12 +24,11 @@ public class Screen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-
         setLocationRelativeTo(null);
         setLayout(null);
         setVisible(true);
         setBackground(Color.black);
+
         background = new JLabel();
         background.setBounds(0, 0, 800, 600);
         //background.setForeground(Color.black);
@@ -54,8 +53,7 @@ public class Screen extends JFrame {
     }
 
     public void addObject(JLabel object) {
-        objectsList.add(object);
-        add(object);
+        this.add(object);
     }
 
     public void removeObject(JLabel object) {

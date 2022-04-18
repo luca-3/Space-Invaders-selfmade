@@ -16,7 +16,6 @@ public class Enemy {
 
     public Enemy(EnemyE type, int x, int y) {
 
-
             this.x = x;
             this.y = y;
             this.speed = EnemyE.getSpeed(type);
@@ -24,8 +23,6 @@ public class Enemy {
             this.height = EnemyE.getHeight(type);
             this.hp = EnemyE.getHp(type);
             this.skin = EnemyE.getSkin(type);
-
-
 
     }
 
