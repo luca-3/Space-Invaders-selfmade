@@ -63,7 +63,7 @@ public class Move extends JFrame implements KeyListener {
 
         for (int i = 0; i < shot.length; i++) {
             shot[i] = new JLabel();
-            shot[i].setBounds(100*i,400,40,20);
+            shot[i].setBounds(0,0,40,20);
 
             if(i==2){shot[i].setBackground(Color.MAGENTA);}
             else {shot[i].setBackground(Color.ORANGE);}
@@ -105,6 +105,7 @@ public class Move extends JFrame implements KeyListener {
                 if (enemy.getX()+enemy.getWidth()>=shot[i].getX()+shot[i].getWidth()&&enemy.getY()+getHeight()>=shot[i].getY()+(shot[i].getHeight()/2)
                 &&enemy.getX()<=shot[i].getX()+shot[i].getWidth()&&enemy.getY()<=shot[i].getY()+(shot[i].getHeight()/2)){
                     c=true;
+
                 }
             }
         }
@@ -115,8 +116,10 @@ public class Move extends JFrame implements KeyListener {
         int k1 = k;
        int y = shot[k1].getY();
         for(int x = shot[k1].getX(); x<1900; x+=4){
+            if (c){x=2000;}
             shot[k1].setLocation(x, y);
             sleep(10);
+
         }
     }
 
