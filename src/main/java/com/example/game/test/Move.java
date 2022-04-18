@@ -8,13 +8,16 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.Thread;
+import java.util.Random;
 
 public class Move extends JFrame implements KeyListener {
 
     JLabel mainChar;
     JLabel enemy;
-    JLabel shot;
+    JLabel[] shot = new JLabel[5];
+    Random random = new Random();
     ImageIcon icon;
+    int k = 0;
     public Move() {
 
         //init settings JFrame
@@ -56,11 +59,17 @@ public class Move extends JFrame implements KeyListener {
         Thread t1 = new Thread(() -> collision());
         t1.start();
 
-        shot = new JLabel();
-        shot.setBackground(Color.ORANGE);
-        shot.setBounds(0,0,40,20);
-        shot.setOpaque(true);
-        sleep(1000);
+
+        for (int i = 0; i < shot.length; i++) {
+            shot[i] = new JLabel();
+            shot[i].setBounds(100*i,400,40,20);
+
+            if(i==2){shot[i].setBackground(Color.MAGENTA);}
+            else {shot[i].setBackground(Color.ORANGE);}
+            shot[i].setOpaque(true);
+            add(shot[i]);
+        }
+
 
     }
 
@@ -95,9 +104,11 @@ public class Move extends JFrame implements KeyListener {
     }
 
     public void shot(){
-       int y = shot.getY();
-        for(int x = shot.getX(); x<1900; x+=4){
-            shot.setLocation(x, y);
+      //int k =  random.nextInt(4);
+        int k1 = k;
+       int y = shot[k1].getY();
+        for(int x = shot[k1].getX(); x<1900; x+=4){
+            shot[k1].setLocation(x, y);
             sleep(10);
         }
     }
@@ -118,6 +129,7 @@ public class Move extends JFrame implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         //keyTyped = Invoked when a key is typed. Uses KeyChar, char output
+
         switch (e.getKeyChar()) {
             case 'a':
                 if (mainChar.getX() - 10 > 0) {
@@ -140,10 +152,19 @@ public class Move extends JFrame implements KeyListener {
                 }
                 break;
             case ' ':
-                shot.setLocation(mainChar.getX()+100, mainChar.getY()+50);
-                add(shot);
-                Thread t1 = new Thread(() ->   shot());
-                t1.start();
+
+                k++;
+                int f = k;
+                shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
+
+                add(shot[k]);
+
+                Thread t2 = new Thread(()-> shot());
+                t2.start();
+
+
+                sleep(20);
+                if(k==4){k=1;}
 
                 System.out.println("Hallo");
         }
