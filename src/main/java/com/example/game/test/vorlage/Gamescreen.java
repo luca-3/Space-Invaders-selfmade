@@ -1,5 +1,7 @@
 package com.example.game.test.vorlage;
 
+import com.example.game.main.Screen;
+
 import javax.swing.*;
 import java.awt.*;
 

@@ -12,13 +12,18 @@ import java.util.Random;
 
 public class Move extends JFrame implements KeyListener {
 
+    int diff;
     JLabel mainChar;
     JLabel[] enemy = new JLabel[3];
-    JLabel[] shot = new JLabel[10];
+    JLabel[] shot = new JLabel[diff];
     Random random = new Random();
     ImageIcon icon;
     int k = -1;
-    boolean[] c = new boolean[3];
+    int shotZähler = 0;
+    boolean[] c = new boolean[enemy.length];
+    boolean[] d = new boolean[shot.length];
+
+
     public Move() {
 
         //init settings JFrame
@@ -30,13 +35,17 @@ public class Move extends JFrame implements KeyListener {
         this.addKeyListener(this);
         this.getContentPane().setBackground(Color.black);
         this.setVisible(true);
-        // icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
+
+        JButton button = new JButton("click me");
+        button.addActionListener(e ->
+        {
+
+        });
+
 
         //PLAYER
         mainChar = new JLabel();
         mainChar.setBounds(100, 100, 100, 100);
-        //mainChar.setIcon(icon);
-        //mainChar.setBackground();
         Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
         mainChar.setIcon(icon);
         mainChar.setOpaque(true);
@@ -87,6 +96,7 @@ public class Move extends JFrame implements KeyListener {
 
     public static void main(String[] args) {
         new Move();
+
     }
 
     public void sleep(long millis) {
@@ -115,6 +125,7 @@ public class Move extends JFrame implements KeyListener {
                 for (int j = 0; j < enemy.length; j++) {
                     if (PvB(enemy[j], shot[i])) {
                     c[j] = true;
+                    d[i] = true;
                     }
                 }
             }
@@ -151,12 +162,13 @@ public class Move extends JFrame implements KeyListener {
       //int k =  random.nextInt(4);
         int k1 = k;
         int y = shot[k1].getY();
-        for(int x = shot[k1].getX(); x<1900; x+=4){
-            //if (c){x=2000;}
+        for(int x = shot[k1].getX(); x<2000; x+=4){
+            if (d[k1]){x=2000; d[k1]=false;}
             shot[k1].setLocation(x, y);
             sleep(10);
 
         }
+        shotZähler--;
     }
 
 
@@ -204,21 +216,24 @@ public class Move extends JFrame implements KeyListener {
                 }
                 break;
             case ' ':
-
+            if(shotZähler<shot.length) {
                 k++;
                 int f = k;
                 shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
 
                 add(shot[k]);
 
-                Thread t2 = new Thread(()-> shot());
+                Thread t2 = new Thread(() -> shot());
                 t2.start();
 
 
                 sleep(20);
-                if(k==9){k=-1;}
-
+                if (k == 9) {
+                    k = -1;
+                }
+                shotZähler++;
                 System.out.println("Hallo");
+            }
         }
 
 

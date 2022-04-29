@@ -13,13 +13,17 @@ public class EnemyHandler {
         // TODO
     }
 
-    public void start() {
+    public void start(Screen s) {
+        Enemy enemy = new Enemy(EnemyE.BANANE, 100, 400);
+        s.enToJl(enemy);
 
-        Enemy enemy = new Enemy(EnemyE.BANANE,10,10);
-        enemies.add(enemy);
 
     }
 
+    public void move(){
+
+
+    }
 
 
 

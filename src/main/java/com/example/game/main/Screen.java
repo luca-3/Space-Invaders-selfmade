@@ -1,5 +1,6 @@
 package com.example.game.main;
 
+import com.example.game.firuges.Enemy;
 import com.example.game.firuges.Player;
 
 import javax.swing.*;
@@ -8,7 +9,9 @@ import java.util.ArrayList;
 //Screen
 public class Screen extends JFrame {
 
+    JFrame s=new JFrame();
     ArrayList<JLabel> objectsList = new ArrayList<>();
+    JLabel[] kkpp = new JLabel[12];
     JLabel background;
     JLabel score;
     JLabel lives;
@@ -17,6 +20,7 @@ public class Screen extends JFrame {
     public static int height = 800;
     public boolean gameOver = false;
     public boolean gameWon = false;
+    int zähler = 0;
 
     public Screen() {
         setSize(width, height);
@@ -28,6 +32,15 @@ public class Screen extends JFrame {
         setLayout(null);
         setVisible(true);
         setBackground(Color.black);
+        setVisible(true);
+
+        JButton button = new JButton("click me");
+        button.addActionListener(e ->
+        {
+            System.out.println("Hi");
+        });
+        button.setBounds(130,200,100,40);
+        s.add(button);
 
         background = new JLabel();
         background.setBounds(0, 0, 800, 600);
@@ -50,6 +63,9 @@ public class Screen extends JFrame {
         level.setBounds(10, 50, 100, 20);
         level.setForeground(Color.white);
         add(level);
+
+
+
     }
 
     public void addObject(JLabel object) {
@@ -75,20 +91,15 @@ public class Screen extends JFrame {
 
 
 
-
     public void start(){ //start the game
-        this.setVisible(true);
-
 
         this.update(this.getGraphics());
     }
 
 
-
-
-    public void add(Object object) {
+   /* public void add(Object object) {
         this.add(object);
-    }
+    }*/
 
     public void remove(Object object) {
         this.remove(object);
@@ -97,6 +108,25 @@ public class Screen extends JFrame {
     public void repaint() {
         this.repaint();
     }
+
+    //Enemy to JLabel
+    public void enToJl(Enemy object){
+        JLabel temp = new JLabel();
+        temp.setBounds(object.getX(), object.getY(), object.getWidth(), object.getHeight());
+        temp.setIcon(object.getSkin());
+        temp.setOpaque(true);
+
+        kkpp[zähler] = new JLabel();
+        kkpp[zähler] = temp;
+        this.add(kkpp[zähler]);
+
+        //objectsList.set(zähler, temp);
+        //addObject(objectsList.get(zähler));
+        zähler++;
+
+    }
+
+
 }
 
 

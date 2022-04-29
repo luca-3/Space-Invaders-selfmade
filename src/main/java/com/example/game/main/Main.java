@@ -1,9 +1,15 @@
 package com.example.game.main;
 
 import com.example.game.firuges.*;
+import com.example.game.test.vorlage.Gamescreen;
+
+import javax.swing.*;
 
 //Main
 public class Main {
+    EnemyHandler enemyHandler = new EnemyHandler();
+    private Screen s;
+
 
     public static void main(String[] args) {
         Main game = new Main();
@@ -12,26 +18,37 @@ public class Main {
 
     public void start() {
         // create the game window
-        Screen s = new Screen();
+        s = new Screen();
+
+
 
         // create the game objects
         Player player = new Player("init");
-        EnemyHandler enemyHandler = new EnemyHandler();
+
+
 
 
         // add the game objects to the world
-        s.add(player);
-        s.add(enemyHandler);
+        //s.add(player);
+        //s.add(enemyHandler);
+        Enemy enemy = new Enemy(EnemyE.BANANE, 100, 400);
+        s.enToJl(enemy);
+
 
         // start the game loop
         Thread screen = new Thread(() -> s.start());
         screen.start();
 
-        Thread eH = new Thread(() -> enemyHandler.start());
+        Thread eH = new Thread(() -> eHStart());
         eH.start();
 
+    }
+
+    public void eHStart(){
+        enemyHandler.start(s);
 
     }
+
 
 }
 
