@@ -5,7 +5,7 @@ import com.example.game.firuges.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+//Screen
 public class Screen extends JFrame {
 
     ArrayList<JLabel> objectsList = new ArrayList<>();

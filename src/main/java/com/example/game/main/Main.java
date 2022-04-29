@@ -2,7 +2,7 @@ package com.example.game.main;
 
 import com.example.game.firuges.*;
 
-
+//Main
 public class Main {
 
     public static void main(String[] args) {
