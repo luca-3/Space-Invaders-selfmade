@@ -2,27 +2,29 @@ package com.example.game.firuges;
 
 import javax.swing.*;
 
+import static com.example.game.firuges.MobMoveE.HDMOVE;
+
 public enum EnemyE {
-    AFFE(100, 200, 30,  20,"src/main/resources/com/example/game/enemy/Spaceship.png"),
-    BANANE(100, 100, 10, 30, "src/main/resources/com/example/game/enemy/Bannane.png"),
+    AFFE(100, 200, 30,  20, MobMoveE.HDMOVE,"src/main/resources/com/example/game/enemy/Spaceship.png"),
+    BANANE(100, 100, 10, 70, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Bannane.png"),
     ;
 
 
     private final int width;
     private final int height;
-    private final int speed;
+    private final int speed;// Max speed = 100
     private final Icon skin;
     private final int hp;
-    //private final MobMoveE MOVE;
+    private final MobMoveE move;
 
 
 
-     EnemyE(int width, int height, int hp, int speed, String skin) {
+     EnemyE(int width, int height, int hp, int speed,MobMoveE m, String skin) {
         this.width = width;
         this.height = height;
         this.skin = new ImageIcon(skin); // creates icon object from incoming path
         this.hp = hp;
-
+        this.move = m;
         this.speed = speed;
     }
 
@@ -38,6 +40,7 @@ public enum EnemyE {
     public int getHeight() {
         return height;
     }
+    public MobMoveE getMove(){return move;}
     public Icon getSkin() {
         return skin;
     }
@@ -55,9 +58,11 @@ public enum EnemyE {
     public static int getHeight(EnemyE a) {
         return a.getHeight();
     }
+    public static MobMoveE getMove(EnemyE a){return a.getMove();}
     public static Icon getSkin(EnemyE a) {
         return a.getSkin();
     }
+
 
 }
 

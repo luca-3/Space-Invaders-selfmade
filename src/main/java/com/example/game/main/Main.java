@@ -31,8 +31,6 @@ public class Main {
         // add the game objects to the world
         //s.add(player);
         //s.add(enemyHandler);
-        Enemy enemy = new Enemy(EnemyE.BANANE, 100, 400);
-        s.addEnemy(enemy);
 
 
         // start the game loop

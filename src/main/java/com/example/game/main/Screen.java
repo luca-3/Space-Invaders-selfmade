@@ -1,6 +1,8 @@
 package com.example.game.main;
 
 import com.example.game.firuges.Enemy;
+import com.example.game.firuges.EnemyE;
+import com.example.game.firuges.MobMoveE;
 import com.example.game.firuges.Player;
 import com.example.game.test.Move;
 
@@ -36,13 +38,7 @@ public class Screen extends JFrame {
         setBackground(Color.black);
         setVisible(true);
 
-        JButton button = new JButton("click me");
-        button.addActionListener(e ->
-        {
-            System.out.println("Hi");
-        });
-        button.setBounds(130,200,100,40);
-        s.add(button);
+
 
         background = new JLabel();
         background.setBounds(0, 0, 800, 600);
@@ -94,10 +90,11 @@ public class Screen extends JFrame {
 
 
     public void start(){ //start the game
-        while (true){
+      /*  while (true){
         this.update(this.getGraphics());
-        Move.sleep(100);
+        Move.sleep(20000);
         }
+        */
     }
 
 
@@ -114,7 +111,7 @@ public class Screen extends JFrame {
     }
 
     //Enemy to JLabel
-    public void addEnemy(Enemy object){
+    public int addEnemy(Enemy object){
         JLabel temp = new JLabel();
         temp.setBounds(object.getX(), object.getY(), object.getWidth(), object.getHeight());
         temp.setIcon(object.getSkin());
@@ -127,10 +124,24 @@ public class Screen extends JFrame {
 
         //objectsList.set(zähler, temp);
         //addObject(objectsList.get(zähler));
+
         zähler++;
+        return zähler-1;
 
     }
 
+    public void move(int id, EnemyE e){
+        System.out.println(arrJLabel[id].getY());
+        int spawn = arrJLabel[id].getY();
+        for (double i = 2000; i > 0; i--) {
+
+           double y =  MobMoveE.bew(e.getMove(), spawn, i);
+            arrJLabel[id].setLocation((int) i, (int) y);
+            Move.sleep(100/e.getSpeed());
+        }
+
+
+    }
 
 
 

@@ -2,19 +2,19 @@ package com.example.game.firuges;
 
 public enum MobMoveE {
 
-    NMOVE(EnemyE.AFFE), // Normel Move
-    HDMOVE(null), // High Down Move
-    SMOVE(null), // Speed Move
-    PMOVE(null),// parabel Move
-    EHDMOVE(EnemyE.BANANE)// Extrem High Down
+    NMOVE(), // Normel Move
+    HDMOVE(), // High Down Move
+    SMOVE(), // Speed Move
+    PMOVE(),// parabel Move
+    EHDMOVE()// Extrem High Down
     ;
 
 
-    private final int speed;
+    ;
 
 
-    MobMoveE(EnemyE enemy) {
-        this.speed = enemy.getSpeed();
+    MobMoveE() {
+
     }
 
 
