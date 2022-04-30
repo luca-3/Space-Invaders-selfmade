@@ -5,6 +5,8 @@ import com.example.game.firuges.EnemyE;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.Thread;
@@ -12,7 +14,7 @@ import java.util.Random;
 
 public class Move extends JFrame implements KeyListener {
 
-    int diff;
+    int diff = 10;
     JLabel mainChar;
     JLabel[] enemy = new JLabel[3];
     JLabel[] shot = new JLabel[diff];
@@ -22,7 +24,7 @@ public class Move extends JFrame implements KeyListener {
     int shotZähler = 0;
     boolean[] c = new boolean[enemy.length];
     boolean[] d = new boolean[shot.length];
-
+    int leben = 7;
 
     public Move() {
 
@@ -35,12 +37,6 @@ public class Move extends JFrame implements KeyListener {
         this.addKeyListener(this);
         this.getContentPane().setBackground(Color.black);
         this.setVisible(true);
-
-        JButton button = new JButton("click me");
-        button.addActionListener(e ->
-        {
-
-        });
 
 
         //PLAYER
@@ -99,7 +95,7 @@ public class Move extends JFrame implements KeyListener {
 
     }
 
-    public void sleep(long millis) {
+    public static void sleep(long millis) {
         try {
             Thread.sleep(millis);
         } catch (Exception e) {
@@ -253,6 +249,7 @@ public class Move extends JFrame implements KeyListener {
             case 40: mainChar.setLocation(mainChar.getX(), mainChar.getY()+10);
                 break;
         }*/
+
     }
 
     @Override

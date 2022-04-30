@@ -2,6 +2,7 @@ package com.example.game.main;
 
 import com.example.game.firuges.Enemy;
 import com.example.game.firuges.Player;
+import com.example.game.test.Move;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,8 +93,10 @@ public class Screen extends JFrame {
 
 
     public void start(){ //start the game
-
+        while (true){
         this.update(this.getGraphics());
+        Move.sleep(100);
+        }
     }
 
 

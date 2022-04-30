@@ -31,8 +31,8 @@ public class Main {
         // add the game objects to the world
         //s.add(player);
         //s.add(enemyHandler);
-        Enemy enemy = new Enemy(EnemyE.BANANE, 100, 400);
-        s.enToJl(enemy);
+
+
 
 
         // start the game loop
@@ -41,6 +41,8 @@ public class Main {
 
         Thread eH = new Thread(() -> eHStart());
         eH.start();
+
+
 
     }
 
