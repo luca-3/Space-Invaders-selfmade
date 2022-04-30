@@ -8,7 +8,7 @@ import javax.swing.*;
 //Main
 public class Main {
     EnemyHandler enemyHandler = new EnemyHandler();
-    private Screen s;
+    static Screen s;
 
 
     public static void main(String[] args) {
@@ -32,7 +32,7 @@ public class Main {
         //s.add(player);
         //s.add(enemyHandler);
         Enemy enemy = new Enemy(EnemyE.BANANE, 100, 400);
-        s.enToJl(enemy);
+        s.addEnemy(enemy);
 
 
         // start the game loop

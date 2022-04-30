@@ -10,12 +10,12 @@ public class EnemyHandler {
     public static ArrayList<Enemy> enemies;
 
     public EnemyHandler() {
-        // TODO
+
     }
 
     public void start(Screen s) {
         Enemy enemy = new Enemy(EnemyE.BANANE, 100, 400);
-        s.enToJl(enemy);
+        Main.s.addEnemy(enemy);
 
 
     }
