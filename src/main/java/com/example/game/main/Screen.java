@@ -12,7 +12,8 @@ public class Screen extends JFrame {
 
     JFrame s=new JFrame();
     ArrayList<JLabel> objectsList = new ArrayList<>();
-    JLabel[] kkpp = new JLabel[12];
+    JLabel[] arrJLabel = new JLabel[12];
+    Thread[] arrThread = new Thread[arrJLabel.length];
     JLabel background;
     JLabel score;
     JLabel lives;
@@ -113,21 +114,24 @@ public class Screen extends JFrame {
     }
 
     //Enemy to JLabel
-    public void enToJl(Enemy object){
+    public void addEnemy(Enemy object){
         JLabel temp = new JLabel();
         temp.setBounds(object.getX(), object.getY(), object.getWidth(), object.getHeight());
         temp.setIcon(object.getSkin());
         temp.setOpaque(true);
 
-        kkpp[zähler] = new JLabel();
-        kkpp[zähler] = temp;
-        this.add(kkpp[zähler]);
+        arrJLabel[zähler] = new JLabel();
+        arrJLabel[zähler] = temp;
+        this.add(arrJLabel[zähler]);
+
 
         //objectsList.set(zähler, temp);
         //addObject(objectsList.get(zähler));
         zähler++;
 
     }
+
+
 
 
 }

@@ -17,7 +17,7 @@ public class Move extends JFrame implements KeyListener {
     int diff = 10;
     JLabel mainChar;
     JLabel[] enemy = new JLabel[3];
-    JLabel[] shot = new JLabel[diff];
+    JLabel[] shot = new JLabel[10];
     Random random = new Random();
     ImageIcon icon;
     int k = -1;
