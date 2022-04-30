@@ -8,9 +8,11 @@ import com.example.game.test.Move;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 //Screen
-public class Screen extends JFrame {
+public class Screen extends JFrame implements KeyListener {
 
     JFrame s=new JFrame();
     ArrayList<JLabel> objectsList = new ArrayList<>();
@@ -20,6 +22,7 @@ public class Screen extends JFrame {
     JLabel score;
     JLabel lives;
     JLabel level;
+    JLabel mainChar;
     public static int width = 1500;
     public static int height = 800;
     public boolean gameOver = false;
@@ -38,7 +41,7 @@ public class Screen extends JFrame {
         setBackground(Color.black);
         setVisible(true);
 
-
+        this.addKeyListener(this);
 
         background = new JLabel();
         background.setBounds(0, 0, 800, 600);
@@ -62,7 +65,12 @@ public class Screen extends JFrame {
         level.setForeground(Color.white);
         add(level);
 
-
+        mainChar = new JLabel();
+        mainChar.setBounds(100, 100, 100, 100);
+        Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
+        mainChar.setIcon(icon);
+        mainChar.setOpaque(true);
+        this.add(mainChar);
 
     }
 
@@ -133,15 +141,50 @@ public class Screen extends JFrame {
     public void move(int id, EnemyE e){
         System.out.println(arrJLabel[id].getY());
         int spawn = arrJLabel[id].getY();
-        for (double i = 2000; i > 0; i--) {
+        for (double x = 2000; x > 0; x--) {
 
-           double y =  MobMoveE.bew(e.getMove(), spawn, i);
-            arrJLabel[id].setLocation((int) i, (int) y);
+           double y =  MobMoveE.bew(e.getMove(), spawn, x);
+            arrJLabel[id].setLocation((int) x, (int) y);
             Move.sleep(100/e.getSpeed());
+            if (x == 1){x=2000;}
         }
 
 
     }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        switch (e.getKeyChar()) {
+            case 'a':
+                if (mainChar.getX() - 10 > 0) {
+                    mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());
+                }
+                break;
+            case 'w':
+                if (mainChar.getY() - 10 > 30) {
+                    mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);
+                }
+                break;
+            case 's':
+                if (mainChar.getY() + 110 < 1040) {
+                    mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);
+                }
+                break;
+            case 'd':
+                if (mainChar.getX() + 10 < 1900) {
+                    mainChar.setLocation(mainChar.getX() + 10, mainChar.getY());
+                }
+                break;
+            case ' ':
+
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {}
+    @Override
+    public void keyReleased(KeyEvent e) {}
 
 
 
