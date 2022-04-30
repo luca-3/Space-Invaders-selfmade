@@ -23,11 +23,17 @@ public class Screen extends JFrame implements KeyListener {
     JLabel lives;
     JLabel level;
     JLabel mainChar;
+    JLabel[] shot = new JLabel[10];
     public static int width = 1500;
     public static int height = 800;
     public boolean gameOver = false;
     public boolean gameWon = false;
     int zähler = 0;
+    int shotZähler =0;
+    int k = -1;
+    boolean[] c = new boolean[arrJLabel.length];
+    boolean[] d = new boolean[shot.length];
+
 
     public Screen() {
         setSize(width, height);
@@ -72,37 +78,52 @@ public class Screen extends JFrame implements KeyListener {
         mainChar.setOpaque(true);
         this.add(mainChar);
 
+        for (int i = 0; i < shot.length; i++) {
+            shot[i] = new JLabel();
+            shot[i].setBounds(0,20,40,20);
+
+            if(i==2){shot[i].setBackground(Color.MAGENTA);}
+            else {shot[i].setBackground(Color.ORANGE);}
+            shot[i].setOpaque(true);
+            add(shot[i]);
+        }
+
     }
 
-    public void addObject(JLabel object) {
-        this.add(object);
-    }
+    public void addObject(JLabel object) {this.add(object);}
+    public void removeObject(JLabel object) {objectsList.remove(object);remove(object);}
 
-    public void removeObject(JLabel object) {
-        objectsList.remove(object);
-        remove(object);
-    }
-
-    public void updateScore() {
-        score.setText("Score: " + Player.score);
-    }
-
-    public void updateLives() {
-        lives.setText("Lives: " + Player.hp);
-    }
-
-    public void updateLevel() {
-        level.setText("Level: " + EnemyHandler.level);
-    }
+    public void updateScore() {score.setText("Score: " + Player.score);}
+    public void updateLives() {lives.setText("Lives: " + Player.hp);}
+    public void updateLevel() {level.setText("Level: " + EnemyHandler.level);}
 
 
 
     public void start(){ //start the game
-      /*  while (true){
-        this.update(this.getGraphics());
-        Move.sleep(20000);
+        while (true){
+
+            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt arrJLabel.length IMMER BEACHTEN!!!
+                if (PvE(mainChar, arrJLabel[i])) {
+                    mainChar.setLocation(10, 500);
+
+                }
+            }
+
+
+            for (int i = 0; i < shot.length; i++) {
+                for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
+                    if (PvB(arrJLabel[j], shot[i])) {
+                         c[j] = true;
+                         d[i] = true;
+
+                    }
+                }
+            }
+
+
+        Move.sleep(2);
         }
-        */
+        //this.update(this.getGraphics());
     }
 
 
@@ -147,6 +168,7 @@ public class Screen extends JFrame implements KeyListener {
             arrJLabel[id].setLocation((int) x, (int) y);
             Move.sleep(100/e.getSpeed());
             if (x == 1){x=2000;}
+            if(c[id]){x= 1800; c[id]=false;}
         }
 
 
@@ -177,9 +199,65 @@ public class Screen extends JFrame implements KeyListener {
                 }
                 break;
             case ' ':
+                if(shotZähler<shot.length) {
+                    k++;
+                    int f = k;
+                    shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
+                    add(shot[k]);
 
+                    Thread t2 = new Thread(() -> shot());
+                    t2.start();
+
+                    Move.sleep(20);
+                    if (k == 9) {
+                        k = -1;
+                    }
+                    shotZähler++;
+                    System.out.println("Hallo");
+                }
         }
     }
+    public void shot(){
+        //int k =  random.nextInt(4);
+        int k1 = k;
+        int y = shot[k1].getY();
+        for(int x = shot[k1].getX(); x<2000; x+=4){
+            if (d[k1]){x=2000; d[k1]=false;}
+            shot[k1].setLocation(x, y);
+            Move.sleep(10);
+
+        }
+        shotZähler--;
+    }
+
+    public boolean PvB(JLabel Player, JLabel Bullet){
+        if (Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
+                && Player.getX() <= Bullet.getX() + Bullet.getWidth() &&Player.getY()<=Bullet.getY()+(Bullet.getHeight()/2)||
+                Player.getX() + Player.getWidth() >= Bullet.getX() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
+                        && Player.getX() <= Bullet.getX()  &&Player.getY()<=Bullet.getY()+(Bullet.getHeight()/2)){return true;}
+        return false;
+    }
+    public boolean PvE(JLabel mobA, JLabel mobB){
+        //mobA = hitbox; mobB = points
+
+        final int hitboxWidth = mobB.getWidth();
+        final int hitboxHeight = mobB.getHeight();
+        final int X_OBJ_ONE = mobA.getX();
+        final int Y_OBJ_ONE = mobA.getY();
+        final int X_OBJ_TWO = mobB.getX();
+        final int Y_OBJ_TWO = mobB.getY();
+        if (X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO || //Oben Links
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight || //Unten Links
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO || // Oben Rechts
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight|| //Unten Rechts
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight/2 && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight/2|| // Mitte Links
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO+hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight/2 && X_OBJ_ONE <= X_OBJ_TWO+hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight/2|| // Mitte Rechts
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth/2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth/2 && Y_OBJ_ONE <= Y_OBJ_TWO || // Mitte Oben
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth/2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO/2 + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight // Mitte Unten
+        ){return true;}
+        return  false;
+    }
+
 
     @Override
     public void keyPressed(KeyEvent e) {}

@@ -30,8 +30,8 @@ public class EnemyHandler {
 
         System.out.println(enemies.size());
 
-        Thread move = new Thread(()-> move());
-        move.start();
+
+        move();
     }
 
     public void move(){
@@ -49,6 +49,8 @@ public class EnemyHandler {
 
 
     }
+
+    public static int getAnzahlE(){return enemies.size();}
 
 
 
