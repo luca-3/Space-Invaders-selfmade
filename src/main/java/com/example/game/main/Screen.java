@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 //Screen
-public class Screen extends JFrame implements KeyListener {
+public class Screen extends JFrame {
 
     JFrame s=new JFrame();
     ArrayList<JLabel> objectsList = new ArrayList<>();
@@ -34,10 +34,10 @@ public class Screen extends JFrame implements KeyListener {
     int k = -1;
     boolean[] hit = new boolean[arrJLabel.length];
     boolean[] d = new boolean[shot.length];
-    boolean wTaste;
-    boolean aTaste;
-    boolean sTaste;
-    boolean dTaste;
+    boolean wKey;
+    boolean aKey;
+    boolean sKey;
+    boolean dKey;
 
     public Screen() {
         setSize(width, height);
@@ -51,7 +51,10 @@ public class Screen extends JFrame implements KeyListener {
         setBackground(Color.black);
         setVisible(true);
 
-        this.addKeyListener(this);
+
+        //this.addKeyListener(l);
+        Keyboard k = new Keyboard();
+        this.addKeyListener(k);
 
         background = new JLabel();
         background.setBounds(0, 0, 800, 600);
@@ -104,14 +107,20 @@ public class Screen extends JFrame implements KeyListener {
 
 
     public void start(){ //start the game
+
         Thread wT = new Thread(()-> w());
         Thread aT = new Thread(()-> a());
         Thread sT = new Thread(()-> s());
         Thread dT = new Thread(()-> d());
+        Thread spaceT = new Thread(()-> space());
+
         wT.start();
         aT.start();
         sT.start();
         dT.start();
+        spaceT.start();
+
+
         while (true){
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt arrJLabel.length IMMER BEACHTEN!!!
@@ -202,10 +211,6 @@ public class Screen extends JFrame implements KeyListener {
         }
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
 
     public void shot(){
         //int k =  random.nextInt(4);
@@ -248,70 +253,42 @@ public class Screen extends JFrame implements KeyListener {
     }
 
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'a':
-                aTaste=true;
-                break;
-            case 'w':
-                wTaste=true;
-                break;
-            case 's':
-                sTaste =true;
-                break;
-            case 'd':
-                dTaste=true;
-                break;
-            case ' ':
-                if(shotZähler<shot.length) {
-                    k++;
-                    int f = k;
-                    shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
-                    add(shot[k]);
 
-                    Thread t2 = new Thread(() -> shot());
-                    t2.start();
 
-                    Move.sleep(20);
-                    if (k == 9) {
-                        k = -1;
-                    }
-                    shotZähler++;
-
-                }
-        }
-    }
-    @Override
-    public void keyReleased(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'a':
-                aTaste = false;
-                break;
-            case 'w':
-                wTaste = false;
-                break;
-            case 's':
-                sTaste = false;
-                break;
-            case 'd':
-                dTaste = false;
-                break;
-        }
-    }
 
     public void w(){while (true){
-        if (wTaste) {
+        if (Keyboard.wKey) {
         if (mainChar.getY()-10>0)mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);}Move.sleep(20);}}
     public void a(){while (true){
-        if (aTaste) {
+        if (Keyboard.aKey) {
         if (mainChar.getX()-10>0)mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());}Move.sleep(20);}}
     public void s(){while (true){
-        if (sTaste) {
+        if (Keyboard.sKey) {
         if (mainChar.getY()< 1080) mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);}Move.sleep(20);}}
     public void d(){while (true){
-        if(dTaste){
+        if(Keyboard.dKey){
             if (mainChar.getX()+10<1920) mainChar.setLocation(mainChar.getX()+ 10, mainChar.getY() );}Move.sleep(20);}}
+    public void space(){while (true){
+        if(Keyboard.spaceKey){
+            if(shotZähler<shot.length) {
+                k++;
+                int f = k;
+                shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
+                add(shot[k]);
+
+                Thread t2 = new Thread(() -> shot());
+                t2.start();
+
+                Move.sleep(200);
+                if (k == 9) {
+                    k = -1;
+                }
+                shotZähler++;
+            }
+        }
+        Move.sleep(20);
+    }
+    }
 
     public int getMainX(){return mainChar.getX();}
     public int getMainY(){return mainChar.getY();}
