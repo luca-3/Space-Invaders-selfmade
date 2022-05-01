@@ -26,7 +26,7 @@ public enum MobMoveE {
     public static void bool(){
         while (true){
             abstand1 = true;
-            Move.sleep(2500);
+            Move.sleep(250); //update rate of search
         }
     }
 
