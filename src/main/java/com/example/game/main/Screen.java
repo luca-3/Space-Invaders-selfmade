@@ -8,7 +8,7 @@ import com.example.game.test.Move;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+
 //Screen
 public class Screen extends JFrame {
 
@@ -17,6 +17,8 @@ public class Screen extends JFrame {
     JLabel[] unicorn = new JLabel[10];
     JLabel[] kitty = new JLabel[10];
     JLabel[] puffy = new JLabel[10];
+    int countAffe, countDwarf, countUnicorn, countKitty, countPuffy, countBullet = 0;
+
     JLabel background;
     JLabel score;
     JLabel lives;
@@ -25,14 +27,7 @@ public class Screen extends JFrame {
     JLabel[] shot = new JLabel[10];
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-    int zähler = 0;
-    int zäAffe = 0;
-    int zäDwarf = 0;
-    int zäUnicorn = 0;
-    int zäKitty = 0;
-    int zäPuffy = 0;
-    int shotZähler = 0;
-    int bannanenZähler = 1;
+
     int k = -1;
     boolean[] hit = new boolean[affe.length];
     boolean[] d = new boolean[shot.length];
@@ -130,7 +125,7 @@ public class Screen extends JFrame {
 
         while (true){
 
-            for (int i = 0; i < affe.length; i++) { //EnemyHandler.getAnzahlE() statt .length IMMER BEACHTEN!!!
+            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt .length IMMER BEACHTEN!!!
                 if (PvE(mainChar, affe[i])) {
                     mainChar.setLocation(10, 500);
                     Player.editHP(-1);
@@ -170,45 +165,13 @@ public class Screen extends JFrame {
         temp.setIcon(object.getSkin());
         temp.setOpaque(true);
         EnemyE typ = object.getTyp();
-        if (typ == EnemyE.AFFE) {
-            affe[zäAffe] = new JLabel();
-            affe[zäAffe] = temp;
-            this.add(affe[zäAffe]);
-            zäAffe++;
-            return zäAffe-1;
-        }
-        if (typ == EnemyE.UNICORN) {
-            unicorn[zäUnicorn] = new JLabel();
-            unicorn[zäUnicorn] = temp;
-            this.add(unicorn[zäUnicorn]);
-            zäUnicorn++;
-            return zäUnicorn-1;
-        }
-        if (typ == EnemyE.DWARF) {
-            dwarf[zäDwarf] = new JLabel();
-            dwarf[zäDwarf] = temp;
-            this.add(dwarf[zäDwarf]);
-            zäDwarf++;
-            return zäDwarf-1;
-        }
-        if (typ == EnemyE.KITTY) {
-            kitty[zäKitty] = new JLabel();
-            kitty[zäKitty] = temp;
-            this.add(kitty[zäKitty]);
-            zäKitty++;
-            return zäKitty-1;
-        }
-        if (typ == EnemyE.PUFFY) {
-            puffy[zäPuffy] = new JLabel();
-            puffy[zäPuffy] = temp;
-            this.add(puffy[zäPuffy]);
-            zäPuffy++;
-            return zäPuffy-1;
-        }
 
+        affe[countAffe] = new JLabel();
+        affe[countAffe] = temp;
+        this.add(affe[countAffe]);
+        countAffe++;
+        return countAffe -1;
 
-        zähler++;
-        return zähler-1;
 
     }
 
@@ -258,7 +221,7 @@ public class Screen extends JFrame {
             Move.sleep(10);
 
         }
-        shotZähler--;
+        countBullet--;
     }
     public boolean PvB(JLabel Player, JLabel Bullet){
         if (Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
@@ -306,7 +269,7 @@ public class Screen extends JFrame {
             if (mainChar.getX()+10<1920) mainChar.setLocation(mainChar.getX()+ 10, mainChar.getY() );}Move.sleep(20);}}
     public void space(){while (true){
         if(Keyboard.spaceKey){
-            if(shotZähler<shot.length) {
+            if(countBullet <shot.length) {
                 k++;
                 int f = k;
                 shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
@@ -319,7 +282,7 @@ public class Screen extends JFrame {
                 if (k == 9) {
                     k = -1;
                 }
-                shotZähler++;
+                countBullet++;
             }
         }
         Move.sleep(20);
