@@ -42,6 +42,21 @@ public class EnemyHandler {
             enemy.setId(screen.addEnemy(enemy));
             enemies.add(enemy);
         }
+        for (int i = 0; i < level.getNumberDwarf(); i++) {
+            Enemy enemy = new Enemy(EnemyE.DWARF, 2000 +200*i, 200+200*i);
+            enemy.setId(screen.addEnemy(enemy));
+            enemies.add(enemy);
+        }
+        for (int i = 0; i < level.getNumberPuffy(); i++) {
+            Enemy enemy = new Enemy(EnemyE.PUFFY, 2000 +200*i, 200+200*i);
+            enemy.setId(screen.addEnemy(enemy));
+            enemies.add(enemy);
+        }
+        for (int i = 0; i < level.getNumberKitty(); i++) {
+            Enemy enemy = new Enemy(EnemyE.KITTY, 2000 +200*i, 200+200*i);
+            enemy.setId(screen.addEnemy(enemy));
+            enemies.add(enemy);
+        }
     }
 
 
