@@ -26,12 +26,12 @@ public enum MobMoveE {
     public static void bool(){
         while (true){
             abstand1 = true;
-            Move.sleep(5000);
+            Move.sleep(2500);
         }
     }
 
 
-    public static double bew(Enum move, int spawnHight, double x, double y){
+    public static double bew(MobMoveE move, int spawnHight, double x, double y){
 
         if (MobMoveE.NMOVE.equals(move)) {
            return spawnHight;

@@ -38,7 +38,7 @@ public class EnemyHandler {
             //bannane.start();
         }
         for (int i = 0; i < level.getZiel(); i++) {
-            Enemy enemy = new Enemy(EnemyE.ZIEL, 2000 +200*i, 800);
+            Enemy enemy = new Enemy(EnemyE.ZIEL, 2000 +200*i, 200+200*i);
             enemy.setId(screen.addEnemy(enemy));
             enemies.add(enemy);
         }
