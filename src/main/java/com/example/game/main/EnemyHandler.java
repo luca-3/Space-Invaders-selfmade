@@ -2,6 +2,7 @@ package com.example.game.main;
 
 import com.example.game.firuges.Enemy;
 import com.example.game.firuges.EnemyE;
+import com.example.game.firuges.Level;
 import com.example.game.test.Move;
 
 import java.util.ArrayList;
@@ -20,19 +21,24 @@ public class EnemyHandler {
         this.screen = s;
 
 
-        Enemy enemy = new Enemy(EnemyE.BANANE, 2000, 400);
-        enemy.setId(screen.addEnemy(enemy));
-        enemies.add(enemy);
-
-        Enemy enemy2 = new Enemy(EnemyE.VERFOLGER, 1000, 700);
-        enemy2.setId(screen.addEnemy(enemy2));
-        enemies.add(enemy2.getID(), enemy2);
-
-
-
-
+        Enemyinit(Level.LEVELBLANK);
         move();
+
+
+
+
     }
+
+    public void Enemyinit(Level level){
+        for (int i = 0; i < Level.LEVELBLANK.getAffe(); i++) {
+            Enemy enemy = new Enemy(EnemyE.AFFE, 2000 +200*i, 400);
+            enemy.setId(screen.addEnemy(enemy));
+            enemies.add(enemy);
+        }
+    }
+
+
+
 
     public void move(){
         int k = enemies.size();
@@ -40,7 +46,7 @@ public class EnemyHandler {
         Thread[] moveT = new Thread[k];
             for (int i = 0; i < enemies.size(); i++) {
                 int i1 = i;
-                moveT[i1] = new Thread(()-> screen.move(enemies.get(i1).getID(), enemies.get(i1).getTyp()));
+                moveT[i1] = new Thread(()-> screen.move(enemies.get(i1).getID(), enemies.get(i1).getTyp(), enemies.get(i1).getX()));
                 moveT[i1].start();
 
                 Move.sleep(100);

@@ -38,15 +38,12 @@ public class Main {
         Thread screen = new Thread(() -> s.start());
         screen.start();
 
-        Thread eH = new Thread(() -> eHStart());
+        Thread eH = new Thread(() -> enemyHandler.start(s));
         eH.start();
 
     }
 
-    public void eHStart(){
-        enemyHandler.start(s);
 
-    }
 
 
 

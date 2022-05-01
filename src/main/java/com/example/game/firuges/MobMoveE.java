@@ -43,8 +43,8 @@ public enum MobMoveE {
         }else if(MobMoveE.VERMOVE.equals(move)){
             Screen s = Main.getScreen();
             int px = s.getMainX(); int py = s.getMainY();
-            if(x<px){steigung = 0;}
-            else if (x%500d==0){steigung = ((py-y)/(px-x));}
+            if(x+64<px){steigung = 0;}
+            else if (x%500==0){steigung = ((py-y)/(px-x));}
             return y-steigung;
         }
         return 0;

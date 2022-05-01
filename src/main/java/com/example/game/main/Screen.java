@@ -16,7 +16,7 @@ public class Screen extends JFrame implements KeyListener {
 
     JFrame s=new JFrame();
     ArrayList<JLabel> objectsList = new ArrayList<>();
-    JLabel[] arrJLabel = new JLabel[12];
+    JLabel[] arrJLabel = new JLabel[100];
     Thread[] arrThread = new Thread[arrJLabel.length];
     JLabel background;
     JLabel score;
@@ -159,10 +159,10 @@ public class Screen extends JFrame implements KeyListener {
 
     }
 
-    public void move(int id, EnemyE e){
+    public void move(int id, EnemyE e, int startX){
         int spawn = arrJLabel[id].getY();
         double y1 = spawn;
-        for (double x = 2000; x > 0; x--) {
+        for (double x = startX; x > 0; x--) {
            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
             y1 = y;
             arrJLabel[id].setLocation((int) x, (int) y);
