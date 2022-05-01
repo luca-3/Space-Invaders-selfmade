@@ -12,9 +12,7 @@ import java.util.ArrayList;
 //Screen
 public class Screen extends JFrame {
 
-    JFrame s = new JFrame();
     JLabel[] arrJLabel = new JLabel[100];
-    Thread[] arrThread = new Thread[arrJLabel.length];
     JLabel background;
     JLabel score;
     JLabel lives;
@@ -23,8 +21,6 @@ public class Screen extends JFrame {
     JLabel[] shot = new JLabel[10];
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-    public boolean gameOver = false;
-    public boolean gameWon = false;
     int zähler = 0;
     int shotZähler = 0;
     int bannanenZähler = 1;

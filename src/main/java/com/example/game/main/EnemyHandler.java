@@ -30,14 +30,14 @@ public class EnemyHandler {
     }
 
     public void Enemyinit(Level level){
-        for (int i = 0; i < level.getAffe(); i++) {
+        for (int i = 0; i < level.getNumberAffe(); i++) {
             Enemy enemy = new Enemy(EnemyE.AFFE, 2000 +200*i, 400);
             enemy.setId(screen.addEnemy(enemy));
             enemies.add(enemy);
             //Thread bannane = new Thread(()-> screen.bannane(enemy.getID()));
             //bannane.start();
         }
-        for (int i = 0; i < level.getZiel(); i++) {
+        for (int i = 0; i < level.getNumberUnicorns(); i++) {
             Enemy enemy = new Enemy(EnemyE.UNICORN, 2000 +200*i, 200+200*i);
             enemy.setId(screen.addEnemy(enemy));
             enemies.add(enemy);
@@ -51,13 +51,14 @@ public class EnemyHandler {
         int k = enemies.size();
 
         Thread[] moveT = new Thread[k];
-            for (int i = 0; i < enemies.size(); i++) {
-                int i1 = i;
-                moveT[i1] = new Thread(()-> screen.move(enemies.get(i1).getID(), enemies.get(i1).getTyp(), enemies.get(i1).getX()));
-                moveT[i1].start();
 
-                Move.sleep(10);
-            }
+        for (int i = 0; i < enemies.size(); i++) {
+            int i1 = i;
+            moveT[i1] = new Thread(()-> screen.move(enemies.get(i1).getID(), enemies.get(i1).getTyp(), enemies.get(i1).getX()));
+            moveT[i1].start();
+
+            Move.sleep(10);
+        }
 
 
 
