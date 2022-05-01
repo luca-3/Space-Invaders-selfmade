@@ -100,9 +100,9 @@ public class Screen extends JFrame {
     public void addObject(JLabel object) {this.add(object);}
     public void removeObject(JLabel object) {objectsList.remove(object);remove(object);}
 
-    public void updateScore() {score.setText("Score: " + Player.score);}
-    public void updateLives() {lives.setText("Lives: " + Player.hp);}
-    public void updateLevel() {level.setText("Level: " + EnemyHandler.level);}
+    public void updateScore() {while (true)score.setText("Score: " + Player.score);}
+    public void updateLives() {while (true)lives.setText("Lives: " + Player.hp);}
+    public void updateLevel() {while (true)level.setText("Level: " + EnemyHandler.level);}
 
 
 
@@ -113,12 +113,14 @@ public class Screen extends JFrame {
         Thread sT = new Thread(()-> s());
         Thread dT = new Thread(()-> d());
         Thread spaceT = new Thread(()-> space());
+        Thread upScore = new Thread(()-> updateScore());
 
         wT.start();
         aT.start();
         sT.start();
         dT.start();
         spaceT.start();
+        upScore.start();
 
 
         while (true){
@@ -136,13 +138,13 @@ public class Screen extends JFrame {
                     if (PvB(arrJLabel[j], shot[i])) {
                          hit[j] = true;
                          d[i] = true;
-
+                        Player.addScore(10);
                     }
                 }
             }
 
 
-        Move.sleep(2);
+        Move.sleep(100); //update Rate Kolliotion
         }
         //this.update(this.getGraphics());
     }

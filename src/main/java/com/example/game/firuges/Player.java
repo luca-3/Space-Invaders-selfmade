@@ -6,7 +6,7 @@ public class Player {
     private int width;
     private int speed;
     public static int hp;
-    public static int score;
+    public static int score ;
 
     public Player(int width, int speed, int hp){
         this.width = width;
@@ -42,7 +42,9 @@ public class Player {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-
+    public static void addScore(int plus){
+        score += score+plus;
+    }
 }
 
 
