@@ -42,8 +42,12 @@ public class Player {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-    public static void addScore(int plus){
-        score += score+plus;
+    public static void editScore(int plus){
+        score += plus;
+    }
+    public static void editHP(int plus){
+        hp += plus;
+
     }
 }
 

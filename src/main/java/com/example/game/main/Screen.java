@@ -8,14 +8,11 @@ import com.example.game.test.Move;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 //Screen
 public class Screen extends JFrame {
 
-    JFrame s=new JFrame();
-    ArrayList<JLabel> objectsList = new ArrayList<>();
+    JFrame s = new JFrame();
     JLabel[] arrJLabel = new JLabel[100];
     Thread[] arrThread = new Thread[arrJLabel.length];
     JLabel background;
@@ -24,8 +21,8 @@ public class Screen extends JFrame {
     JLabel level;
     JLabel mainChar;
     JLabel[] shot = new JLabel[10];
-    public static int width = 1500;
-    public static int height = 800;
+    int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+    int height = Toolkit.getDefaultToolkit().getScreenSize().height;
     public boolean gameOver = false;
     public boolean gameWon = false;
     int zähler = 0;
@@ -45,6 +42,10 @@ public class Screen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+
+        System.out.println("Screen Dimensions: " + width + "  " + height);
+
         setLocationRelativeTo(null);
         setLayout(null);
         setVisible(true);
@@ -97,13 +98,10 @@ public class Screen extends JFrame {
 
     }
 
-    public void addObject(JLabel object) {this.add(object);}
-    public void removeObject(JLabel object) {objectsList.remove(object);remove(object);}
 
     public void updateScore() {while (true)score.setText("Score: " + Player.score);}
     public void updateLives() {while (true)lives.setText("Lives: " + Player.hp);}
     public void updateLevel() {while (true)level.setText("Level: " + EnemyHandler.level);}
-
 
 
     public void start(){ //start the game
@@ -114,6 +112,7 @@ public class Screen extends JFrame {
         Thread dT = new Thread(()-> d());
         Thread spaceT = new Thread(()-> space());
         Thread upScore = new Thread(()-> updateScore());
+        Thread upHP = new Thread(() -> updateLives());
 
         wT.start();
         aT.start();
@@ -121,6 +120,7 @@ public class Screen extends JFrame {
         dT.start();
         spaceT.start();
         upScore.start();
+        upHP.start();
 
 
         while (true){
@@ -128,6 +128,7 @@ public class Screen extends JFrame {
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt arrJLabel.length IMMER BEACHTEN!!!
                 if (PvE(mainChar, arrJLabel[i])) {
                     mainChar.setLocation(10, 500);
+                    Player.editHP(-1);
 
                 }
             }
@@ -136,9 +137,9 @@ public class Screen extends JFrame {
             for (int i = 0; i < shot.length; i++) {
                 for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
                     if (PvB(arrJLabel[j], shot[i])) {
-                         hit[j] = true;
-                         d[i] = true;
-                        Player.addScore(10);
+                        hit[j] = true;
+                        d[i] = true;
+                        Player.editScore(10);
                     }
                 }
             }
@@ -194,8 +195,8 @@ public class Screen extends JFrame {
             Move.sleep(100/e.getSpeed());
             if (x == 1) x=1800;
             if(hit[id]){
-                x= 1800;
-                hit[id]=false;
+                x = 1800;
+                hit[id] = false;
             }
 
         }
