@@ -1,4 +1,4 @@
-package tile;
+package com.example.game.test.vorlageFerheng;
 
 import java.awt.image.BufferedImage;
 
