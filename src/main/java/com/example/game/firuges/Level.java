@@ -3,6 +3,7 @@ package com.example.game.firuges;
 public enum Level {
         LEVELBLANK(1 , 1, 0)
     ;
+
     private int affe;
     private int ziel;
     private int enemyBlank2;
