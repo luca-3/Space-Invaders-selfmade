@@ -80,7 +80,7 @@ public class Screen extends JFrame implements KeyListener {
 
         for (int i = 0; i < shot.length; i++) {
             shot[i] = new JLabel();
-            shot[i].setBounds(0,20,40,20);
+            shot[i].setBounds(0,-20,40,20);
 
             if(i==2){shot[i].setBackground(Color.MAGENTA);}
             else {shot[i].setBackground(Color.ORANGE);}
@@ -160,18 +160,16 @@ public class Screen extends JFrame implements KeyListener {
     }
 
     public void move(int id, EnemyE e){
-        System.out.println(arrJLabel[id].getY());
         int spawn = arrJLabel[id].getY();
+        double y1 = spawn;
         for (double x = 2000; x > 0; x--) {
-
-           double y =  MobMoveE.bew(e.getMove(), spawn, x);
+           double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
+            y1 = y;
             arrJLabel[id].setLocation((int) x, (int) y);
             Move.sleep(100/e.getSpeed());
-            if (x == 1){x=2000;}
+            if (x == 1){x=1800;}
             if(c[id]){x= 1800; c[id]=false;}
         }
-
-
     }
 
 
@@ -184,7 +182,7 @@ public class Screen extends JFrame implements KeyListener {
                 }
                 break;
             case 'w':
-                if (mainChar.getY() - 10 > 30) {
+                if (mainChar.getY() - 10 > 0) {
                     mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);
                 }
                 break;
@@ -213,10 +211,11 @@ public class Screen extends JFrame implements KeyListener {
                         k = -1;
                     }
                     shotZähler++;
-                    System.out.println("Hallo");
+
                 }
         }
     }
+
     public void shot(){
         //int k =  random.nextInt(4);
         int k1 = k;
@@ -229,7 +228,6 @@ public class Screen extends JFrame implements KeyListener {
         }
         shotZähler--;
     }
-
     public boolean PvB(JLabel Player, JLabel Bullet){
         if (Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
                 && Player.getX() <= Bullet.getX() + Bullet.getWidth() &&Player.getY()<=Bullet.getY()+(Bullet.getHeight()/2)||
@@ -264,8 +262,6 @@ public class Screen extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {}
 
-
-
+    public int getMainX(){return mainChar.getX();}
+    public int getMainY(){return mainChar.getY();}
 }
-
-

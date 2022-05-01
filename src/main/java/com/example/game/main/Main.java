@@ -10,6 +10,7 @@ public class Main {
     EnemyHandler enemyHandler = new EnemyHandler();
     static Screen s;
 
+    public static Screen getScreen(){return s;}
 
     public static void main(String[] args) {
         Main game = new Main();
@@ -46,6 +47,8 @@ public class Main {
         enemyHandler.start(s);
 
     }
+
+
 
 
 }
