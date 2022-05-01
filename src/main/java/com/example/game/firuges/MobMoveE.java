@@ -2,6 +2,7 @@ package com.example.game.firuges;
 
 import com.example.game.main.Main;
 import com.example.game.main.Screen;
+import com.example.game.test.Move;
 
 public enum MobMoveE {
 
@@ -16,13 +17,18 @@ public enum MobMoveE {
     ;
 
     static double steigung = 0;
-
+    static boolean abstand1 = false;
 
 
     MobMoveE() {
 
     }
-
+    public static void bool(){
+        while (true){
+            abstand1 = true;
+            Move.sleep(5000);
+        }
+    }
 
 
     public static double bew(Enum move, int spawnHight, double x, double y){
@@ -44,7 +50,7 @@ public enum MobMoveE {
             Screen s = Main.getScreen();
             int px = s.getMainX(); int py = s.getMainY();
             if(x+64<px){steigung = 0;}
-            else if (x%500==0){steigung = ((py-y)/(px-x));}
+            else if (abstand1){steigung = ((py-y)/(px-x)); abstand1 = false;}
             return y-steigung;
         }
         return 0;

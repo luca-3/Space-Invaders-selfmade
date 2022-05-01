@@ -41,6 +41,9 @@ public class Main {
         Thread eH = new Thread(() -> enemyHandler.start(s));
         eH.start();
 
+        Thread zielSytem = new Thread(()-> MobMoveE.bool());
+        zielSytem.start();
+
     }
 
 

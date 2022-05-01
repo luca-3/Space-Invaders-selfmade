@@ -36,7 +36,11 @@ public class EnemyHandler {
             enemies.add(enemy);
             //Thread bannane = new Thread(()-> screen.bannane(enemy.getID()));
             //bannane.start();
-
+        }
+        for (int i = 0; i < level.getZiel(); i++) {
+            Enemy enemy = new Enemy(EnemyE.ZIEL, 2000 +200*i, 800);
+            enemy.setId(screen.addEnemy(enemy));
+            enemies.add(enemy);
         }
     }
 

@@ -128,9 +128,6 @@ public class Screen extends JFrame implements KeyListener {
     }
 
 
-   /* public void add(Object object) {
-        this.add(object);
-    }*/
 
     public void remove(Object object) {
         this.remove(object);
@@ -165,11 +162,13 @@ public class Screen extends JFrame implements KeyListener {
         double y1 = spawn;
         for (double x = startX; x > -100; x--) {
            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
+            if(y < -100){y=1200;} else if (y> 1200){y=-100;}
             y1 = y;
             arrJLabel[id].setLocation((int) x, (int) y);
             Move.sleep(100/e.getSpeed());
             if (x == 1){x=1800;}
             if(c[id]){x= 1800; c[id]=false;}
+
         }
     }
     public void bannane(int id){

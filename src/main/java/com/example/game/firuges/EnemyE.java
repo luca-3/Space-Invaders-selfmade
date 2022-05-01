@@ -7,7 +7,7 @@ import static com.example.game.firuges.MobMoveE.HDMOVE;
 public enum EnemyE {
     AFFE(100, 200, 30,  20, MobMoveE.HDMOVE,"src/main/resources/com/example/game/enemy/Spaceship.png"),
     BANANE(40, 40, 10, 70, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Bannane1.png"),
-    VERFOLGER(64, 64, 1 , 20, MobMoveE.VERMOVE, "src/main/resources/com/example/game/enemy/Test.png")
+    ZIEL(64, 64, 1 , 20, MobMoveE.VERMOVE, "src/main/resources/com/example/game/enemy/Test.png")
 
     ;
 
