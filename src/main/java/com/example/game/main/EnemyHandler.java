@@ -30,10 +30,13 @@ public class EnemyHandler {
     }
 
     public void Enemyinit(Level level){
-        for (int i = 0; i < Level.LEVELBLANK.getAffe(); i++) {
+        for (int i = 0; i < level.getAffe(); i++) {
             Enemy enemy = new Enemy(EnemyE.AFFE, 2000 +200*i, 400);
             enemy.setId(screen.addEnemy(enemy));
             enemies.add(enemy);
+            //Thread bannane = new Thread(()-> screen.bannane(enemy.getID()));
+            //bannane.start();
+
         }
     }
 

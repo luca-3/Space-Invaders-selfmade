@@ -29,7 +29,8 @@ public class Screen extends JFrame implements KeyListener {
     public boolean gameOver = false;
     public boolean gameWon = false;
     int zähler = 0;
-    int shotZähler =0;
+    int shotZähler = 0;
+    int bannanenZähler = 1;
     int k = -1;
     boolean[] c = new boolean[arrJLabel.length];
     boolean[] d = new boolean[shot.length];
@@ -162,7 +163,7 @@ public class Screen extends JFrame implements KeyListener {
     public void move(int id, EnemyE e, int startX){
         int spawn = arrJLabel[id].getY();
         double y1 = spawn;
-        for (double x = startX; x > 0; x--) {
+        for (double x = startX; x > -100; x--) {
            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
             y1 = y;
             arrJLabel[id].setLocation((int) x, (int) y);
@@ -171,7 +172,18 @@ public class Screen extends JFrame implements KeyListener {
             if(c[id]){x= 1800; c[id]=false;}
         }
     }
-
+    public void bannane(int id){
+        while (true){
+            arrJLabel[100-bannanenZähler] = new JLabel();
+            arrJLabel[100-bannanenZähler].setBounds(arrJLabel[id].getX(), arrJLabel[id].getY()+100, EnemyE.BANANE.getWidth(), EnemyE.BANANE.getHeight());
+            arrJLabel[100-bannanenZähler].setIcon(EnemyE.BANANE.getSkin());
+            arrJLabel[100-bannanenZähler].setOpaque(true);
+            this.add(arrJLabel[100-bannanenZähler]);
+            move(100-bannanenZähler, EnemyE.BANANE, arrJLabel[100-bannanenZähler].getX());
+            bannanenZähler++;
+            Move.sleep(4000);
+        }
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
