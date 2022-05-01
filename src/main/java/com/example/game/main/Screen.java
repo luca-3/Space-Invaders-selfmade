@@ -32,7 +32,7 @@ public class Screen extends JFrame implements KeyListener {
     int shotZähler = 0;
     int bannanenZähler = 1;
     int k = -1;
-    boolean[] c = new boolean[arrJLabel.length];
+    boolean[] hit = new boolean[arrJLabel.length];
     boolean[] d = new boolean[shot.length];
 
 
@@ -114,7 +114,7 @@ public class Screen extends JFrame implements KeyListener {
             for (int i = 0; i < shot.length; i++) {
                 for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
                     if (PvB(arrJLabel[j], shot[i])) {
-                         c[j] = true;
+                         hit[j] = true;
                          d[i] = true;
 
                     }
@@ -161,13 +161,20 @@ public class Screen extends JFrame implements KeyListener {
         int spawn = arrJLabel[id].getY();
         double y1 = spawn;
         for (double x = startX; x > -100; x--) {
-           double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
-            if(y < -100){y=1200;} else if (y> 1200){y=-100;}
+            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
+            if(y < -100){
+                y=1200;
+            } else if (y> 1200){
+                y=-100;
+            }
             y1 = y;
             arrJLabel[id].setLocation((int) x, (int) y);
             Move.sleep(100/e.getSpeed());
-            if (x == 1){x=1800;}
-            if(c[id]){x= 1800; c[id]=false;}
+            if (x == 1) x=1800;
+            if(hit[id]){
+                x= 1800;
+                hit[id]=false;
+            }
 
         }
     }

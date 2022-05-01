@@ -48,9 +48,14 @@ public enum MobMoveE {
             return Math.sin(x / 100) * 200 + spawnHight;
         }else if(MobMoveE.VERMOVE.equals(move)){
             Screen s = Main.getScreen();
-            int px = s.getMainX(); int py = s.getMainY();
-            if(x+64<px){steigung = 0;}
-            else if (abstand1){steigung = ((py-y)/(px-x)); abstand1 = false;}
+            int px = s.getMainX();
+            int py = s.getMainY();
+            if(x+64<px){
+                steigung = 0;
+            } else if (abstand1){
+                steigung = ((py-y)/(px-x));
+                abstand1 = false;
+            }
             return y-steigung;
         }
         return 0;

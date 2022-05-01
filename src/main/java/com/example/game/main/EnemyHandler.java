@@ -56,7 +56,7 @@ public class EnemyHandler {
                 moveT[i1] = new Thread(()-> screen.move(enemies.get(i1).getID(), enemies.get(i1).getTyp(), enemies.get(i1).getX()));
                 moveT[i1].start();
 
-                Move.sleep(100);
+                Move.sleep(10);
             }
 
 
