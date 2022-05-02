@@ -2,15 +2,12 @@ package com.example.game.main;
 
 import com.example.game.firuges.*;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 //Main
 public class Main {
     EnemyHandler enemyHandler = new EnemyHandler();
     static Screen s;
+    public static Player player;
 
     public static Screen getScreen(){return s;}
 
@@ -20,12 +17,14 @@ public class Main {
     }
 
     public void start() {
+        // create the game objects
+        player = new Player("init");
+
         // create the game window
         s = new Screen();
 
 
-        // create the game objects
-        Player player = new Player("init");
+
 
         // start the game loop
         Thread screen = new Thread(() -> s.start());
@@ -49,5 +48,13 @@ public class Main {
     hinzufügen oder sogar deine eigenen Level erstellen.
     Alle Enums findest du in dem "figures" Ordner
      */
+
+    public static void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

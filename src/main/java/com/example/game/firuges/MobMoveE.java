@@ -2,7 +2,7 @@ package com.example.game.firuges;
 
 import com.example.game.main.Main;
 import com.example.game.main.Screen;
-import com.example.game.test.Move;
+
 
 public enum MobMoveE {
 
@@ -32,7 +32,7 @@ public enum MobMoveE {
                 abstand1[i] = true;
             }
 
-            Move.sleep(250); //update rate of search
+            Main.sleep(250); //update rate of search
         }
     }
 

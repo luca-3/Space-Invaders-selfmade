@@ -2,12 +2,10 @@ package com.example.game.firuges;
 
 import javax.swing.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.example.game.firuges.MobMoveE.HDMOVE;
 
 public enum EnemyE {
     AFFE(100, 200, 30,  20, MobMoveE.HDMOVE,"src/main/resources/com/example/game/enemy/Spaceship.png"),

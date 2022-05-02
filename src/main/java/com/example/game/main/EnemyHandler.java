@@ -3,7 +3,7 @@ package com.example.game.main;
 import com.example.game.firuges.Enemy;
 import com.example.game.firuges.EnemyE;
 import com.example.game.firuges.Level;
-import com.example.game.test.Move;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,6 +14,7 @@ public class EnemyHandler {
     Screen s;
     Random random = new Random();
     int cou= 0;
+    public static Level levelE;
 
     public EnemyHandler() {
 
@@ -22,14 +23,14 @@ public class EnemyHandler {
     public void startEnemy() {
         this.s = Main.getScreen();
         while (true) {
-            Move.sleep(1000);
+            Main.sleep(1000);
             s.levelEnd = false;
-            Level level = Level.randomLevel();
-                Enemyinit(level);
+            levelE = Level.randomLevel();
+                Enemyinit(levelE);
                 move();
-                while (s.levelEnd== false){Move.sleep(1000);}
+                while (s.levelEnd== false){Main.sleep(1000);}
                 s.levelEnd = false;
-                Move.sleep(100);
+            Main.sleep(100);
             remove();
             cou = 0;
 
@@ -58,17 +59,14 @@ public class EnemyHandler {
             moveT[i1] = new Thread(()-> s.move(enemies.get(i1).getID(), enemies.get(i1).getTyp(), enemies.get(i1).getX()));
             moveT[i1].start();
 
-            Move.sleep(10);
+            Main.sleep(10);
         }
     }
 
     public void remove(){
-
             enemies.clear();
 
     }
     public static int getAnzahlE(){return enemies.size();}
-
-
 
 }
