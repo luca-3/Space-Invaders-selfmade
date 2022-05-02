@@ -24,7 +24,6 @@ public class Main {
         s = new Screen();
 
 
-
         // create the game objects
         Player player = new Player("init");
 
