@@ -16,16 +16,19 @@ public enum MobMoveE {
 
     ;
 
-    static double steigung = 0;
-    static boolean abstand1 = false;
-
+    static double[] steigung = new double[1];
+    static boolean[] abstand1 = new boolean[steigung.length];
+    static int counter = 0;
 
     MobMoveE() {
 
     }
     public static void bool(){
         while (true){
-            abstand1 = true;
+            for (int i = 0; i < abstand1.length; i++) {
+                abstand1[i] = true;
+            }
+
             Move.sleep(250); //update rate of search
         }
     }
@@ -51,12 +54,16 @@ public enum MobMoveE {
             int px = s.getMainX();
             int py = s.getMainY();
             if(x+64<px){
-                steigung = 0;
-            } else if (abstand1){
-                steigung = ((py-y)/(px-x));
-                abstand1 = false;
+                steigung[counter] = 0;
+            } else if (abstand1[counter]){
+                steigung[counter] = ((py-y)/(px-x));
+                abstand1[counter] = false;
+                counter++;
+                if (counter == steigung.length) {
+                    counter = 0;
+                }
             }
-            return y-steigung;
+            return y-steigung[counter];
         }
         return 0;
     }
