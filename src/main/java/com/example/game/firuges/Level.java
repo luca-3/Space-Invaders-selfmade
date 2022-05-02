@@ -8,7 +8,14 @@ import java.util.Random;
 public enum Level {
         TESTLEVEL(2, 1, 1, 0, 0)
     ;
+    /*
+    So machst du ein Level Enum:
+    Du musst nur die angaben zur Anzahl der jeweiligen Gegner machen, aber
+    wenn dir das zu langweilig kannst du r.nextInt(x1, x2) wobei (x1 = mindestzahl
+    und x2 = maximalzahl) um Ungewissheit über die Zahl der Gegner entsteht.
+     */
 
+    Random r = new Random();
     private int affe;
     private int unicorn;
     private int dwarf;
