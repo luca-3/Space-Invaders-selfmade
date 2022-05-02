@@ -179,7 +179,7 @@ public class Screen extends JFrame {
         int spawn = affe[id].getY();
         double y1 = spawn;
         for (double x = startX; x > -100; x--) {
-            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
+            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1, id);
             if(y < -100){
                 y=1200;
             } else if (y> 1200){
