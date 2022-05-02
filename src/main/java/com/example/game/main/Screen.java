@@ -35,6 +35,7 @@ public class Screen extends JFrame {
     boolean aKey;
     boolean sKey;
     boolean dKey;
+    public boolean levelEnd;
 
     public Screen() {
         setSize(width, height);
@@ -127,7 +128,7 @@ public class Screen extends JFrame {
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt .length IMMER BEACHTEN!!!
                 if (PvE(mainChar, affe[i])) {
-                    mainChar.setLocation(10, 500);
+                    mainChar.setLocation(10, 10);
                     Player.editHP(-1);
                 }
             }
@@ -140,9 +141,13 @@ public class Screen extends JFrame {
                     }
                 }
             }
+            int count = 0;
+            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
+                if (affe[i].getX()< -10){count++;}
+            }
+            if(count == EnemyHandler.getAnzahlE()){levelEnd = true;}
 
-
-        Move.sleep(100); //update Rate Kolliotiona
+        Move.sleep(10); //update Rate Kolliotiona
         }
         //this.update(this.getGraphics());
     }
@@ -178,7 +183,7 @@ public class Screen extends JFrame {
     public void move(int id, EnemyE e, int startX){
         int spawn = affe[id].getY();
         double y1 = spawn;
-        for (double x = startX; x > -100; x--) {
+        for (double x = startX; x > -250; x--) {
             double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
             if(y < -100){
                 y=1200;
@@ -188,9 +193,9 @@ public class Screen extends JFrame {
             y1 = y;
             affe[id].setLocation((int) x, (int) y);
             Move.sleep(100/e.getSpeed());
-            if (x == 1) x=1800;
+            //if (x == 1) x=1800;
             if(hit[id]){
-                x = 1800;
+                x = -200;
                 hit[id] = false;
             }
 

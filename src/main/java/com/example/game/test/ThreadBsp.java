@@ -1,7 +1,12 @@
 package com.example.game.test;
 
-public class ThreadBsp {
+import java.util.Random;
+import java.util.Scanner;
 
+public class ThreadBsp {
+static Random random = new Random();
+static boolean bool = true;
+static Scanner scanner = new Scanner(System.in);
 
         public static void main(String[] args) {
             System.out.println("Start");
@@ -9,10 +14,17 @@ public class ThreadBsp {
             Thread it2 = new Thread(()-> v2());
             Thread it3 = new Thread(()-> v3());
             Thread it4 = new Thread(()-> v1(2));
-            it1.start();
-            it2.start();
+           // it1.start();
+           // it2.start();
             it3.start();
-            it4.start();
+           // it4.start();
+            /*
+            for (int i = 0; i < 10; i++) {
+                int r = random.nextInt(3);
+                System.out.println(r);
+            }*/
+            while (bool){sleep2(3000);
+            }
             System.out.println("main end");
         }
         public static void v1(int a) {
@@ -31,10 +43,11 @@ public class ThreadBsp {
             }
         }
         public static void v3() {
-            for(int i = 0; i< 5; i++) {
-                System.out.println("c");
-                sleep2(1000);
-            }
+           while (true){
+               int i = scanner.nextInt();
+               System.out.println(i);
+               if(i == 2) bool = false ;
+           }
         }
         public static Exception sleep2(long millis) {
             try {
