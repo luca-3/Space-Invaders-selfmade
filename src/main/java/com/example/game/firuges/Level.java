@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public enum Level {
-        TESTLEVEL(2, 0, 1, 0, 0)
+        TESTLEVEL(2, 1, 1, 0, 0)
     ;
 
     private int affe;

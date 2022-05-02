@@ -37,41 +37,16 @@ public class EnemyHandler {
     }
 
     public void Enemyinit(Level level){
-        for (int i = 0; i < level.getNumberAffe(); i++) {
-            Enemy enemy = new Enemy(EnemyE.AFFE, 2000 +200*i, 400);
-            enemy.setId(s.addEnemy(enemy));
-            enemies.add(cou, enemy);
-            cou++;
-            //Thread bannane = new Thread(()-> s.bannane(enemy.getID()));
-            //bannane.start();
-        }
-        for (int i = 0; i < level.getNumberUnicorns(); i++) {
-            Enemy enemy = new Enemy(EnemyE.UNICORN, 2000 +200*i, 200+200*i);
-            enemy.setId(s.addEnemy(enemy));
-            enemies.add(cou, enemy);
-            cou++;
-        }
-        for (int i = 0; i < level.getNumberDwarf(); i++) {
-            Enemy enemy = new Enemy(EnemyE.DWARF, 2000 +200*i, 200+200*i);
-            enemy.setId(s.addEnemy(enemy));
-            enemies.add(cou, enemy);
-            cou++;
-        }
-        for (int i = 0; i < level.getNumberPuffy(); i++) {
-            Enemy enemy = new Enemy(EnemyE.PUFFY, 2000 +200*i, 200+200*i);
-            enemy.setId(s.addEnemy(enemy));
-            enemies.add(cou, enemy);
-            cou++;
-        }
-        for (int i = 0; i < level.getNumberKitty(); i++) {
-            Enemy enemy = new Enemy(EnemyE.KITTY, 2000 +200*i, 200+200*i);
-            enemy.setId(s.addEnemy(enemy));
-            enemies.add(cou, enemy);
-            cou++;
+
+        for (int i = 0; i < EnemyE.SIZE; i++) {
+            for (int j = 0; j < EnemyE.getSize(EnemyE.VALUES.get(i), level); j++) {
+                Enemy enemy = new Enemy(EnemyE.VALUES.get(i), 2000 + 200 * j, random.nextInt(100,s.height-100));
+                enemy.setId(s.addEnemy(enemy));
+                enemies.add(cou, enemy);
+                cou++;
+            }
         }
     }
-
-
 
 
     public void move(){

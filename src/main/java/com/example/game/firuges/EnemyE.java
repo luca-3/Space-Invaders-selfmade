@@ -2,6 +2,11 @@ package com.example.game.firuges;
 
 import javax.swing.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static com.example.game.firuges.MobMoveE.HDMOVE;
 
 public enum EnemyE {
@@ -22,7 +27,16 @@ public enum EnemyE {
     private final int hp;
     private final MobMoveE move;
 
-
+    public static int getSize(EnemyE e, Level l){
+        switch (e){
+            case AFFE -> {return l.getNumberAffe();}
+            case UNICORN -> {return l.getNumberUnicorns();}
+            case DWARF -> {return l.getNumberDwarf();}
+            case PUFFY -> {return l.getNumberPuffy();}
+            case KITTY -> {return l.getNumberKitty();}
+        }
+        return 0;
+    }
 
      EnemyE(int width, int height, int hp, int speed,MobMoveE m, String skin) {
         this.width = width;
@@ -68,7 +82,8 @@ public enum EnemyE {
         return a.getSkin();
     }
 
-
+    public static final List<EnemyE> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    public static final int SIZE = VALUES.size();
 }
 
 
