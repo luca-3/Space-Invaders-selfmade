@@ -2,6 +2,11 @@ package com.example.game.main;
 
 import com.example.game.firuges.*;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 //Main
 public class Main {
     EnemyHandler enemyHandler = new EnemyHandler();
@@ -23,14 +28,6 @@ public class Main {
         // create the game objects
         Player player = new Player("init");
 
-
-
-
-        // add the game objects to the world
-        //s.add(player);
-        //s.add(enemyHandler);
-
-
         // start the game loop
         Thread screen = new Thread(() -> s.start());
         screen.start();
@@ -41,12 +38,8 @@ public class Main {
         Thread zielSytem = new Thread(()-> MobMoveE.bool());
         zielSytem.start();
 
+
+
     }
 
-
-
-
-
-
 }
-

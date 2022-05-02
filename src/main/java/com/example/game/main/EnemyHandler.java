@@ -16,7 +16,7 @@ public class EnemyHandler {
     int cou= 0;
 
     public EnemyHandler() {
-        // TODO
+
     }
 
     public void startEnemy() {
@@ -48,7 +48,6 @@ public class EnemyHandler {
         }
     }
 
-
     public void move(){
         int k = enemies.size();
 
@@ -68,7 +67,6 @@ public class EnemyHandler {
             enemies.clear();
 
     }
-
     public static int getAnzahlE(){return enemies.size();}
 
 
