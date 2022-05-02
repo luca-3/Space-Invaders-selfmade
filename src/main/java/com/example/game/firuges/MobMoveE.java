@@ -16,22 +16,25 @@ public enum MobMoveE {
 
     ;
 
-    static double steigung = 0;
-    static boolean abstand1 = false;
-
+    static double[] steigung = new double[100];
+    static boolean[] abstand1 = new boolean[steigung.length];
+    static int counter = 0;
 
     MobMoveE() {
 
     }
     public static void bool(){
         while (true){
-            abstand1 = true;
+            for (int i = 0; i < abstand1.length; i++) {
+                abstand1[i] = true;
+            }
+
             Move.sleep(250); //update rate of search
         }
     }
 
 
-    public static double bew(MobMoveE move, int spawnHight, double x, double y){
+    public static double bew(MobMoveE move, int spawnHight, double x, double y, int id){
 
         if (MobMoveE.NMOVE.equals(move)) {
            return spawnHight;
@@ -51,12 +54,13 @@ public enum MobMoveE {
             int px = s.getMainX();
             int py = s.getMainY();
             if(x+64<px){
-                steigung = 0;
-            } else if (abstand1){
-                steigung = ((py-y)/(px-x));
-                abstand1 = false;
+                steigung[id] = 0;
+            } else if (abstand1[id]){
+                steigung[id] = ((py-y)/(px-x));
+                abstand1[id] = false;
+
             }
-            return y-steigung;
+            return y-steigung[id];
         }
         return 0;
     }
