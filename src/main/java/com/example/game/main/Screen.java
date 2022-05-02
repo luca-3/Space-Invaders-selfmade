@@ -251,6 +251,11 @@ public class Screen extends JFrame {
         return  false;
     }
 
+    public void kotzen(int id){
+        
+
+    }
+
 
 
 
