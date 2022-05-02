@@ -26,7 +26,7 @@ public class EnemyHandler {
             Move.sleep(1000);
             s.levelEnd = false;
             int r = random.nextInt(1);
-            System.out.println(r);
+            //System.out.println(r);
             if (r == 0) {
                 Enemyinit(Level.LEVELBLANK);
                 move();
@@ -92,9 +92,9 @@ public class EnemyHandler {
     }
 
     public void remove(){
-        for (int i = 0; i < enemies.size(); i++) {
-            enemies.remove(i);
-        }
+
+            enemies.clear();
+        System.out.println(enemies.size());
     }
 
     public static int getAnzahlE(){return enemies.size();}

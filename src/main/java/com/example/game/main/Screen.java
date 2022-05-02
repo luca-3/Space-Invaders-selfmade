@@ -145,7 +145,7 @@ public class Screen extends JFrame {
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
                 if (affe[i].getX()< -10){count++;}
             }
-            if(count == EnemyHandler.getAnzahlE()){levelEnd = true;}
+            if(EnemyHandler.getAnzahlE()>1) if(count == EnemyHandler.getAnzahlE()){levelEnd = true;}
 
         Move.sleep(10); //update Rate Kolliotiona
         }
@@ -184,7 +184,7 @@ public class Screen extends JFrame {
         int spawn = affe[id].getY();
         double y1 = spawn;
         for (double x = startX; x > -250; x--) {
-            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1);
+            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1, id);
             if(y < -100){
                 y=1200;
             } else if (y> 1200){
