@@ -31,7 +31,8 @@ public class EnemyHandler {
                 Enemyinit(Level.LEVELBLANK);
                 move();
                 while (s.levelEnd== false){Move.sleep(1000);}
-
+                s.levelEnd = false;
+                Move.sleep(1000);
             }
             remove();
             cou = 0;

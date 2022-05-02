@@ -12,12 +12,12 @@ import java.awt.*;
 //Screen
 public class Screen extends JFrame {
 
-    JLabel[] affe = new JLabel[100];
+    JLabel[] enemyArr = new JLabel[100];
     JLabel[] dwarf = new JLabel[10];
     JLabel[] unicorn = new JLabel[10];
     JLabel[] kitty = new JLabel[10];
     JLabel[] puffy = new JLabel[10];
-    int countAffe, countDwarf, countUnicorn, countKitty, countPuffy, countBullet = 0;
+    int countEnemy, countDwarf, countUnicorn, countKitty, countPuffy, countBullet = 0;
 
     JLabel background;
     JLabel score;
@@ -29,7 +29,7 @@ public class Screen extends JFrame {
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
     int k = -1;
-    boolean[] hit = new boolean[affe.length];
+    boolean[] hit = new boolean[enemyArr.length];
     boolean[] d = new boolean[shot.length];
     boolean wKey;
     boolean aKey;
@@ -99,7 +99,23 @@ public class Screen extends JFrame {
 
     }
 
-
+    public void levelEnd() {
+        while (true) {
+            int count = 0;
+            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
+                if (enemyArr[i].getX() < -10) {
+                    count++;
+                }
+            }
+            if(EnemyHandler.getAnzahlE()>1) if(count == EnemyHandler.getAnzahlE()) {
+                levelEnd = true;
+                countEnemy =0;
+                EnemyHandler.level++;
+                System.out.println("level End");
+            }
+            Move.sleep(5000);
+        }
+    }
     public void updateScore() {while (true)score.setText("Score: " + Player.score);}
     public void updateLives() {while (true)lives.setText("Lives: " + Player.hp);}
     public void updateLevel() {while (true)level.setText("Level: " + EnemyHandler.level);}
@@ -114,6 +130,8 @@ public class Screen extends JFrame {
         Thread spaceT = new Thread(()-> space());
         Thread upScore = new Thread(()-> updateScore());
         Thread upHP = new Thread(() -> updateLives());
+        Thread upLevel = new Thread(()-> updateLevel());
+        Thread endLevel = new Thread(()-> levelEnd());
 
         wT.start();
         aT.start();
@@ -122,30 +140,28 @@ public class Screen extends JFrame {
         spaceT.start();
         upScore.start();
         upHP.start();
+        upLevel.start();
+        endLevel.start();
 
 
         while (true){
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt .length IMMER BEACHTEN!!!
-                if (PvE(mainChar, affe[i])) {
+                if (PvE(mainChar, enemyArr[i])) {
                     mainChar.setLocation(10, 10);
                     Player.editHP(-1);
                 }
             }
             for (int i = 0; i < shot.length; i++) {
                 for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
-                    if (PvB(affe[j], shot[i])) {
+                    if (PvB(enemyArr[j], shot[i])) {
                         hit[j] = true;
                         d[i] = true;
                         Player.editScore(10);
                     }
                 }
             }
-            int count = 0;
-            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
-                if (affe[i].getX()< -10){count++;}
-            }
-            if(EnemyHandler.getAnzahlE()>1) if(count == EnemyHandler.getAnzahlE()){levelEnd = true;}
+
 
         Move.sleep(10); //update Rate Kolliotiona
         }
@@ -171,17 +187,17 @@ public class Screen extends JFrame {
         temp.setOpaque(true);
         EnemyE typ = object.getTyp();
 
-        affe[countAffe] = new JLabel();
-        affe[countAffe] = temp;
-        this.add(affe[countAffe]);
-        countAffe++;
-        return countAffe -1;
+        enemyArr[countEnemy] = new JLabel();
+        enemyArr[countEnemy] = temp;
+        this.add(enemyArr[countEnemy]);
+        countEnemy++;
+        return countEnemy -1;
 
 
     }
 
     public void move(int id, EnemyE e, int startX){
-        int spawn = affe[id].getY();
+        int spawn = enemyArr[id].getY();
         double y1 = spawn;
         for (double x = startX; x > -250; x--) {
             double y =  MobMoveE.bew(e.getMove(), spawn, x, y1, id);
@@ -191,7 +207,7 @@ public class Screen extends JFrame {
                 y=-100;
             }
             y1 = y;
-            affe[id].setLocation((int) x, (int) y);
+            enemyArr[id].setLocation((int) x, (int) y);
             Move.sleep(100/e.getSpeed());
             //if (x == 1) x=1800;
             if(hit[id]){
@@ -221,7 +237,7 @@ public class Screen extends JFrame {
         int k1 = k;
         int y = shot[k1].getY();
         for(int x = shot[k1].getX(); x<2000; x+=4){
-            if (d[k1]){x=2000; d[k1]=false;}
+            if (d[k1]){x=3000; d[k1]=false;}
             shot[k1].setLocation(x, y);
             Move.sleep(10);
 
@@ -268,10 +284,10 @@ public class Screen extends JFrame {
         if (mainChar.getX()-10>0)mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());}Move.sleep(20);}}
     public void s(){while (true){
         if (Keyboard.sKey) {
-        if (mainChar.getY()< 1080) mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);}Move.sleep(20);}}
+        if (mainChar.getY()< height) mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);}Move.sleep(20);}}
     public void d(){while (true){
         if(Keyboard.dKey){
-            if (mainChar.getX()+10<1920) mainChar.setLocation(mainChar.getX()+ 10, mainChar.getY() );}Move.sleep(20);}}
+            if (mainChar.getX()+10<width) mainChar.setLocation(mainChar.getX()+ 10, mainChar.getY() );}Move.sleep(20);}}
     public void space(){while (true){
         if(Keyboard.spaceKey){
             if(countBullet <shot.length) {

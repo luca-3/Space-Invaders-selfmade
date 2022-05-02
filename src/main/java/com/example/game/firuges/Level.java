@@ -1,7 +1,7 @@
 package com.example.game.firuges;
 
 public enum Level {
-        LEVELBLANK(2 , 0, 0, 0, 0)
+        LEVELBLANK(2 , 2, 0, 0, 0)
     ;
 
     private int affe;
