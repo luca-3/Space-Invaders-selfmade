@@ -1,9 +1,6 @@
 package com.example.game.main;
 
 import com.example.game.firuges.*;
-import com.example.game.test.vorlage.Gamescreen;
-
-import javax.swing.*;
 
 //Main
 public class Main {

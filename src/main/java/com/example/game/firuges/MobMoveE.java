@@ -12,17 +12,13 @@ public enum MobMoveE {
     PMOVE(),// parabel Move
     EHDMOVE(),// Extrem High Down
     VERMOVE(), //Verfolgungsmove
-
+    RAINBOW,
 
     ;
-
     static double[] steigung = new double[100];
     static boolean[] abstand1 = new boolean[steigung.length];
     static int counter = 0;
-
-    MobMoveE() {
-
-    }
+    MobMoveE() {}
     public static void bool(){
         while (true){
             for (int i = 0; i < abstand1.length; i++) {
@@ -41,15 +37,17 @@ public enum MobMoveE {
 
         } else if (MobMoveE.HDMOVE.equals(move)) {
             return Math.sin(x/100)*100+spawnHight;
-
-        } else if (MobMoveE.SMOVE.equals(move)) {
+        }
+        else if (MobMoveE.SMOVE.equals(move)) {
            return spawnHight;
         }
         else if (MobMoveE.PMOVE.equals(move)) {
             return -x*x+spawnHight;
-        }else if (MobMoveE.EHDMOVE.equals(move)) {
+        }
+        else if (MobMoveE.EHDMOVE.equals(move)) {
             return Math.sin(x / 100) * 200 + spawnHight;
-        }else if(MobMoveE.VERMOVE.equals(move)){
+        }
+        else if(MobMoveE.VERMOVE.equals(move)){
             Screen s = Main.getScreen();
             int px = s.getMainX();
             int py = s.getMainY();
@@ -61,6 +59,11 @@ public enum MobMoveE {
 
             }
             return y-steigung[id];
+        }
+        else if(MobMoveE.RAINBOW.equals(move)){
+            double y2 = y-1;
+            if (y2<= 0){ Main.getScreen().rainbow(id); return 500;}
+            return y2;
         }
         return 0;
     }

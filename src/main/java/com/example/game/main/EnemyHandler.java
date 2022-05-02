@@ -21,19 +21,15 @@ public class EnemyHandler {
 
     public void startEnemy() {
         this.s = Main.getScreen();
-        System.out.println(1);
         while (true) {
             Move.sleep(1000);
             s.levelEnd = false;
-            int r = random.nextInt(1);
-            //System.out.println(r);
-            if (r == 0) {
-                Enemyinit(Level.LEVELBLANK);
+            Level level = Level.randomLevel();
+                Enemyinit(level);
                 move();
                 while (s.levelEnd== false){Move.sleep(1000);}
                 s.levelEnd = false;
-                Move.sleep(1000);
-            }
+                Move.sleep(100);
             remove();
             cou = 0;
 
@@ -95,7 +91,7 @@ public class EnemyHandler {
     public void remove(){
 
             enemies.clear();
-        System.out.println(enemies.size());
+
     }
 
     public static int getAnzahlE(){return enemies.size();}

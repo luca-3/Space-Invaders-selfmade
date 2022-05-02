@@ -5,7 +5,6 @@ import com.example.game.firuges.EnemyE;
 import com.example.game.firuges.MobMoveE;
 import com.example.game.firuges.Player;
 import com.example.game.test.Move;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,12 +12,7 @@ import java.awt.*;
 public class Screen extends JFrame {
 
     JLabel[] enemyArr = new JLabel[100];
-    JLabel[] dwarf = new JLabel[10];
-    JLabel[] unicorn = new JLabel[10];
-    JLabel[] kitty = new JLabel[10];
-    JLabel[] puffy = new JLabel[10];
-    int countEnemy, countDwarf, countUnicorn, countKitty, countPuffy, countBullet = 0;
-
+    int countEnemy, countBullet = 0;
     JLabel background;
     JLabel score;
     JLabel lives;
@@ -89,10 +83,13 @@ public class Screen extends JFrame {
 
         for (int i = 0; i < shot.length; i++) {
             shot[i] = new JLabel();
-            shot[i].setBounds(0,-20,40,20);
+            shot[i].setBounds(0, -20, 40, 20);
 
-            if(i==2){shot[i].setBackground(Color.MAGENTA);}
-            else {shot[i].setBackground(Color.ORANGE);}
+            if (i == 2) {
+                shot[i].setBackground(Color.MAGENTA);
+            } else {
+                shot[i].setBackground(Color.ORANGE);
+            }
             shot[i].setOpaque(true);
             add(shot[i]);
         }
@@ -107,31 +104,38 @@ public class Screen extends JFrame {
                     count++;
                 }
             }
-            if(EnemyHandler.getAnzahlE()>1) if(count == EnemyHandler.getAnzahlE()) {
-                levelEnd = true;
-                countEnemy =0;
-                EnemyHandler.level++;
-                System.out.println("level End");
+            if (EnemyHandler.getAnzahlE() > 1){
+                if (count == EnemyHandler.getAnzahlE()) {
+                    levelEnd = true;
+                    countEnemy = 0;
+                    EnemyHandler.level++;
+                    System.out.println("level End");
+                }
             }
-            Move.sleep(5000);
+            Move.sleep(500);
         }
     }
-    public void updateScore() {while (true)score.setText("Score: " + Player.score);}
-    public void updateLives() {while (true)lives.setText("Lives: " + Player.hp);}
-    public void updateLevel() {while (true)level.setText("Level: " + EnemyHandler.level);}
+    public void updateScore() {
+        while (true) score.setText("Score: " + Player.score);
+    }
+    public void updateLives() {
+        while (true) lives.setText("Lives: " + Player.hp);
+    }
+    public void updateLevel() {
+        while (true) level.setText("Level: " + EnemyHandler.level);
+    }
 
+    public void start() { //start the game
 
-    public void start(){ //start the game
-
-        Thread wT = new Thread(()-> w());
-        Thread aT = new Thread(()-> a());
-        Thread sT = new Thread(()-> s());
-        Thread dT = new Thread(()-> d());
-        Thread spaceT = new Thread(()-> space());
-        Thread upScore = new Thread(()-> updateScore());
+        Thread wT = new Thread(() -> w());
+        Thread aT = new Thread(() -> a());
+        Thread sT = new Thread(() -> s());
+        Thread dT = new Thread(() -> d());
+        Thread spaceT = new Thread(() -> space());
+        Thread upScore = new Thread(() -> updateScore());
         Thread upHP = new Thread(() -> updateLives());
-        Thread upLevel = new Thread(()-> updateLevel());
-        Thread endLevel = new Thread(()-> levelEnd());
+        Thread upLevel = new Thread(() -> updateLevel());
+        Thread endLevel = new Thread(() -> levelEnd());
 
         wT.start();
         aT.start();
@@ -144,7 +148,7 @@ public class Screen extends JFrame {
         endLevel.start();
 
 
-        while (true){
+        while (true) {
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt .length IMMER BEACHTEN!!!
                 if (PvE(mainChar, enemyArr[i])) {
@@ -163,24 +167,13 @@ public class Screen extends JFrame {
             }
 
 
-        Move.sleep(10); //update Rate Kolliotiona
+            Move.sleep(10); //update Rate Kolliotiona
         }
         //this.update(this.getGraphics());
     }
 
-
-
-    public void remove(Object object) {
-        this.remove(object);
-    }
-
-    public void repaint() {
-        this.repaint();
-    }
-
     //Enemy to JLabel
-    public int addEnemy(Enemy object){
-
+    public int addEnemy(Enemy object) {
         JLabel temp = new JLabel();
         temp.setBounds(object.getX(), object.getY(), object.getWidth(), object.getHeight());
         temp.setIcon(object.getSkin());
@@ -191,69 +184,83 @@ public class Screen extends JFrame {
         enemyArr[countEnemy] = temp;
         this.add(enemyArr[countEnemy]);
         countEnemy++;
-        return countEnemy -1;
-
-
+        return countEnemy - 1;
     }
-
-    public void move(int id, EnemyE e, int startX){
+    public void move(int id, EnemyE e, int startX) {
         int spawn = enemyArr[id].getY();
         double y1 = spawn;
         for (double x = startX; x > -250; x--) {
-            double y =  MobMoveE.bew(e.getMove(), spawn, x, y1, id);
-            if(y < -100){
-                y=1200;
-            } else if (y> 1200){
-                y=-100;
+            double y = MobMoveE.bew(e.getMove(), spawn, x, y1, id);
+            if (y < -100) {
+                y = 1200;
+            } else if (y > 1200) {
+                y = -100;
             }
             y1 = y;
             enemyArr[id].setLocation((int) x, (int) y);
-            Move.sleep(100/e.getSpeed());
+            Move.sleep(100 / e.getSpeed());
             //if (x == 1) x=1800;
-            if(hit[id]){
+            if (hit[id]) {
                 x = -200;
                 hit[id] = false;
             }
 
         }
     }
-    /*
-    public void bannane(int id){
-        while (true){
-            [100-bannanenZähler] = new JLabel();
-            [100-bannanenZähler].setBounds([id].getX(), [id].getY()+100, EnemyE.BANANE.getWidth(), EnemyE.BANANE.getHeight());
-            [100-bannanenZähler].setIcon(EnemyE.BANANE.getSkin());
-            [100-bannanenZähler].setOpaque(true);
-            this.add([100-bannanenZähler]);
-            move(100-bannanenZähler, EnemyE.BANANE, [100-bannanenZähler].getX());
-            bannanenZähler++;
-            Move.sleep(4000);
-        }
-    }
-*/
 
-    public void shot(){
+    public void shot() {
         //int k =  random.nextInt(4);
         int k1 = k;
         int y = shot[k1].getY();
-        for(int x = shot[k1].getX(); x<2000; x+=4){
-            if (d[k1]){x=3000; d[k1]=false;}
+        for (int x = shot[k1].getX(); x < 2000; x += 4) {
+            if (d[k1]) {
+                x = 3000;
+                d[k1] = false;
+            }
             shot[k1].setLocation(x, y);
             Move.sleep(10);
 
         }
+        shot[k1].setLocation(3000, -1000);
         countBullet--;
     }
-    public boolean PvB(JLabel Player, JLabel Bullet){
+    public void rainbow(int id){
+        JLabel rainbow =new JLabel();
+        int z = enemyArr[id].getX()-80;
+        rainbow.setBounds(z, 10, 80, 80);
+        Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Rainbow.png");
+        rainbow.setIcon(icon);
+        //rainbow.setBackground(Color.RED);
+        rainbow.setOpaque(true);
+        this.add(rainbow);
+        for (int i = 0; i < height; i+= 10) {
+            rainbow.setLocation(z, i);
+            if(hit[id])enemyArr[id].setLocation(-300, 0);
+            if(PvE(rainbow, mainChar)) {
+                mainChar.setLocation(10,10);
+                 Player.hp--;}
+            Move.sleep(10);
+        }
+        rainbow.setLocation(-300, 0);
+        this.remove(rainbow);
+        for (int y = 0; y < 500; y++) {
+            if(hit[id])return;
+            enemyArr[id].setLocation(z, y);
+            Move.sleep(5);
+        }
+    }
+
+    public boolean PvB(JLabel Player, JLabel Bullet) {
         if (Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
-                && Player.getX() <= Bullet.getX() + Bullet.getWidth() &&Player.getY()<=Bullet.getY()+(Bullet.getHeight()/2)||
+                && Player.getX() <= Bullet.getX() + Bullet.getWidth() && Player.getY() <= Bullet.getY() + (Bullet.getHeight() / 2) ||
                 Player.getX() + Player.getWidth() >= Bullet.getX() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
-                        && Player.getX() <= Bullet.getX()  &&Player.getY()<=Bullet.getY()+(Bullet.getHeight()/2)){return true;}
+                        && Player.getX() <= Bullet.getX() && Player.getY() <= Bullet.getY() + (Bullet.getHeight() / 2)) {
+            return true;
+        }
         return false;
     }
-    public boolean PvE(JLabel mobA, JLabel mobB){
+    public boolean PvE(JLabel mobA, JLabel mobB) {
         //mobA = hitbox; mobB = points
-
         final int hitboxWidth = mobB.getWidth();
         final int hitboxHeight = mobB.getHeight();
         final int X_OBJ_ONE = mobA.getX();
@@ -263,52 +270,72 @@ public class Screen extends JFrame {
         if (X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO || //Oben Links
                 X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight || //Unten Links
                 X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO || // Oben Rechts
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight|| //Unten Rechts
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight/2 && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight/2|| // Mitte Links
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO+hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight/2 && X_OBJ_ONE <= X_OBJ_TWO+hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight/2|| // Mitte Rechts
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth/2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth/2 && Y_OBJ_ONE <= Y_OBJ_TWO || // Mitte Oben
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth/2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO/2 + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight // Mitte Unten
-        ){return true;}
-        return  false;
-    }
-
-
-
-
-
-    public void w(){while (true){
-        if (Keyboard.wKey) {
-        if (mainChar.getY()-10>0)mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);}Move.sleep(20);}}
-    public void a(){while (true){
-        if (Keyboard.aKey) {
-        if (mainChar.getX()-10>0)mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());}Move.sleep(20);}}
-    public void s(){while (true){
-        if (Keyboard.sKey) {
-        if (mainChar.getY()< height) mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);}Move.sleep(20);}}
-    public void d(){while (true){
-        if(Keyboard.dKey){
-            if (mainChar.getX()+10<width) mainChar.setLocation(mainChar.getX()+ 10, mainChar.getY() );}Move.sleep(20);}}
-    public void space(){while (true){
-        if(Keyboard.spaceKey){
-            if(countBullet <shot.length) {
-                k++;
-                int f = k;
-                shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
-                add(shot[k]);
-
-                Thread t2 = new Thread(() -> shot());
-                t2.start();
-
-                Move.sleep(200);
-                if (k == 9) {
-                    k = -1;
-                }
-                countBullet++;
-            }
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight || //Unten Rechts
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight / 2 && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight / 2 || // Mitte Links
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight / 2 && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight / 2 || // Mitte Rechts
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE <= Y_OBJ_TWO || // Mitte Oben
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO / 2 + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight // Mitte Unten
+        ) {
+            return true;
         }
-        Move.sleep(20);
+        return false;
     }
+
+    public void w() {
+        while (true) {
+            if (Keyboard.wKey) {
+                if (mainChar.getY() - 10 > 0) mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);
+            }
+            Move.sleep(20);
+        }
     }
+    public void a() {
+        while (true) {
+            if (Keyboard.aKey) {
+                if (mainChar.getX() - 10 > 0) mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());
+            }
+            Move.sleep(20);
+        }
+    }
+    public void s() {
+        while (true) {
+            if (Keyboard.sKey) {
+                if (mainChar.getY() < height) mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);
+            }
+            Move.sleep(20);
+        }
+    }
+    public void d() {
+        while (true) {
+            if (Keyboard.dKey) {
+                if (mainChar.getX() + 10 < width) mainChar.setLocation(mainChar.getX() + 10, mainChar.getY());
+            }
+            Move.sleep(20);
+        }
+    }
+    public void space() {
+        while (true) {
+            if (Keyboard.spaceKey) {
+                if (countBullet < shot.length) {
+                    k++;
+                    int f = k;
+                    shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
+                    add(shot[k]);
+
+                    Thread t2 = new Thread(() -> shot());
+                    t2.start();
+
+                    Move.sleep(200);
+                    if (k == 9) {
+                        k = -1;
+                    }
+                    countBullet++;
+                }
+            }
+            Move.sleep(20);
+        }
+    }
+
 
     public int getMainX(){return mainChar.getX();}
     public int getMainY(){return mainChar.getY();}

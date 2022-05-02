@@ -1,7 +1,12 @@
 package com.example.game.firuges;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public enum Level {
-        LEVELBLANK(2 , 2, 0, 0, 0)
+        TESTLEVEL(2, 0, 1, 0, 0)
     ;
 
     private int affe;
@@ -24,4 +29,12 @@ public enum Level {
     public int getNumberPuffy() {return puffy;}
     public int getNumberKitty() {return kitty;}
 
+
+    private static final List<Level> VALUES =
+            Collections.unmodifiableList(Arrays.asList(values()));
+    private static final int SIZE = VALUES.size();
+    private static final Random RANDOM = new Random();
+    public static Level randomLevel()  {
+        return VALUES.get(RANDOM.nextInt(SIZE));
+    }
 }
