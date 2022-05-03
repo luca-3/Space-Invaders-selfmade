@@ -5,13 +5,7 @@ import com.example.game.main.EnemyHandler;
 import java.util.List;
 import java.util.Random;
 
-public enum Level {
-        //TESTLEVEL(2, 1, 1, 0, 0),
-        //LEVEL_ONE(0,2,2,0,0),
-        //LEVEL_TWO(0,2,2,0,0),
-        RAND(),
-        RAND1(),
-        RAND2(),
+public class Level {
 
 
 
@@ -30,7 +24,7 @@ public enum Level {
     private final int puffy;
     private final int kitty;
 
-    Level(){
+    public Level(){
         int[] numberOfEnemy = generateLevel();
         this.affe = numberOfEnemy[0];
         this.unicorn = numberOfEnemy[1];
@@ -69,12 +63,10 @@ public enum Level {
     public int getNumberKitty() {return kitty;}
 
 
-    private static final List<Level> VALUES = List.of(values());
-    private static final int SIZE = VALUES.size();
-    private static final Random RANDOM = new Random();
-    public static Level randomLevel()  {
-        return VALUES.get(RANDOM.nextInt(SIZE));
-    }
+    //private static final List<Level> VALUES = List.of(values());
+    //private static final int SIZE = VALUES.size();
+    //private static final Random RANDOM = new Random();
+    //public static Level randomLevel()  {return VALUES.get(RANDOM.nextInt(SIZE));}
 
 
 }

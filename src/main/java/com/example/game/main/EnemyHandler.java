@@ -25,7 +25,8 @@ public class EnemyHandler {
         while (true) { //enemy handling
             Main.sleep(1000);
             s.levelEnd = false;
-            levelE = Level.randomLevel();
+            //levelE = Level.randomLevel();
+            Level levelE = new Level();
                 EnemyInit(levelE);
                 move();
                 while (!s.levelEnd){Main.sleep(1000);}
