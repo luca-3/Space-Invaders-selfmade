@@ -22,7 +22,7 @@ public class EnemyHandler {
 
     public void startEnemy() {
         this.s = Main.getScreen();
-        while (true) { //enemy handling
+        while (s.gameRun) { //enemy handling
             Main.sleep(1000);
             s.levelEnd = false;
             //levelE = Level.randomLevel();

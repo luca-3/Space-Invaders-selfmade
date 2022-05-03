@@ -4,7 +4,6 @@ import com.example.game.firuges.*;
 
 //Main
 public class Main {
-    public static boolean gameIsRunning = true;
 
     EnemyHandler enemyHandler = new EnemyHandler();
     static Screen s;

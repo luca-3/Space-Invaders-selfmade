@@ -1,5 +1,6 @@
 package com.example.game.firuges;
 
+import com.example.game.main.EnemyHandler;
 import com.example.game.main.Main;
 import com.example.game.main.Screen;
 
@@ -8,12 +9,12 @@ import java.util.Arrays;
 
 public enum MobMoveE {
 
-    NMOVE(), // Normel Move
+    NMOVE(), // Normal Move
     HDMOVE(), // High Down Move
     PMOVE(),// parabel Move
     EHDMOVE(),// Extrem High Down
-    VERMOVE(), //Verfolgungsmove
-    RAINBOW(),//Regenbogenkotze
+    VERMOVE(), //Verfolgung-mode
+    RAINBOW(),//Regenbogen kotze
 
     ;
     /*
@@ -23,14 +24,14 @@ public enum MobMoveE {
     in der Methode bew machen welches y returned.
     Extra: Jetzt kannst du denn MobMoveE in der EnemyE Klasse nutzen.
      */
-    static double[] steigung = new double[100];
-    static boolean[] abstand1 = new boolean[steigung.length];
+    static final double[] steigung = new double[100];
+    static final boolean[] abstand1 = new boolean[steigung.length];
     MobMoveE() {}
     public static void bool(){ //rate of calculation for gradient (unicorn)
-        while (true){
+        while (Main.getScreen().gameRun){
             Arrays.fill(abstand1, true);
 
-            Main.sleep(25); //update rate of search
+            Main.sleep(250); //update rate of search
         }
     }
 
@@ -64,7 +65,7 @@ public enum MobMoveE {
                 return y - steigung[id];
             }
             case RAINBOW -> {
-                double y2 = y - EnemyE.DWARF.getSpeed();
+                double y2 = y - EnemyHandler.enemies.get(id).getSpeed();
                 if (y2 <= 0) {
                     return  Main.getScreen().rainbow(id);
                 }

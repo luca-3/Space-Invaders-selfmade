@@ -4,14 +4,14 @@ import javax.swing.*;
 
 public class Enemy {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
-    private int speed;
-    private int width;
-    private int height;
+    private final int speed;
+    private final int width;
+    private final int height;
     private int hp;
-    private Icon skin;
+    private final Icon skin;
     private int id;
     private final EnemyE typ;
 
@@ -31,59 +31,20 @@ public class Enemy {
 
 
 
-    public Icon getSkin() {
-        return skin;
-    }
-    public void setSkin(Icon skin) {
-        this.skin = skin;
-    }
+    public Icon getSkin() {return skin;}
+    public int getX() {return x;}
+    public int getY() {return y;}
+    public int getSpeed() {return speed;}
+    public int getWidth() {return width;}
+    public int getHeight() {return height;}
+    public int getHp() {return hp;}
+    public EnemyE getTyp(){return typ;}
 
-    public int getX() {
-        return x;
-    }
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
     public void hpHit(int sub){hp -= sub;}
 
     public int getID(){return id;}
     public void setId(int id){this.id = id;}
 
-    public EnemyE getTyp(){return typ;}
+
 }
 

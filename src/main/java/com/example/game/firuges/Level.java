@@ -2,14 +2,13 @@ package com.example.game.firuges;
 
 import com.example.game.main.EnemyHandler;
 
-import java.util.List;
 import java.util.Random;
 
 public class Level {
 
 
 
-    ;
+
     /*
     So machst du ein Level Enum:
     Du musst nur die angaben zur Anzahl der jeweiligen Gegner machen, aber
@@ -33,21 +32,13 @@ public class Level {
         this.kitty = numberOfEnemy[4];
     }
 
-    Level(int affe, int unicorn, int dwarf, int puffy, int kitty){
-
-        this.affe = affe;
-        this.unicorn = unicorn;
-        this.dwarf = dwarf;
-        this.puffy = puffy;
-        this.kitty = kitty;
-    }
 
     public int[] generateLevel(){
         Random r = new Random();
-        int numberEnemys = (int) (Math.sqrt(EnemyHandler.level - 1) * 2.5 + 2); //formula to calculate the number of enemy dependent on the current level
+        int numberEnemy = (int) (Math.sqrt(EnemyHandler.level - 1) * 2.5 + 2); //formula to calculate the number of enemy dependent on the current level
         int[] enumInput = new int[EnemyE.SIZE]; //number of Enemy, wich exists and can be an input of the Level enum
 
-        for (int i = numberEnemys; i > 0; i--){
+        for (int i = numberEnemy; i > 0; i--){
             int position = r.nextInt(0,enumInput.length - 1);
             enumInput[position] += 1;
         }
@@ -62,11 +53,6 @@ public class Level {
     public int getNumberPuffy() {return puffy;}
     public int getNumberKitty() {return kitty;}
 
-
-    //private static final List<Level> VALUES = List.of(values());
-    //private static final int SIZE = VALUES.size();
-    //private static final Random RANDOM = new Random();
-    //public static Level randomLevel()  {return VALUES.get(RANDOM.nextInt(SIZE));}
 
 
 }
