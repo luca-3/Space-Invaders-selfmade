@@ -17,11 +17,11 @@ public class Screen extends JFrame {
     JLabel lives;
     JLabel level;
     JLabel levelType;
+    JLabel pauseJ;
     JLabel mainChar;
     JLabel[] shot = new JLabel[100]; //number of shots available
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-
     int k = -1;
     boolean[] hit = new boolean[enemyArr.length];
     boolean[] d = new boolean[shot.length];
@@ -30,6 +30,7 @@ public class Screen extends JFrame {
     boolean sKey;
     boolean dKey;
     public boolean levelEnd;
+    boolean pause= false;
 
     public Screen() {
         setSize(width, height);
@@ -78,6 +79,11 @@ public class Screen extends JFrame {
         levelType.setBounds(10, 70, 180, 20);
         levelType.setForeground(Color.white);
         add(levelType);
+
+        pauseJ = new JLabel("Pause");
+        pauseJ.setBounds(-100, -100, 100, 40);
+        pauseJ.setForeground(Color.white);
+        add(pauseJ);
 
         mainChar = new JLabel();
         mainChar.setBounds(100, 100, Main.player.getWidth(), Main.player.getWidth());
@@ -202,6 +208,7 @@ public class Screen extends JFrame {
         int spawn = enemyArr[id].getY();
         double y1 = spawn;
         for (double x = startX; x > -250; x--) {
+            while (pause){Main.sleep(1000);}
             double y = MobMoveE.bew(e.getMove(), spawn, x, y1, id);
             if (y < -100) {
                 y = 1200;
@@ -228,6 +235,7 @@ public class Screen extends JFrame {
             if (d[k1]) {
                 x = 3000;
                 d[k1] = false;
+                while (pause){Main.sleep(1000);}
             }
             shot[k1].setLocation(x, y);
             Main.sleep(10);
@@ -247,6 +255,7 @@ public class Screen extends JFrame {
         this.add(rainbow);
         for (int i = 0; i < height; i+= 10) {
             rainbow.setLocation(z, i);
+            while (pause){Main.sleep(1000);}
             if(hit[id])enemyArr[id].setLocation(-300, 0);
             if(PvE(rainbow, mainChar)) {
                 mainChar.setLocation(10,10);
@@ -256,6 +265,7 @@ public class Screen extends JFrame {
         rainbow.setLocation(-300, 0);
         this.remove(rainbow);
         for (int y = 0; y < 500; y++) {
+            while (pause){Main.sleep(1000);}
             if(hit[id])return;
             enemyArr[id].setLocation(z, y);
             Main.sleep(5);
@@ -298,6 +308,7 @@ public class Screen extends JFrame {
             if (Keyboard.wKey) {
                 if (mainChar.getY() - 10 > 0) mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);
             }
+            while (pause){Main.sleep(1000);}
             Main.sleep(20);
         }
     }
@@ -306,6 +317,7 @@ public class Screen extends JFrame {
             if (Keyboard.aKey) {
                 if (mainChar.getX() - 10 > 0) mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());
             }
+            while (pause){Main.sleep(1000);}
             Main.sleep(20);
         }
     }
@@ -314,6 +326,7 @@ public class Screen extends JFrame {
             if (Keyboard.sKey) {
                 if (mainChar.getY() < height) mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);
             }
+            while (pause){Main.sleep(1000);}
             Main.sleep(20);
         }
     }
@@ -322,6 +335,7 @@ public class Screen extends JFrame {
             if (Keyboard.dKey) {
                 if (mainChar.getX() + 10 < width) mainChar.setLocation(mainChar.getX() + 10, mainChar.getY());
             }
+            while (pause){Main.sleep(1000);}
             Main.sleep(20);
         }
     }
@@ -344,10 +358,20 @@ public class Screen extends JFrame {
                     countBullet++;
                 }
             }
+            while (pause){Main.sleep(1000);}
             Main.sleep(20);
         }
     }
+    public void setPause(){
+        if (pause){
+            pause = false;
+            pauseJ.setLocation(-100, -100);
+        }else {
+            pause = true;
+            pauseJ.setLocation(width/2, height/2);
+        }
 
+    }
 
     public int getMainX(){return mainChar.getX();}
     public int getMainY(){return mainChar.getY();}

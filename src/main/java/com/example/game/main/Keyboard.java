@@ -39,6 +39,7 @@ public class Keyboard implements KeyListener {
             case ' ':
                 spaceKey = true;
                 break;
+
         }
     }
     @Override
@@ -59,6 +60,9 @@ public class Keyboard implements KeyListener {
             case ' ':
                 spaceKey = false;
                 break;
+            case 'm':
+                Main.getScreen().setPause();
+            break;
         }
     }
 

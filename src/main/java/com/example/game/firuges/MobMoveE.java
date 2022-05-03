@@ -43,16 +43,16 @@ public enum MobMoveE {
             case NMOVE, SMOVE -> {
                 return spawnHight;
             }
-            case HDMOVE-> {
+            case HDMOVE -> {
                 return Math.sin(x / 100) * 100 + spawnHight;
             }
-            case PMOVE-> {
+            case PMOVE -> {
                 return -x * x + spawnHight;
             }
-            case EHDMOVE-> {
+            case EHDMOVE -> {
                 return Math.sin(x / 100) * 200 + spawnHight;
             }
-            case VERMOVE-> {
+            case VERMOVE -> {
                 Screen s = Main.getScreen();
                 int px = s.getMainX();
                 int py = s.getMainY();

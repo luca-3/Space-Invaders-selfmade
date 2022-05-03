@@ -18,7 +18,7 @@ public enum EnemyE {
     ;
     /*
     So machst du ein Enemy Enum:
-    1. Erstellst du ein Enum unter den Anderen wie oben schon gemacht.
+    1. Erstelle ein Enum unter den Anderen wie oben schon gemacht.
     2. Ergänzt du diesen Enemy in Level (Enum) dazu gehört Konstruktor und get Methode.
     3. Als Nächstes in EnemyE.getSize das passende case ergänzen.
         Glückwunsch du hast Erfolgreich ein neuen Enemy erstellt.
