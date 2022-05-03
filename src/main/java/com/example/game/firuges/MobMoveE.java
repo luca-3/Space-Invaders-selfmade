@@ -10,7 +10,6 @@ public enum MobMoveE {
 
     NMOVE(), // Normel Move
     HDMOVE(), // High Down Move
-    SMOVE(), // Speed Move
     PMOVE(),// parabel Move
     EHDMOVE(),// Extrem High Down
     VERMOVE(), //Verfolgungsmove
@@ -31,7 +30,7 @@ public enum MobMoveE {
         while (true){
             Arrays.fill(abstand1, true);
 
-            Main.sleep(250); //update rate of search
+            Main.sleep(25); //update rate of search
         }
     }
 
@@ -39,7 +38,7 @@ public enum MobMoveE {
     public static double bew(MobMoveE move, int spawnHight, double x, double y, int id){
 
         switch (move) {
-            case NMOVE, SMOVE -> {
+            case NMOVE -> {
                 return spawnHight;
             }
             case HDMOVE -> {
@@ -67,8 +66,7 @@ public enum MobMoveE {
             case RAINBOW -> {
                 double y2 = y - EnemyE.DWARF.getSpeed();
                 if (y2 <= 0) {
-                    Main.getScreen().rainbow(id);
-                    return 500;
+                    return  Main.getScreen().rainbow(id);
                 }
                 return y2;
             }

@@ -17,7 +17,7 @@ public class Move extends JFrame implements KeyListener {
     int diff = 10;
     JLabel mainChar;
     JLabel[] enemy = new JLabel[3];
-    JLabel[] shot = new JLabel[10];
+    JLabel[] shot = new JLabel[11];
     Random random = new Random();
     ImageIcon icon;
     int k = -1;
@@ -60,6 +60,7 @@ public class Move extends JFrame implements KeyListener {
             this.add(enemy[i]);
 
         }
+
 
 
 
@@ -129,9 +130,8 @@ public class Move extends JFrame implements KeyListener {
         }
     }
         public boolean PvB(JLabel Player, JLabel Bullet){
-            if (Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
-                    && Player.getX() <= Bullet.getX() + Bullet.getWidth()&&Player.getY()<=Bullet.getY()+(Bullet.getHeight()/2)){return true;}
-            return false;
+            return Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
+                    && Player.getX() <= Bullet.getX() + Bullet.getWidth() && Player.getY() <= Bullet.getY() + (Bullet.getHeight() / 2);
         }
         public boolean PvE(JLabel mobA, JLabel mobB){
         //mobA = hitbox; mobB = points

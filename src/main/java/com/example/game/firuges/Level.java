@@ -45,7 +45,7 @@ public class Level {
     public int[] generateLevel(){
         Random r = new Random();
         int numberEnemys = (int) (Math.sqrt(EnemyHandler.level - 1) * 2.5 + 2); //formula to calculate the number of enemy dependent on the current level
-        int[] enumInput = new int[5]; //number of Enemy, wich exists and can be an input of the Level enum
+        int[] enumInput = new int[EnemyE.SIZE]; //number of Enemy, wich exists and can be an input of the Level enum
 
         for (int i = numberEnemys; i > 0; i--){
             int position = r.nextInt(0,enumInput.length - 1);

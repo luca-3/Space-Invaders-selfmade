@@ -9,9 +9,9 @@ public enum EnemyE {
     AFFE(100, 200, 3,  2, MobMoveE.HDMOVE,"src/main/resources/com/example/game/enemy/Spaceship.png"),
     BANANE(40, 40, 1, 7, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Bannane1.png"),
     UNICORN(64, 64, 2 , 4, MobMoveE.VERMOVE, "src/main/resources/com/example/game/enemy/Test.png"),
-    DWARF(75, 125, 1, 3, MobMoveE.RAINBOW, null),
-    PUFFY(50, 50, 1, 6, MobMoveE.NMOVE, null),
-    KITTY(75, 75, 1, 2, MobMoveE.NMOVE, null),
+    DWARF(75, 125, 1, 3, MobMoveE.RAINBOW, "src/main/resources/com/example/game/enemy/Spaceship.png"),
+    PUFFY(50, 50, 1, 6, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Spaceship.png"),
+    KITTY(75, 75, 1, 2, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Kitty.png"),
 
     ;
     /*
@@ -49,41 +49,21 @@ public enum EnemyE {
         this.speed = speed;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-    public int getHp() {
-        return hp;
-    }
-    public int getWidth() {
-        return width;
-    }
-    public int getHeight() {
-        return height;
-    }
+    public int getSpeed() {return speed;}
+    public int getHp() {return hp;}
+    public int getWidth() {return width;}
+    public int getHeight() {return height;}
     public MobMoveE getMove(){return move;}
-    public Icon getSkin() {
-        return skin;
-    }
+    public Icon getSkin() {return skin;}
 
 
 
-    public static int getSpeed(EnemyE a) {
-        return a.getSpeed();
-    }
-    public static int getHp(EnemyE a) {
-        return a.getHp();
-    }
-    public static int getWidth(EnemyE a) {
-        return a.getWidth();
-    }
-    public static int getHeight(EnemyE a) {
-        return a.getHeight();
-    }
+    public static int getSpeed(EnemyE a) {return a.getSpeed();}
+    public static int getHp(EnemyE a) {return a.getHp();}
+    public static int getWidth(EnemyE a) {return a.getWidth();}
+    public static int getHeight(EnemyE a) {return a.getHeight();}
     public static MobMoveE getMove(EnemyE a){return a.getMove();}
-    public static Icon getSkin(EnemyE a) {
-        return a.getSkin();
-    }
+    public static Icon getSkin(EnemyE a) {return a.getSkin();}
 
     public static final List<EnemyE> VALUES = List.of(values());
     public static final int SIZE = VALUES.size();

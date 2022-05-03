@@ -6,6 +6,8 @@ import com.example.game.firuges.MobMoveE;
 import com.example.game.firuges.Player;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Screen extends JFrame {
@@ -17,6 +19,7 @@ public class Screen extends JFrame {
     JLabel level;
     JLabel levelType;
     JLabel pauseJ;
+    JButton button;
     public JLabel mainChar;
     JLabel[] shot = new JLabel[10]; //number of shots available
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -77,6 +80,9 @@ public class Screen extends JFrame {
         mainChar.setIcon(icon);
         mainChar.setOpaque(true);
         add(mainChar);
+
+
+
 
         //init generation of bullets off-screen
         for (int i = 0; i < shot.length; i++) {
@@ -200,8 +206,7 @@ public class Screen extends JFrame {
         temp.setBounds(object.getX(), object.getY(), object.getWidth(), object.getHeight());
         temp.setIcon(object.getSkin());
         temp.setOpaque(true);
-
-        enemyArr[countEnemy] = new JLabel();
+        temp.setBackground(Color.BLACK);
         enemyArr[countEnemy] = temp;
         this.add(enemyArr[countEnemy]);
         countEnemy++;
@@ -236,9 +241,9 @@ public class Screen extends JFrame {
         //int k =  random.nextInt(4);
         int k1 = k;
         int y = shot[k1].getY();
-        for (int x = shot[k1].getX(); x < 2000; x += 4) {
+        for (int x = shot[k1].getX(); x < width; x += 6) {
             if (d[k1]) {
-                x = 3000;
+                x = width-1;
                 d[k1] = false;
             }
             shot[k1].setLocation(x, y);
@@ -249,7 +254,7 @@ public class Screen extends JFrame {
         shot[k1].setLocation(3000, -1000);
         countBullet--;
     }
-    public void rainbow(int id){
+    public int rainbow(int id){
         JLabel rainbow =new JLabel();
         int z = enemyArr[id].getX()-80;
         rainbow.setBounds(z, 10, 80, 80);
@@ -273,9 +278,10 @@ public class Screen extends JFrame {
         for (int y = 0; y < r; y++) {
             while (pause) Main.sleep(100);
             enemyArr[id].setLocation(z, y);
-            if(hit[id])return;
+            if(hit[id])return y;
             Main.sleep(5);
         }
+        return r;
     }
 
     public boolean PvB(JLabel Player, JLabel Bullet) {
@@ -361,5 +367,6 @@ public class Screen extends JFrame {
             Main.sleep(20);
         }
     }
+
 
 }
