@@ -13,7 +13,7 @@ public class Enemy {
     private int hp;
     private Icon skin;
     private int id;
-    private EnemyE typ;
+    private final EnemyE typ;
 
 
     public Enemy(EnemyE type, int x, int y) {

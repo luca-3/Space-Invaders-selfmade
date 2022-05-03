@@ -2,14 +2,16 @@ package com.example.game.main;
 
 import com.example.game.firuges.*;
 
-
 //Main
 public class Main {
+    public static boolean gameIsRunning = true;
+
     EnemyHandler enemyHandler = new EnemyHandler();
     static Screen s;
     public static Player player;
 
     public static Screen getScreen(){return s;}
+
 
     public static void main(String[] args) {
         Main game = new Main();
@@ -33,8 +35,8 @@ public class Main {
         Thread eH = new Thread(() -> enemyHandler.startEnemy());
         eH.start();
 
-        Thread zielSytem = new Thread(()-> MobMoveE.bool());
-        zielSytem.start();
+        Thread unicornTargeting = new Thread(MobMoveE::bool);
+        unicornTargeting.start();
 
     }
     /*

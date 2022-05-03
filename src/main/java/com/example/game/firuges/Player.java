@@ -15,15 +15,12 @@ public class Player {
     }
 
     public Player(String state) {
-        switch (state){
-            case "init":
-                this.width = 100;
-                this.speed = 10;
-                Player.hp = 3;
-                break;
-            default:
-                throw new IllegalArgumentException("Wrong input for Player constructor: " + state);
-
+        if ("init".equals(state)) {
+            this.width = 100;
+            this.speed = 10;
+            Player.hp = 3;
+        } else {
+            throw new IllegalArgumentException("Wrong input for Player constructor: " + state);
         }
     }
 

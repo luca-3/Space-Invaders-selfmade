@@ -1,7 +1,5 @@
 package com.example.game.firuges;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -22,12 +20,12 @@ public enum Level {
     und x2 = maximalzahl) um Ungewissheit über die Anzahl der Gegner entsteht.
     */
 
-    Random r = new Random();
-    private int affe;
-    private int unicorn;
-    private int dwarf;
-    private int puffy;
-    private int kitty;
+
+    private final int affe;
+    private final int unicorn;
+    private final int dwarf;
+    private final int puffy;
+    private final int kitty;
 
     Level(int affe, int unicorn, int dwarf, int puffy, int kitty){
         this.affe = affe;
@@ -44,7 +42,7 @@ public enum Level {
     public int getNumberKitty() {return kitty;}
 
 
-    private static final List<Level> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    private static final List<Level> VALUES = List.of(values());
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
     public static Level randomLevel()  {

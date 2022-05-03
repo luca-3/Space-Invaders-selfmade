@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class EnemyHandler {
     public static int level = 1;
-    public static ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    public static ArrayList<Enemy> enemies = new ArrayList<>();
     Screen s;
     Random random = new Random();
     int cou= 0;
@@ -22,13 +22,13 @@ public class EnemyHandler {
 
     public void startEnemy() {
         this.s = Main.getScreen();
-        while (true) {
+        while (true) { //enemy handling
             Main.sleep(1000);
             s.levelEnd = false;
             levelE = Level.randomLevel();
                 EnemyInit(levelE);
                 move();
-                while (s.levelEnd== false){Main.sleep(1000);}
+                while (!s.levelEnd){Main.sleep(1000);}
                 s.levelEnd = false;
             Main.sleep(100);
             remove();

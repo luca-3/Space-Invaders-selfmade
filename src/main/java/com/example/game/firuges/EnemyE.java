@@ -2,8 +2,6 @@ package com.example.game.firuges;
 
 import javax.swing.*;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -87,7 +85,7 @@ public enum EnemyE {
         return a.getSkin();
     }
 
-    public static final List<EnemyE> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    public static final List<EnemyE> VALUES = List.of(values());
     public static final int SIZE = VALUES.size();
 }
 

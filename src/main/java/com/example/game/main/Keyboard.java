@@ -24,45 +24,22 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyChar()) {
-            case 'a':
-                aKey = true;
-                break;
-            case 'w':
-                wKey = true;
-                break;
-            case 's':
-                sKey = true;
-                break;
-            case 'd':
-                dKey = true;
-                break;
-            case ' ':
-                spaceKey = true;
-                break;
-
+            case 'a' -> aKey = true;
+            case 'w' -> wKey = true;
+            case 's' -> sKey = true;
+            case 'd' -> dKey = true;
+            case ' ' -> spaceKey = true;
         }
     }
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyChar()) {
-            case 'a':
-                aKey = false;
-                break;
-            case 'w':
-                wKey = false;
-                break;
-            case 's':
-                sKey = false;
-                break;
-            case 'd':
-                dKey = false;
-                break;
-            case ' ':
-                spaceKey = false;
-                break;
-            case 'm':
-                Main.getScreen().setPause();
-            break;
+            case 'a' -> aKey = false;
+            case 'w' -> wKey = false;
+            case 's' -> sKey = false;
+            case 'd' -> dKey = false;
+            case ' ' -> spaceKey = false;
+            case 'm' -> Main.getScreen().setPause();
         }
     }
 
