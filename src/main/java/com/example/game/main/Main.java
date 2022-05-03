@@ -1,10 +1,10 @@
 package com.example.game.main;
-
 import com.example.game.firuges.*;
 
 //Main
 public class Main {
 
+    public static boolean gameRun = true;
     EnemyHandler enemyHandler = new EnemyHandler();
     static Screen s;
     public static Player player;

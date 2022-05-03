@@ -15,7 +15,7 @@ public enum MobMoveE {
     EHDMOVE(),// Extrem High Down
     VERMOVE(), //Verfolgung-mode
     RAINBOW(),//Regenbogen kotze
-
+    LASER(),
     ;
     /*
     So machst du ein Mob Move Enum:
@@ -28,7 +28,7 @@ public enum MobMoveE {
     static final boolean[] abstand1 = new boolean[steigung.length];
     MobMoveE() {}
     public static void bool(){ //rate of calculation for gradient (unicorn)
-        while (Main.getScreen().gameRun){
+        while (Main.gameRun){
             Arrays.fill(abstand1, true);
 
             Main.sleep(250); //update rate of search
@@ -71,7 +71,10 @@ public enum MobMoveE {
                 }
                 return y2;
             }
-
+            case LASER -> {
+                Main.getScreen().spaceCat((int)y, id);
+                return y;
+            }
         }
         return 0;
     }

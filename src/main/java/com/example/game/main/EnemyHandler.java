@@ -15,14 +15,14 @@ public class EnemyHandler {
     Random random = new Random();
     int cou= 0;
     public static Level levelE;
-
+    public static Thread[] moveT;
     public EnemyHandler() {
 
     }
 
     public void startEnemy() {
         this.s = Main.getScreen();
-        while (s.gameRun) { //enemy handling
+        while (Main.gameRun) { //enemy handling
             Main.sleep(1000);
             s.levelEnd = false;
             //levelE = Level.randomLevel();
@@ -51,8 +51,7 @@ public class EnemyHandler {
     }
 
     public void move(){
-        int k = enemies.size();
-        Thread[] moveT = new Thread[k];
+        moveT = new Thread[enemies.size()];
         for (int i = 0; i < enemies.size(); i++) {
             int i1 = i;
             moveT[i1] = new Thread(()-> s.move(enemies.get(i1).getID(), enemies.get(i1).getTyp(), enemies.get(i1).getX()));

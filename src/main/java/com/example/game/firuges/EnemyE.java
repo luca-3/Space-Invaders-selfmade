@@ -11,7 +11,7 @@ public enum EnemyE {
     UNICORN(64, 64, 2 , 4, MobMoveE.VERMOVE, "src/main/resources/com/example/game/enemy/Test.png"),
     DWARF(75, 125, 1, 3, MobMoveE.RAINBOW, "src/main/resources/com/example/game/enemy/Zwerg.png"),
     PUFFY(50, 50, 1, 6, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Spaceship.png"),
-    KITTY(75, 75, 1, 2, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Kitty.png"),
+    KITTY(75, 75, 1, 10000, MobMoveE.LASER, "src/main/resources/com/example/game/enemy/Kitty.png"),
 
     ;
     /*
