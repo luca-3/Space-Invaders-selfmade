@@ -8,9 +8,9 @@ import java.util.List;
 
 
 public enum EnemyE {
-    AFFE(100, 200, 30,  20, MobMoveE.HDMOVE,"src/main/resources/com/example/game/enemy/Spaceship.png"),
-    BANANE(40, 40, 10, 70, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Bannane1.png"),
-    UNICORN(64, 64, 1 , 20, MobMoveE.VERMOVE, "src/main/resources/com/example/game/enemy/Test.png"),
+    AFFE(100, 200, 3,  20, MobMoveE.HDMOVE,"src/main/resources/com/example/game/enemy/Spaceship.png"),
+    BANANE(40, 40, 1, 70, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Bannane1.png"),
+    UNICORN(64, 64, 2 , 20, MobMoveE.VERMOVE, "src/main/resources/com/example/game/enemy/Test.png"),
     DWARF(75, 125, 1, 30, MobMoveE.RAINBOW, null),
     PUFFY(50, 50, 1, 65, MobMoveE.NMOVE, null),
     KITTY(75, 75, 1, 20, MobMoveE.NMOVE, null),
@@ -67,6 +67,7 @@ public enum EnemyE {
     public Icon getSkin() {
         return skin;
     }
+
 
 
     public static int getSpeed(EnemyE a) {

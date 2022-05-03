@@ -19,7 +19,7 @@ public class Screen extends JFrame {
     JLabel levelType;
     JLabel pauseJ;
     JLabel mainChar;
-    JLabel[] shot = new JLabel[100]; //number of shots available
+    JLabel[] shot = new JLabel[10]; //number of shots available
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
     int k = -1;
@@ -177,13 +177,17 @@ public class Screen extends JFrame {
             for (int i = 0; i < shot.length; i++) {
                 for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
                     if (PvB(enemyArr[j], shot[i])) {
-                        hit[j] = true;
+                        EnemyHandler.enemies.get(j).hpHit(1);
                         d[i] = true;
                         Player.editScore(10);
                     }
                 }
             }
-
+            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
+                if(EnemyHandler.enemies.get(i).getHp()<=0){
+                    hit[i] = true;
+                }
+            }
 
             Main.sleep(10); //update Rate Kolliotiona
         }
@@ -235,9 +239,9 @@ public class Screen extends JFrame {
             if (d[k1]) {
                 x = 3000;
                 d[k1] = false;
-                while (pause){Main.sleep(1000);}
             }
             shot[k1].setLocation(x, y);
+            while (pause){Main.sleep(1000);}
             Main.sleep(10);
 
         }

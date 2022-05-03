@@ -26,7 +26,7 @@ public class EnemyHandler {
             Main.sleep(1000);
             s.levelEnd = false;
             levelE = Level.randomLevel();
-                Enemyinit(levelE);
+                EnemyInit(levelE);
                 move();
                 while (s.levelEnd== false){Main.sleep(1000);}
                 s.levelEnd = false;
@@ -37,11 +37,12 @@ public class EnemyHandler {
         }
     }
 
-    public void Enemyinit(Level level){
+    public void EnemyInit(Level level){
 
         for (int i = 0; i < EnemyE.SIZE; i++) {
             for (int j = 0; j < EnemyE.getSize(EnemyE.VALUES.get(i), level); j++) {
-                Enemy enemy = new Enemy(EnemyE.VALUES.get(i), 2000 + 200 * j, random.nextInt(100,s.height-100));
+                int r = random.nextInt(5);
+                Enemy enemy = new Enemy(EnemyE.VALUES.get(i), 2000 + 200 * r, random.nextInt(100,s.height-100));
                 enemy.setId(s.addEnemy(enemy));
                 enemies.add(cou, enemy);
                 cou++;
@@ -68,5 +69,7 @@ public class EnemyHandler {
 
     }
     public static int getAnzahlE(){return enemies.size();}
+
+
 
 }
