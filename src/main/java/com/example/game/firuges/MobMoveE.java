@@ -11,6 +11,7 @@ public enum MobMoveE {
 
     NMOVE(), // Normal Move
     HDMOVE(), // High Down Move
+    BMOVE(), // Bananen Move
     PMOVE(),// parabel Move
     EHDMOVE(),// Extrem High Down
     VERMOVE(), //Verfolgung-mode
@@ -26,12 +27,25 @@ public enum MobMoveE {
      */
     static final double[] steigung = new double[100];
     static final boolean[] abstand1 = new boolean[steigung.length];
+    static boolean abstand2;
     MobMoveE() {}
+
     public static void bool(){ //rate of calculation for gradient (unicorn)
+       Thread a1 = new Thread(MobMoveE::setAbstand1);
+       Thread a2 = new Thread(MobMoveE::setAbstand2);
+       a1.start(); a2.start();
+
+    }
+    public static void setAbstand1(){
         while (Main.gameRun){
             Arrays.fill(abstand1, true);
-
             Main.sleep(250); //update rate of search
+        }
+    }
+    public static void setAbstand2(){
+        while (Main.gameRun){
+            abstand2 = true;
+            Main.sleep(5000); //update rate of search
         }
     }
 
@@ -43,6 +57,14 @@ public enum MobMoveE {
                 return spawnHight;
             }
             case HDMOVE -> {
+                return Math.sin(x / 100) * 100 + spawnHight;
+            }
+            case BMOVE -> {
+                if(abstand2){
+                    Thread b = new Thread(()-> Main.getScreen().enemyShot((int)y, (int)x));
+                    b.start();
+                    abstand2 = false;
+                }
                 return Math.sin(x / 100) * 100 + spawnHight;
             }
             case PMOVE -> {

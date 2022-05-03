@@ -283,29 +283,30 @@ public class Screen extends JFrame {
             enemyArr[id].setLocation(i, y);
             Main.sleep(25);
         }
-        JLabel laser = new JLabel();
-        laser.setBounds(0, -20, 40, 20);
-        laser.setBackground(Color.MAGENTA);
-        laser.setOpaque(true);
-        add(laser);
-        enemyShot(y+30, width-220, laser);
-        for (int i = width-220; i < width-60; i++) {
+
+        enemyShot(y+30, width-220);
+        for (int i = width-220; i < width; i+=3) {
             enemyArr[id].setLocation(i, y);
             Main.sleep(25);
         }
         enemyArr[id].setLocation(-300, y);
         EnemyHandler.moveT[id].stop();
     }
-    public void enemyShot(int y, int x ,JLabel l){
+    public void enemyShot(int y, int x ){
+        JLabel laser = new JLabel();
+        laser.setBounds(0, -20, 40, 20);
+        laser.setBackground(Color.MAGENTA);
+        laser.setOpaque(true);
+        add(laser);
         for (int i = x; i > -100 ; i-=10) {
-            l.setLocation(i, y);
-            if(PvB(mainChar, l)){
+            laser.setLocation(i, y);
+            if(PvB(mainChar, laser)){
                 mainChar.setLocation(10, 10);
                 Player.editHP(-1);
             }
             Main.sleep(5);
         }
-        remove(l);
+        remove(laser);
     }
 
     public boolean PvB(JLabel Player, JLabel Bullet) {
