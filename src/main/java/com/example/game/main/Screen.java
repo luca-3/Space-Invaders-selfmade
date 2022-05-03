@@ -6,6 +6,7 @@ import com.example.game.firuges.MobMoveE;
 import com.example.game.firuges.Player;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class Screen extends JFrame {
 
@@ -25,6 +26,7 @@ public class Screen extends JFrame {
     boolean[] d = new boolean[shot.length];
     public boolean levelEnd;
     boolean pause= false;
+    Random random = new Random();
 
     public Screen() {
         //initial settings for the window
@@ -209,7 +211,7 @@ public class Screen extends JFrame {
     public void move(int id, EnemyE e, int startX) {
         int spawn = enemyArr[id].getY();
         double y1 = spawn;
-        for (double x = startX; x > -250; x--) {
+        for (double x = startX; x > -250; x-=e.getSpeed()) {
             while (pause){
                 Main.sleep(1000);
             }
@@ -221,7 +223,7 @@ public class Screen extends JFrame {
             }
             y1 = y;
             enemyArr[id].setLocation((int) x, (int) y);
-            Main.sleep(100 / e.getSpeed());
+            Main.sleep(10);
             //if (x == 1) x=1800;
             if (hit[id]) {
                 x = -200;
@@ -259,7 +261,7 @@ public class Screen extends JFrame {
         for (int i = 0; i < height; i+= 10) {
             rainbow.setLocation(z, i);
             while (pause) Main.sleep(1000);
-            if(hit[id]) enemyArr[id].setLocation(-300, 0);
+            if(hit[id]) enemyArr[id].setLocation(-200, 0);
             if(PvE(rainbow, mainChar)) {
                 mainChar.setLocation(10,10);
                 Player.hp--;}
@@ -267,10 +269,11 @@ public class Screen extends JFrame {
         }
         rainbow.setLocation(-300, 0);
         this.remove(rainbow);
-        for (int y = 0; y < 500; y++) {
+        int r = random.nextInt(height-200);
+        for (int y = 0; y < r; y++) {
             while (pause) Main.sleep(100);
-            if(hit[id])return;
             enemyArr[id].setLocation(z, y);
+            if(hit[id])return;
             Main.sleep(5);
         }
     }
@@ -297,7 +300,7 @@ public class Screen extends JFrame {
                 X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight / 2 && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight / 2 || // Mitte Links
                 X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight / 2 && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight / 2 || // Mitte Rechts
                 X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE <= Y_OBJ_TWO || // Mitte Oben
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO / 2 + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight;
+                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO / 2 + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight;// Mitte unten
     }
 
     public void w() {

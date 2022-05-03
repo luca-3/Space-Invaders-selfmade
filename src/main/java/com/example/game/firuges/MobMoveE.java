@@ -65,7 +65,7 @@ public enum MobMoveE {
                 return y - steigung[id];
             }
             case RAINBOW -> {
-                double y2 = y - 1;
+                double y2 = y - EnemyE.DWARF.getSpeed();
                 if (y2 <= 0) {
                     Main.getScreen().rainbow(id);
                     return 500;
