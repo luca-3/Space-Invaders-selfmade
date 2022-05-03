@@ -209,7 +209,7 @@ public class Screen extends JFrame {
     public void move(int id, EnemyE e, int startX) {
         int spawn = enemyArr[id].getY();
         double y1 = spawn;
-        for (double x = startX; x > -250; x--) {
+        for (double x = startX; x > -250; x-=e.getSpeed()) {
             while (pause){
                 Main.sleep(1000);
             }
@@ -221,7 +221,7 @@ public class Screen extends JFrame {
             }
             y1 = y;
             enemyArr[id].setLocation((int) x, (int) y);
-            Main.sleep(100 / e.getSpeed());
+            Main.sleep(10);
             //if (x == 1) x=1800;
             if (hit[id]) {
                 x = -200;
