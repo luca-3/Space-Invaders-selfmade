@@ -60,8 +60,8 @@ public enum MobMoveE {
                 return Math.sin(x / 100) * 100 + spawnHight;
             }
             case BMOVE -> {
-                if(abstand2){
-                    Thread b = new Thread(()-> Main.getScreen().enemyShot((int)y, (int)x));
+                if(abstand2 && x < Main.getScreen().width){
+                    Thread b = new Thread(()-> Main.getScreen().enemyShot((int)y - 40, (int)x));
                     b.start();
                     abstand2 = false;
                 }

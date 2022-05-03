@@ -18,8 +18,8 @@ public class Screen extends JFrame {
     JLabel pauseJ;
     public JLabel mainChar;
     JLabel[] shot = new JLabel[10]; //number of shots available
-    int width = Toolkit.getDefaultToolkit().getScreenSize().width;
-    int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+    public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+    public int height = Toolkit.getDefaultToolkit().getScreenSize().height;
     int k = -1;
     boolean[] hit = new boolean[enemyArr.length];
     boolean[] d = new boolean[shot.length];

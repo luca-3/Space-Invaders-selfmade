@@ -39,8 +39,14 @@ public class Level {
         int[] enumInput = new int[EnemyE.SIZE]; //number of Enemy, wich exists and can be an input of the Level enum
 
         for (int i = numberEnemy; i > 0; i--){
-            int position = r.nextInt(0,enumInput.length - 1);
-            enumInput[position] += 1;
+            if (enumInput[4] < 5){
+                int position = r.nextInt(0,enumInput.length - 1);
+                enumInput[position] += 1;
+            } else {
+                int position = r.nextInt(0,enumInput.length - 2);
+                enumInput[position] += 1;
+            }
+
         }
         System.out.println("rand");
 

@@ -50,6 +50,7 @@ public class EnemyHandler {
         }
     }
 
+
     public void move(){
         moveT = new Thread[enemies.size()];
         for (int i = 0; i < enemies.size(); i++) {
