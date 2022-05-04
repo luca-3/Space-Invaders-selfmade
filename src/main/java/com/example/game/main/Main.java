@@ -4,8 +4,8 @@ import com.example.game.firuges.*;
 //Main
 public class Main {
 
-    public static boolean gameRun = true;
-    EnemyHandler enemyHandler = new EnemyHandler();
+    public static boolean gameRun = false;
+    static EnemyHandler enemyHandler = new EnemyHandler();
     static Screen s;
     public static Player player;
 
@@ -28,14 +28,7 @@ public class Main {
 
 
         // start the game loop
-        Thread screen = new Thread(() -> s.start());
-        screen.start();
 
-        Thread eH = new Thread(() -> enemyHandler.startEnemy());
-        eH.start();
-
-        Thread unicornTargeting = new Thread(MobMoveE::bool);
-        unicornTargeting.start();
 
     }
     /*
@@ -58,8 +51,20 @@ public class Main {
         }
     }
 
-    public static void startSpiel(){
-        s.startJ.setLocation(-100, -100);
+    public static void startSpiel() {
+        if (!gameRun) {
+            gameRun = true;
+            System.out.println("testdxcfgvbhnjmk");
+            s.startJ.setLocation(-100, -100);
+            Thread screen = new Thread(() -> s.start());
+            screen.start();
+
+            Thread eH = new Thread(() -> enemyHandler.startEnemy());
+            eH.start();
+
+            Thread unicornTargeting = new Thread(MobMoveE::bool);
+            unicornTargeting.start();
+        }
     }
 
 }
