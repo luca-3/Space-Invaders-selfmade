@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Main game = new Main();
         game.start();
+        
     }
 
     public void start() {
@@ -54,17 +55,24 @@ public class Main {
     public static void startSpiel() {
         if (!gameRun) {
             gameRun = true;
-            System.out.println("testdxcfgvbhnjmk");
             s.startJ.setLocation(-100, -100);
             Thread screen = new Thread(() -> s.start());
             screen.start();
-
             Thread eH = new Thread(() -> enemyHandler.startEnemy());
             eH.start();
-
             Thread unicornTargeting = new Thread(MobMoveE::bool);
             unicornTargeting.start();
+            Player.hp = 5;
+            Player.score = 0;
+            EnemyHandler.level = 1;
+
         }
+    }
+    public static void stopSpiel(){
+        gameRun = false;
+        Main.sleep(1000);
+        s.startJ.setLocation(s.width/2-100, s.height/2);
+
     }
 
 }

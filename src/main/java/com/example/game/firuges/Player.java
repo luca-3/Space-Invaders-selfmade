@@ -18,7 +18,7 @@ public class Player {
         if ("init".equals(state)) {
             this.width = 100;
             this.speed = 10;
-            Player.hp = 3;
+            Player.hp = 5;
         } else {
             throw new IllegalArgumentException("Wrong input for Player constructor: " + state);
         }

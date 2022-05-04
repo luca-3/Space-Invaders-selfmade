@@ -72,7 +72,7 @@ public class Screen extends JFrame {
         add(pauseJ);
 
         startJ = new JLabel("Drücke k zum starten");
-        startJ.setBounds(width/2-100, height/2, 100, 40);
+        startJ.setBounds(width/2-100, height/2, 200, 40);
         startJ.setForeground(Color.white);
         add(startJ);
 
@@ -113,7 +113,7 @@ public class Screen extends JFrame {
         Thread upHP = new Thread(this::updateLives);
         Thread upLevel = new Thread(this::updateLevel);
         Thread endLevel = new Thread(this::levelEnd);
-        Thread levelType = new Thread(this::updateLevelType);
+       // Thread levelType = new Thread(this::updateLevelType);
 
         wT.start();
         aT.start();
@@ -124,7 +124,7 @@ public class Screen extends JFrame {
         upHP.start();
         upLevel.start();
         endLevel.start();
-        levelType.start();
+       // levelType.start();
 
         while (Main.gameRun) {
 
@@ -148,10 +148,11 @@ public class Screen extends JFrame {
                     hit[i] = true;
                 }
             }
+            if(Player.hp<= 0) Main.stopSpiel();
 
             Main.sleep(10); //update rate collision detection
         }
-        //this.update(this.getGraphics());
+
     }
 
     public void updateScore() {
@@ -163,9 +164,7 @@ public class Screen extends JFrame {
     public void updateLevel() {
         while (Main.gameRun) level.setText("Level: " + EnemyHandler.level);
     }
-    public void updateLevelType() {
-        while (Main.gameRun) levelType.setText("Level Type: " + EnemyHandler.levelE);
-    }
+    //public void updateLevelType() {while (Main.gameRun) levelType.setText("Level Type: " + EnemyHandler.levelE);}
 
     public void levelEnd() {
         while (Main.gameRun) {
@@ -226,15 +225,17 @@ public class Screen extends JFrame {
             } else if (y > 1200) {
                 y = -100;
             }
+            if (!Main.gameRun) x = -300;
             y1 = y;
             enemyArr[id].setLocation((int) x, (int) y);
             Main.sleep(10);
-            //if (x == 1) x=1800;
+
             if (hit[id]) {
                 x = -200;
                 hit[id] = false;
             }
         }
+        delJL(id);
     }
 
     public void shot() {
@@ -399,4 +400,7 @@ public class Screen extends JFrame {
         }
     }
 
+    public void delJL(int id){
+        Main.getScreen().remove(enemyArr[id]);
+    }
 }

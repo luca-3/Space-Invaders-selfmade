@@ -7,6 +7,7 @@ import com.example.game.main.Screen;
 import java.util.Arrays;
 
 
+
 public enum MobMoveE {
 
     NMOVE(), // Normal Move
@@ -100,4 +101,5 @@ public enum MobMoveE {
         }
         return 0;
     }
+
 }
