@@ -70,6 +70,7 @@ public class Main {
     }
     public static void stopSpiel(){
         gameRun = false;
+        s.levelEnd = true;
         Main.sleep(1000);
         s.startJ.setLocation(s.width/2-100, s.height/2);
 

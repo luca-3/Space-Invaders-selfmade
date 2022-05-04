@@ -21,7 +21,8 @@ public class EnemyHandler {
     }
 
     public void startEnemy() {
-        this.s = Main.getScreen();
+        Main.sleep(1000);
+        s = Main.getScreen();
         while (Main.gameRun) { //enemy handling
             Main.sleep(1000);
             s.levelEnd = false;

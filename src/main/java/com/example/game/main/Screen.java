@@ -60,11 +60,12 @@ public class Screen extends JFrame {
         level.setBounds(10, 50, 100, 20);
         level.setForeground(Color.white);
         add(level);
-
+        /*
         levelType = new JLabel("Level: " + EnemyHandler.levelE);
         levelType.setBounds(10, 70, 180, 20);
         levelType.setForeground(Color.white);
         add(levelType);
+         */
 
         pauseJ = new JLabel("Pause");
         pauseJ.setBounds(-100, -100, 100, 40);
@@ -167,6 +168,7 @@ public class Screen extends JFrame {
     //public void updateLevelType() {while (Main.gameRun) levelType.setText("Level Type: " + EnemyHandler.levelE);}
 
     public void levelEnd() {
+        Main.sleep(5000);
         while (Main.gameRun) {
             int count = 0;
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
@@ -235,7 +237,6 @@ public class Screen extends JFrame {
                 hit[id] = false;
             }
         }
-        delJL(id);
     }
 
     public void shot() {
@@ -400,7 +401,5 @@ public class Screen extends JFrame {
         }
     }
 
-    public void delJL(int id){
-        Main.getScreen().remove(enemyArr[id]);
-    }
+
 }
