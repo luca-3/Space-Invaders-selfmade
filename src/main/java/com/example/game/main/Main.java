@@ -58,4 +58,8 @@ public class Main {
         }
     }
 
+    public static startSpiel(){
+        s.startJ.setLocation(-100, -100)
+    }
+
 }

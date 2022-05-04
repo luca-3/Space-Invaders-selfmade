@@ -16,6 +16,7 @@ public class Screen extends JFrame {
     JLabel level;
     JLabel levelType;
     JLabel pauseJ;
+    JLabel startJ;
     public JLabel mainChar;
     JLabel[] shot = new JLabel[10]; //number of shots available
     public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -69,6 +70,11 @@ public class Screen extends JFrame {
         pauseJ.setBounds(-100, -100, 100, 40);
         pauseJ.setForeground(Color.white);
         add(pauseJ);
+
+        startJ = new JLabel("Drücke k zum starten");
+        startJ.setBounds(width/2-100, height/2, 100, 40);
+        startJ.setForeground(Color.white);
+        add(startJ);
 
         mainChar = new JLabel();
         mainChar.setBounds(100, 100, Main.player.getWidth(), Main.player.getWidth());
