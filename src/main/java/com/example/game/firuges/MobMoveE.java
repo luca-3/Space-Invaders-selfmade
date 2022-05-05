@@ -77,7 +77,7 @@ public enum MobMoveE {
             case VERMOVE -> {
                 Screen s = Main.getScreen();
                 int px = s.mainChar.getX();
-                int py = s.mainChar.getY();
+                int py = s.mainChar.getY()-Main.player.getWidth();
                 if (x + 64 < px) {
                     steigung[id] = 0;
                 } else if (abstand1[id]) {
