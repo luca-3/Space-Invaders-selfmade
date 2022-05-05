@@ -6,7 +6,7 @@ public class Player {
     private final int width;
     private int speed;
     public static int hp;
-    public static int score ;
+    public static int score;
 /*
     public Player(int width, int speed, int hp){
         this.width = width;
@@ -24,14 +24,12 @@ public class Player {
         }
     }
 
-    public int getWidth() {return width;}
+    public int getWidth() {return this.width;}
 
 
-    public int getSpeed() {return speed;}
+    public int getSpeed() {return this.speed;}
     public void setSpeed(int speed) {this.speed = speed;}
 
-    public static void editScore(int plus){score += plus;}
-    public static void editHP(int plus){hp += plus;}
 
 }
 

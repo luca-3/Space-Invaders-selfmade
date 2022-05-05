@@ -30,36 +30,36 @@ public class Screen extends JFrame {
 
     public Screen() {
         //initial settings for the window
-        setSize(width, height);
-        setTitle("Blank");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        getContentPane().setBackground(Color.BLACK);
+        this.setSize(this.width, this.height);
+        this.setTitle("Blank");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.getContentPane().setBackground(Color.BLACK);
         System.out.println("Screen Dimensions: " + width + "  " + height);
-        setLocationRelativeTo(null);
-        setLayout(null);
-        setVisible(true);
-        setBackground(Color.black);
-        setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setLayout(null);
+        this.setVisible(true);
+        this.setBackground(Color.black);
+        this.setVisible(true);
         Keyboard k = new Keyboard();
         this.addKeyListener(k);
 
         //init settings for GUI elements, wich are always on the screen
-        score = new JLabel("Score: " + Player.score);
-        score.setBounds(10, 10, 100, 20);
-        score.setForeground(Color.white);
-        add(score);
+        this.score = new JLabel("Score: " + Player.score);
+        this.score.setBounds(10, 10, 100, 20);
+        this.score.setForeground(Color.white);
+        this.add(score);
 
-        lives = new JLabel("Lives: " + Player.hp);
-        lives.setBounds(10, 30, 100, 20);
-        lives.setForeground(Color.white);
-        add(lives);
+        this.lives = new JLabel("Lives: " + Player.hp);
+        this.lives.setBounds(10, 30, 100, 20);
+        this.lives.setForeground(Color.white);
+        this.add(lives);
 
-        level = new JLabel("Level: " + EnemyHandler.level);
-        level.setBounds(10, 50, 100, 20);
-        level.setForeground(Color.white);
-        add(level);
+        this.level = new JLabel("Level: " + EnemyHandler.level);
+        this.level.setBounds(10, 50, 100, 20);
+        this.level.setForeground(Color.white);
+        this.add(level);
         /*
         levelType = new JLabel("Level: " + EnemyHandler.levelE);
         levelType.setBounds(10, 70, 180, 20);
@@ -67,38 +67,38 @@ public class Screen extends JFrame {
         add(levelType);
          */
 
-        pauseJ = new JLabel("Pause");
-        pauseJ.setBounds(-100, -100, 100, 40);
-        pauseJ.setForeground(Color.white);
-        add(pauseJ);
+        this.pauseJ = new JLabel("Pause");
+        this.pauseJ.setBounds(-100, -100, 100, 40);
+        this.pauseJ.setForeground(Color.white);
+        this.add(pauseJ);
 
-        startJ = new JLabel("Drücke k zum starten");
-        startJ.setBounds(width/2-100, height/2, 200, 40);
-        startJ.setForeground(Color.white);
-        add(startJ);
+        this.startJ = new JLabel("Drücke k zum starten");
+        this.startJ.setBounds(width/2-100, height/2, 200, 40);
+        this.startJ.setForeground(Color.white);
+        this.add(startJ);
 
-        mainChar = new JLabel();
-        mainChar.setBounds(100, 100, Main.player.getWidth(), Main.player.getWidth());
+        this.mainChar = new JLabel();
+        this.mainChar.setBounds(100, 100, Main.player.getWidth(), Main.player.getWidth());
         Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
-        mainChar.setIcon(icon);
-        mainChar.setOpaque(true);
-        add(mainChar);
+        this.mainChar.setIcon(icon);
+        this.mainChar.setOpaque(true);
+        this.add(mainChar);
 
 
 
 
         //init generation of bullets off-screen
-        for (int i = 0; i < shot.length; i++) {
-            shot[i] = new JLabel();
-            shot[i].setBounds(0, -20, 40, 20);
+        for (int i = 0; i < this.shot.length; i++) {
+            this.shot[i] = new JLabel();
+            this.shot[i].setBounds(0, -20, 40, 20);
 
             if (i == 2) {
-                shot[i].setBackground(Color.MAGENTA);
+                this.shot[i].setBackground(Color.MAGENTA);
             } else {
-                shot[i].setBackground(Color.ORANGE);
+                this.shot[i].setBackground(Color.ORANGE);
             }
-            shot[i].setOpaque(true);
-            add(shot[i]);
+            this.shot[i].setOpaque(true);
+            add(this.shot[i]);
         }
 
     }
@@ -130,23 +130,23 @@ public class Screen extends JFrame {
         while (Main.gameRun) {
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt. length IMMER BEACHTEN!
-                if (PvE(mainChar, enemyArr[i])) {
-                    mainChar.setLocation(10, 10);
-                    Player.editHP(-1);
+                if (PvE(this.mainChar, this.enemyArr[i])) {
+                    this.mainChar.setLocation(10, 10);
+                    Player.hp -= 1;
                 }
             }
-            for (int i = 0; i < shot.length; i++) {
+            for (int i = 0; i < this.shot.length; i++) {
                 for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
-                    if (PvB(enemyArr[j], shot[i])) {
+                    if (PvB(this.enemyArr[j], this.shot[i])) {
                         EnemyHandler.enemies.get(j).hpHit(1);
-                        d[i] = true;
-                        Player.editScore(10);
+                        this.d[i] = true;
+                        Player.score += 10;
                     }
                 }
             }
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
                 if(EnemyHandler.enemies.get(i).getHp()<=0){
-                    hit[i] = true;
+                    this.hit[i] = true;
                 }
             }
             if(Player.hp<= 0) Main.stopSpiel();
@@ -157,13 +157,13 @@ public class Screen extends JFrame {
     }
 
     public void updateScore() {
-        while (Main.gameRun) score.setText("Score: " + Player.score);
+        while (Main.gameRun) this.score.setText("Score: " + Player.score);
     }
     public void updateLives() {
-        while (Main.gameRun) lives.setText("Lives: " + Player.hp);
+        while (Main.gameRun) this.lives.setText("Lives: " + Player.hp);
     }
     public void updateLevel() {
-        while (Main.gameRun) level.setText("Level: " + EnemyHandler.level);
+        while (Main.gameRun) this.level.setText("Level: " + EnemyHandler.level);
     }
     //public void updateLevelType() {while (Main.gameRun) levelType.setText("Level Type: " + EnemyHandler.levelE);}
 
@@ -172,14 +172,14 @@ public class Screen extends JFrame {
         while (Main.gameRun) {
             int count = 0;
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
-                if (enemyArr[i].getX() < -10) {
+                if (this.enemyArr[i].getX() < -10) {
                     count++;
                 }
             }
             if (EnemyHandler.getAnzahlE() > 1){
                 if (count == EnemyHandler.getAnzahlE()) {
-                    levelEnd = true;
-                    countEnemy = 0;
+                    this.levelEnd = true;
+                    this.countEnemy = 0;
                     EnemyHandler.level++;
                     System.out.println("level End");
                     Main.sleep(1000);
@@ -191,12 +191,12 @@ public class Screen extends JFrame {
     }
 
     public void setPause(){
-        if (pause){
-            pause = false;
-            pauseJ.setLocation(-100, -100);
+        if (this.pause){
+            this.pause = false;
+            this.pauseJ.setLocation(-100, -100);
         }else {
-            pause = true;
-            pauseJ.setLocation(width/2, height/2);
+            this.pause = true;
+            this.pauseJ.setLocation(this.width/2, this.height/2);
         }
 
     }
@@ -208,17 +208,17 @@ public class Screen extends JFrame {
         temp.setIcon(object.getSkin());
         temp.setOpaque(true);
         temp.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
-        enemyArr[countEnemy] = temp;
-        this.add(enemyArr[countEnemy]);
-        countEnemy++;
-        return countEnemy - 1;
+        this.enemyArr[this.countEnemy] = temp;
+        this.add(this.enemyArr[this.countEnemy]);
+        this.countEnemy++;
+        return this.countEnemy - 1;
     }
 
     public void move(int id, EnemyE e, int startX) {
-        int spawn = enemyArr[id].getY();
+        int spawn = this.enemyArr[id].getY();
         double y1 = spawn;
         for (double x = startX; x > -250; x-=e.getSpeed()) {
-            while (pause){
+            while (this.pause){
                 Main.sleep(1000);
             }
             double y = MobMoveE.bew(e.getMove(), spawn, x, y1, id);
@@ -229,75 +229,77 @@ public class Screen extends JFrame {
             }
             if (!Main.gameRun) x = -300;
             y1 = y;
-            enemyArr[id].setLocation((int) x, (int) y);
+            this.enemyArr[id].setLocation((int) x, (int) y);
             Main.sleep(10);
 
-            if (hit[id]) {
+            if (this.hit[id]) {
                 x = -200;
-                hit[id] = false;
+                this.hit[id] = false;
             }
         }
     }
 
     public void shot() {
         //int k =  random.nextInt(4);
-        int k1 = k;
-        int y = shot[k1].getY();
-        for (int x = shot[k1].getX(); x < width; x += 6) {
-            if (d[k1]) {
-                x = width-1;
-                d[k1] = false;
+        int k1 = this.k;
+        int y = this.shot[k1].getY();
+        for (int x = this.shot[k1].getX(); x < this.width; x += 6) {
+            if (this.d[k1]) {
+                x = this.width-1;
+                this.d[k1] = false;
             }
-            shot[k1].setLocation(x, y);
-            while (pause) Main.sleep(100);
+            this.shot[k1].setLocation(x, y);
+            while (this.pause) Main.sleep(100);
             Main.sleep(10);
 
         }
-        shot[k1].setLocation(3000, -1000);
-        countBullet--;
+        this.shot[k1].setLocation(3000, -1000);
+        this.countBullet--;
     }
 
     public int rainbow(int id){
         JLabel rainbow =new JLabel();
-        int z = enemyArr[id].getX()-80;
+        int z = this.enemyArr[id].getX()-80;
         rainbow.setBounds(z, 10, 80, 80);
         Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Rainbow.png");
         rainbow.setIcon(icon);
         //rainbow.setBackground(Color.RED);
         rainbow.setOpaque(true);
         this.add(rainbow);
-        for (int i = 0; i < height; i+= 10) {
+        for (int i = 0; i < this.height; i+= 10) {
             rainbow.setLocation(z, i);
-            while (pause) Main.sleep(1000);
-            if(hit[id]) enemyArr[id].setLocation(-200, 0);
-            if(PvE(rainbow, mainChar)) {
-                mainChar.setLocation(10,10);
+            while (this.pause) Main.sleep(1000);
+            if(this.hit[id]) this.enemyArr[id].setLocation(-200, 0);
+            if(PvE(rainbow, this.mainChar)) {
+                this.mainChar.setLocation(10,10);
                 Player.hp--;}
             Main.sleep(10);
         }
         rainbow.setLocation(-300, 0);
         this.remove(rainbow);
-        int r = random.nextInt(height-200);
+        int r = this.random.nextInt(this.height-200);
         for (int y = 0; y < r; y++) {
-            while (pause) Main.sleep(100);
-            enemyArr[id].setLocation(z, y);
-            if(hit[id])return y;
+            while (this.pause) Main.sleep(100);
+            this.enemyArr[id].setLocation(z, y);
+            if(this.hit[id])return y;
             Main.sleep(5);
         }
         return r;
     }
     public void spaceCat(int y, int id){
-        for (int i = width-60; i > width-220 ; i--) {
-            enemyArr[id].setLocation(i, y);
+        for (int i = this.width-60; i > this.width-220 ; i--) {
+            this.enemyArr[id].setLocation(i, y);
+            while (this.pause) Main.sleep(100);
             Main.sleep(25);
         }
 
-        enemyShot(y+30, width-220);
-        for (int i = width-220; i < width; i+=3) {
-            enemyArr[id].setLocation(i, y);
+        enemyShot(y+30, this.width-220);
+        for (int i = this.width-220; i < this.width; i+=3) {
+            this.enemyArr[id].setLocation(i, y);
+            while (this.pause) Main.sleep(100);
             Main.sleep(25);
         }
-        enemyArr[id].setLocation(-300, y);
+        this.enemyArr[id].setLocation(-300, y);
         EnemyHandler.moveT[id].stop();
     }
     public void enemyShot(int y, int x ){
@@ -305,13 +307,14 @@ public class Screen extends JFrame {
         laser.setBounds(0, -20, 40, 20);
         laser.setBackground(Color.MAGENTA);
         laser.setOpaque(true);
-        add(laser);
+        this.add(laser);
         for (int i = x; i > -100 ; i-=10) {
             laser.setLocation(i, y);
-            if(PvB(mainChar, laser)){
-                mainChar.setLocation(10, 10);
-                Player.editHP(-1);
+            if(PvB(this.mainChar, laser)){
+                this.mainChar.setLocation(10, 10);
+                Player.hp -= 1;
             }
+            while (this.pause) Main.sleep(100);
             Main.sleep(5);
         }
         remove(laser);
@@ -345,61 +348,60 @@ public class Screen extends JFrame {
     public void w() {
         while (Main.gameRun) {
             if (Keyboard.wKey) {
-                if (mainChar.getY() - 10 > 0) mainChar.setLocation(mainChar.getX(), mainChar.getY() - Main.player.getSpeed());
+                if (this.mainChar.getY() - 10 > 0) mainChar.setLocation(mainChar.getX(), mainChar.getY() - Main.player.getSpeed());
             }
-            while (pause) Main.sleep(100);
+            while (this.pause) Main.sleep(100);
             Main.sleep(20);
         }
     }
     public void a() {
         while (Main.gameRun) {
             if (Keyboard.aKey) {
-                if (mainChar.getX() - 10 > 0) mainChar.setLocation(mainChar.getX() - Main.player.getSpeed(), mainChar.getY());
+                if (this.mainChar.getX() - 10 > 0) this.mainChar.setLocation(this.mainChar.getX() - Main.player.getSpeed(), this.mainChar.getY());
             }
-            while (pause) Main.sleep(100);
+            while (this.pause) Main.sleep(100);
             Main.sleep(20);
         }
     }
     public void s() {
         while (Main.gameRun) {
             if (Keyboard.sKey) {
-                if (mainChar.getY() < height) mainChar.setLocation(mainChar.getX(), mainChar.getY() + Main.player.getSpeed());
+                if (this.mainChar.getY() < height) this.mainChar.setLocation(this.mainChar.getX(), this.mainChar.getY() + Main.player.getSpeed());
             }
-            while (pause) Main.sleep(100);
+            while (this.pause) Main.sleep(100);
             Main.sleep(20);
         }
     }
     public void d() {
         while (Main.gameRun) {
             if (Keyboard.dKey) {
-                if (mainChar.getX() + 10 < 1840) mainChar.setLocation(mainChar.getX() + Main.player.getSpeed(), mainChar.getY());
+                if (this.mainChar.getX() + 10 < 1840) this.mainChar.setLocation(this.mainChar.getX() + Main.player.getSpeed(), this.mainChar.getY());
             }
-            while (pause) Main.sleep(100);
+            while (this.pause) Main.sleep(100);
             Main.sleep(20);
         }
     }
     public void space() {
         while (Main.gameRun) {
             if (Keyboard.spaceKey) {
-                if (countBullet < shot.length) {
-                    k++;
-                    shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
-                    add(shot[k]);
+                if (this.countBullet < this.shot.length) {
+                    this.k++;
+                    this.shot[this.k].setLocation(this.mainChar.getX() + 100, this.mainChar.getY() + 50);
+                    add(this.shot[k]);
 
                     Thread t2 = new Thread(this::shot);
                     t2.start();
 
                     Main.sleep(200);
-                    if (k == shot.length - 1) {
-                        k = -1;
+                    if (this.k == this.shot.length - 1) {
+                        this.k = -1;
                     }
-                    countBullet++;
+                    this.countBullet++;
                 }
             }
-            while (pause) Main.sleep(100);
+            while (this.pause) Main.sleep(100);
             Main.sleep(20);
         }
     }
-
 
 }

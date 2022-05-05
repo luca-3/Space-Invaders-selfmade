@@ -17,7 +17,6 @@ public class Enemy {
 
 
     public Enemy(EnemyE type, int x, int y) {
-
             this.x = x;
             this.y = y;
             this.speed = EnemyE.getSpeed(type);
@@ -26,23 +25,22 @@ public class Enemy {
             this.hp = EnemyE.getHp(type);
             this.skin = EnemyE.getSkin(type);
             this.typ = type;
-
     }
 
 
 
-    public Icon getSkin() {return skin;}
-    public int getX() {return x;}
-    public int getY() {return y;}
-    public int getSpeed() {return speed;}
-    public int getWidth() {return width;}
-    public int getHeight() {return height;}
-    public int getHp() {return hp;}
-    public EnemyE getTyp(){return typ;}
+    public Icon getSkin() {return this.skin;}
+    public int getX() {return this.x;}
+    public int getY() {return this.y;}
+    public int getSpeed() {return this.speed;}
+    public int getWidth() {return this.width;}
+    public int getHeight() {return this.height;}
+    public int getHp() {return this.hp;}
+    public EnemyE getTyp(){return this.typ;}
 
-    public void hpHit(int sub){hp -= sub;}
+    public void hpHit(int sub){this.hp -= sub;}
 
-    public int getID(){return id;}
+    public int getID(){return this.id;}
     public void setId(int id){this.id = id;}
 
 

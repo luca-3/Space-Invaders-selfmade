@@ -41,10 +41,10 @@ public class Move extends JFrame implements KeyListener {
 
         //PLAYER
         mainChar = new JLabel();
-        mainChar.setBounds(100, 100, 100, 100);
+        this.mainChar.setBounds(100, 100, 100, 100);
         Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
-        mainChar.setIcon(icon);
-        mainChar.setOpaque(true);
+        this.mainChar.setIcon(icon);
+        this.mainChar.setOpaque(true);
         this.add(mainChar);
 
 
@@ -109,12 +109,12 @@ public class Move extends JFrame implements KeyListener {
         while (true) {
             sleep(10);
 
-            //System.out.println(mainChar.getX()+100+" "+enemy.getX());
+            //System.out.println(this.mainChar.getX()+100+" "+enemy.getX());
 
 
             for (int i = 0; i < enemy.length; i++) {
                 if (PvE(mainChar, enemy[i])) {
-                    mainChar.setLocation(10, 500);
+                    this.mainChar.setLocation(10, 500);
                     System.out.println("Colision was detected!");
                 }
             }
@@ -192,30 +192,30 @@ public class Move extends JFrame implements KeyListener {
 
         switch (e.getKeyChar()) {
             case 'a':
-                if (mainChar.getX() - 10 > 0) {
-                    mainChar.setLocation(mainChar.getX() - 10, mainChar.getY());
+                if (this.mainChar.getX() - 10 > 0) {
+                    this.mainChar.setLocation(this.mainChar.getX() - 10, this.mainChar.getY());
                 }
                 break;
             case 'w':
-                if (mainChar.getY() - 10 > 30) {
-                    mainChar.setLocation(mainChar.getX(), mainChar.getY() - 10);
+                if (this.mainChar.getY() - 10 > 30) {
+                    this.mainChar.setLocation(this.mainChar.getX(), this.mainChar.getY() - 10);
                 }
                 break;
             case 's':
-                if (mainChar.getY() + 110 < 1040) {
-                    mainChar.setLocation(mainChar.getX(), mainChar.getY() + 10);
+                if (this.mainChar.getY() + 110 < 1040) {
+                    this.mainChar.setLocation(this.mainChar.getX(), this.mainChar.getY() + 10);
                 }
                 break;
             case 'd':
-                if (mainChar.getX() + 10 < 1900) {
-                    mainChar.setLocation(mainChar.getX() + 10, mainChar.getY());
+                if (this.mainChar.getX() + 10 < 1900) {
+                    this.mainChar.setLocation(this.mainChar.getX() + 10, this.mainChar.getY());
                 }
                 break;
             case ' ':
             if(shotZähler<shot.length) {
                 k++;
                 int f = k;
-                shot[k].setLocation(mainChar.getX() + 100, mainChar.getY() + 50);
+                shot[k].setLocation(this.mainChar.getX() + 100, this.mainChar.getY() + 50);
 
                 add(shot[k]);
 
@@ -240,13 +240,13 @@ public class Move extends JFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         //keyPressed = Invoked when a physical key is pressed down. Uses KeyCode, int output
        /* switch(e.getKeyCode()) {
-            case 37: mainChar.setLocation(mainChar.getX()-10, mainChar.getY());
+            case 37: this.mainChar.setLocation(this.mainChar.getX()-10, this.mainChar.getY());
                 break;
-            case 38: mainChar.setLocation(mainChar.getX(), mainChar.getY()-10);
+            case 38: this.mainChar.setLocation(this.mainChar.getX(), this.mainChar.getY()-10);
                 break;
-            case 39: mainChar.setLocation(mainChar.getX()+10, mainChar.getY());
+            case 39: this.mainChar.setLocation(this.mainChar.getX()+10, this.mainChar.getY());
                 break;
-            case 40: mainChar.setLocation(mainChar.getX(), mainChar.getY()+10);
+            case 40: this.mainChar.setLocation(this.mainChar.getX(), this.mainChar.getY()+10);
                 break;
         }*/
 
