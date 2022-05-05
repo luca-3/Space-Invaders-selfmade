@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public enum EnemyE {
-    AFFE(100, 200, 3,  2, MobMoveE.BMOVE,"src/main/resources/com/example/game/enemy/Spaceship.png"),
+    AFFE(120, 190, 3,  2, MobMoveE.BMOVE,"src/main/resources/com/example/game/enemy/Affe2.png"),
     UNICORN(64, 64, 2 , 4, MobMoveE.VERMOVE, "src/main/resources/com/example/game/enemy/Test.png"),
     DWARF(75, 125, 1, 3, MobMoveE.RAINBOW, "src/main/resources/com/example/game/enemy/Zwerg.png"),
     PUFFY(50, 50, 1, 6, MobMoveE.NMOVE, "src/main/resources/com/example/game/enemy/Spaceship.png"),
