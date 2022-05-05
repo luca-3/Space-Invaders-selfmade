@@ -4,8 +4,13 @@ import com.example.game.firuges.Enemy;
 import com.example.game.firuges.EnemyE;
 import com.example.game.firuges.MobMoveE;
 import com.example.game.firuges.Player;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.Objects;
 import java.util.Random;
 
 public class Screen extends JFrame {
@@ -320,6 +325,30 @@ public class Screen extends JFrame {
         }
         remove(laser);
     }
+    /*
+    public void enemyShot(int y, int x, int width, int height, String skin ) {
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("src/main/resources/com/example/game/enemy/Banane.gif")));
+        JLabel laser = new JLabel(imageIcon);
+        ((ImageIcon) imageIcon).setImageObserver(laser);
+        laser.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+        laser.setBounds(200, 200, width, height);
+        laser.setOpaque(true);
+        this.add(laser);
+        Main.sleep(10000);
+
+        for (int i = x; i > -100 ; i-=10) {
+            laser.setLocation(i, y);
+            if(PvB(this.mainChar, laser)){
+                this.mainChar.setLocation(10, 10);
+                Player.hp -= 1;
+            }
+            while (this.pause) Main.sleep(100);
+            Main.sleep(5);
+        }
+        remove(laser);
+    }
+
+    */
 
     public boolean PvB(JLabel Player, JLabel Bullet) {
         return Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
