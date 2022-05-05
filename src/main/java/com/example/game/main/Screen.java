@@ -79,7 +79,7 @@ public class Screen extends JFrame {
 
         this.mainChar = new JLabel();
         this.mainChar.setBounds(100, 100, Main.player.getWidth(), Main.player.getWidth());
-        Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Spaceship.png");
+        Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/TempMain.png");
         this.mainChar.setIcon(icon);
         this.mainChar.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         this.mainChar.setOpaque(true);
