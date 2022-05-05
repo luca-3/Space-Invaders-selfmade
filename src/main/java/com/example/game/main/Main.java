@@ -4,32 +4,27 @@ import com.example.game.firuges.*;
 //Main
 public class Main {
 
-    public static boolean gameRun = false;
-    static EnemyHandler enemyHandler = new EnemyHandler();
+    public static boolean gameRun;
+    static EnemyHandler enemyHandler;
     static Screen s;
     public static Player player;
-
-    public static Screen getScreen(){return s;}
 
 
     public static void main(String[] args) {
         Main game = new Main();
         game.start();
-        
+
     }
 
     public void start() {
+        this.gameRun = false;
+        this.enemyHandler = new EnemyHandler();
+
         // create the game objects
-        player = new Player("init");
+        this.player = new Player("init");
 
         // create the game window
-        s = new Screen();
-
-
-
-
-        // start the game loop
-
+        this.s = new Screen();
 
     }
     /*
@@ -41,8 +36,10 @@ public class Main {
     du wahrscheinlich dein Enemy im Spiel haben möchtest,
     kannst du in "Level" dein Enemy zu den bestehenden Levels
     hinzufügen oder sogar deine eigenen Level erstellen.
-    Alle Enums findest du in dem "figures" Ordner
-     */
+    Alle Enums findest du in dem "figures" Ordner.
+    */
+
+
 
     public static void sleep(long millis) {
         try {
@@ -68,12 +65,17 @@ public class Main {
 
         }
     }
-    public static void stopSpiel(){
+
+    public static void stopSpiel() {
         gameRun = false;
         s.levelEnd = true;
         Main.sleep(1000);
-        s.startJ.setLocation(s.width/2-100, s.height/2);
+        s.startJ.setLocation(s.width / 2 - 100, s.height / 2);
 
     }
 
+    public static Screen getScreen() {
+        return s;
+    }
 }
+
