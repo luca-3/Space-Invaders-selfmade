@@ -12,12 +12,7 @@ import java.util.Random;
 public class Screen extends JFrame {
     public JLabel[] enemyArr = new JLabel[100];
     int countEnemy, countBullet = 0;
-    JLabel score;
-    JLabel lives;
-    JLabel level;
-    JLabel levelType;
-    JLabel pauseJ;
-    JLabel startJ;
+    JLabel score, lives, level, pauseJ, startJ;
     public JLabel mainChar;
     JLabel[] shot = new JLabel[10]; //number of shots available
     public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -132,14 +127,14 @@ public class Screen extends JFrame {
         while (Main.gameRun) {
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt. length IMMER BEACHTEN!
-                if (rectCollision(this.mainChar, this.enemyArr[i])) {
+                if (EnemyHandler.rectCollision(this.mainChar, this.enemyArr[i])) {
                     this.mainChar.setLocation(10, 10);
                     Player.hp -= 1;
                 }
             }
             for (int i = 0; i < this.shot.length; i++) {
                 for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
-                    if (rectCollision(this.enemyArr[j], this.shot[i])) {
+                    if (EnemyHandler.rectCollision(this.enemyArr[j], this.shot[i])) {
                         EnemyHandler.enemies.get(j).hpHit(1);
                         this.d[i] = true;
                         Player.score += 10;
@@ -272,7 +267,7 @@ public class Screen extends JFrame {
             rainbow.setLocation(z, i);
             while (this.pause) Main.sleep(1000);
             if(this.hit[id]) this.enemyArr[id].setLocation(-200, 0);
-            if(rectCollision(rainbow, this.mainChar)) {
+            if(EnemyHandler.rectCollision(rainbow, this.mainChar)) {
                 this.mainChar.setLocation(10,10);
                 Player.hp--;}
             Main.sleep(10);
@@ -306,7 +301,7 @@ public class Screen extends JFrame {
         EnemyHandler.moveT[id].stop();
     }
 
-    public void enemyShot(int y, int x ){
+    public void enemyShot(int y, int x) {
         JLabel laser = new JLabel();
         laser.setBounds(0, -20, 40, 20);
         laser.setBackground(Color.MAGENTA);
@@ -314,7 +309,7 @@ public class Screen extends JFrame {
         this.add(laser);
         for (int i = x; i > -100 ; i-=10) {
             laser.setLocation(i, y);
-            if(rectCollision(this.mainChar, laser)){
+            if(EnemyHandler.rectCollision(this.mainChar, laser)){
                 this.mainChar.setLocation(10, 10);
                 Player.hp -= 1;
             }
@@ -349,17 +344,9 @@ public class Screen extends JFrame {
 
     */
 
-    private boolean rangeIntersect(int min, int max, int min1, int max1){
-        return Math.max(min, max) >= Math.min(min1, max1) &&
-               Math.min(min, max) <=  Math.max(min1, max1);
-    }
 
-    public boolean rectCollision(JLabel obj, JLabel obj1) {
-        return rangeIntersect(obj.getX(), obj.getX() + obj.getWidth(), obj1.getX(), obj1.getX() + obj1.getWidth()) &&
-               rangeIntersect(obj.getY(), obj.getY() + obj.getHeight(), obj1.getY(), obj1.getY() + obj1.getHeight());
-    }
 
-    public void w() {
+    private void w() {
         while (Main.gameRun) {
             if (Keyboard.wKey) {
                 if (this.mainChar.getY() - 10 > 0) mainChar.setLocation(mainChar.getX(), mainChar.getY() - Main.player.getSpeed());
@@ -368,7 +355,7 @@ public class Screen extends JFrame {
             Main.sleep(20);
         }
     }
-    public void a() {
+    private void a() {
         while (Main.gameRun) {
             if (Keyboard.aKey) {
                 if (this.mainChar.getX() - 10 > 0) this.mainChar.setLocation(this.mainChar.getX() - Main.player.getSpeed(), this.mainChar.getY());
@@ -377,7 +364,7 @@ public class Screen extends JFrame {
             Main.sleep(20);
         }
     }
-    public void s() {
+    private void s() {
         while (Main.gameRun) {
             if (Keyboard.sKey) {
                 if (this.mainChar.getY() < height) this.mainChar.setLocation(this.mainChar.getX(), this.mainChar.getY() + Main.player.getSpeed());
@@ -386,7 +373,7 @@ public class Screen extends JFrame {
             Main.sleep(20);
         }
     }
-    public void d() {
+    private void d() {
         while (Main.gameRun) {
             if (Keyboard.dKey) {
                 if (this.mainChar.getX() + 10 < 1840) this.mainChar.setLocation(this.mainChar.getX() + Main.player.getSpeed(), this.mainChar.getY());
@@ -395,7 +382,7 @@ public class Screen extends JFrame {
             Main.sleep(20);
         }
     }
-    public void space() {
+    private void space() {
         while (Main.gameRun) {
             if (Keyboard.spaceKey) {
                 if (this.countBullet < this.shot.length) {

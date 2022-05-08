@@ -2,6 +2,18 @@ package com.example.game.main;
 import com.example.game.figures.*;
 
 //Main
+
+/*
+Wie wird etwas Verändert:
+Veränderungen finden in den Enums statt, wenn du
+einen neun Enemy erstellen möchtest, kannst du das
+in "EnemyE" machen. Wenn du einen Enemy erstellst, kannst
+du in "MobMoveE" gleich das Bewegungsmuster machen. Weil
+du wahrscheinlich dein Enemy im Spiel haben möchtest,
+kannst du in "Level" dein Enemy zu den bestehenden Levels
+hinzufügen oder sogar deine eigenen Level erstellen.
+Alle Enums findest du in dem "figures" Ordner.
+*/
 public class Main {
 
     public static boolean gameRun;
@@ -27,18 +39,6 @@ public class Main {
         this.s = new Screen();
 
     }
-    /*
-    Wie wird etwas Verändert:
-    Veränderungen finden in den Enums statt, wenn du
-    einen neun Enemy erstellen möchtest, kannst du das
-    in "EnemyE" machen. Wenn du einen Enemy erstellst, kannst
-    du in "MobMoveE" gleich das Bewegungsmuster machen. Weil
-    du wahrscheinlich dein Enemy im Spiel haben möchtest,
-    kannst du in "Level" dein Enemy zu den bestehenden Levels
-    hinzufügen oder sogar deine eigenen Level erstellen.
-    Alle Enums findest du in dem "figures" Ordner.
-    */
-
 
 
     public static void sleep(long millis) {
