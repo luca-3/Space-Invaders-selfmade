@@ -136,14 +136,14 @@ public class Screen extends JFrame {
         while (Main.gameRun) {
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt. length IMMER BEACHTEN!
-                if (PvE(this.mainChar, this.enemyArr[i])) {
+                if (rectCollision(this.mainChar, this.enemyArr[i])) {
                     this.mainChar.setLocation(10, 10);
                     Player.hp -= 1;
                 }
             }
             for (int i = 0; i < this.shot.length; i++) {
                 for (int j = 0; j < EnemyHandler.getAnzahlE(); j++) {
-                    if (PvB(this.enemyArr[j], this.shot[i])) {
+                    if (rectCollision(this.enemyArr[j], this.shot[i])) {
                         EnemyHandler.enemies.get(j).hpHit(1);
                         this.d[i] = true;
                         Player.score += 10;
@@ -276,7 +276,7 @@ public class Screen extends JFrame {
             rainbow.setLocation(z, i);
             while (this.pause) Main.sleep(1000);
             if(this.hit[id]) this.enemyArr[id].setLocation(-200, 0);
-            if(PvE(rainbow, this.mainChar)) {
+            if(rectCollision(rainbow, this.mainChar)) {
                 this.mainChar.setLocation(10,10);
                 Player.hp--;}
             Main.sleep(10);
@@ -316,7 +316,7 @@ public class Screen extends JFrame {
         this.add(laser);
         for (int i = x; i > -100 ; i-=10) {
             laser.setLocation(i, y);
-            if(PvB(this.mainChar, laser)){
+            if(rectCollision(this.mainChar, laser)){
                 this.mainChar.setLocation(10, 10);
                 Player.hp -= 1;
             }
@@ -350,29 +350,14 @@ public class Screen extends JFrame {
 
     */
 
-    public boolean PvB(JLabel Player, JLabel Bullet) {
-        return Player.getX() + Player.getWidth() >= Bullet.getX() + Bullet.getWidth() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
-                && Player.getX() <= Bullet.getX() + Bullet.getWidth() && Player.getY() <= Bullet.getY() + (Bullet.getHeight() / 2) ||
-                Player.getX() + Player.getWidth() >= Bullet.getX() && Player.getY() + Player.getHeight() >= Bullet.getY() + (Bullet.getHeight() / 2)
-                        && Player.getX() <= Bullet.getX() && Player.getY() <= Bullet.getY() + (Bullet.getHeight() / 2);
+    private boolean rangeIntersect(int min, int max, int min1, int max1){
+        return Math.max(min, max) >= Math.min(min1, max1) &&
+               Math.min(min, max) <=  Math.max(min1, max1);
     }
-    public boolean PvE(JLabel mobA, JLabel mobB) {
-        //mobA = hitbox; mobB = points
-        final int hitboxWidth = mobB.getWidth();
-        final int hitboxHeight = mobB.getHeight();
-        final int X_OBJ_ONE = mobA.getX();
-        final int Y_OBJ_ONE = mobA.getY();
-        final int X_OBJ_TWO = mobB.getX();
-        final int Y_OBJ_TWO = mobB.getY();
-        // Mitte Unten
-        return X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO || //Oben Links
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight || //Unten Links
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO || // Oben Rechts
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight || //Unten Rechts
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight / 2 && X_OBJ_ONE <= X_OBJ_TWO && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight / 2 || // Mitte Links
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight / 2 && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight / 2 || // Mitte Rechts
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO && X_OBJ_ONE <= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE <= Y_OBJ_TWO || // Mitte Oben
-                X_OBJ_ONE + hitboxWidth >= X_OBJ_TWO + hitboxWidth / 2 && Y_OBJ_ONE + hitboxWidth >= Y_OBJ_TWO + hitboxHeight && X_OBJ_ONE <= X_OBJ_TWO / 2 + hitboxWidth && Y_OBJ_ONE <= Y_OBJ_TWO + hitboxHeight;// Mitte unten
+
+    public boolean rectCollision(JLabel obj, JLabel obj1) {
+        return rangeIntersect(obj.getX(), obj.getX() + obj.getWidth(), obj1.getX(), obj1.getX() + obj1.getWidth()) &&
+               rangeIntersect(obj.getY(), obj.getY() + obj.getHeight(), obj1.getY(), obj1.getY() + obj1.getHeight());
     }
 
     public void w() {
