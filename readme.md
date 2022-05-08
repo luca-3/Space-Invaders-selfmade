@@ -1,159 +1,124 @@
-```mermaid 
+```mermaid
 classDiagram
 direction BT
-class Beispiel {
-<<enumeration>>
-  + int bspInt
-  + String bspString
-  + boolean bspBool
-  + values() Beispiel[]
-  + valueOf(String) Beispiel
-  + String bspString
-  + int bspInt
-  + boolean bspBool
-}
 class Enemy {
-  + int hp
-  + int id
-  + Icon skin
-  + int y
-  + int width
-  + int height
-  + int x
+  + Enemy(EnemyE, int, int) 
   + int speed
+  + int hp
+  + int x
+  + int width
+  + int id
+  + int height
+  + Icon skin
   + EnemyE typ
+  + int y
   + hpHit(int) void
   + EnemyE typ
-  + int width
-  + int hp
-  + Icon skin
-  + int x
-  + int y
-  + int id
-  + int ID
-  + int height
   + int speed
+  + int width
+  + int height
+  + Icon skin
+  + int hp
+  + int x
+  + int ID
+  + int id
+  + int y
 }
 class EnemyE {
 <<enumeration>>
+  + EnemyE(int, int, int, int, MobMoveE, String) 
   + int height
-  + Icon skin
-  + MobMoveE move
   + int speed
-  + int hp
+  + MobMoveE move
   + int width
-  + getSize(EnemyE, Level) int
-  + valueOf(String) EnemyE
+  + int hp
+  + Icon skin
+  + getWidth(EnemyE) int
+  + getHp(EnemyE) int
+  + getSkin(EnemyE) Icon
+  + getSpeed(EnemyE) int
   + getHeight(EnemyE) int
   + getMove(EnemyE) MobMoveE
-  + getWidth(EnemyE) int
-  + getSkin(EnemyE) Icon
+  + getSize(EnemyE, Level) int
   + values() EnemyE[]
-  + getHp(EnemyE) int
-  + getSpeed(EnemyE) int
-  + int height
-  + int hp
-  + int width
-  + MobMoveE move
-  + Icon skin
+  + valueOf(String) EnemyE
   + int speed
+  + int width
+  + int height
+  + MobMoveE move
+  + int hp
+  + Icon skin
 }
 class EnemyHandler {
+  + EnemyHandler() 
   + remove() void
   + startEnemy() void
-  + move() void
   + EnemyInit(Level) void
+  + move() void
   + int anzahlE
 }
-class HelloApplication {
-  + main(String[]) void
-  + start(Stage) void
-}
-class HelloController {
-  + onHelloButtonClick() void
-}
 class Keyboard {
+  + Keyboard() 
   + keyReleased(KeyEvent) void
   + keyPressed(KeyEvent) void
   + keyTyped(KeyEvent) void
 }
 class Level {
+  + Level() 
   + generateLevel() int[]
-  + int numberAffe
-  + int numberKitty
-  + int numberDwarf
   + int numberPuffy
   + int numberUnicorns
+  + int numberDwarf
+  + int numberAffe
+  + int numberKitty
 }
 class Main {
+  + Main() 
+  + stopSpiel() void
   + sleep(long) void
+  + main(String[]) void
   + start() void
   + startSpiel() void
-  + main(String[]) void
-  + stopSpiel() void
   + Screen screen
 }
 class MobMoveE {
 <<enumeration>>
+  + MobMoveE() 
   + setAbstand2() void
-  + bew(MobMoveE, int, double, double, int) double
   + setAbstand1() void
+  + bew(MobMoveE, int, double, double, int) double
   + valueOf(String) MobMoveE
   + bool() void
   + values() MobMoveE[]
 }
-class Move {
-  + main(String[]) void
-  + collision() void
-  + PvE(JLabel, JLabel) boolean
-  + PvB(JLabel, JLabel) boolean
-  + keyPressed(KeyEvent) void
-  + sleep(long) void
-  + shot() void
-  + enemyMove(int) void
-  + keyTyped(KeyEvent) void
-  + keyReleased(KeyEvent) void
-}
 class Player {
+  + Player(String) 
   + int speed
   + int width
   + int speed
   + int width
 }
 class Screen {
+  + Screen() 
+  + space() void
   + shot() void
-  + w() void
-  + move(int, EnemyE, int) void
-  + levelEnd() void
-  + enemyShot(int, int) void
-  + rectCollision(JLabel, JLabel) boolean
-  + updateLevel() void
-  + rainbow(int) int
-  + updateLives() void
-  + addEnemy(Enemy) int
-  + d() void
-  + setPause() void
   + s() void
   + rangeIntersect(int, int, int, int) boolean
-  + space() void
-  + start() void
-  + a() void
-  + spaceCat(int, int) void
+  + w() void
+  + updateLevel() void
+  + move(int, EnemyE, int) void
+  + updateLives() void
+  + rectCollision(JLabel, JLabel) boolean
+  + addEnemy(Enemy) int
   + updateScore() void
-}
-class Test {
-  + enumo1v1() void
-  + bild() void
-  + sleep2(long) Exception?
-  + main(String[]) void
-  + bla() void
-}
-class ThreadBsp {
-  + v2() void
-  + v1(int) void
-  + v3() void
-  + main(String[]) void
-  + sleep2(long) Exception?
+  + start() void
+  + spaceCat(int, int) void
+  + enemyShot(int, int) void
+  + rainbow(int) int
+  + a() void
+  + levelEnd() void
+  + setPause() void
+  + d() void
 }
 
 Enemy "1" *--> "typ 1" EnemyE 
@@ -167,8 +132,7 @@ Main "1" *--> "enemyHandler 1" EnemyHandler
 Main  ..>  EnemyHandler : «create»
 Main  ..>  Player : «create»
 Main "1" *--> "player 1" Player 
-Main  ..>  Screen : «create»
 Main "1" *--> "s 1" Screen 
-Move  ..>  Enemy : «create»
+Main  ..>  Screen : «create»
 Screen  ..>  Keyboard : «create»
 ```
