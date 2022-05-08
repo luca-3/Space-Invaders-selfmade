@@ -1,5 +1,5 @@
 package com.example.game.main;
-import com.example.game.firuges.*;
+import com.example.game.figures.*;
 
 //Main
 public class Main {

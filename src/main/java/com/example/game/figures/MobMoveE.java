@@ -1,4 +1,4 @@
-package com.example.game.firuges;
+package com.example.game.figures;
 
 import com.example.game.main.EnemyHandler;
 import com.example.game.main.Main;

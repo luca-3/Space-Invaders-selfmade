@@ -1,12 +1,10 @@
 package com.example.game.test;
 
-import com.example.game.firuges.Enemy;
-import com.example.game.firuges.EnemyE;
+import com.example.game.figures.Enemy;
+import com.example.game.figures.EnemyE;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.Thread;

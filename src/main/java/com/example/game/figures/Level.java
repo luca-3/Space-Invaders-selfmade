@@ -1,13 +1,10 @@
-package com.example.game.firuges;
+package com.example.game.figures;
 
 import com.example.game.main.EnemyHandler;
 
 import java.util.Random;
 
 public class Level {
-
-
-
 
     /*
     So machst du ein Level Enum:

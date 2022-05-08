@@ -6,8 +6,8 @@ module com.example.game {
 
     opens com.example.game to javafx.fxml;
     exports com.example.game;
-    exports com.example.game.firuges;
-    opens com.example.game.firuges to javafx.fxml;
+    exports com.example.game.figures;
+    opens com.example.game.figures to javafx.fxml;
     opens com.example.game.test to javafx.fxml;
     exports com.example.game.test;
     exports com.example.game.main;

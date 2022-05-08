@@ -1,16 +1,12 @@
 package com.example.game.main;
 
-import com.example.game.firuges.Enemy;
-import com.example.game.firuges.EnemyE;
-import com.example.game.firuges.MobMoveE;
-import com.example.game.firuges.Player;
+import com.example.game.figures.Enemy;
+import com.example.game.figures.EnemyE;
+import com.example.game.figures.MobMoveE;
+import com.example.game.figures.Player;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.Objects;
 import java.util.Random;
 
 public class Screen extends JFrame {
@@ -292,6 +288,7 @@ public class Screen extends JFrame {
         }
         return r;
     }
+
     public void spaceCat(int y, int id){
         for (int i = this.width-60; i > this.width-220 ; i--) {
             this.enemyArr[id].setLocation(i, y);
@@ -308,6 +305,7 @@ public class Screen extends JFrame {
         this.enemyArr[id].setLocation(-300, y);
         EnemyHandler.moveT[id].stop();
     }
+
     public void enemyShot(int y, int x ){
         JLabel laser = new JLabel();
         laser.setBounds(0, -20, 40, 20);
@@ -325,6 +323,7 @@ public class Screen extends JFrame {
         }
         remove(laser);
     }
+
     /*
     public void enemyShot(int y, int x, int width, int height, String skin ) {
         ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("src/main/resources/com/example/game/enemy/Banane.gif")));

@@ -1,4 +1,4 @@
-package com.example.game.firuges;
+package com.example.game.figures;
 
 import javax.swing.*;
 
@@ -27,8 +27,6 @@ public class Enemy {
             this.typ = type;
     }
 
-
-
     public Icon getSkin() {return this.skin;}
     public int getX() {return this.x;}
     public int getY() {return this.y;}
@@ -42,7 +40,6 @@ public class Enemy {
 
     public int getID(){return this.id;}
     public void setId(int id){this.id = id;}
-
 
 }
 

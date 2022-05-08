@@ -1,8 +1,8 @@
 package com.example.game.main;
 
-import com.example.game.firuges.Enemy;
-import com.example.game.firuges.EnemyE;
-import com.example.game.firuges.Level;
+import com.example.game.figures.Enemy;
+import com.example.game.figures.EnemyE;
+import com.example.game.figures.Level;
 
 
 import java.util.ArrayList;
@@ -16,9 +16,7 @@ public class EnemyHandler {
     private int cou= 0;
     public static Level levelE;
     public static Thread[] moveT;
-    public EnemyHandler() {
 
-    }
 
     public void startEnemy() {
         Main.sleep(1000);

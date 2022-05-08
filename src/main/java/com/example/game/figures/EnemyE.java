@@ -1,4 +1,4 @@
-package com.example.game.firuges;
+package com.example.game.figures;
 
 import javax.swing.*;
 
