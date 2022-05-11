@@ -29,7 +29,6 @@ public class Main {
     }
 
     private void start() {
-        this.gameRun = false;
         this.enemyHandler = new EnemyHandler();
 
         // create the game objects
