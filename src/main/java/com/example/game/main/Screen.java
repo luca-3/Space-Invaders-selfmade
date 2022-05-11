@@ -22,7 +22,6 @@ public class Screen extends JFrame {
     boolean[] d = new boolean[shot.length];
     public boolean levelEnd;
     boolean pause = false;
-    Scoreboard scoreboard = new Scoreboard();
 
 
     public Screen() {
@@ -84,7 +83,7 @@ public class Screen extends JFrame {
 
 
 
-
+        //TODO:false nicht mehr notwendig, wenn Klassensystem steht
         //init generation of bullets off-screen
         for (int i = 0; i < this.shot.length; i++) {
             this.shot[i] = new JLabel();
@@ -100,7 +99,7 @@ public class Screen extends JFrame {
         }
 
     }
-
+    //TODO:false in Methoden aufteilen: threathing (Main), hpUpdater (Player), checkHits (EnemyHandler)
     public void start() { //start the game
 
         Thread wT = new Thread(this::w);
@@ -165,6 +164,7 @@ public class Screen extends JFrame {
     }
     //public void updateLevelType() {while (Main.getInstance().isGameRun()) levelType.setText("Level Type: " + EnemyHandler.levelE);}
 
+    //TODO:true bewegen nach Level
     public void levelEnd() {
         Main.sleep(5000);
         while (Main.getInstance().isGameRun()) {
@@ -188,6 +188,7 @@ public class Screen extends JFrame {
         }
     }
 
+    //TODO:true Umbauen, dass die Funktionalität, der von GameRun eintspricht
     public void setPause(){
         if (this.pause){
             this.pause = false;
@@ -199,6 +200,7 @@ public class Screen extends JFrame {
 
     }
 
+    //TODO:false In abstrakte Klassenstruktur aufnehmen (so dass Enemy ein child von GameObjects ist)
     //Enemy to JLabel
     public int addEnemy(Enemy object) {
         JLabel temp = new JLabel();
@@ -212,6 +214,8 @@ public class Screen extends JFrame {
         return this.countEnemy - 1;
     }
 
+
+    //TODO:false nach EnemyHandler bewegen
     public void move(int id, EnemyE e, int startX) {
         int spawn = this.enemyArr[id].getY();
         double y1 = spawn;
@@ -237,6 +241,7 @@ public class Screen extends JFrame {
         }
     }
 
+    //TODO:false ist in abstrakter Klassenstruktur nicht mehr notwendig (GameObject Shot wir dann durch move() bewegt
     public void shot() {
         //int k =  random.nextInt(4);
         int k1 = this.k;
@@ -255,6 +260,7 @@ public class Screen extends JFrame {
         this.countBullet--;
     }
 
+    //TODO:false
     public int rainbow(int id){
         Random random = new Random();
 
@@ -304,6 +310,7 @@ public class Screen extends JFrame {
         EnemyHandler.moveT[id].stop();
     }
 
+    //TODO:false in Klassensystem nicht mehr notwendig
     public void enemyShot(int y, int x) {
         JLabel laser = new JLabel();
         laser.setBounds(0, -20, 40, 20);
@@ -348,7 +355,7 @@ public class Screen extends JFrame {
     */
 
 
-
+    //TODO:false Klassensystem notwendig; dann dort in Player
     private void w() {
         while (Main.getInstance().isGameRun()) {
             if (Keyboard.wKey) {

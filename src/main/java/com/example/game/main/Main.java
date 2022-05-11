@@ -20,8 +20,6 @@ public class Main {
     static EnemyHandler enemyHandler;
     static Screen s;
     public static Player player;
-
-
     private static Main game = new Main();
 
     public static void main(String[] args) {
@@ -36,7 +34,6 @@ public class Main {
 
         // create the game window
         this.s = new Screen();
-
     }
 
 
@@ -63,10 +60,11 @@ public class Main {
             eH.start();
             Thread unicornTargeting = new Thread(MobMoveE::bool);
             unicornTargeting.start();
-            Main.player.reset();
             Main.enemyHandler.setLevel(1);
         } else if (!gameRun) {
             s.levelEnd = true;
+
+            Main.player.reset();
             Main.sleep(1000);
             s.startJ.setLocation(s.width / 2 - 100, s.height / 2);
         }
