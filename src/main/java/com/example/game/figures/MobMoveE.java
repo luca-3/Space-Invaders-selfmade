@@ -38,13 +38,13 @@ public enum MobMoveE {
 
     }
     public static void setAbstand1(){
-        while (Main.gameRun){
+        while (Main.getInstance().isGameRun()){
             Arrays.fill(abstand1, true);
             Main.sleep(250); //update rate of search
         }
     }
     public static void setAbstand2(){
-        while (Main.gameRun){
+        while (Main.getInstance().isGameRun()){
             abstand2 = true;
             Main.sleep(5000); //update rate of search
         }

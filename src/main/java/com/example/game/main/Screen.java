@@ -21,8 +21,9 @@ public class Screen extends JFrame {
     boolean[] hit = new boolean[enemyArr.length];
     boolean[] d = new boolean[shot.length];
     public boolean levelEnd;
-    boolean pause= false;
-    Random random = new Random();
+    boolean pause = false;
+    Scoreboard scoreboard = new Scoreboard();
+
 
     public Screen() {
         //initial settings for the window
@@ -52,7 +53,7 @@ public class Screen extends JFrame {
         this.lives.setForeground(Color.white);
         this.add(lives);
 
-        this.level = new JLabel("Level: " + EnemyHandler.level);
+        this.level = new JLabel("Level: " + Main.getEnemyHandler().getLevel());
         this.level.setBounds(10, 50, 100, 20);
         this.level.setForeground(Color.white);
         this.add(level);
@@ -124,7 +125,7 @@ public class Screen extends JFrame {
         endLevel.start();
        // levelType.start();
 
-        while (Main.gameRun) {
+        while (Main.getInstance().isGameRun()) {
 
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt. length IMMER BEACHTEN!
                 if (EnemyHandler.rectCollision(this.mainChar, this.enemyArr[i])) {
@@ -146,7 +147,7 @@ public class Screen extends JFrame {
                     this.hit[i] = true;
                 }
             }
-            if(Player.hp<= 0) Main.stopSpiel();
+            if(Player.hp <= 0) Main.setGameRun(false);
 
             Main.sleep(10); //update rate collision detection
         }
@@ -154,19 +155,19 @@ public class Screen extends JFrame {
     }
 
     public void updateScore() {
-        while (Main.gameRun) this.score.setText("Score: " + Player.score);
+        while (Main.getInstance().isGameRun()) this.score.setText("Score: " + Player.score);
     }
     public void updateLives() {
-        while (Main.gameRun) this.lives.setText("Lives: " + Player.hp);
+        while (Main.getInstance().isGameRun()) this.lives.setText("Lives: " + Player.hp);
     }
     public void updateLevel() {
-        while (Main.gameRun) this.level.setText("Level: " + EnemyHandler.level);
+        while (Main.getInstance().isGameRun()) this.level.setText("Level: " + Main.getEnemyHandler().getLevel());
     }
-    //public void updateLevelType() {while (Main.gameRun) levelType.setText("Level Type: " + EnemyHandler.levelE);}
+    //public void updateLevelType() {while (Main.getInstance().isGameRun()) levelType.setText("Level Type: " + EnemyHandler.levelE);}
 
     public void levelEnd() {
         Main.sleep(5000);
-        while (Main.gameRun) {
+        while (Main.getInstance().isGameRun()) {
             int count = 0;
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
                 if (this.enemyArr[i].getX() < -10) {
@@ -177,7 +178,7 @@ public class Screen extends JFrame {
                 if (count == EnemyHandler.getAnzahlE()) {
                     this.levelEnd = true;
                     this.countEnemy = 0;
-                    EnemyHandler.level++;
+                    Main.getEnemyHandler().setLevel(Main.getEnemyHandler().getLevel() + 1);
                     System.out.println("level End");
                     Main.sleep(1000);
 
@@ -224,7 +225,7 @@ public class Screen extends JFrame {
             } else if (y > 1200) {
                 y = -100;
             }
-            if (!Main.gameRun) x = -300;
+            if (!Main.getInstance().isGameRun()) x = -300;
             y1 = y;
             this.enemyArr[id].setLocation((int) x, (int) y);
             Main.sleep(10);
@@ -255,7 +256,9 @@ public class Screen extends JFrame {
     }
 
     public int rainbow(int id){
-        JLabel rainbow =new JLabel();
+        Random random = new Random();
+
+        JLabel rainbow = new JLabel();
         int z = this.enemyArr[id].getX()-80;
         rainbow.setBounds(z, 10, 80, 80);
         Icon icon = new ImageIcon("src/main/resources/com/example/game/enemy/Rainbow.png");
@@ -274,7 +277,7 @@ public class Screen extends JFrame {
         }
         rainbow.setLocation(-300, 0);
         this.remove(rainbow);
-        int r = this.random.nextInt(this.height-200);
+        int r = random.nextInt(this.height-200);
         for (int y = 0; y < r; y++) {
             while (this.pause) Main.sleep(100);
             this.enemyArr[id].setLocation(z, y);
@@ -347,7 +350,7 @@ public class Screen extends JFrame {
 
 
     private void w() {
-        while (Main.gameRun) {
+        while (Main.getInstance().isGameRun()) {
             if (Keyboard.wKey) {
                 if (this.mainChar.getY() - 10 > 0) mainChar.setLocation(mainChar.getX(), mainChar.getY() - Main.player.getSpeed());
             }
@@ -356,7 +359,7 @@ public class Screen extends JFrame {
         }
     }
     private void a() {
-        while (Main.gameRun) {
+        while (Main.getInstance().isGameRun()) {
             if (Keyboard.aKey) {
                 if (this.mainChar.getX() - 10 > 0) this.mainChar.setLocation(this.mainChar.getX() - Main.player.getSpeed(), this.mainChar.getY());
             }
@@ -365,7 +368,7 @@ public class Screen extends JFrame {
         }
     }
     private void s() {
-        while (Main.gameRun) {
+        while (Main.getInstance().isGameRun()) {
             if (Keyboard.sKey) {
                 if (this.mainChar.getY() < height) this.mainChar.setLocation(this.mainChar.getX(), this.mainChar.getY() + Main.player.getSpeed());
             }
@@ -374,7 +377,7 @@ public class Screen extends JFrame {
         }
     }
     private void d() {
-        while (Main.gameRun) {
+        while (Main.getInstance().isGameRun()) {
             if (Keyboard.dKey) {
                 if (this.mainChar.getX() + 10 < 1840) this.mainChar.setLocation(this.mainChar.getX() + Main.player.getSpeed(), this.mainChar.getY());
             }
@@ -383,7 +386,7 @@ public class Screen extends JFrame {
         }
     }
     private void space() {
-        while (Main.gameRun) {
+        while (Main.getInstance().isGameRun()) {
             if (Keyboard.spaceKey) {
                 if (this.countBullet < this.shot.length) {
                     this.k++;

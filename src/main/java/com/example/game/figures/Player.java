@@ -24,6 +24,11 @@ public class Player {
         }
     }
 
+    public void reset(){
+        Player.hp = 5;
+        Player.score = 0;
+    }
+
     public int getWidth() {return this.width;}
 
 

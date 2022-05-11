@@ -16,19 +16,19 @@ Alle Enums findest du in dem "figures" Ordner.
 */
 public class Main {
 
-    public static boolean gameRun;
+    private boolean gameRun;
     static EnemyHandler enemyHandler;
     static Screen s;
     public static Player player;
 
 
-    public static void main(String[] args) {
-        Main game = new Main();
-        game.start();
+    private static Main game = new Main();
 
+    public static void main(String[] args) {
+        game.start();
     }
 
-    public void start() {
+    private void start() {
         this.gameRun = false;
         this.enemyHandler = new EnemyHandler();
 
@@ -49,9 +49,14 @@ public class Main {
         }
     }
 
-    public static void startSpiel() {
-        if (!gameRun) {
-            gameRun = true;
+
+    public static Screen getScreen() {
+        return s;
+    }
+
+    public static void setGameRun(boolean gameRun) { //have to meke method not static
+        Main.getInstance().gameRun = gameRun;
+        if (gameRun){
             s.startJ.setLocation(-100, -100);
             Thread screen = new Thread(() -> s.start());
             screen.start();
@@ -59,23 +64,26 @@ public class Main {
             eH.start();
             Thread unicornTargeting = new Thread(MobMoveE::bool);
             unicornTargeting.start();
-            Player.hp = 5;
-            Player.score = 0;
-            EnemyHandler.level = 1;
-
+            Main.player.reset();
+            Main.enemyHandler.setLevel(1);
+        } else if (!gameRun) {
+            s.levelEnd = true;
+            Main.sleep(1000);
+            s.startJ.setLocation(s.width / 2 - 100, s.height / 2);
         }
-    }
-
-    public static void stopSpiel() {
-        gameRun = false;
-        s.levelEnd = true;
-        Main.sleep(1000);
-        s.startJ.setLocation(s.width / 2 - 100, s.height / 2);
 
     }
 
-    public static Screen getScreen() {
-        return s;
+    public boolean isGameRun() {
+        return gameRun;
+    }
+
+    public static Main getInstance(){
+        return game;
+    }
+
+    public static EnemyHandler getEnemyHandler(){
+        return enemyHandler;
     }
 }
 

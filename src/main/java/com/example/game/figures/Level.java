@@ -1,6 +1,7 @@
 package com.example.game.figures;
 
 import com.example.game.main.EnemyHandler;
+import com.example.game.main.Main;
 
 import java.util.Random;
 
@@ -32,7 +33,7 @@ public class Level {
 
     public int[] generateLevel(){
         Random r = new Random();
-        int numberEnemy = (int) (Math.sqrt(EnemyHandler.level - 1) * 2.5 + 2); //formula to calculate the number of enemy dependent on the current level
+        int numberEnemy = (int) (Math.sqrt(Main.getEnemyHandler().getLevel() - 1) * 2.5 + 2); //formula to calculate the number of enemy dependent on the current level
         int[] enumInput = new int[EnemyE.SIZE]; //number of Enemy, wich exists and can be an input of the Level enum
 
         for (int i = numberEnemy; i > 0; i--){

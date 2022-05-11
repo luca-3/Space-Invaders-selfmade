@@ -40,7 +40,7 @@ public class Keyboard implements KeyListener {
             case 'd' -> this.dKey = false;
             case ' ' -> this.spaceKey = false;
             case 'm' -> Main.getScreen().setPause();
-            case 'k' -> Main.startSpiel();
+            case 'k' -> Main.setGameRun(true);
         }
     }
 
