@@ -26,6 +26,8 @@ public class Main {
         game.start();
     }
 
+
+
     private void start() {
         this.enemyHandler = new EnemyHandler();
 
@@ -70,6 +72,19 @@ public class Main {
         }
 
     }
+
+    //TODO:true Umbauen, dass die Funktionalität, der von GameRun eintspricht
+    public static void setPause(Screen screen){
+        if (screen.pause){
+            screen.pause = false;
+            screen.pauseJ.setLocation(-100, -100);
+        }else {
+            screen.pause = true;
+            screen.pauseJ.setLocation(screen.width/2, screen.height/2);
+        }
+
+    }
+
 
     public boolean isGameRun() {
         return gameRun;

@@ -13,9 +13,8 @@ public class EnemyHandler {
     private static int level = 1;
     public static ArrayList<Enemy> enemies = new ArrayList<>();
     private Screen s;
-    private Random random = new Random();
+    private final Random random = new Random();
     private int cou= 0;
-    public static Level levelE;
     public static Thread[] moveT;
 
 

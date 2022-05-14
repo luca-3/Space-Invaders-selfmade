@@ -1,9 +1,6 @@
 package com.example.game.main;
 
-import com.example.game.figures.Enemy;
-import com.example.game.figures.EnemyE;
-import com.example.game.figures.MobMoveE;
-import com.example.game.figures.Player;
+import com.example.game.figures.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +8,9 @@ import java.util.Random;
 
 public class Screen extends JFrame {
     public JLabel[] enemyArr = new JLabel[100];
-    int countEnemy, countBullet = 0;
-    JLabel score, lives, level, pauseJ, startJ;
+    public int countEnemy;
+    int countBullet = 0;
+    JLabel score, lives, level, pauseJ, startJ, time;
     public JLabel mainChar;
     JLabel[] shot = new JLabel[10]; //number of shots available
     public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -56,12 +54,12 @@ public class Screen extends JFrame {
         this.level.setBounds(10, 50, 100, 20);
         this.level.setForeground(Color.white);
         this.add(level);
-        /*
-        levelType = new JLabel("Level: " + EnemyHandler.levelE);
-        levelType.setBounds(10, 70, 180, 20);
-        levelType.setForeground(Color.white);
-        add(levelType);
-         */
+
+        time = new JLabel("Time: " );
+        time.setBounds(10, 70, 180, 20);
+        time.setForeground(Color.white);
+        add(time);
+
 
         this.pauseJ = new JLabel("Pause");
         this.pauseJ.setBounds(-100, -100, 100, 40);
@@ -110,7 +108,9 @@ public class Screen extends JFrame {
         Thread upScore = new Thread(this::updateScore);
         Thread upHP = new Thread(this::updateLives);
         Thread upLevel = new Thread(this::updateLevel);
-        Thread endLevel = new Thread(this::levelEnd);
+        Thread time = new Thread(this::updateTime);
+        Thread endLevel = new Thread(Level::levelEnd);
+
        // Thread levelType = new Thread(this::updateLevelType);
 
         wT.start();
@@ -121,6 +121,7 @@ public class Screen extends JFrame {
         upScore.start();
         upHP.start();
         upLevel.start();
+        time.start();
         endLevel.start();
        // levelType.start();
 
@@ -153,51 +154,19 @@ public class Screen extends JFrame {
 
     }
 
-    public void updateScore() {
-        while (Main.getInstance().isGameRun()) this.score.setText("Score: " + Player.score);
-    }
-    public void updateLives() {
-        while (Main.getInstance().isGameRun()) this.lives.setText("Lives: " + Player.hp);
-    }
-    public void updateLevel() {
-        while (Main.getInstance().isGameRun()) this.level.setText("Level: " + Main.getEnemyHandler().getLevel());
-    }
-    //public void updateLevelType() {while (Main.getInstance().isGameRun()) levelType.setText("Level Type: " + EnemyHandler.levelE);}
-
-    //TODO:true bewegen nach Level
-    public void levelEnd() {
-        Main.sleep(5000);
+    public void updateScore() {while (Main.getInstance().isGameRun()) this.score.setText("Score: " + Player.score);}
+    public void updateLives() {while (Main.getInstance().isGameRun()) this.lives.setText("Lives: " + Player.hp);}
+    public void updateLevel() {while (Main.getInstance().isGameRun()) this.level.setText("Level: " + Main.getEnemyHandler().getLevel());}
+    public void updateTime() {
+        int sek = 0;
+        int min = 0;
         while (Main.getInstance().isGameRun()) {
-            int count = 0;
-            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
-                if (this.enemyArr[i].getX() < -10) {
-                    count++;
-                }
-            }
-            if (EnemyHandler.getAnzahlE() > 1){
-                if (count == EnemyHandler.getAnzahlE()) {
-                    this.levelEnd = true;
-                    this.countEnemy = 0;
-                    Main.getEnemyHandler().setLevel(Main.getEnemyHandler().getLevel() + 1);
-                    System.out.println("level End");
-                    Main.sleep(1000);
-
-                }
-            }
-            Main.sleep(500);
+            if(sek<10) this.time.setText("Time: " + min+":0"+sek);
+            else this.time.setText("Time: " + min+":"+sek);
+            sek++;
+            if(sek>=59){sek=0; min++;}
+            Main.sleep(1000);
         }
-    }
-
-    //TODO:true Umbauen, dass die Funktionalität, der von GameRun eintspricht
-    public void setPause(){
-        if (this.pause){
-            this.pause = false;
-            this.pauseJ.setLocation(-100, -100);
-        }else {
-            this.pause = true;
-            this.pauseJ.setLocation(this.width/2, this.height/2);
-        }
-
     }
 
     //TODO:false In abstrakte Klassenstruktur aufnehmen (so dass Enemy ein child von GameObjects ist)

@@ -30,7 +30,6 @@ public class Level {
         this.kitty = numberOfEnemy[4];
     }
 
-
     public int[] generateLevel(){
         Random r = new Random();
         int numberEnemy = (int) (Math.sqrt(Main.getEnemyHandler().getLevel() - 1) * 2.5 + 2); //formula to calculate the number of enemy dependent on the current level
@@ -55,6 +54,31 @@ public class Level {
 
         return enumInput;
     }
+
+    //TODO:true bewegen nach Level
+    public static void levelEnd() {
+        Main.sleep(5000);
+        while (Main.getInstance().isGameRun()) {
+            int count = 0;
+            for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) {
+                if (Main.getScreen().enemyArr[i].getX() < -10) {
+                    count++;
+                }
+            }
+            if (EnemyHandler.getAnzahlE() > 1){
+                if (count == EnemyHandler.getAnzahlE()) {
+                    Main.getScreen().levelEnd = true;
+                    Main.getScreen().countEnemy = 0;
+                    Main.getEnemyHandler().setLevel(Main.getEnemyHandler().getLevel() + 1);
+                    System.out.println("level End");
+                    Main.sleep(1000);
+
+                }
+            }
+            Main.sleep(500);
+        }
+    }
+
 
     public int getNumberAffe(){return affe;}
     public int getNumberUnicorns(){return unicorn;}

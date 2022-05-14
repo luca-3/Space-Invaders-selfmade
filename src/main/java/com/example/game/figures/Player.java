@@ -7,6 +7,7 @@ public class Player {
     private int speed;
     public static int hp;
     public static int score;
+
 /*
     public Player(int width, int speed, int hp){
         this.width = width;
