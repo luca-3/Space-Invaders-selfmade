@@ -14,7 +14,7 @@ public class EnemyHandler {
     public static ArrayList<Enemy> enemies = new ArrayList<>();
     private Screen s;
     private final Random random = new Random();
-    private int cou= 0;
+    private int cou = 0;
     public static Thread[] moveT;
 
 
@@ -75,7 +75,12 @@ public class EnemyHandler {
     }
     public static int getAnzahlE(){return enemies.size();}
 
-    public void setLevel(int level){this.level = level;}
+    public void setLevel(int level){
+        this.level = level;
+        Screen s = Main.getScreen();
+        s.level.setText("Level: " + this.level);
+
+    }
     public int getLevel(){return this.level;}
 
 

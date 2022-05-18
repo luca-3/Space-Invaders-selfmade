@@ -25,7 +25,6 @@ class Test extends GameObjects {
 
 class ZweiterTest extends GameObjects {
     static Test test = new Test();
-
     public static void main(String[] args) {
         test.move();
     }

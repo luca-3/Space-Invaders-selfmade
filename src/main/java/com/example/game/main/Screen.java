@@ -5,12 +5,13 @@ import com.example.game.figures.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Screen extends JFrame {
     public JLabel[] enemyArr = new JLabel[100];
     public int countEnemy;
     int countBullet = 0;
-    JLabel score, lives, level, pauseJ, startJ, time;
+    public JLabel score, lives, level, pauseJ, startJ, time;
     public JLabel mainChar;
     JLabel[] shot = new JLabel[10]; //number of shots available
     public int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -20,6 +21,8 @@ public class Screen extends JFrame {
     boolean[] d = new boolean[shot.length];
     public boolean levelEnd;
     boolean pause = false;
+
+    Player player = Main.player;
 
 
     public Screen() {
@@ -40,12 +43,12 @@ public class Screen extends JFrame {
         this.addKeyListener(k);
 
         //init settings for GUI elements, wich are always on the screen
-        this.score = new JLabel("Score: " + Player.score);
+        this.score = new JLabel("Score: " + player.getScore());
         this.score.setBounds(10, 10, 100, 20);
         this.score.setForeground(Color.white);
         this.add(score);
 
-        this.lives = new JLabel("Lives: " + Player.hp);
+        this.lives = new JLabel("Lives: " + player.getHP());
         this.lives.setBounds(10, 30, 100, 20);
         this.lives.setForeground(Color.white);
         this.add(lives);
@@ -59,7 +62,6 @@ public class Screen extends JFrame {
         time.setBounds(10, 70, 180, 20);
         time.setForeground(Color.white);
         add(time);
-
 
         this.pauseJ = new JLabel("Pause");
         this.pauseJ.setBounds(-100, -100, 100, 40);
@@ -78,8 +80,6 @@ public class Screen extends JFrame {
         this.mainChar.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
         this.mainChar.setOpaque(true);
         this.add(mainChar);
-
-
 
         //TODO:false nicht mehr notwendig, wenn Klassensystem steht
         //init generation of bullets off-screen
@@ -105,9 +105,6 @@ public class Screen extends JFrame {
         Thread sT = new Thread(this::s);
         Thread dT = new Thread(this::d);
         Thread spaceT = new Thread(this::space);
-        Thread upScore = new Thread(this::updateScore);
-        Thread upHP = new Thread(this::updateLives);
-        Thread upLevel = new Thread(this::updateLevel);
         Thread time = new Thread(this::updateTime);
         Thread endLevel = new Thread(Level::levelEnd);
 
@@ -118,9 +115,6 @@ public class Screen extends JFrame {
         sT.start();
         dT.start();
         spaceT.start();
-        upScore.start();
-        upHP.start();
-        upLevel.start();
         time.start();
         endLevel.start();
        // levelType.start();
@@ -130,7 +124,8 @@ public class Screen extends JFrame {
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt. length IMMER BEACHTEN!
                 if (EnemyHandler.rectCollision(this.mainChar, this.enemyArr[i])) {
                     this.mainChar.setLocation(10, 10);
-                    Player.hp -= 1;
+                    //Player.hp -= 1;
+                    this.player.setHP(this.player.getHP() - 1);
                 }
             }
             for (int i = 0; i < this.shot.length; i++) {
@@ -138,7 +133,7 @@ public class Screen extends JFrame {
                     if (EnemyHandler.rectCollision(this.enemyArr[j], this.shot[i])) {
                         EnemyHandler.enemies.get(j).hpHit(1);
                         this.d[i] = true;
-                        Player.score += 10;
+                        player.addToScore(10);
                     }
                 }
             }
@@ -147,26 +142,31 @@ public class Screen extends JFrame {
                     this.hit[i] = true;
                 }
             }
-            if(Player.hp <= 0) Main.setGameRun(false);
+            if(player.getHP() <= 0) Main. setGameRun(false);
 
             Main.sleep(10); //update rate collision detection
         }
 
     }
 
-    public void updateScore() {while (Main.getInstance().isGameRun()) this.score.setText("Score: " + Player.score);}
-    public void updateLives() {while (Main.getInstance().isGameRun()) this.lives.setText("Lives: " + Player.hp);}
-    public void updateLevel() {while (Main.getInstance().isGameRun()) this.level.setText("Level: " + Main.getEnemyHandler().getLevel());}
     public void updateTime() {
-        int sek = 0;
-        int min = 0;
+
+        final long initialTime = System.currentTimeMillis();
+
         while (Main.getInstance().isGameRun()) {
-            if(sek<10) this.time.setText("Time: " + min+":0"+sek);
-            else this.time.setText("Time: " + min+":"+sek);
-            sek++;
-            if(sek>=59){sek=0; min++;}
-            Main.sleep(1000);
+            long timeRunning = System.currentTimeMillis() - initialTime;
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(timeRunning);
+            long seconds = TimeUnit.MILLISECONDS.toSeconds(timeRunning - minutes * 60 * 1000);
+            if(minutes < 1){
+                this.time.setText("Time: " + seconds + "s");
+            } else if (minutes >= 1 && seconds < 10){
+                this.time.setText("Time: " + minutes + ":" + "0" + seconds + "min");
+            } else if (minutes >= 1 && seconds >= 10){
+                this.time.setText("Time: " + minutes + ":" + seconds + "min");
+            }
+            Main.sleep(100);
         }
+
     }
 
     //TODO:false In abstrakte Klassenstruktur aufnehmen (so dass Enemy ein child von GameObjects ist)
@@ -247,7 +247,8 @@ public class Screen extends JFrame {
             if(this.hit[id]) this.enemyArr[id].setLocation(-200, 0);
             if(EnemyHandler.rectCollision(rainbow, this.mainChar)) {
                 this.mainChar.setLocation(10,10);
-                Player.hp--;}
+                player.setHP(player.getHP() - 1);
+            }
             Main.sleep(10);
         }
         rainbow.setLocation(-300, 0);
@@ -290,7 +291,7 @@ public class Screen extends JFrame {
             laser.setLocation(i, y);
             if(EnemyHandler.rectCollision(this.mainChar, laser)){
                 this.mainChar.setLocation(10, 10);
-                Player.hp -= 1;
+                player.setHP(player.getHP() - 1);
             }
             while (this.pause) Main.sleep(100);
             Main.sleep(5);

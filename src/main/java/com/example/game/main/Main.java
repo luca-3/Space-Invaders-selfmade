@@ -18,15 +18,13 @@ public class Main {
 
     private boolean gameRun;
     static EnemyHandler enemyHandler;
-    static Screen s;
+    private static Screen s;
     public static Player player;
     private static Main game = new Main();
 
     public static void main(String[] args) {
         game.start();
     }
-
-
 
     private void start() {
         this.enemyHandler = new EnemyHandler();
@@ -45,6 +43,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -52,7 +51,7 @@ public class Main {
         return s;
     }
 
-    public static void setGameRun(boolean gameRun) { //have to meke method not static
+    public static void setGameRun(boolean gameRun) { //have to make method not static
         Main.getInstance().gameRun = gameRun;
         if (gameRun){
             s.startJ.setLocation(-100, -100);
@@ -65,10 +64,10 @@ public class Main {
             Main.enemyHandler.setLevel(1);
         } else if (!gameRun) {
             s.levelEnd = true;
-
             Main.player.reset();
             Main.sleep(1000);
             s.startJ.setLocation(s.width / 2 - 100, s.height / 2);
+            s.countEnemy = 0;
         }
 
     }
