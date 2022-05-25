@@ -7,6 +7,8 @@ import java.awt.*;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+//test
+
 public class Screen extends JFrame {
     public JLabel[] enemyArr = new JLabel[100];
     public int countEnemy;
