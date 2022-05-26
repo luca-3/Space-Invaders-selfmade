@@ -19,6 +19,8 @@ public abstract class GameObjects {
 
     private JLabel label;
 
+
+
     private Screen s;
 
     private Icon skin;
@@ -77,6 +79,12 @@ public abstract class GameObjects {
         label.setLocation(x, y);
     }
 
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+        label.setLocation(x, y);
+    }
+
 
     public int getSpeed() {
         return speed;
@@ -85,6 +93,10 @@ public abstract class GameObjects {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public Screen getScreen() {
+        return s;
     }
 
 

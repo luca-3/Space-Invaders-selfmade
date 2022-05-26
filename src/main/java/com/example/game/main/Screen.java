@@ -20,7 +20,7 @@ public class Screen extends JFrame {
     boolean[] hit = new boolean[enemyArr.length];
     boolean[] d = new boolean[shot.length];
     public boolean levelEnd;
-    boolean pause = false;
+    public boolean pause = false;
 
     Player player = Main.player;
 
