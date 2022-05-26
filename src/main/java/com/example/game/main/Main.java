@@ -47,9 +47,7 @@ public class Main {
     }
 
 
-    public static Screen getScreen() {
-        return s;
-    }
+
 
     public static void setGameRun(boolean gameRun) { //have to make method not static
         Main.getInstance().gameRun = gameRun;
@@ -96,5 +94,10 @@ public class Main {
     public static EnemyHandler getEnemyHandler(){
         return enemyHandler;
     }
+
+    public static Screen getScreen() {
+        return s;
+    }
+
 }
 
