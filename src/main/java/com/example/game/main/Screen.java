@@ -97,7 +97,7 @@ public class Screen extends JFrame {
         }
 
     }
-    //TODO:false in Methoden aufteilen: threathing (Main), hpUpdater (Player), checkHits (EnemyHandler)
+    //TODO:false in Methoden aufteilen: threathing (Main), hpUpdater (PlayerN), checkHits (EnemyHandler)
     public void start() { //start the game
 
         Thread wT = new Thread(this::w);
@@ -124,7 +124,7 @@ public class Screen extends JFrame {
             for (int i = 0; i < EnemyHandler.getAnzahlE(); i++) { //EnemyHandler.getAnzahlE() statt. length IMMER BEACHTEN!
                 if (EnemyHandler.rectCollision(this.mainChar, this.enemyArr[i])) {
                     this.mainChar.setLocation(10, 10);
-                    //Player.hp -= 1;
+                    //PlayerN.hp -= 1;
                     this.player.setHP(this.player.getHP() - 1);
                 }
             }
@@ -314,7 +314,7 @@ public class Screen extends JFrame {
             laser.setLocation(i, y);
             if(PvB(this.mainChar, laser)){
                 this.mainChar.setLocation(10, 10);
-                Player.hp -= 1;
+                PlayerN.hp -= 1;
             }
             while (this.pause) Main.sleep(100);
             Main.sleep(5);
@@ -325,7 +325,7 @@ public class Screen extends JFrame {
     */
 
 
-    //TODO:false Klassensystem notwendig; dann dort in Player
+    //TODO:false Klassensystem notwendig; dann dort in PlayerN
     private void w() {
         while (Main.getInstance().isGameRun()) {
             if (Keyboard.wKey) {

@@ -17,7 +17,7 @@ public class Player {
             this.speed = 10;
             this.hp = 5;
         } else {
-            throw new IllegalArgumentException("Wrong input for Player constructor: " + state);
+            throw new IllegalArgumentException("Wrong input for PlayerN constructor: " + state);
         }
     }
 
