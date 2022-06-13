@@ -1,4 +1,5 @@
 package com.example.game.objects;
+//NEW
 
 import com.example.game.main.Main;
 import com.example.game.main.Screen;
@@ -6,7 +7,6 @@ import com.example.game.main.Screen;
 import javax.swing.*;
 
 public abstract class GameObjects {
-
 
     private int width;
     private int height;
@@ -21,7 +21,7 @@ public abstract class GameObjects {
 
 
 
-    private Screen s;
+    private com.example.game.mainNew.Screen s;
 
     private Icon skin;
 
@@ -30,7 +30,7 @@ public abstract class GameObjects {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.s = Main.getScreen();
+        this.s = com.example.game.mainNew.Screen.getInstance();
         this.skin = new ImageIcon(filepathSkin);
 
         label = new JLabel();
@@ -41,7 +41,6 @@ public abstract class GameObjects {
 
     public void move(){
         System.out.println("move");
-
     }
     public void remove(Object x){
 
@@ -102,9 +101,12 @@ public abstract class GameObjects {
         this.speed = speed;
     }
 
-    public Screen getScreen() {
+    public com.example.game.mainNew.Screen getScreen() {
         return s;
     }
 
+    public JLabel getJLabel(){
+        return label;
+    }
 
 }
