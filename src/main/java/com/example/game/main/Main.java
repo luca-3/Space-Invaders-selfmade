@@ -1,5 +1,6 @@
 package com.example.game.main;
 import com.example.game.figures.*;
+import com.example.game.objects.TestMain;
 
 //Main
 
@@ -37,6 +38,7 @@ public class Main {
         // create the game window
         this.s = new Screen();
 
+        TestMain m = new TestMain();
     }
 
 
