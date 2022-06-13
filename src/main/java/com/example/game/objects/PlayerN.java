@@ -1,5 +1,5 @@
 package com.example.game.objects;
-
+//NEW
 import com.example.game.main.Keyboard;
 import com.example.game.main.Main;
 import com.example.game.main.Screen;
@@ -33,7 +33,7 @@ public class PlayerN extends GameObjects {
             if (Keyboard.wKey) {
                 if (getY() - 10 > 0) setLocation(getX(), getY() - Main.player.getSpeed());
             }
-            while (getScreen().pause) Main.sleep(100);
+            while (com.example.game.mainNew.Main.isPause()) Main.sleep(100);
             Main.sleep(20);
         }
     }
@@ -42,16 +42,16 @@ public class PlayerN extends GameObjects {
             if (Keyboard.aKey) {
                 if (getX() - 10 > 0) setLocation(getX() - Main.player.getSpeed(), getY());
             }
-            while (getScreen().pause) Main.sleep(100);
+            while (com.example.game.mainNew.Main.isPause()) Main.sleep(100);
             Main.sleep(20);
         }
     }
     private void s() {
         while (Main.getInstance().isGameRun()) {
             if (Keyboard.sKey) {
-                if (getY() < getScreen().height) setLocation(getX(), getY() + Main.player.getSpeed());
+                if (getY() < getScreen().getMonitorHeight()) setLocation(getX(), getY() + Main.player.getSpeed());
             }
-            while (getScreen().pause) Main.sleep(100);
+            while (com.example.game.mainNew.Main.isPause()) Main.sleep(100);
             Main.sleep(20);
         }
     }
@@ -60,7 +60,7 @@ public class PlayerN extends GameObjects {
             if (Keyboard.dKey) {
                 if (getX() + 10 < 1840) setLocation(getX() + Main.player.getSpeed(), getY());
             }
-            while (getScreen().pause) Main.sleep(100);
+            while (com.example.game.mainNew.Main.isPause()) Main.sleep(100);
             Main.sleep(20);
         }
     }
@@ -85,7 +85,7 @@ public class PlayerN extends GameObjects {
 
                  */
             }
-            while (getScreen().pause) Main.sleep(100);
+            while (com.example.game.mainNew.Main.isPause()) Main.sleep(100);
             Main.sleep(20);
         }
     }
