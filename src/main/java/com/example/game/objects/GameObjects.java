@@ -42,12 +42,11 @@ public abstract class GameObjects {
     public void move(){
         System.out.println("move");
     }
-    public void remove(Object x){ //del objects
+    public void remove(Object x){
 
         label.setVisible(false);
         label=null;
         x=null;
-        //TODO: funktion der folgenden zeilen prüfen
         System.gc();
         System.runFinalization();
     }
