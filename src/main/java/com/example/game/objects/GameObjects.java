@@ -43,7 +43,14 @@ public abstract class GameObjects {
         System.out.println("move");
 
     }
+    public void remove(Object x){
 
+        label.setVisible(false);
+        label=null;
+        x=null;
+        System.gc();
+        System.runFinalization();
+    }
 
 
     //Getter and Setter
