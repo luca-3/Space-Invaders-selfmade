@@ -1,4 +1,4 @@
-package com.example.game.objects;
+/*package com.example.game.objects;
 
 import com.example.game.figures.EnemyE;
 import com.example.game.objects.GameObjects;
@@ -40,4 +40,6 @@ public class Enemy extends GameObjects {
 
 
 }
+
+ */
 
