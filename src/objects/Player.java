@@ -11,9 +11,7 @@ import java.awt.*;
 
 public class Player extends GameObjects {
 
-    private int healthpoints;
-    private int score;
-
+    private int healthpoints, score;
     int speed = 10;
 
 
@@ -32,8 +30,6 @@ public class Player extends GameObjects {
         this.healthpoints = 5;
     }
 
-
-
     public void wKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isWPressed()) {
@@ -43,6 +39,7 @@ public class Player extends GameObjects {
             Util.sleep(20);
         }
     }
+
     public void aKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isAPressed()) {
@@ -52,6 +49,7 @@ public class Player extends GameObjects {
             Util.sleep(20);
         }
     }
+
     public void sKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isSPressed()) {
@@ -61,6 +59,7 @@ public class Player extends GameObjects {
             Util.sleep(20);
         }
     }
+
     public void dKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isDPressed()) {
@@ -70,6 +69,7 @@ public class Player extends GameObjects {
             Util.sleep(20);
         }
     }
+    
     public void spaceKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isSpacePressed()) {
