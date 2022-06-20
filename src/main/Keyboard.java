@@ -5,7 +5,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
+
     private static Keyboard instance;
+    private static boolean wKey, aKey, sKey, dKey, spaceKey;
 
     private Keyboard(){ //Singleton Pattern
 
@@ -19,19 +21,10 @@ public class Keyboard implements KeyListener {
     }
 
 
-    private static boolean wKey;
-    private static boolean aKey;
-    private static boolean sKey;
-    private static boolean dKey;
-    private static boolean spaceKey;
-
-
-
     @Override
     public void keyTyped(KeyEvent e){
 
     }
-
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -43,6 +36,7 @@ public class Keyboard implements KeyListener {
             case ' ' -> this.spaceKey = true;
         }
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyChar()) {
@@ -53,7 +47,6 @@ public class Keyboard implements KeyListener {
             case ' ' -> this.spaceKey = false;
         }
     }
-
 
 
     public static boolean isWPressed() {

@@ -8,7 +8,6 @@ import java.awt.*;
 
 public class Screen extends JFrame {
 
-    private static Screen instance;
     private Tag score, lives, time, level;
 
     public Screen(){ //Singleton Pattern
