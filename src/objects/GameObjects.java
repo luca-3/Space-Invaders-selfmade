@@ -12,17 +12,9 @@ import java.io.File;
 
 public abstract class GameObjects {
 
-    private int width;
-    private int height;
-    private int x;
-    private int y;
-
-    private int speed;
-
+    private int width, height, x, y, speed;
     private JLabel label;
-
     private Screen s;
-
     private Icon skin;
 
     public GameObjects(int x, int y, int width, int height, String filepathSkin) {
@@ -49,10 +41,7 @@ public abstract class GameObjects {
         System.out.println("move");
     }
 
-
-
     //Getter and Setter
-
     public int getWidth() {
         return width;
     }
