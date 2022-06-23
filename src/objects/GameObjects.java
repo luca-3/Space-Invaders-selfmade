@@ -12,7 +12,7 @@ import java.io.File;
 
 public abstract class GameObjects {
 
-    private int width, height, x, y, speed;
+    private int width, height, x, y;
     private JLabel label;
     private Screen s;
     private Icon skin;
@@ -79,15 +79,6 @@ public abstract class GameObjects {
         label.setLocation(x, y);
     }
 
-
-    public int getSpeed() {
-        return speed;
-    }
-
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
 
     public Screen getScreen() {
         return s;
