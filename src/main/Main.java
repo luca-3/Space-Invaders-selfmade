@@ -3,6 +3,7 @@ package main;
 
 
 import objects.Player;
+import objects.enemies.Affe;
 
 import java.util.HashMap;
 
@@ -24,6 +25,10 @@ public class Main {
 
         pause = false;
         Util.startTimer();
+
+        Affe a = new Affe();
+        Util.sleep(1000);
+        a.move();
 
     }
 
