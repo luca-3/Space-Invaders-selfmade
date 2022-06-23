@@ -14,7 +14,7 @@ public class Player extends GameObjects {
 
 
     public Player() {
-        super(500, 500, 200, 200, "Spaceship.png");
+        super(500, 500, 120, 120, "Spaceship.png");
 
         this.score = 0;
         this.healthpoints = 5;
@@ -31,7 +31,7 @@ public class Player extends GameObjects {
     public void wKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isWPressed()) {
-                if (getY() > 0) setLocation(getX(), getY() - speed);
+                if (getY() > 0) setY(getY() - speed);
             }
             while (Main.isPause()) Util.sleep(100);
             Util.sleep(20);
@@ -41,7 +41,7 @@ public class Player extends GameObjects {
     public void aKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isAPressed()) {
-                if (getX() > 0) setLocation(getX() - speed, getY());
+                if (getX() > 0) setX(getX() - speed);
             }
             while (Main.isPause()) Util.sleep(100);
             Util.sleep(20);
@@ -51,7 +51,7 @@ public class Player extends GameObjects {
     public void sKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isSPressed()) {
-                if (getY() < getScreen().getMonitorHeight() - getHeight()) setLocation(getX(), getY() + speed);
+                if (getY() < getScreen().getMonitorHeight() - getHeight()) setY(getY() + speed);
             }
             while (Main.isPause()) Util.sleep(100);
             Util.sleep(20);
@@ -61,7 +61,7 @@ public class Player extends GameObjects {
     public void dKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isDPressed()) {
-                if (getX() < getScreen().getMonitorWidth() - getWidth()) setLocation(getX() + speed, getY());
+                if (getX() < getScreen().getMonitorWidth() - getWidth()) setX(getX() + speed);
             }
             while (Main.isPause()) Util.sleep(100);
             Util.sleep(20);
@@ -119,5 +119,14 @@ public class Player extends GameObjects {
         this.score += score;
 
         //TODO: Score im Screen aktualisieren
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }
