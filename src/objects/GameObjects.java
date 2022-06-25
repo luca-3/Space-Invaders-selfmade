@@ -31,11 +31,11 @@ public abstract class GameObjects {
             System.out.println("Error while resizing skin: " + e);
         }
 
-        label = new JLabel();
+   label = new JLabel();
         label.setBounds(x, y, width, height);
         label.setIcon(skin);
         s.add(label);
-    }
+   }
 
     public void move(){
         System.out.println("move");
@@ -78,6 +78,13 @@ public abstract class GameObjects {
         this.y = y;
         label.setLocation(x, y);
     }
+
+    public void removeObject(){
+        label.setVisible(false);
+        label=null;
+
+    }
+
 
 
     public Screen getScreen() {
