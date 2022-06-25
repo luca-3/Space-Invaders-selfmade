@@ -9,6 +9,8 @@ public abstract class Enemies extends GameObjects {
 
 
 
+
+
     public Enemies(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
         super(x, y, width, height, filepathSkin);
         this.healthpoints = healthpoints;

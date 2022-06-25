@@ -9,31 +9,38 @@ public class Affe extends Enemies {
         setIstamLeben(true);
     }
 
-    public Affe(){
-        super(500, 400, 100, 100, 3, "resources/player/Spaceship.png");
+    public Affe() {
+        super(-500, -400, 120, 190, 3, "Spaceship.png");
+        setSpeed(2);
+        setIstamLeben(true);
+        findXandYforSpwan();
     }
 
+    public void findXandYforSpwan() {
 
-
-    public void spwan(){
+        int y = getScreen().getMonitorHeight();
+        int x = getScreen().getMonitorWidth();
+        setX((int) (Math.random() * (x - (x - x / 8)) + (x - (x / 8))));
+        setY((int) (Math.random() * (y - 30) + 30));
 
 
     }
-
-
-    public void move() {
+    public void move () {
         while (true) {
-            setX(getX()+15);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread
+            setX(getX() - 10);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
+            setY(getY());
 
-            System.out.println("moved: x: " + getX() + " y: " + getY());
-            Util.sleep(200);
+
+            Util.sleep(20);
         }
     }
-
-    public void checkCollision(){
-
-    }
 }
+
+
+
+
+
+
 
 
 
