@@ -2,14 +2,15 @@ package objects.enemies;
 
 import main.Util;
 
-public class Puffy extends Enemies{  public Dwarf(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
+public class Puffy extends Enemies{
+    public Puffy(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
     super(x, y, width, height, healthpoints, filepathSkin);
     setSpeed(speed);
     setIstamLeben(true);
 }
 
 
-    public Dwarf(){
+    public Puffy(){
         super(-500, -400, 64, 64, 4, "Spaceship.png");
         setSpeed(2);
         setIstamLeben(true);
@@ -43,8 +44,7 @@ public class Puffy extends Enemies{  public Dwarf(int x, int y, int width, int h
 
 
 }
-}
 
 
 
-        }
+

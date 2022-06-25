@@ -44,6 +44,4 @@ public class Kitty extends Enemies{
 
 
 }
-}
 
-        }
