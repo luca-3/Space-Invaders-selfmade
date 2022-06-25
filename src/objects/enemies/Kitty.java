@@ -11,13 +11,14 @@ public class Kitty extends Enemies{
 
 
     public Kitty(){
-        super(-500, -400, 64, 64, 4, "Spaceship.png");
-        setSpeed(2);
+        super(-500, -400, 75, 75, 10000, "Spaceship.png");  //TODO dynamische Wert bei widht und Height  und dateiName ändern
+        setSpeed(1);
         setIstamLeben(true);
         findXandYforSpwan();
     }
 
     public void findXandYforSpwan(){
+
 
         int y =getScreen().getMonitorHeight();
         int x= getScreen().getMonitorWidth();
@@ -32,11 +33,17 @@ public class Kitty extends Enemies{
 
 
     public void move() {
+        int maxX= getScreen().getMonitorWidth()/8;
+        int x=0;
         while (true) {
-            setX(getX()-500);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
+             if( getX()-10 <x){
+                x= getX()+10;
+            }else {
+               x= getX()-10;
+            }  ;  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
+            setX(x);
 
-            System.out.println("moved: x: " + getX() + " y: " + getY());
-            Util.sleep(200);
+            Util.sleep(20);
         }
     }
 

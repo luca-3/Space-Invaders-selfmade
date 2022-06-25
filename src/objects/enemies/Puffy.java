@@ -11,8 +11,8 @@ public class Puffy extends Enemies{
 
 
     public Puffy(){
-        super(-500, -400, 64, 64, 4, "Spaceship.png");
-        setSpeed(2);
+        super(-500, -400, 50, 50, 6, "Spaceship.png");  //TODO dynamische Wert bei widht und Height  und dateiName ändern
+        setSpeed(1);
         setIstamLeben(true);
         findXandYforSpwan();
     }
@@ -32,11 +32,18 @@ public class Puffy extends Enemies{
 
 
     public void move() {
+        int  x= getScreen().getMonitorWidth()/2;
         while (true) {
-            setX(getX()-50);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread  //
 
-            System.out.println("moved: x: " + getX() + " y: " + getY());
-            Util.sleep(200);
+
+
+            setX(getX()-10);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread  //
+
+            if(getX()<x){
+                                     //tODO Funktion Pufferfisch Explodiert
+            }
+
+            Util.sleep(20);
         }
     }
 

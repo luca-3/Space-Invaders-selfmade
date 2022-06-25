@@ -10,7 +10,7 @@ public class Affe extends Enemies {
     }
 
     public Affe() {
-        super(-500, -400, 120, 190, 3, "Spaceship.png");
+        super(-500, -400, 120, 190, 3, "Spaceship.png"); //TODO dynamische Wert bei widht und Height  und dateiName ändern
         setSpeed(2);
         setIstamLeben(true);
         findXandYforSpwan();
@@ -28,8 +28,7 @@ public class Affe extends Enemies {
     public void move () {
         while (true) {
             setX(getX() - 10);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
-            setY(getY());
-
+            setY( (int ) (Math.sin((getX()/100*200))));  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
 
             Util.sleep(20);
         }

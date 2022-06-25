@@ -2,7 +2,8 @@ package objects.enemies;
 
 import main.Util;
 
-public class Dwarf extends Enemies{
+public class
+Dwarf extends Enemies{
     public Dwarf(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
         super(x, y, width, height, healthpoints, filepathSkin);
         setSpeed(speed);
@@ -11,8 +12,8 @@ public class Dwarf extends Enemies{
 
 
     public Dwarf(){
-        super(-500, -400, 64, 64, 4, "Spaceship.png");
-        setSpeed(2);
+        super(-500, -400, 75, 125, 3, "Spaceship.png");  //TODO dynamische Wert bei widht und Height  und dateiName ändern
+        setSpeed(1);
         setIstamLeben(true);
         findXandYforSpwan();
     }
@@ -33,10 +34,9 @@ public class Dwarf extends Enemies{
 
     public void move() {
         while (true) {
-            setX(getX()-500);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
-
-            System.out.println("moved: x: " + getX() + " y: " + getY());
-            Util.sleep(200);
+            setX(getX()-1);
+            setY (getY()-150);                                         // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
+            Util.sleep(20);
         }
     }
 
