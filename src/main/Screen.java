@@ -32,10 +32,11 @@ public class Screen extends JFrame {
 
         //Background
         JLabel backgrond = new JLabel();
-        backgrond.setBounds(0,0,this.monitorWidth, this.monitorHeight);
-        backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/background-sky.png"));
+        backgrond.setBounds(-1,0,this.monitorWidth, this.monitorHeight);
+        backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/background-sky-edit.png"));
         layeredPane.add(backgrond, 1);
         add(layeredPane);
+        backgrond.setLocation(0,0); //to force the Background to render
 
         //KeyListener
         Keyboard k = Keyboard.getInstance();

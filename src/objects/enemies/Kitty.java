@@ -11,7 +11,7 @@ public class Kitty extends Enemies{
 
 
     public Kitty(){
-        super(-500, -400, 75, 75, 10000, "Spaceship.png");  //TODO dynamische Wert bei widht und Height  und dateiName ändern
+        super(-500, -400, 75, 75, 10000, "resources/enemies/kitty.png");  //TODO dynamische Wert bei width und Height  und dateiName ändern
         setSpeed(1);
         setIstamLeben(true);
         findXandYforSpwan();
