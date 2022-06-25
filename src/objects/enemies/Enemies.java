@@ -8,10 +8,10 @@ import java.util.ArrayList;
 public abstract class Enemies extends GameObjects {
 
     private int healthpoints, speed;
-    private boolean alive;
+    private boolean alive = true;
 
-    private static ArrayList<ArrayList> instances = new ArrayList<>(5);
 
+    private static ArrayList<ArrayList> instances;
 
     public Enemies(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
         super(x, y, width, height, filepathSkin);
@@ -24,6 +24,8 @@ public abstract class Enemies extends GameObjects {
     public abstract void threading();
 
     public static void createLists(){
+        instances = new ArrayList<>(5);
+
         ArrayList<Affe> instancesA = new ArrayList<>();
         ArrayList<Puffy> instancesP = new ArrayList<>();
         ArrayList<Dwarf> instancesD = new ArrayList<>();
@@ -36,7 +38,13 @@ public abstract class Enemies extends GameObjects {
         instances.add(instancesK);
         instances.add(instancesU);
 
-        System.out.println("I am secial");
+        System.out.println("I am special");
+    }
+
+    public void checkIfOutOfScreen() {
+        if (getX() < 500 - getWidth()) {
+            setAlive(false);
+        }
     }
 
 

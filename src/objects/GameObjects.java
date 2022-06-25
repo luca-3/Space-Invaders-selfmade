@@ -22,8 +22,6 @@ public abstract class GameObjects {
         this.s = Main.getScreen();
         this.skin = Util.resizeImage(width, height, filepathSkin);
 
-
-
         label = new JLabel();
         label.setBounds(x, y, width, height);
         label.setIcon(skin);
@@ -72,9 +70,8 @@ public abstract class GameObjects {
         label.setLocation(x, y);
     }
 
-    public void removeObject(){
+    public void removeJLabel(){
         label.setVisible(false);
-        label = null;
     }
 
 

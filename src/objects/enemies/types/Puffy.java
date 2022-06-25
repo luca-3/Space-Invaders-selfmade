@@ -51,6 +51,8 @@ public class Puffy extends Enemies {
                                      //tODO Funktion Pufferfisch Explodiert
             }
 
+            checkIfOutOfScreen();
+
             Util.sleep(20);
         }
     }

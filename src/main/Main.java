@@ -62,8 +62,10 @@ public class Main {
         Thread levelSpawn = new Thread(() -> EnemyHandler.gernarateLevel());
         levelSpawn.start();
 
-        Thread PvEcollision = new Thread(() -> EnemyHandler.checkCollisionPvE());
-        PvEcollision.start();
+        Util.sleep(2000);
+
+        Thread loopColisionAndRemove = new Thread(() -> EnemyHandler.loop());
+        loopColisionAndRemove.start();
     }
 
     /*

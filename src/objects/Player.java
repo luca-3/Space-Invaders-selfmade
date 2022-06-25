@@ -23,11 +23,31 @@ public class Player extends GameObjects {
     }
 
     public void reset(){
-        setX(100);
-        setY(200);
+        setX(500);
+        setY(500);
         this.score = 0;
         this.healthpoints = 5;
         this.levelPlayer = 1;
+    }
+
+    public void gotHit(){
+        manipulateHealthpoints(-1);
+        setLocation(500, 500);
+        setInvulnerable(true);
+
+    }
+
+    private void setInvulnerable(boolean b) {
+        //TODO change skin to one with shield
+        Util.sleep(2000);
+
+    }
+
+    public void checkIfDead(){
+        if(healthpoints <= 0){
+            reset();
+            //TODO: Game Over message
+        }
     }
 
     public void wKeyMovement() {
@@ -99,7 +119,7 @@ public class Player extends GameObjects {
 
     public void setHealthpoints(int hp){
         this.healthpoints = hp;
-        //TODO: HP im Screen aktualisieren
+        checkIfDead();
     }
 
     public int getHealthpoints(){
@@ -108,6 +128,7 @@ public class Player extends GameObjects {
 
     public void manipulateHealthpoints(int hp){
         this.healthpoints += hp;
+        checkIfDead();
     }
 
     public void setScore(int score) {

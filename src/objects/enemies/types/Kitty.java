@@ -39,17 +39,19 @@ public class Kitty extends Enemies {
     }
 
     public void move() {
-        int maxX= getScreen().getMonitorWidth()/8;
-        int x=0;
-        while (true) {
-             if( getX()-5 <x){
-                x= getX()+5;
+        int maxX = getScreen().getMonitorWidth()/8;
+        int x = 0;
+        while (isAlive()) {
+             if (getX() - 15 < x){
+                x = getX() + 15;
             }else {
-               x= getX()-5;
+               x = getX() - 15;
             }  ;  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
             setX(x);
 
-            Util.sleep(2000);
+            //TODO implement method to kill kitty after shoot
+
+            Util.sleep(1000);
         }
     }
 

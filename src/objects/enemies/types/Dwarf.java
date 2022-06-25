@@ -42,9 +42,11 @@ public class Dwarf extends Enemies {
 
 
     public void move() {
-        while (true) {
+        while (isAlive()) {
             setX(getX()-1);
            // setY (getY()-20);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
+
+            checkIfOutOfScreen();
             Util.sleep(20);
         }
     }

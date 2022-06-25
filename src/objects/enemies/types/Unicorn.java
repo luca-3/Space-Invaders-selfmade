@@ -38,9 +38,10 @@ public class Unicorn extends Enemies {
     }
 
     public void move() {
-        while (true) {
+        while (isAlive()) {
             setX(getX()-70);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Verflogung Move) //
 
+            checkIfOutOfScreen();
             Util.sleep(200);
         }
     }

@@ -40,10 +40,11 @@ public class Affe extends Enemies {
     }
 
     public void move () {
-        while (true) {
+        while (isAlive()) {
             setX(getX() - 10);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
          //   setY(int) (Math.sin(getX()/100)*200));  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
 
+            checkIfOutOfScreen();
             Util.sleep(20);
         }
     }
