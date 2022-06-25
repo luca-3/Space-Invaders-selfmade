@@ -10,7 +10,7 @@ public class Affe extends Enemies {
     }
 
     public Affe(){
-        super(500, 400, 100, 100, 3, "Spaceship.png");
+        super(500, 400, 100, 100, 3, "resources/player/Spaceship.png");
     }
 
 

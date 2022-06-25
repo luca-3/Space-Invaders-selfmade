@@ -14,7 +14,7 @@ public class Player extends GameObjects {
 
 
     public Player() {
-        super(500, 500, 120, 120, "Spaceship.png");
+        super(500, 500, 120, 120, "resources/player/Spaceship.png");
 
         this.score = 0;
         this.healthpoints = 5;

@@ -3,6 +3,7 @@ package objects;
 
 import main.Main;
 import main.Screen;
+import main.Util;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,18 +24,14 @@ public abstract class GameObjects {
         this.width = width;
         this.height = height;
         this.s = Main.getScreen();
-        try{
-            BufferedImage img = ImageIO.read(new File(filepathSkin));
-            Image dimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-            this.skin = new ImageIcon(dimg);
-        }catch (Exception e){
-            System.out.println("Error while resizing skin: " + e);
-        }
+        this.skin = Util.resizeImage(width, height, filepathSkin);
 
-   label = new JLabel();
+
+
+        label = new JLabel();
         label.setBounds(x, y, width, height);
         label.setIcon(skin);
-        s.add(label);
+        s.getLayeredPane().add(label);
    }
 
     public void move(){
@@ -81,8 +78,7 @@ public abstract class GameObjects {
 
     public void removeObject(){
         label.setVisible(false);
-        label=null;
-
+        label = null;
     }
 
 

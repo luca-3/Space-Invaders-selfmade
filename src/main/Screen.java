@@ -10,8 +10,13 @@ public class Screen extends JFrame {
 
     private Tag score, lives, time, level;
 
+    private JLayeredPane layeredPane;
+
     public Screen(){ //Singleton Pattern
         Util.sleep(1000); //slow initialization
+
+        layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, this.monitorWidth, this.monitorHeight);
 
         //initial settings for the window
         autoUpdateScreenDimensions();
@@ -20,15 +25,23 @@ public class Screen extends JFrame {
         this.setResizable(true); //TODO: Wenn der Monitor zu klein gezogen wird, soll eine Nachricht kommen, die den User auffordert das Fenster größer zu ziehen
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.getContentPane().setBackground(Color.BLACK);
-
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.setVisible(true);
         this.setBackground(Color.black);
-        this.setVisible(true);
+
+        //Background
+        JLabel backgrond = new JLabel();
+        backgrond.setBounds(0,0,this.monitorWidth, this.monitorHeight);
+        backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/background-sky.png"));
+        layeredPane.add(backgrond, 1);
+        add(layeredPane);
+
+        //KeyListener
         Keyboard k = Keyboard.getInstance();
         this.addKeyListener(k);
 
+        this.setVisible(true);
 
     }
 
