@@ -2,33 +2,40 @@ package main;
 //NEW
 
 
+import objects.GameObjects;
 import objects.Player;
+import objects.enemies.Enemies;
+import objects.enemies.EnemyHandler;
 import objects.enemies.types.Affe;
+import objects.enemies.types.Puffy;
 
 import java.util.HashMap;
 
 public class Main {
     static HashMap<String, Integer> daten;
     private static boolean pause;
+
+
     static Player player;
     static Screen s;
 
     public static void main(String[] args) {
 
+        //no Dependencies
+        Enemies.createLists();
         daten = new HashMap<>();
+
+        //Dependencies within the creation of the Object
         s = new Screen();
         player = new Player();
         s.generateTags();
 
         startThreading();
 
-
         pause = false;
         Util.startTimer();
 
-        Affe a = new Affe();
-        Util.sleep(1000);
-        a.move();
+        new EnemyHandler();
 
     }
 
@@ -51,6 +58,12 @@ public class Main {
 
         Thread updaterTags = new Thread(() -> s.updateTags());
         updaterTags.start();
+
+        Thread levelSpawn = new Thread(() -> EnemyHandler.gernarateLevel());
+        levelSpawn.start();
+
+        Thread PvEcollision = new Thread(() -> EnemyHandler.checkCollisionPvE());
+        PvEcollision.start();
     }
 
     /*
@@ -68,7 +81,7 @@ public class Main {
         //TODO: Wo 0 steht muss die entsprechende Datenquelle eingetragen werden
         daten.put("score", player.getScore()); //Player get score
         daten.put("lives", player.getHealthpoints()); //Player get lives
-        daten.put("level", 0); //Main
+        daten.put("level", EnemyHandler.getLevelMap()); //Main
     }
 
     public static HashMap getDataTags(){
@@ -87,4 +100,9 @@ public class Main {
     public static Screen getScreen() {
         return s;
     }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
 }

@@ -4,17 +4,23 @@ import main.Util;
 import objects.enemies.Enemies;
 
 public class Affe extends Enemies {
-    public Affe(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
-        super(x, y, width, height, healthpoints, filepathSkin);
-        setSpeed(20);
-        setIstamLeben(true);
+
+    public static void createInstance(){
+        Affe temp = new Affe();
+        getInstances().get(0).add(temp);
     }
 
-    public Affe() {
+    private Affe(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
+        super(x, y, width, height, healthpoints, filepathSkin);
+        setSpeed(20);
+    }
+
+    private Affe() {
         super(-500, -400, 120, 190, 3, "resources/enemies/affe.png"); //TODO dynamische Wert bei widht und Height  und dateiName ändern
         setSpeed(2);
-        setIstamLeben(true);
+        setAlive(true);
         findXandYforSpwan();
+        threading();
     }
 
     public void findXandYforSpwan() {
@@ -26,16 +32,22 @@ public class Affe extends Enemies {
 
 
     }
+
+
+    public void threading() {
+        Thread move = new Thread(this::move);
+        move.start();
+    }
+
     public void move () {
         while (true) {
             setX(getX() - 10);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
-            setY(
-                    (int) (Math.sin(getX()/100)*200)
-            );  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
+         //   setY(int) (Math.sin(getX()/100)*200));  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
 
             Util.sleep(20);
         }
     }
+
 }
 
 

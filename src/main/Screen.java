@@ -12,6 +12,9 @@ public class Screen extends JFrame {
 
     private JLayeredPane layeredPane;
 
+    private int monitorWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+    private int monitorHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+
     public Screen(){ //Singleton Pattern
         Util.sleep(1000); //slow initialization
 
@@ -46,9 +49,6 @@ public class Screen extends JFrame {
 
     }
 
-
-    private int monitorWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-    private int monitorHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 
 
     public void generateTags() {

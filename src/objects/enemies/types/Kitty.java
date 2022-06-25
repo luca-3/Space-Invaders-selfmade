@@ -4,47 +4,52 @@ import main.Util;
 import objects.enemies.Enemies;
 
 public class Kitty extends Enemies {
-    public Kitty(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
+
+    public static void createInstance(){
+        Kitty temp = new Kitty();
+        getInstances().get(3).add(temp);
+    }
+
+    private Kitty(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
         super(x, y, width, height, healthpoints, filepathSkin);
         setSpeed(speed);
-        setIstamLeben(true);
     }
 
 
-    public Kitty(){
+    private Kitty(){
         super(-500, -400, 75, 75, 10000, "resources/enemies/kitty.png");  //TODO dynamische Wert bei width und Height  und dateiName ändern
         setSpeed(1);
-        setIstamLeben(true);
         findXandYforSpwan();
+        threading();
     }
 
     public void findXandYforSpwan(){
-
-
         int y =getScreen().getMonitorHeight();
         int x= getScreen().getMonitorWidth();
         setX   ((int )(Math.random() * (x - (x-x/8)) + (x-(x/8))));
         setY( (int) (Math.random()*(y-30)+ 30) );
-
     }
 
 
 
 
-
+    public void threading() {
+        Thread move = new Thread(this::move);
+        move.start();
+    }
 
     public void move() {
         int maxX= getScreen().getMonitorWidth()/8;
         int x=0;
         while (true) {
-             if( getX()-10 <x){
-                x= getX()+10;
+             if( getX()-5 <x){
+                x= getX()+5;
             }else {
-               x= getX()-10;
+               x= getX()-5;
             }  ;  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
             setX(x);
 
-            Util.sleep(20);
+            Util.sleep(2000);
         }
     }
 

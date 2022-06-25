@@ -3,20 +3,25 @@ package objects.enemies.types;
 import main.Util;
 import objects.enemies.Enemies;
 
-public class
-Dwarf extends Enemies {
-    public Dwarf(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
+public class Dwarf extends Enemies {
+
+    public static void createInstance(){
+        Dwarf temp = new Dwarf();
+        getInstances().get(2).add(temp);
+    }
+
+    private Dwarf(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
         super(x, y, width, height, healthpoints, filepathSkin);
         setSpeed(speed);
-        setIstamLeben(true);
     }
 
 
-    public Dwarf(){
-        super(-500, -400, 75, 125, 3, "Spaceship.png");  //TODO dynamische Wert bei widht und Height  und dateiName ändern
+    private Dwarf(){
+        super(-500, -400, 92, 96, 3, "resources/enemies/zwerg.png");  //TODO dynamische Wert bei widht und Height  und dateiName ändern
         setSpeed(1);
-        setIstamLeben(true);
         findXandYforSpwan();
+        threading();
+
     }
 
     public void findXandYforSpwan(){
@@ -30,19 +35,19 @@ Dwarf extends Enemies {
 
 
 
-
+    public void threading() {
+        Thread move = new Thread(this::move);
+        move.start();
+    }
 
 
     public void move() {
         while (true) {
             setX(getX()-1);
-            setY (getY()-150);                                         // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
+           // setY (getY()-20);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
             Util.sleep(20);
         }
     }
-
-
-
 
 }
 

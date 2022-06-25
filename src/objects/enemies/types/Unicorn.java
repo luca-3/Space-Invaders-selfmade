@@ -5,18 +5,22 @@ import objects.enemies.Enemies;
 
 public class Unicorn extends Enemies {
 
-    public Unicorn(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
+    public static void createInstance(){
+        Unicorn temp = new Unicorn();
+        getInstances().get(4).add(temp);
+    }
+
+    private Unicorn(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
         super(x, y, width, height, healthpoints, filepathSkin);
         setSpeed(20);
-        setIstamLeben(true);
     }
 
 
-    public Unicorn(){
-        super(-500, -400, 64, 64, 4, "Spaceship.png");
+    private Unicorn(){
+        super(-500, -400, 64, 64, 4, "resources/enemies/unicorn.png");
         setSpeed(2);
-        setIstamLeben(true);
         findXandYforSpwan();
+        threading();
     }
 
     public void findXandYforSpwan(){
@@ -28,16 +32,15 @@ public class Unicorn extends Enemies {
 
     }
 
-
-
-
-
+    public void threading() {
+        Thread move = new Thread(this::move);
+        move.start();
+    }
 
     public void move() {
         while (true) {
             setX(getX()-70);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Verflogung Move) //
 
-            System.out.println("moved: x: " + getX() + " y: " + getY());
             Util.sleep(200);
         }
     }

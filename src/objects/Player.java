@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Player extends GameObjects {
 
-    private int healthpoints, score;
+    private int healthpoints, score, levelPlayer;
     int speed = 10;
 
 
@@ -18,6 +18,7 @@ public class Player extends GameObjects {
 
         this.score = 0;
         this.healthpoints = 5;
+        this.levelPlayer = 1;
         getJLabel().setBackground(Color.red);
     }
 
@@ -26,6 +27,7 @@ public class Player extends GameObjects {
         setY(200);
         this.score = 0;
         this.healthpoints = 5;
+        this.levelPlayer = 1;
     }
 
     public void wKeyMovement() {
@@ -104,6 +106,10 @@ public class Player extends GameObjects {
         return healthpoints;
     }
 
+    public void manipulateHealthpoints(int hp){
+        this.healthpoints += hp;
+    }
+
     public void setScore(int score) {
         this.score = score;
 
@@ -128,5 +134,13 @@ public class Player extends GameObjects {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public int getLevelPlayer() {
+        return levelPlayer;
+    }
+
+    public void setLevelPlayer(int levelPlayer) {
+        this.levelPlayer = levelPlayer;
     }
 }

@@ -1,30 +1,50 @@
 package objects.enemies;
 
 import objects.GameObjects;
+import objects.enemies.types.*;
+
+import java.util.ArrayList;
 
 public abstract class Enemies extends GameObjects {
 
-    private int healthpoints, speed ;
-    private boolean istamLeben;
+    private int healthpoints, speed;
+    private boolean alive;
 
-
-
+    private static ArrayList<ArrayList> instances = new ArrayList<>(5);
 
 
     public Enemies(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
         super(x, y, width, height, filepathSkin);
         this.healthpoints = healthpoints;
-        this.istamLeben=true;
+        this.alive = true;
     }
+
 
     public abstract void move();
+    public abstract void threading();
 
+    public static void createLists(){
+        ArrayList<Affe> instancesA = new ArrayList<>();
+        ArrayList<Puffy> instancesP = new ArrayList<>();
+        ArrayList<Dwarf> instancesD = new ArrayList<>();
+        ArrayList<Kitty> instancesK = new ArrayList<>();
+        ArrayList<Unicorn> instancesU = new ArrayList<>();
 
-    public void setIstamLeben(boolean istamLeben) {
-        this.istamLeben = istamLeben;
+        instances.add(instancesA);
+        instances.add(instancesP);
+        instances.add(instancesD);
+        instances.add(instancesK);
+        instances.add(instancesU);
+
+        System.out.println("I am secial");
     }
-    public boolean isIstamLeben() {
-        return istamLeben;
+
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+    public boolean isAlive() {
+        return alive;
     }
 
     public int getHealthpoints() {
@@ -39,8 +59,9 @@ public abstract class Enemies extends GameObjects {
         return speed;
     }
 
-
-
+    public static ArrayList<ArrayList> getInstances() {
+        return instances;
+    }
 
     public void setSpeed(int speed) {
         this.speed = speed;
