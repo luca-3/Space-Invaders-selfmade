@@ -1,6 +1,7 @@
-package objects.enemies;
+package objects.enemies.types;
 
 import main.Util;
+import objects.enemies.Enemies;
 
 public class Affe extends Enemies {
     public Affe(int x, int y, int width, int height, int healthpoints, String filepathSkin) {

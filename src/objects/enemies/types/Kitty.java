@@ -1,8 +1,9 @@
-package objects.enemies;
+package objects.enemies.types;
 
 import main.Util;
+import objects.enemies.Enemies;
 
-public class Kitty extends Enemies{
+public class Kitty extends Enemies {
     public Kitty(int x, int y, int width, int height, int healthpoints, String filepathSkin, int speed) {
         super(x, y, width, height, healthpoints, filepathSkin);
         setSpeed(speed);

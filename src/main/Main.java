@@ -3,7 +3,7 @@ package main;
 
 
 import objects.Player;
-import objects.enemies.Affe;
+import objects.enemies.types.Affe;
 
 import java.util.HashMap;
 
