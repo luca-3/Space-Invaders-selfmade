@@ -27,7 +27,7 @@ public class Kitty extends Enemies {
         int y =getScreen().getMonitorHeight();
         int x= getScreen().getMonitorWidth();
         setX   ((int )(Math.random() * (x - (x-x/8)) + (x-(x/8))));
-        setY( (int) (Math.random()*(y-30)+ 30) );
+        setY( (int) (Math.random()*((y-30)-50)+ 50) );
     }
 
 
@@ -49,7 +49,8 @@ public class Kitty extends Enemies {
             }  ;  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
             setX(x);
 
-            //TODO implement method to kill kitty after shoot
+            //TODO ifmplement method to kill kitty after shoot
+            setAlive(false);
 
             Util.sleep(1000);
         }

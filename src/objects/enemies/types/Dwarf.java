@@ -29,7 +29,7 @@ public class Dwarf extends Enemies {
         int y =getScreen().getMonitorHeight();
         int x= getScreen().getMonitorWidth();
         setX   ((int )(Math.random() * (x - (x-x/8)) + (x-(x/8))));
-        setY( (int) (Math.random()*(y-30)+ 30) );
+        setY( (int) (Math.random()*((y-50)-30)+ 30) );
 
     }
 
@@ -43,7 +43,7 @@ public class Dwarf extends Enemies {
 
     public void move() {
         while (isAlive()) {
-            setX(getX()-1);
+            setX(getX()-10);
            // setY (getY()-20);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
 
             checkIfOutOfScreen();

@@ -35,7 +35,7 @@ public class Puffy extends Enemies {
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
         setX   ((int )(Math.random() * (x - (x-x/8)) + (x-(x/8))));
-        setY( (int) (Math.random()*(y-30)+ 30) );
+        setY( (int) (Math.random()*((y-30)-50)+ 50) );
 
     }
 

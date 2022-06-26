@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class EnemyHandler {
 
-    private static int levelMap = 1;
+    private static int levelMap = 2;
 
     public static void loop(){
         while (true){
@@ -82,24 +82,27 @@ public class EnemyHandler {
             stillAlive = isEnemyStillAlive();
         }
         levelMap++;
-        //Enemies.createLists();
+        Enemies.createLists();
+        gernarateLevel();
+
+
     }
 
     private static void spawnEnemies(int numberEnemies) {
         Random r = new Random();
 
         for(int i = 0; i < numberEnemies; i++){
-            int difficulty =1; //(int) ( r.nextDouble(1, 2.5) + levelMap / 10 )
+            int difficulty =(int) ( r.nextDouble(1, 2.5) + levelMap / 10 );
             int id = -1;
 
 
             if (difficulty == 1){ //Puffy,
-                id = 1; //(int) r.nextDouble(1, 2.99)
+                id =(int) r.nextDouble(1, 2.99) ;
                 if (id == 1) Puffy.createInstance(); ;//spawn Puffy;
                 if (id == 2) ;//spawn . . .
 
             }else if (difficulty == 2){ //Affe, Dwarf
-                id = (int) r.nextDouble(1, 2.99);
+                id = (int) r.nextDouble(1, 2.99) ; ;
                 if (id == 1) Affe.createInstance(); //spawn Affe;
                 if (id == 2) Dwarf.createInstance(); //spawn Dwarf
 
@@ -127,58 +130,58 @@ public class EnemyHandler {
         return enemyStillAlive;
     }
 
-    public static void deleteDeadEnemies(){
-        ArrayList<ArrayList> enemys =  Enemies.getInstances();
+    public static void deleteDeadEnemies() {
+        ArrayList<ArrayList> enemys = Enemies.getInstances();
 
-        for(int j = 0; j < enemys.size(); j++) {
+        for (int j = 0; j < enemys.size(); j++) {
+
+
             for (int i = 0; i < enemys.get(j).size(); i++) {
-                j = 0;
 
 
                 if (j == 0) {
-                    System.out.println("EnemyHandler.loop()");
                     Affe tempA = (Affe) enemys.get(j).get(i);
-                    if(true) {
-
+                    if (!tempA.isAlive()) {
                         ((Affe) enemys.get(j).get(i)).removeJLabel();
                         enemys.get(j).remove(i);
                     }
-
-                } /*else if (j == 1) {
+                } else if (j == 1) {
                     Puffy tempP = (Puffy) enemys.get(j).get(i);
-                    if(!tempP.isAlive()) {
+                    if (!tempP.isAlive()) {
                         ((Puffy) enemys.get(j).get(i)).removeJLabel();
                         enemys.get(j).remove(i);
                     }
 
                 } else if (j == 2) {
                     Dwarf tempD = (Dwarf) enemys.get(j).get(i);
-                    if(!tempD.isAlive()) {
+                    if (!tempD.isAlive()) {
                         ((Dwarf) enemys.get(j).get(i)).removeJLabel();
                         enemys.get(j).remove(i);
                     }
 
                 } else if (j == 3) {
                     Kitty tempK = (Kitty) enemys.get(j).get(i);
-                    if(!tempK.isAlive()) {
+                    if (!tempK.isAlive()) {
                         ((Kitty) enemys.get(j).get(i)).removeJLabel();
                         enemys.get(j).remove(i);
                     }
 
                 } else if (j == 4) {
                     Unicorn tempU = (Unicorn) enemys.get(j).get(i);
-                    if(!tempU.isAlive()) {
+                    if (!tempU.isAlive()) {
                         ((Unicorn) enemys.get(j).get(i)).removeJLabel();
                         enemys.get(j).remove(i);
                     }
                 }
-                */
-
             }
 
 
         }
     }
+
+
+
+
 
 
     public static int getLevelMap() {
