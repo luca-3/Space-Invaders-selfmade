@@ -4,6 +4,7 @@ package main;
 
 import objects.GameObjects;
 import objects.Player;
+import objects.bullets.Bullets;
 import objects.enemies.Enemies;
 import objects.enemies.EnemyHandler;
 import objects.enemies.types.Affe;
@@ -23,6 +24,7 @@ public class Main {
 
         //no Dependencies
         Enemies.createLists();
+        Bullets.createLists();
         daten = new HashMap<>();
 
         //Dependencies within the creation of the Object

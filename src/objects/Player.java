@@ -4,6 +4,8 @@ package objects;
 import main.Keyboard;
 import main.Main;
 import main.Util;
+import objects.bullets.Bullets;
+import objects.bullets.types.Laser;
 
 import java.awt.*;
 
@@ -108,8 +110,10 @@ public class Player extends GameObjects {
                     }
                     this.countBullet++;
                 }
-
                  */
+
+                Laser.createInstance(getX(), getY(), "right");
+                Laser.createInstance(getX(), getY() + getHeight(), "right");
             }
             while (Main.isPause()) Util.sleep(100);
             Util.sleep(20);

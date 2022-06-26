@@ -43,7 +43,7 @@ public class EnemyHandler {
                 }else if(j == 1){
                     Puffy tempP = (Puffy) enemys.get(j).get(i);
                     enemy = tempP.getJLabel();
-                    System.out.println(tempP.isAlive());
+                    //System.out.println(tempP.isAlive());
 
                 }else if(j == 2){
                     Dwarf tempD = (Dwarf) enemys.get(j).get(i);
