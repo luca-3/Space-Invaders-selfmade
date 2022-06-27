@@ -52,10 +52,10 @@ public class Screen extends JFrame {
 
 
     public void generateTags() {
-        score = new Tag(10, 10,120, 20, null, "Score: ", "score");
-        lives = new Tag(10, 30,120, 20, null, "Lives: ", "lives");
-        level = new Tag(10, 50,120, 20, null, "Level: ", "level");
-        time = new Tag(10, 70,200, 20, null, "Time passed: ", "time");
+        lives = new Tag(10, 10 ,120, 32, null, "Lives: ", "lives"); //height should be a multiple of 8
+        score = new Tag(10, 40,120, 20, null, "Score: ", "score");
+        level = new Tag(10, 60,120, 20, null, "Level: ", "level");
+        time = new Tag(10, 80,200, 20, null, "Time passed: ", "time");
     }
 
     public void updateTags(){

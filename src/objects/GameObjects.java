@@ -20,7 +20,7 @@ public abstract class GameObjects {
         this.width = width;
         this.height = height;
         this.s = Main.getScreen();
-        this.skin = Util.resizeImage(width, height, filepathSkin);
+        if(filepathSkin != null) this.skin = Util.resizeImage(width, height, filepathSkin);
 
         label = new JLabel();
         label.setBounds(x, y, width, height);

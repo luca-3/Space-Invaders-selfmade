@@ -7,6 +7,7 @@ import main.Util;
 import objects.bullets.Bullets;
 import objects.bullets.types.Laser;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Player extends GameObjects {
@@ -19,16 +20,17 @@ public class Player extends GameObjects {
         super(500, 500, 120, 120, "resources/player/Spaceship.png");
 
         this.score = 0;
-        this.healthpoints = 5;
+        this.healthpoints = 3;
         this.levelPlayer = 1;
         getJLabel().setBackground(Color.red);
     }
+
 
     public void reset(){
         setX(500);
         setY(500);
         this.score = 0;
-        this.healthpoints = 5;
+        this.healthpoints = 3;
         this.levelPlayer = 1;
     }
 
@@ -118,6 +120,14 @@ public class Player extends GameObjects {
             while (Main.isPause()) Util.sleep(100);
             Util.sleep(20);
         }
+    }
+
+    public static Icon getLivesIcon(int numberOfLives, int heightJLabel) {
+        String iconPath = String.format("resources/player/heart%d.png", numberOfLives);
+        int width = 40 * numberOfLives - 8;
+        Icon icon = Util.resizeImage(width, heightJLabel, iconPath);
+
+        return icon;
     }
 
 

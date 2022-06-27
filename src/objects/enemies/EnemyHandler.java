@@ -31,7 +31,7 @@ public class EnemyHandler {
 
 
         for(int j = 0; j < enemys.size(); j++){
-            System.out.println(enemys + "     "+ j);
+            //System.out.println(enemys + "     "+ j);
 
             for(int i = 0; i < enemys.get(j).size(); i++){
                 JLabel enemy = null;
