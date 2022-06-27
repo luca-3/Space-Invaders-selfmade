@@ -26,6 +26,17 @@ public class Util {
             return new ImageIcon(dimg);
         }catch (Exception e){
             System.out.println("Error while resizing skin: " + e);
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static BufferedImage loadImage(String path){
+        try{
+            return ImageIO.read(new File(path));
+        }catch (Exception e){
+            System.out.println("Error while loading image: " + e);
+            e.printStackTrace();
         }
         return null;
     }
