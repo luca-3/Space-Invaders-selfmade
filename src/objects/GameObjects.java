@@ -1,5 +1,4 @@
 package objects;
-//NEW
 
 import main.Main;
 import main.Screen;
