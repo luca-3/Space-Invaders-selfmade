@@ -1,5 +1,6 @@
 package objects.enemies;
 
+import main.Main;
 import objects.GameObjects;
 import objects.enemies.types.*;
 
@@ -11,6 +12,8 @@ public abstract class Enemies extends GameObjects {
     private boolean alive = true;
 
 
+
+    private int rateSpeed;
     private static ArrayList<ArrayList> instances;
 
     public Enemies(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
@@ -73,5 +76,10 @@ public abstract class Enemies extends GameObjects {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+        rateSpeed = (int )Main.getScreen().getMonitorWidth()/130*speed;
     }
+    public int getRateSpeed() {return rateSpeed;
+    }
+
+    public void setRateSpeed(int rateSpeed) {this.rateSpeed = rateSpeed;}
 }

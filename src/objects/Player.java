@@ -22,7 +22,7 @@ public class Player extends GameObjects {
         this.score = 0;
         this.healthpoints = 3;
         this.levelPlayer = 1;
-        getJLabel().setBackground(Color.red);
+
     }
 
 

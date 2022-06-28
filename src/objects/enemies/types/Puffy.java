@@ -3,6 +3,8 @@ package objects.enemies.types;
 import main.Util;
 import objects.enemies.Enemies;
 
+import java.util.Random;
+
 public class Puffy extends Enemies {
 
     public static void createInstance(){
@@ -19,7 +21,7 @@ public class Puffy extends Enemies {
 
     private Puffy(){
         super(-500, -400, 50, 50, 6, "resources/enemies/puffy-big.png");  //TODO dynamische Wert bei widht und Height
-        setSpeed(10); //TODO dynamisch anpassen lassen
+        setSpeed(2);
 
         findXandYforSpwan();
         threading();
@@ -32,10 +34,11 @@ public class Puffy extends Enemies {
 
     public void findXandYforSpwan(){
 
+        Random r = new Random();
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
-        setX   ((int )(Math.random() * (x - (x-x/8)) + (x-(x/8))));
-        setY( (int) (Math.random()*((y-30)-50)+ 50) );
+        setX( (int)  (r.nextDouble((x-x/(20)),x)));;
+        setY((int) (r.nextDouble(0,y)));
 
     }
 
@@ -45,10 +48,10 @@ public class Puffy extends Enemies {
         int  x= getScreen().getMonitorWidth()/2;
         while (isAlive()) {
 
-            setX(getX()-getSpeed());  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread  //
+            setX(getX()-getRateSpeed());
 
             if(getX()<x){
-                                     //tODO Funktion Pufferfisch Explodiert
+                                   //TOdo pufferfisch explodiert
             }
 
             checkIfOutOfScreen();

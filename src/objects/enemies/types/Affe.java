@@ -1,7 +1,11 @@
 package objects.enemies.types;
 
+import main.Main;
 import main.Util;
 import objects.enemies.Enemies;
+
+import java.sql.SQLOutput;
+import java.util.Random;
 
 public class Affe extends Enemies {
 
@@ -17,7 +21,7 @@ public class Affe extends Enemies {
 
     private Affe() {
         super(-500, -400, 120, 190, 3, "resources/enemies/affe.png"); //TODO dynamische Wert bei widht und Height  und dateiName ändern
-        setSpeed(2);
+        setSpeed(1);
         setAlive(true);
         findXandYforSpwan();
         threading();
@@ -25,11 +29,11 @@ public class Affe extends Enemies {
 
     public void findXandYforSpwan() {
 
+        Random r = new Random();
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
-        setX((int) (Math.random() * (x - (x - x / 8)) + (x - (x / 8))));
-        setY((int) (Math.random() * ((y-50) - 50) + 50));
-
+        setX( (int)  (r.nextDouble((x-x/(20)),x)));;
+        setY((int) (r.nextDouble(85,(y-getHeight())-(y/5)))); //Formel vehinder dass affe unten aus bildschrim lauft
 
     }
 
@@ -40,12 +44,22 @@ public class Affe extends Enemies {
     }
 
     public void move () {
+        int yfactor= (int)(Main.getScreen().getMonitorHeight()/13.5);  //Y wert /streckung von sin kurve in y richtung
+        int xfactor= (int) (Main.getScreen().getMonitorWidth()/19.2);  // parameter für die Streckung in x achse
+
+        double sinFactor= 1/(double) yfactor; // streckung in x
+        int spwanhigh=getY();
+        System.out.println(sinFactor);
+
         while (isAlive()) {
-            setX(getX() - 10);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
-         //   setY(int) (Math.sin(getX()/100)*200));  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Sin curve Move)//
+            setX(getX()-getRateSpeed());
+
+            setY(
+                    (int) ((Math.sin(sinFactor * (double )getX()))  * yfactor + spwanhigh)
+            );
 
             checkIfOutOfScreen();
-            Util.sleep(20);
+            Util.sleep(50);
         }
     }
 
