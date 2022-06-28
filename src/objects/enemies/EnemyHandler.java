@@ -143,12 +143,14 @@ public class EnemyHandler {
                     Affe tempA = (Affe) enemys.get(j).get(i);
                     if (!tempA.isAlive()) {
                         ((Affe) enemys.get(j).get(i)).removeJLabel();
+                        enemys.get(j).set(i, null);
                         enemys.get(j).remove(i);
                     }
                 } else if (j == 1) {
                     Puffy tempP = (Puffy) enemys.get(j).get(i);
                     if (!tempP.isAlive()) {
                         ((Puffy) enemys.get(j).get(i)).removeJLabel();
+                        enemys.get(j).set(i, null);
                         enemys.get(j).remove(i);
                     }
 
@@ -156,6 +158,7 @@ public class EnemyHandler {
                     Dwarf tempD = (Dwarf) enemys.get(j).get(i);
                     if (!tempD.isAlive()) {
                         ((Dwarf) enemys.get(j).get(i)).removeJLabel();
+                        enemys.get(j).set(i, null);
                         enemys.get(j).remove(i);
                     }
 
@@ -163,6 +166,7 @@ public class EnemyHandler {
                     Kitty tempK = (Kitty) enemys.get(j).get(i);
                     if (!tempK.isAlive()) {
                         ((Kitty) enemys.get(j).get(i)).removeJLabel();
+                        enemys.get(j).set(i, null);
                         enemys.get(j).remove(i);
                     }
 
@@ -170,6 +174,7 @@ public class EnemyHandler {
                     Unicorn tempU = (Unicorn) enemys.get(j).get(i);
                     if (!tempU.isAlive()) {
                         ((Unicorn) enemys.get(j).get(i)).removeJLabel();
+                        enemys.get(j).set(i, null);
                         enemys.get(j).remove(i);
                     }
                 }
