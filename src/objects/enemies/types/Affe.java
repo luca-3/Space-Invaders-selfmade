@@ -44,8 +44,8 @@ public class Affe extends Enemies {
     }
 
     public void move () {
-        int yfactor= (int)(Main.getScreen().getMonitorHeight()/13.5);  //Y wert /streckung von sin kurve in y richtung
-        int xfactor= (int) (Main.getScreen().getMonitorWidth()/19.2);  // parameter für die Streckung in x achse
+        int yfactor= (int)(Main.getScreen().getMonitorHeight()/7.2);  //Y wert /streckung von sin kurve in y richtung
+        //int xfactor= (int) (Main.getScreen().getMonitorWidth()/4.8);  // parameter für die Streckung in x achse
 
         double sinFactor= 1/(double) yfactor; // streckung in x
         int spwanhigh=getY();
@@ -59,7 +59,7 @@ public class Affe extends Enemies {
             );
 
             checkIfOutOfScreen();
-            Util.sleep(50);
+            Util.sleep(30);
         }
     }
 

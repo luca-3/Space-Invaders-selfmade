@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class EnemyHandler {
 
-    private static int levelMap = 2;
+    private static int levelMap = 22;
 
     public static void loop(){
         while (true){

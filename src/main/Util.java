@@ -21,6 +21,7 @@ public class Util {
     }
 
     public static ImageIcon resizeImage(int width, int height, String filepathSkin) {
+        //TODO: Verschiedene Größen der gleichen Datei ermöglichen
         //resize images initially to fit the screen
         //if image is already in the right size, no need to resize it. Then get it from main/data/images/
         String filename = replaceSlash(filepathSkin);
@@ -38,7 +39,6 @@ public class Util {
 
         Image image = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 
-
         //Save new Image in main/data/images/
         try {
             ImageIO.write(toBufferedImage(image), "png", new File("resources/data/images/" + filename));
@@ -48,8 +48,6 @@ public class Util {
         }
 
         return new ImageIcon(image);
-
-
     }
 
 
@@ -66,9 +64,7 @@ public class Util {
                 }
             }
         }
-
         return null;
-
     }
 
 
