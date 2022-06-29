@@ -23,7 +23,7 @@ public class Util {
     public static ImageIcon resizeImage(int width, int height, String filepathSkin) {
         //resize images initially to fit the screen
         //if image is already in the right size, no need to resize it. Then get it from resources/data/images/
-        String filename = replaceSlash(filepathSkin) + width + "x" + height;
+        String filename =  width + "x" + height + replaceSlash(filepathSkin);
         ImageIcon icon = getBufferedImage(filename);
         if(icon != null) return icon;
 
@@ -40,7 +40,8 @@ public class Util {
 
         //Save new Image in main/data/images/
         try {
-            ImageIO.write(toBufferedImage(image), "png", new File("resources/data/images/" + filename));
+            boolean written = ImageIO.write(toBufferedImage(image), "png", new File("resources/data/images/" + filename));
+            if(written) System.out.println("Image written: " + filename);
             //ImageIO.createImageOutputStream(new File("resources/data/images/" + filename));
         } catch (Exception e) {
             System.out.println("Error while writing image: " + e);

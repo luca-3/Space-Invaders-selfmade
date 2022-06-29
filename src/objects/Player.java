@@ -130,6 +130,7 @@ public class Player extends GameObjects {
     }
 
     public static Icon getLivesIcon(int numberOfLives, int heightJLabel) {
+        numberOfLives = (numberOfLives == 0) ? 3 : numberOfLives; //if numberOfLives is 0, set it to 3 (to prevent the program from looking for a picture with a picture 0 hearts)
         String iconPath = String.format("resources/player/heart%d.png", numberOfLives);
         int width = 40 * numberOfLives - 8;
         Icon icon = Util.resizeImage(width, heightJLabel, iconPath);
