@@ -62,7 +62,7 @@ public class Main {
         Util.sleep(2000);
 
         Thread loopColisionAndRemove = new Thread(() -> EnemyHandler.loop());
-        loopColisionAndRemove.setName("T - ssssssssssloopColisionAndRemove");
+        loopColisionAndRemove.setName("T - loopColisionAndRemove");
         loopColisionAndRemove.start();
     }
 

@@ -40,7 +40,7 @@ public class Player extends GameObjects {
         manipulateHealthpoints(-1);
         setLocation(500, 500);
 
-        setInvulnerable(3000);
+        setInvulnerable(30000);
     }
 
     private void setInvulnerable(int millis) {
@@ -88,7 +88,7 @@ public class Player extends GameObjects {
                 if (getX() > 0) xShift -= speed;
             }
             if (Keyboard.isSPressed()){
-                if (getX() < getScreen().getMonitorWidth() - getWidth()) yShift += speed;
+                if (getY() < getScreen().getMonitorHeight() - getHeight()) yShift += speed;
             }
             if (Keyboard.isDPressed()) {
                 if (getX() < getScreen().getMonitorWidth() - getWidth()) xShift += speed;
