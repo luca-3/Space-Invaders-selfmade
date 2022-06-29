@@ -83,4 +83,13 @@ public abstract class GameObjects {
         return label;
     }
 
+    public void setHeight(int height) {
+        this.height = height;
+        getJLabel().setBounds(getX(), getY(), width, height);
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+        getJLabel().setBounds(getX(), getY(), width, height);
+    }
 }

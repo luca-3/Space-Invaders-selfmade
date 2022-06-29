@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class Player extends GameObjects {
 
-    private int healthpoints, score, levelPlayer;
+    private int healthpoints, score, levelPlayer, initialHeight, initialWidth;
     int speed = 10;
 
 
@@ -22,6 +22,8 @@ public class Player extends GameObjects {
         this.score = 0;
         this.healthpoints = 3;
         this.levelPlayer = 1;
+        this.initialHeight = getHeight();
+        this.initialWidth = getWidth();
 
     }
 
@@ -38,15 +40,13 @@ public class Player extends GameObjects {
         manipulateHealthpoints(-1);
         setLocation(500, 500);
 
-
-        setInvulnerable(2000);
-
+        setInvulnerable(3000);
     }
 
     private void setInvulnerable(int millis) {
-        //TODO change skin to one with shield
         for(int i = 4; i >= 0; i--){
             updateGraphicsForShieldState(i);
+            if(i == 0) setX(getX()+24); //to compensate for the different sizes of the skins with and without shields
             //Equation to split the wait time to make it look like the shield is being taken away slowly
             int sleepTime = (int) ((millis - millis / 4) + ((100 * millis/1500) - (millis - millis / 4) ) / (1 + Math.pow(i / 3.117136, 46.77973)));
             Util.sleep(sleepTime);
@@ -62,12 +62,15 @@ public class Player extends GameObjects {
 
     public void updateGraphicsForShieldState(int shieldState){ //shieldState = 0 - 4, where 0 is no shield and 1 - 4 is the shield in different sizes
         if(shieldState == 0){
-            getJLabel().setIcon(Util.resizeImage(getWidth(), getHeight(), "resources/player/Spaceship.png"));
+            getJLabel().setIcon(Util.resizeImage(initialWidth, initialHeight, "resources/player/Spaceship.png"));
             return;
         }
 
         String iconPath = String.format("resources/player/player-with-bubble-shield-%dof4.png", shieldState);
         //int width = 40 * shieldState - 8;
+        setHeight((int) (initialHeight * 1.2));
+        setWidth((int) (initialWidth * 1.2));
+
         Icon icon = Util.resizeImage(getWidth(), getHeight(), iconPath);
         getJLabel().setIcon(icon);
     }
