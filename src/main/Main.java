@@ -44,22 +44,25 @@ public class Main {
 
     private static void startThreading() {
         Thread movementPlayer = new Thread(() -> player.move());
-        movementPlayer.setName("movementPlayer");
+        movementPlayer.setName("T - movementPlayer");
         movementPlayer.start();
 
-
         Thread spaceKeyPlayer = new Thread(() -> player.spaceKeyMovement());
+        spaceKeyPlayer.setName("T - spaceKeyPlayer");
         spaceKeyPlayer.start();
 
         Thread updaterTags = new Thread(() -> s.updateTags());
+        updaterTags.setName("T - updaterTags");
         updaterTags.start();
 
         Thread levelSpawn = new Thread(() -> EnemyHandler.gernarateLevel());
+        levelSpawn.setName("T - levelSpawn");
         levelSpawn.start();
 
         Util.sleep(2000);
 
         Thread loopColisionAndRemove = new Thread(() -> EnemyHandler.loop());
+        loopColisionAndRemove.setName("T - ssssssssssloopColisionAndRemove");
         loopColisionAndRemove.start();
     }
 

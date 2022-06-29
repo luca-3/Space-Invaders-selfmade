@@ -37,14 +37,20 @@ public class Player extends GameObjects {
     public void gotHit(){
         manipulateHealthpoints(-1);
         setLocation(500, 500);
-        setInvulnerable(true);
+
+
+        setInvulnerable(2000);
 
     }
 
-    private void setInvulnerable(boolean b) {
+    private void setInvulnerable(int millis) {
         //TODO change skin to one with shield
-        Util.sleep(2000);
-
+        for(int i = 4; i >= 0; i--){
+            updateGraphicsForShieldState(i);
+            //Equation to split the wait time to make it look like the shield is being taken away slowly
+            int sleepTime = (int) ((millis - millis / 4) + ((100 * millis/1500) - (millis - millis / 4) ) / (1 + Math.pow(i / 3.117136, 46.77973)));
+            Util.sleep(sleepTime);
+        }
     }
 
     public void checkIfDead(){
@@ -52,6 +58,18 @@ public class Player extends GameObjects {
             reset();
             //TODO: Game Over message
         }
+    }
+
+    public void updateGraphicsForShieldState(int shieldState){ //shieldState = 0 - 4, where 0 is no shield and 1 - 4 is the shield in different sizes
+        if(shieldState == 0){
+            getJLabel().setIcon(Util.resizeImage(getWidth(), getHeight(), "resources/player/Spaceship.png"));
+            return;
+        }
+
+        String iconPath = String.format("resources/player/player-with-bubble-shield-%dof4.png", shieldState);
+        //int width = 40 * shieldState - 8;
+        Icon icon = Util.resizeImage(getWidth(), getHeight(), iconPath);
+        getJLabel().setIcon(icon);
     }
 
     public void move() {
@@ -78,8 +96,6 @@ public class Player extends GameObjects {
             Util.sleep(20);
         }
     }
-
-
 
     
     public void spaceKeyMovement() {
