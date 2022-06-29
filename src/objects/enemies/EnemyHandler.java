@@ -3,6 +3,7 @@ package objects.enemies;
 import main.Main;
 import main.Util;
 
+import objects.GameObjects;
 import objects.Player;
 import objects.enemies.types.*;
 
@@ -12,7 +13,7 @@ import java.util.Random;
 
 public class EnemyHandler {
 
-    private static int levelMap = 22;
+    private static int levelMap = 5;
 
     public static void loop(){
         while (true){
@@ -25,47 +26,19 @@ public class EnemyHandler {
 
     public static void checkCollisionPvE() {
         Player p = Main.getPlayer();
-
-
         ArrayList<ArrayList> enemys =  Enemies.getInstances();
 
-
         for(int j = 0; j < enemys.size(); j++){
-            //System.out.println(enemys + "     "+ j);
-
             for(int i = 0; i < enemys.get(j).size(); i++){
                 JLabel enemy = null;
 
-                if(j == 0){
-                    Affe tempA = (Affe) enemys.get(j).get(i);
-                    enemy = tempA.getJLabel();
-
-                }else if(j == 1){
-                    Puffy tempP = (Puffy) enemys.get(j).get(i);
-                    enemy = tempP.getJLabel();
-                    //System.out.println(tempP.isAlive());
-
-                }else if(j == 2){
-                    Dwarf tempD = (Dwarf) enemys.get(j).get(i);
-                    enemy = tempD.getJLabel();
-
-                }else if(j == 3){
-                    Kitty tempK = (Kitty) enemys.get(j).get(i);
-                    enemy = tempK.getJLabel();
-
-                }else if(j == 4){
-                    Unicorn tempU = (Unicorn) enemys.get(j).get(i);
-                    enemy = tempU.getJLabel();
-
-                }
+                GameObjects temp = (GameObjects) enemys.get(j).get(i);
+                enemy = temp.getJLabel();
 
                 if(rectCollision(p.getJLabel(), enemy)) Main.getPlayer().gotHit();
             }
-
         }
         Util.sleep(100);
-
-
     }
 
     public static void gernarateLevel(){
