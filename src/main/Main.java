@@ -43,17 +43,10 @@ public class Main {
 
 
     private static void startThreading() {
-        Thread wKeyPlayer = new Thread(() -> player.wKeyMovement());
-        wKeyPlayer.start();
+        Thread movementPlayer = new Thread(() -> player.move());
+        movementPlayer.setName("movementPlayer");
+        movementPlayer.start();
 
-        Thread aKeyPlayer = new Thread(() -> player.aKeyMovement());
-        aKeyPlayer.start();
-
-        Thread sKeyPlayer = new Thread(() -> player.sKeyMovement());
-        sKeyPlayer.start();
-
-        Thread dKeyPlayer = new Thread(() -> player.dKeyMovement());
-        dKeyPlayer.start();
 
         Thread spaceKeyPlayer = new Thread(() -> player.spaceKeyMovement());
         spaceKeyPlayer.start();

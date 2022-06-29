@@ -54,45 +54,33 @@ public class Player extends GameObjects {
         }
     }
 
-    public void wKeyMovement() {
+    public void move() {
+        int xShift, yShift;
+
         while (!Main.isPause()) {
+            xShift = 0;
+            yShift = 0;
             if (Keyboard.isWPressed()) {
-                if (getY() > 0) setY(getY() - speed);
+                if (getY() > 0) yShift -= speed;
             }
-            while (Main.isPause()) Util.sleep(100);
-            Util.sleep(20);
-        }
-    }
-
-    public void aKeyMovement() {
-        while (!Main.isPause()) {
-            if (Keyboard.isAPressed()) {
-                if (getX() > 0) setX(getX() - speed);
+            if (Keyboard.isAPressed()){
+                if (getX() > 0) xShift -= speed;
             }
-            while (Main.isPause()) Util.sleep(100);
-            Util.sleep(20);
-        }
-    }
-
-    public void sKeyMovement() {
-        while (!Main.isPause()) {
-            if (Keyboard.isSPressed()) {
-                if (getY() < getScreen().getMonitorHeight() - getHeight()) setY(getY() + speed);
+            if (Keyboard.isSPressed()){
+                if (getX() < getScreen().getMonitorWidth() - getWidth()) yShift += speed;
             }
-            while (Main.isPause()) Util.sleep(100);
-            Util.sleep(20);
-        }
-    }
-
-    public void dKeyMovement() {
-        while (!Main.isPause()) {
             if (Keyboard.isDPressed()) {
-                if (getX() < getScreen().getMonitorWidth() - getWidth()) setX(getX() + speed);
+                if (getX() < getScreen().getMonitorWidth() - getWidth()) xShift += speed;
             }
+            setLocation(getX() + xShift, getY() + yShift);
+
             while (Main.isPause()) Util.sleep(100);
             Util.sleep(20);
         }
     }
+
+
+
     
     public void spaceKeyMovement() {
         while (!Main.isPause()) {

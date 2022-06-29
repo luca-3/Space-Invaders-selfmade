@@ -22,7 +22,7 @@ public class Util {
 
     public static ImageIcon resizeImage(int width, int height, String filepathSkin) {
         //resize images initially to fit the screen
-        //if image is already in the right size, no need to resize it. Then get it from ressources/data/images/
+        //if image is already in the right size, no need to resize it. Then get it from resources/data/images/
         String filename = replaceSlash(filepathSkin) + width + "x" + height;
         ImageIcon icon = getBufferedImage(filename);
         if(icon != null) return icon;
