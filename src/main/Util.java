@@ -27,6 +27,8 @@ public class Util {
         ImageIcon icon = getBufferedImage(filename);
         if(icon != null) return icon;
 
+        checkDict("resources/data/images/");
+
 
         //get Image from the filepathSkin and resize it with the given width and height
         BufferedImage img = null;
@@ -48,6 +50,14 @@ public class Util {
         }
 
         return new ImageIcon(image);
+    }
+
+    private static void checkDict(String path) {
+        //check if the directory exists, if not create it
+        File directory = new File(path);
+        if (! directory.exists()){
+            directory.mkdirs();
+        }
     }
 
 
