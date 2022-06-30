@@ -57,8 +57,6 @@ public class EnemyHandler {
         levelMap++;
         Enemies.createLists();
         gernarateLevel();
-
-
     }
 
     private static void spawnEnemies(int numberEnemies) {
@@ -70,7 +68,7 @@ public class EnemyHandler {
 
 
             if (difficulty == 1){ //Puffy,
-                id =(int) r.nextDouble(1, 2.99) ;
+                id = (int) r.nextDouble(1, 2.99) ;
                 if (id == 1) Puffy.createInstance(); ;//spawn Puffy;
                 if (id == 2) ;//spawn . . .
 
@@ -107,59 +105,18 @@ public class EnemyHandler {
         ArrayList<ArrayList> enemys = Enemies.getInstances();
 
         for (int j = 0; j < enemys.size(); j++) {
-
-
             for (int i = 0; i < enemys.get(j).size(); i++) {
 
+                Enemies temp = (Enemies) enemys.get(j).get(i);
 
-                if (j == 0) {
-                    Affe tempA = (Affe) enemys.get(j).get(i);
-                    if (!tempA.isAlive()) {
-                        ((Affe) enemys.get(j).get(i)).removeJLabel();
-                        enemys.get(j).set(i, null);
-                        enemys.get(j).remove(i);
-                    }
-                } else if (j == 1) {
-                    Puffy tempP = (Puffy) enemys.get(j).get(i);
-                    if (!tempP.isAlive()) {
-                        ((Puffy) enemys.get(j).get(i)).removeJLabel();
-                        enemys.get(j).set(i, null);
-                        enemys.get(j).remove(i);
-                    }
-
-                } else if (j == 2) {
-                    Dwarf tempD = (Dwarf) enemys.get(j).get(i);
-                    if (!tempD.isAlive()) {
-                        ((Dwarf) enemys.get(j).get(i)).removeJLabel();
-                        enemys.get(j).set(i, null);
-                        enemys.get(j).remove(i);
-                    }
-
-                } else if (j == 3) {
-                    Kitty tempK = (Kitty) enemys.get(j).get(i);
-                    if (!tempK.isAlive()) {
-                        ((Kitty) enemys.get(j).get(i)).removeJLabel();
-                        enemys.get(j).set(i, null);
-                        enemys.get(j).remove(i);
-                    }
-
-                } else if (j == 4) {
-                    Unicorn tempU = (Unicorn) enemys.get(j).get(i);
-                    if (!tempU.isAlive()) {
-                        ((Unicorn) enemys.get(j).get(i)).removeJLabel();
-                        enemys.get(j).set(i, null);
-                        enemys.get(j).remove(i);
-                    }
+                if(!temp.isAlive()){
+                    ((Enemies) enemys.get(j).get(i)).removeJLabel();
+                    enemys.get(j).set(i, null);
+                    enemys.get(j).remove(i);
                 }
             }
-
-
         }
     }
-
-
-
-
 
 
     public static int getLevelMap() {
