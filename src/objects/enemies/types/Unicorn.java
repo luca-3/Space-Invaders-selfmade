@@ -59,6 +59,7 @@ public class Unicorn extends Enemies {
             if(getX()<Main.getScreen().getMonitorWidth()/2){
                 berechneSteigung();
             }
+            checkIfOutOfScreen();
             Util.sleep(20);
         }
     }

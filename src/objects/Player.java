@@ -40,7 +40,7 @@ public class Player extends GameObjects {
         manipulateHealthpoints(-1);
         setLocation(500, 500);
 
-        setInvulnerable(30000);
+        setInvulnerable(1000);
     }
 
     private void setInvulnerable(int millis) {
