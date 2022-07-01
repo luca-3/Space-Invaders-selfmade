@@ -9,7 +9,7 @@ import javax.swing.*;
 public abstract class GameObjects {
 
     private int width, height, x, y;
-    private JLabel label;
+   private JLabel label;
     private Screen s;
     private Icon skin;
 
@@ -26,6 +26,13 @@ public abstract class GameObjects {
         label.setIcon(skin);
         s.getLayeredPane().add(label);
    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
+        s.getLayeredPane().add(label);
+    }
+
+
 
     public void move(){
         System.out.println("move");
