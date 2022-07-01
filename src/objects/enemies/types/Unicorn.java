@@ -1,9 +1,15 @@
 package objects.enemies.types;
 
+import main.Main;
 import main.Util;
 import objects.enemies.Enemies;
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.Random;
 
 public class Unicorn extends Enemies {
+
+    int steigung=0;
 
     public static void createInstance(){
         Unicorn temp = new Unicorn();
@@ -18,18 +24,19 @@ public class Unicorn extends Enemies {
 
     private Unicorn(){
         super(-500, -400, 64, 64, 4, "resources/enemies/unicorn.png");
-        setSpeed(2);
+        setSpeed(1);
         findXandYforSpwan();
         threading();
     }
 
     public void findXandYforSpwan(){
 
-        int y =getScreen().getMonitorHeight();
-        int x= getScreen().getMonitorWidth();
-        setX   ((int )(Math.random() * (x - (x-x/8)) + (x-(x/8))));
-        setY( (int) (Math.random()*((y-30)-50)+ 50) );
-
+        Random r = new Random();
+        int y = getScreen().getMonitorHeight();
+        int x = getScreen().getMonitorWidth();
+        setX( (int)  (r.nextDouble((x-x/(20)),x)));;
+        setY((int) (r.nextDouble(0,y)));
+        berechneSteigung();
     }
 
     public void threading() {
@@ -38,12 +45,28 @@ public class Unicorn extends Enemies {
     }
 
     public void move() {
-        while (isAlive()) {
-            setX(getX()-70);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (Verflogung Move) //
 
-            checkIfOutOfScreen();
-            Util.sleep(200);
+        while (isAlive()) {
+            setX(getX() - getRateSpeed());
+
+            setY(
+
+                    getY() +((steigung * getX()) / 50)
+
+            );
+            System.out.println(getY());
+
+            if(getX()<Main.getScreen().getMonitorWidth()/2){
+                berechneSteigung();
+            }
+            Util.sleep(20);
         }
+    }
+
+
+    public void berechneSteigung(){
+        this .steigung= 1/4;  // TODO formel passt nicht
+
     }
 
 
