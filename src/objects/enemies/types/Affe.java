@@ -20,7 +20,7 @@ public class Affe extends Enemies {
     }
 
     private Affe() {
-        super(-500, -400, 120, 190, 3, "resources/enemies/affe.png"); //TODO dynamische Wert bei widht und Height  und dateiName ändern
+        super(-500, -400, Main.getScreen().getMonitorWidth()/16, Main.getScreen().getMonitorHeight()/6, 3, "resources/enemies/affe.png");
         setSpeed(1);
         setAlive(true);
         findXandYforSpwan();

@@ -1,5 +1,6 @@
 package objects.enemies.types;
 
+import main.Main;
 import main.Util;
 import objects.enemies.Enemies;
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class Puffy extends Enemies {
 
 
     private Puffy(){
-        super(-500, -400, 50, 50, 6, "resources/enemies/puffy-small.png");  //TODO dynamische Wert bei widht und Height
+        super(-500, -400, Main.getScreen().getMonitorWidth()/38, Main.getScreen().getMonitorHeight()/22, 2, "resources/enemies/puffy-small.png");
         setSpeed(2);
 
         findXandYforSpwan();
@@ -38,7 +39,7 @@ public class Puffy extends Enemies {
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
         setX( (int)  (r.nextDouble((x-x/(20)),x)));;
-        setY((int) (r.nextDouble(0,y)));
+        setY((int) (r.nextDouble(0,(y-Main.getScreen().getMonitorHeight()/19)-getHeight())));
 
     }
 

@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Unicorn extends Enemies {
 
-    int steigung=0;
+    double steigung=0;
 
     public static void createInstance(){
         Unicorn temp = new Unicorn();
@@ -23,7 +23,7 @@ public class Unicorn extends Enemies {
 
 
     private Unicorn(){
-        super(-500, -400, 64, 64, 4, "resources/enemies/unicorn.png");
+        super(-500, -400, Main.getScreen().getMonitorWidth()/30, Main.getScreen().getMonitorHeight()/17, 4, "resources/enemies/unicorn.png");
         setSpeed(1);
         findXandYforSpwan();
         threading();
@@ -35,7 +35,7 @@ public class Unicorn extends Enemies {
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
         setX( (int)  (r.nextDouble((x-x/(20)),x)));;
-        setY((int) (r.nextDouble(0,y)));
+        setY((int) (r.nextDouble(0,(y-Main.getScreen().getMonitorHeight()/19)-getHeight())));
         berechneSteigung();
     }
 
@@ -47,26 +47,17 @@ public class Unicorn extends Enemies {
     public void move() {
 
         while (isAlive()) {
-            setX(getX() - getRateSpeed());
 
-            setY(
-
-                    getY() +((steigung * getX()) / 50)
-
-            );
+            setX(getX()-getRateSpeed());
+            setY( (int)  ( ((double)10*(double)steigung )) );
             System.out.println(getY());
-
-            if(getX()<Main.getScreen().getMonitorWidth()/2){
-                berechneSteigung();
-            }
-            checkIfOutOfScreen();
-            Util.sleep(20);
         }
     }
 
 
     public void berechneSteigung(){
-        this .steigung= 1/4;  // TODO formel passt nicht
+        this .steigung=(double) ((((double)Main.getPlayer().getY())-((double)getY()))/(((double)Main.getPlayer().getX())-((double)getX())))  ;  // TODO formel passt nicht
+        System.out.println(steigung+"steigung");
 
     }
 

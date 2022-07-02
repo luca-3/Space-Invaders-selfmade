@@ -17,7 +17,7 @@ public class Player extends GameObjects {
 
 
     public Player() {
-        super(500, 500, 120, 120, "resources/player/Spaceship.png");
+        super(500, 500, Main.getScreen().getMonitorWidth()/16,  (Main.getScreen().getMonitorHeight()/9), "resources/player/Spaceship.png");
 
         this.score = 0;
         this.healthpoints = 3;

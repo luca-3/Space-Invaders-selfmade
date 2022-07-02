@@ -20,7 +20,7 @@ public class Kitty extends Enemies {
 
 
     private Kitty() {
-        super(-500, -400, 75, 75, 10000, "resources/enemies/kitty.png");  //TODO dynamische Wert bei width und Height  und dateiName ändern
+        super(-500, -400, Main.getScreen().getMonitorWidth()/26,Main.getScreen().getMonitorHeight()/15 , 10000, "resources/enemies/kitty.png");
         setSpeed(2);
         findXandYforSpwan();
         threading();
@@ -31,7 +31,8 @@ public class Kitty extends Enemies {
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
         setX( (int)  (r.nextDouble((x-x/(20)),x)));;
-        setY((int) (r.nextDouble(0,y)));
+        setY((int) (r.nextDouble(0,(y-Main.getScreen().getMonitorHeight()/19)-getHeight())));
+
     }
 
 
