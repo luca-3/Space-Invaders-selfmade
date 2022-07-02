@@ -76,7 +76,7 @@ public abstract class Enemies extends GameObjects {
 
     public void setSpeed(int speed) {
         this.speed = speed;
-        rateSpeed = (int )Main.getScreen().getMonitorWidth()/130*speed;
+        rateSpeed = Main.getScreen().getMonitorWidth()/130+speed;
     }
     public int getRateSpeed() {return rateSpeed;
     }

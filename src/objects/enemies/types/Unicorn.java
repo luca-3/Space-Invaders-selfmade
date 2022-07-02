@@ -9,7 +9,8 @@ import java.util.Random;
 
 public class Unicorn extends Enemies {
 
-    double steigung=0;
+    double steigung;
+    double c;
 
     public static void createInstance(){
         Unicorn temp = new Unicorn();
@@ -24,7 +25,7 @@ public class Unicorn extends Enemies {
 
     private Unicorn(){
         super(-500, -400, Main.getScreen().getMonitorWidth()/30, Main.getScreen().getMonitorHeight()/17, 4, "resources/enemies/unicorn.png");
-        setSpeed(1);
+        setSpeed(10);
         findXandYforSpwan();
         threading();
     }
@@ -49,15 +50,19 @@ public class Unicorn extends Enemies {
         while (isAlive()) {
 
             setX(getX()-getRateSpeed());
-            setY( (int)  ( ((double)10*(double)steigung )) );
-            System.out.println(getY());
+            setY( (int) (  ((double)getX() * steigung) + c ) );
+            checkIfOutOfScreen();
+
+
+            Util.sleep(20);
         }
     }
 
 
     public void berechneSteigung(){
-        this .steigung=(double) ((((double)Main.getPlayer().getY())-((double)getY()))/(((double)Main.getPlayer().getX())-((double)getX())))  ;  // TODO formel passt nicht
-        System.out.println(steigung+"steigung");
+        this .steigung=  (getY()- (double)Main.getPlayer().getY())/((double) getX()- (double)Main.getPlayer().getX());  ;  // TODO formel passt nicht
+        this.c= ((double) (Main.getPlayer().getY())) -((double)Main.getPlayer().getX()*steigung);
+
 
     }
 
