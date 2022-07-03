@@ -49,7 +49,7 @@ public class Affe extends Enemies {
 
         double sinFactor= 1/(double) yfactor; // streckung in x
         int spwanhigh=getY();
-        //System.out.println(sinFactor);
+        System.out.println(sinFactor);
 
         while (isAlive()) {
             setX(getX()-getSpeed());

@@ -51,6 +51,7 @@ public abstract class Enemies extends GameObjects {
         instances.add(instancesU);
 
         System.out.println("I am special");
+
     }
 
     public void checkIfOutOfScreen() {
@@ -62,11 +63,6 @@ public abstract class Enemies extends GameObjects {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
-        if(!this.alive){
-            removeJLabel();
-
-            EnemyHandler.deleteDeadEnemies();
-        }
     }
 
     public boolean isAlive() {
@@ -79,18 +75,6 @@ public abstract class Enemies extends GameObjects {
 
     public void setHealthpoints(int healthpoints) {
         this.healthpoints = healthpoints;
-        checkIfDead();
-    }
-
-    public void manipulateHealthpoints(int healthpoints){
-        this.healthpoints += healthpoints;
-        checkIfDead();
-    }
-
-    private void checkIfDead() {
-        if (healthpoints <= 0) {
-            setAlive(false);
-        }
     }
 
     public int getSpeed() {

@@ -4,7 +4,6 @@ package main;
 
 import objects.GameObjects;
 import objects.Player;
-import objects.bullets.Bullethandler;
 import objects.bullets.Bullets;
 import objects.enemies.Enemies;
 import objects.enemies.EnemyHandler;
@@ -65,10 +64,9 @@ public class Main {
         Thread loopColision = new Thread(() -> EnemyHandler.loopCheckCollison());
         loopColision.setName("T - loopColision");
         loopColision.start();
-
-        Thread colisionBullets = new Thread(() -> Bullethandler.colisionBvE());
-        colisionBullets.setName("T - colisionBullets");
-        colisionBullets.start();
+        Thread loopRemove = new Thread(() -> EnemyHandler.loopdeleteDeadEnemies());
+        loopRemove.setName("T - loopRemove");
+        loopRemove.start();
 
     }
 

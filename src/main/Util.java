@@ -109,16 +109,6 @@ public class Util {
         return null;
     }
 
-    private static boolean rangeIntersect(int min, int max, int min1, int max1) {
-        return Math.max(min, max) >= Math.min(min1, max1) &&
-                Math.min(min, max) <= Math.max(min1, max1);
-    }
-
-    public static boolean rectCollision(JLabel rect, JLabel rect1) {
-        return rangeIntersect(rect.getX(), rect.getX() + rect.getWidth(), rect1.getX(), rect1.getX() + rect1.getWidth()) &&
-                rangeIntersect(rect.getY(), rect.getY() + rect.getHeight(), rect1.getY(), rect1.getY() + rect1.getHeight());
-    }
-
     public static void startTimer(){
         startTime = (int) System.currentTimeMillis();
     }

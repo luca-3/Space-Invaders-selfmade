@@ -104,12 +104,28 @@ public class Player extends GameObjects {
     public void spaceKeyMovement() {
         while (!Main.isPause()) {
             if (Keyboard.isSpacePressed()) {
+                /* //TODO: Shoot Methode in Bullet Class verschieben
+                if (this.countBullet < this.shot.length) {
+                    this.k++;
+                    this.shot[this.k].setLocation(getX() + 100, getY() + 50);
+                    add(this.shot[k]);
 
-                Laser.createInstance(getX(), getY(), true, "right");
-                Laser.createInstance(getX(), getY() + getHeight(), true, "right");
+                    Thread t2 = new Thread(this::shot);
+                    t2.start();
+
+                    Util.sleep(200);
+                    if (this.k == this.shot.length - 1) {
+                        this.k = -1;
+                    }
+                    this.countBullet++;
+                }
+                 */
+
+                Laser.createInstance(getX(), getY(), "right");
+                Laser.createInstance(getX(), getY() + getHeight(), "right");
             }
             while (Main.isPause()) Util.sleep(100);
-            Util.sleep(200);
+            Util.sleep(20);
         }
     }
 
