@@ -27,6 +27,14 @@ public abstract class Enemies extends GameObjects {
     public abstract void threading();
 
     public static void createLists(){
+        if(instances != null) {
+            for(ArrayList list : instances) {
+                list.clear();
+            }
+            System.out.println("Enemy lists cleared");
+            return;
+
+        }
         instances = new ArrayList<>(5);
 
         ArrayList<Affe> instancesA = new ArrayList<>();
@@ -42,6 +50,7 @@ public abstract class Enemies extends GameObjects {
         instances.add(instancesU);
 
         System.out.println("I am special");
+
     }
 
     public void checkIfOutOfScreen() {
@@ -78,7 +87,8 @@ public abstract class Enemies extends GameObjects {
         this.speed = speed;
         rateSpeed = Main.getScreen().getMonitorWidth()/130+speed;
     }
-    public int getRateSpeed() {return rateSpeed;
+    public int getRateSpeed() {
+        return rateSpeed;
     }
 
     public void setRateSpeed(int rateSpeed) {this.rateSpeed = rateSpeed;}
