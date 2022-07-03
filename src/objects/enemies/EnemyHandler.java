@@ -9,6 +9,7 @@ import objects.enemies.types.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class EnemyHandler {
@@ -19,12 +20,6 @@ public class EnemyHandler {
         while (true) {
             checkCollisionPvE();
 
-        }
-    }
-
-    public static void loopdeleteDeadEnemies() {
-        while (true) {
-            deleteDeadEnemies();
         }
     }
 
@@ -39,7 +34,7 @@ public class EnemyHandler {
                 GameObjects temp = (GameObjects) enemys.get(j).get(i);
                 enemy = temp.getJLabel();
 
-                if (rectCollision(p.getJLabel(), enemy)) Main.getPlayer().gotHit();
+                if (Util.rectCollision(p.getJLabel(), enemy)) Main.getPlayer().gotHit();
             }
         }
         Util.sleep(200);
@@ -79,7 +74,6 @@ public class EnemyHandler {
 
             } else if (difficulty == 2) { //Affe, Dwarf
                 id = (int) r.nextDouble(1, 2.99);
-                ;
                 if (id == 1) Affe.createInstance(); //spawn Affe;
                 if (id == 2) Dwarf.createInstance(); //spawn Dwarf
 
@@ -92,7 +86,7 @@ public class EnemyHandler {
                 System.out.println("Error while assigning enemy type");
             }
             Util.sleep(500); //TODO spawn rate vom level abhängig berechnen
-            System.out.println("diff: " + difficulty + "   id: " + id);
+            //System.out.println("diff: " + difficulty + "   id: " + id);
         }
 
     }
@@ -102,7 +96,6 @@ public class EnemyHandler {
         for (ArrayList<ArrayList> list : Enemies.getInstances()) {
             if (list.size() > 0) {
                 enemyStillAlive = true;
-
             }
         }
         return enemyStillAlive;
@@ -123,8 +116,6 @@ public class EnemyHandler {
                 }
             }
         }
-        Util.sleep(500);
-
     }
 
 
@@ -132,14 +123,6 @@ public class EnemyHandler {
         return levelMap;
     }
 
-    private static boolean rangeIntersect(int min, int max, int min1, int max1) {
-        return Math.max(min, max) >= Math.min(min1, max1) &&
-                Math.min(min, max) <= Math.max(min1, max1);
-    }
 
-    public static boolean rectCollision(JLabel rect, JLabel rect1) {
-        return rangeIntersect(rect.getX(), rect.getX() + rect.getWidth(), rect1.getX(), rect1.getX() + rect1.getWidth()) &&
-                rangeIntersect(rect.getY(), rect.getY() + rect.getHeight(), rect1.getY(), rect1.getY() + rect1.getHeight());
-    }
 }
 
