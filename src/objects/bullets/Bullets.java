@@ -1,6 +1,7 @@
 package objects.bullets;
 
 import main.Main;
+import main.Util;
 import objects.GameObjects;
 import objects.bullets.types.Laser;
 import objects.enemies.types.*;
@@ -11,13 +12,14 @@ public abstract class Bullets extends GameObjects {
 
     private int speed;
 
-
-    private boolean alive;
+    private boolean alive, isPlayerFriendly;
 
     private static ArrayList<ArrayList> instances;
 
-    public Bullets(int x, int y, int width, int height, String filepathSkin) {
+    public Bullets(int x, int y, int width, int height, boolean isPlayerFriendly, String filepathSkin) {
         super(x, y, width, height, filepathSkin);
+        setAlive(true);
+        this.isPlayerFriendly = isPlayerFriendly;
     }
 
     public abstract void move();
@@ -37,6 +39,12 @@ public abstract class Bullets extends GameObjects {
 
 
         System.out.println("I am really special");
+    }
+
+    public void gotHit(){
+
+        Bullethandler.deleteBullet(this);
+
     }
 
 
@@ -59,6 +67,14 @@ public abstract class Bullets extends GameObjects {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public boolean isPlayerFriendly() {
+        return isPlayerFriendly;
+    }
+
+    public void setPlayerFriendly(boolean playerFriendly) {
+        isPlayerFriendly = playerFriendly;
     }
 
 }
