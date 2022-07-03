@@ -11,8 +11,8 @@ public class LaserRed extends Bullets {
     }
 
 
-    private LaserRed(int x, int y, int width, int height, String filepathSkin) {
-        super(x, y, width, height, filepathSkin);
+    private LaserRed(int x, int y, int width, int height, boolean isPlayerFriendly, String filepathSkin) {
+        super(x, y, width, height, isPlayerFriendly, filepathSkin);
     }
 
     @Override
