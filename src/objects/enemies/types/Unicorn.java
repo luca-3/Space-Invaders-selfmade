@@ -31,11 +31,10 @@ public class Unicorn extends Enemies {
     }
 
     public void findXandYforSpwan(){
-
         Random r = new Random();
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
-        setX( (int)  (r.nextDouble((x-x/(20)),x)));;
+        setX( (int)  (r.nextDouble((x/(20)),x)));
         setY((int) (r.nextDouble(0,(y-Main.getScreen().getMonitorHeight()/19)-getHeight())));
         berechneSteigung();
     }
@@ -46,13 +45,19 @@ public class Unicorn extends Enemies {
     }
 
     public void move() {
+        int i = 0;
 
         while (isAlive()) {
+            i++;
+            if(i > 50){ //aktualisiert die Steigung jede Sekunde (50*20=1000ms)
+                berechneSteigung();
+                i = 0;
+            }
 
-            setX(getX()-getRateSpeed());
+            //setX(getX()-getRateSpeed());
+            setX(getX()-getSpeed());
             setY( (int) (  ((double)getX() * steigung) + c ) );
             checkIfOutOfScreen();
-
 
             Util.sleep(20);
         }

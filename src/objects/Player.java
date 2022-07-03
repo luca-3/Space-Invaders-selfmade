@@ -17,7 +17,7 @@ public class Player extends GameObjects {
 
 
     public Player() {
-        super(500, 500, Main.getScreen().getMonitorWidth()/16,  (Main.getScreen().getMonitorHeight()/9), "resources/player/Spaceship.png");
+        super(500, 500, Main.getScreen().getMonitorWidth()/16, Main.getScreen().getMonitorHeight()/9, "resources/player/Spaceship.png");
 
         this.score = 0;
         this.healthpoints = 3;
@@ -40,7 +40,7 @@ public class Player extends GameObjects {
         manipulateHealthpoints(-1);
         setLocation(500, 500);
 
-        setInvulnerable(1000);
+        setInvulnerable(2000);
     }
 
     private void setInvulnerable(int millis) {

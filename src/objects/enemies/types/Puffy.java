@@ -21,7 +21,7 @@ public class Puffy extends Enemies {
 
 
     private Puffy(){
-        super(-500, -400, Main.getScreen().getMonitorWidth()/38, Main.getScreen().getMonitorHeight()/22, 2, "resources/enemies/puffy-small.png");
+        super(-500, -400, Main.getScreen().getMonitorWidth()/19, Main.getScreen().getMonitorHeight()/11, 2, "resources/enemies/puffy-small.png");
         setSpeed(2);
 
         findXandYforSpwan();
