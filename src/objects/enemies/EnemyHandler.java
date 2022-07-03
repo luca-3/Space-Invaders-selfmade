@@ -46,21 +46,21 @@ public class EnemyHandler {
     }
 
     public static void gernarateLevel() {
-        int x = levelMap;
-        int numberEnemies = (int) (2.216883 - 0.7697576 * x + Math.pow(0.8798266 * x, 2) - Math.pow(0.1099424 * x, 3) + Math.pow(0.005293009 * x, 4) - Math.pow(0.00008628167 * x, 5));
+        while(!Main.isPause()){
+            int x = levelMap;
+            int numberEnemies = (int) (2.216883 - 0.7697576 * x + Math.pow(0.8798266 * x, 2) - Math.pow(0.1099424 * x, 3) + Math.pow(0.005293009 * x, 4) - Math.pow(0.00008628167 * x, 5));
 
-        //spawn
-        spawnEnemies(numberEnemies);
+            //spawn
+            spawnEnemies(numberEnemies);
 
-
-        boolean stillAlive = isEnemyStillAlive();
-        while (stillAlive) {
-            Util.sleep(1000);
-            stillAlive = isEnemyStillAlive();
+            boolean stillAlive = isEnemyStillAlive();
+            while (stillAlive) {
+                Util.sleep(1000);
+                stillAlive = isEnemyStillAlive();
+            }
+            levelMap++;
+            Enemies.createLists();
         }
-        levelMap++;
-        Enemies.createLists();
-        gernarateLevel();
     }
 
     private static void spawnEnemies(int numberEnemies) {
