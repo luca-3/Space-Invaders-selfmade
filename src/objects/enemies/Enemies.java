@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 public abstract class Enemies extends GameObjects {
 
-    private int healthpoints, speed;
+    private int healthpoints;
+
+    private double speed;
     private boolean alive = true;
 
 
@@ -75,7 +77,7 @@ public abstract class Enemies extends GameObjects {
         this.healthpoints = healthpoints;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
