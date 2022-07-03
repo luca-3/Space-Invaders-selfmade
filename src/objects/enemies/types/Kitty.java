@@ -46,14 +46,14 @@ public class Kitty extends Enemies {
         while (isAlive()) {
 
             while (getX() > Main.getScreen().getMonitorWidth() - Main.getScreen().getMonitorWidth() /15) {
-                setX(getX() - getRateSpeed());
+                setX(getX() - getSpeed());
 
                 Util.sleep(100);
             }
             Util.sleep(1000);
 
             while (getX() < Main.getScreen().getMonitorWidth()) {
-                setX(getX() + getRateSpeed());
+                setX(getX() + getSpeed());
                 Util.sleep(100);
             }
 

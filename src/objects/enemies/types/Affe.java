@@ -52,7 +52,7 @@ public class Affe extends Enemies {
         System.out.println(sinFactor);
 
         while (isAlive()) {
-            setX(getX()-getRateSpeed());
+            setX(getX()-getSpeed());
 
             setY(
                     (int) ((Math.sin(sinFactor * (double )getX()))  * yfactor + spwanhigh)

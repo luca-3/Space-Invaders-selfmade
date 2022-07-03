@@ -10,12 +10,10 @@ public abstract class Enemies extends GameObjects {
 
     private int healthpoints;
 
-    private double speed;
+    private int speed;
     private boolean alive = true;
 
 
-
-    private int rateSpeed;
     private static ArrayList<ArrayList> instances;
 
     public Enemies(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
@@ -26,11 +24,12 @@ public abstract class Enemies extends GameObjects {
 
 
     public abstract void move();
+
     public abstract void threading();
 
-    public static void createLists(){
-        if(instances != null) {
-            for(ArrayList list : instances) {
+    public static void createLists() {
+        if (instances != null) {
+            for (ArrayList list : instances) {
                 list.clear();
             }
             System.out.println("Enemy lists cleared");
@@ -65,6 +64,7 @@ public abstract class Enemies extends GameObjects {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
     public boolean isAlive() {
         return alive;
     }
@@ -77,7 +77,7 @@ public abstract class Enemies extends GameObjects {
         this.healthpoints = healthpoints;
     }
 
-    public double getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
@@ -85,13 +85,9 @@ public abstract class Enemies extends GameObjects {
         return instances;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
-        rateSpeed = Main.getScreen().getMonitorWidth()/130+speed;
-    }
-    public int getRateSpeed() {
-        return rateSpeed;
+    public void setSpeed(double speed) {
+        this.speed = (int) (Main.getScreen().getMonitorWidth() / 130 * speed);
     }
 
-    public void setRateSpeed(int rateSpeed) {this.rateSpeed = rateSpeed;}
+
 }

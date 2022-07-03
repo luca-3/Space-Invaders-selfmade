@@ -9,10 +9,18 @@ public class Laser extends Bullets {
 
 
     public static void createInstance(int spawnX, int spawnY, String direction) {
-        Laser temp = new Laser(spawnX,spawnY,40, 20, direction, "resources/enemies/affe.png");
+        Laser temp = new Laser(spawnX,spawnY,40, 20, "right", "resources/enemies/affe.png");
         getInstances().get(0).add(temp);
     }
 
+
+
+    private Laser(int x, int y, int width, int height, String direction, String filepathSkin) {
+        super(x, y, width, height, filepathSkin);
+        setSpeed(1);
+        threading();
+        this.direction = direction;
+    }
     @Override
     public void threading() {
         Thread movement = new Thread(this::move);
@@ -20,27 +28,21 @@ public class Laser extends Bullets {
     }
 
 
-    private Laser(int x, int y, int width, int height, String direction, String filepathSkin) {
-        super(x, y, width, height, filepathSkin);
-        threading();
-        this.direction = direction;
-    }
-
     @Override
     public void move() {
         while(getX() > 100){
             switch (getDirection()){
                 case "left":
-                    setX(getX() - getSpeed());
+                    setX((int) (getX() - getSpeed()));
                     break;
                 case "right":
-                    setX(getX() + getSpeed());
+                    setX((int) (getX() + getSpeed()));
                     break;
                 case "up":
-                    setY(getY() - getSpeed());
+                    setY((int) (getY() - getSpeed()));
                     break;
                 case "down":
-                    setY(getY() + getSpeed());
+                    setY((int) (getY() + getSpeed()));
                     break;
             }
 

@@ -50,7 +50,7 @@ public class Puffy extends Enemies {
         boolean isBig=false;
         while (isAlive()) {
 
-            setX(getX()-getRateSpeed());
+            setX(getX()-getSpeed());
 
             if(getX()<x && isBig==false){
                 isBig=true;

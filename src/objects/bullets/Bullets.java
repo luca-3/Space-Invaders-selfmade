@@ -1,5 +1,6 @@
 package objects.bullets;
 
+import main.Main;
 import objects.GameObjects;
 import objects.bullets.types.Laser;
 import objects.enemies.types.*;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public abstract class Bullets extends GameObjects {
 
     private int speed;
+
 
     private boolean alive;
 
@@ -47,8 +49,8 @@ public abstract class Bullets extends GameObjects {
         return speed;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setSpeed(double speed) {
+        this.speed= (int) (Main.getScreen().getMonitorWidth()/130*speed);
     }
 
     public boolean isAlive() {
