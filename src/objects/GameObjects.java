@@ -5,6 +5,7 @@ import main.Screen;
 import main.Util;
 
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class GameObjects {
 
@@ -23,6 +24,7 @@ public abstract class GameObjects {
 
         label = new JLabel();
         label.setBounds(x, y, width, height);
+        label.setBackground(Color.RED);
         label.setIcon(skin);
         s.getLayeredPane().add(label);
    }
