@@ -12,8 +12,11 @@ import java.awt.*;
 
 public class Player extends GameObjects {
 
-    private int healthpoints, score, levelPlayer, initialHeight, initialWidth;
+    private int healthpoints, score, levelPlayer;
+    private final int initialHeight, initialWidth;
     int speed = 10;
+
+    boolean invulnerable = false;
 
 
     public Player() {
@@ -24,7 +27,6 @@ public class Player extends GameObjects {
         this.levelPlayer = 1;
         this.initialHeight = getHeight();
         this.initialWidth = getWidth();
-
     }
 
 
@@ -39,17 +41,23 @@ public class Player extends GameObjects {
     public void gotHit(){
         manipulateHealthpoints(-1);
         setLocation(500, 500);
+        //TODO: Respawn Animation
 
-        setInvulnerable(2000);
+        //new Thread(() -> setInvulnerable(2000)).start();
+        setInvulnerable(2500);
     }
 
     private void setInvulnerable(int millis) {
-        for(int i = 4; i >= 0; i--){
-            updateGraphicsForShieldState(i);
-            if(i == 0) setX(getX()+24); //to compensate for the different sizes of the skins with and without shields
-            //Equation to split the wait time to make it look like the shield is being taken away slowly
-            int sleepTime = (int) ((millis - millis / 4) + ((100 * millis/1500) - (millis - millis / 4) ) / (1 + Math.pow(i / 3.117136, 46.77973)));
-            Util.sleep(sleepTime);
+        if(!invulnerable){
+            invulnerable = true;
+            for(int i = 4; i >= 0; i--){
+                updateGraphicsForShieldState(i);
+                if(i == 0) setX(getX()+24); //to compensate for the different sizes of the skins with and without shields
+                //Equation to split the wait time to make it look like the shield is being taken away slowly
+                int sleepTime = (int) ((millis - millis / 4) + ((100 * millis/1500) - (millis - millis / 4) ) / (1 + Math.pow(i / 3.117136, 46.77973)));
+                Util.sleep(sleepTime);
+            }
+            invulnerable = false;
         }
     }
 
@@ -169,5 +177,9 @@ public class Player extends GameObjects {
 
     public void setLevelPlayer(int levelPlayer) {
         this.levelPlayer = levelPlayer;
+    }
+
+    public boolean isInvulnerable() {
+        return invulnerable;
     }
 }
