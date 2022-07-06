@@ -19,13 +19,13 @@ public class Unicorn extends Enemies {
 
     private Unicorn(int x, int y, int width, int height, int healthpoints, String filepathSkin) {
         super(x, y, width, height, healthpoints, filepathSkin);
-        setSpeed(20);
+        setSpeed(1);
     }
 
 
     private Unicorn(){
         super(-500, -400, Main.getScreen().getMonitorWidth()/30, Main.getScreen().getMonitorHeight()/17, 4, "resources/enemies/unicorn.png");
-        setSpeed(10);
+        setSpeed(1.5);
         findXandYforSpwan();
         threading();
     }
@@ -48,6 +48,7 @@ public class Unicorn extends Enemies {
         int i = 0;
 
         while (isAlive()) {
+            /*
             i++;
             if(i > 50){ //aktualisiert die Steigung jede Sekunde (50*20=1000ms)
                 berechneSteigung();
@@ -59,6 +60,9 @@ public class Unicorn extends Enemies {
             setY( (int) (  ((double)getX() * steigung) + c ) );
             checkIfOutOfScreen();
 
+            Util.sleep(20);
+             */
+            setX(getX()-getSpeed());
             Util.sleep(20);
         }
     }
