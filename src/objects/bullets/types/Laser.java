@@ -9,7 +9,7 @@ public class Laser extends Bullets {
 
 
     public static void createInstance(int spawnX, int spawnY, boolean isPlayerFriendly, String direction) {
-        Laser temp = new Laser(spawnX,spawnY,40, 20, isPlayerFriendly, "right", "resources/enemies/affe.png");
+        Laser temp = new Laser(spawnX,spawnY,40, 20, isPlayerFriendly, direction, "resources/enemies/affe.png");
         getInstances().get(0).add(temp);
     }
 
@@ -21,28 +21,30 @@ public class Laser extends Bullets {
         threading();
         this.direction = direction;
     }
+
     @Override
     public void threading() {
         Thread movement = new Thread(this::move);
         movement.start();
     }
 
-
     @Override
     public void move() {
         while(getX() > 100){
             switch (getDirection()){
+                //TODO: change Skin to fit the direction
                 case "left":
-                    setX((int) (getX() - getSpeed()));
+                    setX(getX() - getSpeed());
+                    System.out.println("left");
                     break;
                 case "right":
-                    setX((int) (getX() + getSpeed()));
+                    setX(getX() + getSpeed());
                     break;
                 case "up":
-                    setY((int) (getY() - getSpeed()));
+                    setY(getY() - getSpeed());
                     break;
                 case "down":
-                    setY((int) (getY() + getSpeed()));
+                    setY(getY() + getSpeed());
                     break;
             }
 
@@ -52,6 +54,10 @@ public class Laser extends Bullets {
 
     public String getDirection() {
         return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 
 
