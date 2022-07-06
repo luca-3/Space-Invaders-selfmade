@@ -2,6 +2,7 @@ package objects.enemies.types;
 
 import main.Main;
 import main.Util;
+import objects.bullets.types.YellowCharge;
 import objects.enemies.Enemies;
 
 import java.util.Random;
@@ -51,6 +52,8 @@ public class Kitty extends Enemies {
                 Util.sleep(100);
             }
             Util.sleep(1000);
+            YellowCharge.createInstance(getX(), getY(), false, "left");
+            Util.sleep(500);
 
             while (getX() < Main.getScreen().getMonitorWidth()) {
                 setX(getX() + getSpeed());
