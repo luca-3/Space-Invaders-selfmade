@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class EnemyHandler {
 
-    private static int levelMap = 5;
+    private static int levelMap = 15;
 
     public static void loopCheckCollison() {
         while (true) {
@@ -34,7 +34,7 @@ public class EnemyHandler {
                 GameObjects temp = (GameObjects) enemys.get(j).get(i);
                 enemy = temp.getJLabel();
 
-                if (Util.rectCollision(p.getJLabel(), enemy)) Main.getPlayer().gotHit();
+                if (Util.rectCollision(p.getJLabel(), enemy) && !Main.getPlayer().isInvulnerable()) Main.getPlayer().gotHit();
             }
         }
         Util.sleep(200);
