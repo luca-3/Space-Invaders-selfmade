@@ -39,17 +39,20 @@ public class Util {
         }
 
         Image image = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+        BufferedImage bimage = toBufferedImage(image);
+        if(false) bimage = invertColors(bimage); //Boolean check if you want to invert the colors of the image
+        //TODO: inversion of color in name of the buffered image
 
         //Save new Image in main/data/images/
         try {
-            boolean written = ImageIO.write(toBufferedImage(image), "png", new File("resources/data/images/" + filename));
+            boolean written = ImageIO.write(bimage, "png", new File("resources/data/images/" + filename));
             if(written) System.out.println("Image written: " + filename);
             //ImageIO.createImageOutputStream(new File("resources/data/images/" + filename));
         } catch (Exception e) {
             System.out.println("Error while writing image: " + e);
         }
 
-        return new ImageIcon(image);
+        return new ImageIcon(invertColors(toBufferedImage(image)));
     }
 
     private static void checkDict(String path) {
@@ -107,6 +110,24 @@ public class Util {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static BufferedImage invertColors(BufferedImage img) {
+        for (int x = 0; x < img.getWidth(); x++) {
+            for (int y = 0; y < img.getHeight(); y++) {
+                int pixel = img.getRGB(x, y);
+                int alpha = (pixel >> 24) & 0xff;
+                int red = (pixel >> 16) & 0xff;
+                int green = (pixel >> 8) & 0xff;
+                int blue = pixel & 0xff;
+                red = 255 - red;
+                green = 255 - green;
+                blue = 255 - blue;
+                pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
+                img.setRGB(x, y, pixel);
+            }
+        }
+        return img;
     }
 
     private static boolean rangeIntersect(int min, int max, int min1, int max1) {
