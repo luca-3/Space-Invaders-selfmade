@@ -42,7 +42,6 @@ public abstract class Bullets extends GameObjects {
     }
 
     public void gotHit(){
-
         Bullethandler.deleteBullet(this);
 
     }

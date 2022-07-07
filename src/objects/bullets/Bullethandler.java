@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Bullethandler {
 
-    public static void colisionBvE(){
+    public static void collision(){
         //System.out.println("colisionBvE");
         while(!Main.isPause()){
             //System.out.println("loop - colisionBvE");

@@ -2,14 +2,11 @@ package main;
 //NEW
 
 
-import objects.GameObjects;
 import objects.Player;
 import objects.bullets.Bullethandler;
 import objects.bullets.Bullets;
 import objects.enemies.Enemies;
 import objects.enemies.EnemyHandler;
-import objects.enemies.types.Affe;
-import objects.enemies.types.Puffy;
 
 import java.util.HashMap;
 
@@ -66,7 +63,7 @@ public class Main {
         loopColision.setName("T - loopColision");
         loopColision.start();
 
-        Thread colisionBullets = new Thread(() -> Bullethandler.colisionBvE());
+        Thread colisionBullets = new Thread(() -> Bullethandler.collision());
         colisionBullets.setName("T - colisionBullets");
         colisionBullets.start();
 
