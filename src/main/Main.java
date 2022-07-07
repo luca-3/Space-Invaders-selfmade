@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class Main {
     static HashMap<String, Integer> daten;
     private static boolean pause;
-
+    private static boolean colorsInverted = false;
 
     static Player player;
     static Screen s;
@@ -109,6 +109,14 @@ public class Main {
 
     public static Player getPlayer() {
         return player;
+    }
+
+    public static boolean isColorsInverted() {
+        return colorsInverted;
+    }
+
+    public static void setColorsInverted(boolean colorsInverted) {
+        Main.colorsInverted = colorsInverted;
     }
 
 }

@@ -23,12 +23,12 @@ public class Util {
     public static ImageIcon resizeImage(int width, int height, String filepathSkin) {
         //resize images initially to fit the screen
         //if image is already in the right size, no need to resize it. Then get it from resources/data/images/
-        String filename =  width + "x" + height + replaceSlash(filepathSkin);
+        String filename =  "colorsInverted-" + Main.isColorsInverted() + "-" + width + "x" + height + replaceSlash(filepathSkin);
         ImageIcon icon = getBufferedImage(filename);
         if(icon != null) return icon;
 
-        checkDict("resources/data/images/");
 
+        checkDict("resources/data/images/");
 
         //get Image from the filepathSkin and resize it with the given width and height
         BufferedImage img = null;
@@ -38,21 +38,22 @@ public class Util {
             System.out.println("Error while reading image: " + e);
         }
 
+        //assert img != null; //assures that the image is not null, if it is, the program will throw an AssertionError exception
         Image image = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-        BufferedImage bimage = toBufferedImage(image);
-        if(false) bimage = invertColors(bimage); //Boolean check if you want to invert the colors of the image
+        BufferedImage bufferedImage = toBufferedImage(image);
+        if(Main.isColorsInverted()) bufferedImage = invertColors(bufferedImage); //Boolean check if you want to invert the colors of the image
         //TODO: inversion of color in name of the buffered image
 
         //Save new Image in main/data/images/
         try {
-            boolean written = ImageIO.write(bimage, "png", new File("resources/data/images/" + filename));
+            boolean written = ImageIO.write(bufferedImage, "png", new File("resources/data/images/" + filename));
             if(written) System.out.println("Image written: " + filename);
             //ImageIO.createImageOutputStream(new File("resources/data/images/" + filename));
         } catch (Exception e) {
             System.out.println("Error while writing image: " + e);
         }
 
-        return new ImageIcon(invertColors(toBufferedImage(image)));
+        return new ImageIcon(bufferedImage);
     }
 
     private static void checkDict(String path) {
