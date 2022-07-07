@@ -24,6 +24,7 @@ public class YellowCharge extends Bullets {
     @Override
     public void threading() {
         Thread movement = new Thread(this::move);
+        movement.setName("S - Laser");
         movement.start();
     }
 
@@ -33,7 +34,6 @@ public class YellowCharge extends Bullets {
             switch (getDirection()){
                 case "left":
                     setX(getX() - getSpeed());
-                    System.out.println("left");
                     break;
                 case "right":
                     setX(getX() + getSpeed());

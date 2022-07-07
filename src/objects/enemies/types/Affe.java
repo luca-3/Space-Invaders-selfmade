@@ -40,6 +40,7 @@ public class Affe extends Enemies {
 
     public void threading() {
         Thread move = new Thread(this::move);
+        move.setName("Affe");
         move.start();
     }
 

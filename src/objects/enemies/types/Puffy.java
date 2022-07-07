@@ -30,6 +30,7 @@ public class Puffy extends Enemies {
 
     public void threading() {
         Thread move = new Thread(this::move);
+        move.setName("Puffy");
         move.start();
     }
 

@@ -39,6 +39,7 @@ public class Kitty extends Enemies {
 
     public void threading() {
         Thread move = new Thread(this::move);
+        move.setName("Kitty");
         move.start();
     }
 

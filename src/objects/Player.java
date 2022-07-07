@@ -68,7 +68,8 @@ public class Player extends GameObjects {
         }
     }
 
-    public void updateGraphicsForShieldState(int shieldState){ //shieldState = 0 - 4, where 0 is no shield and 1 - 4 is the shield in different sizes
+    public void updateGraphicsForShieldState(int shieldState){
+        //shieldState = 0 - 4, where 0 is no shield and 1 - 4 is the shield in different sizes
         if(shieldState == 0){
             getJLabel().setIcon(Util.resizeImage(initialWidth, initialHeight, "resources/player/Spaceship.png"));
             return;
@@ -82,6 +83,7 @@ public class Player extends GameObjects {
         Icon icon = Util.resizeImage(getWidth(), getHeight(), iconPath);
         getJLabel().setIcon(icon);
     }
+
 
     public void move() {
         int xShift, yShift;

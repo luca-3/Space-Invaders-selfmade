@@ -41,6 +41,7 @@ public class Unicorn extends Enemies {
 
     public void threading() {
         Thread move = new Thread(this::move);
+        move.setName("Unicorn");
         move.start();
     }
 
@@ -63,7 +64,8 @@ public class Unicorn extends Enemies {
             Util.sleep(20);
              */
             setX(getX()-getSpeed());
-            Util.sleep(20);
+            if(getX() < 100) setAlive(false);
+            Util.sleep(200);
         }
     }
 

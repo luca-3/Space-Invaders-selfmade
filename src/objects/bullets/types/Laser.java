@@ -25,6 +25,7 @@ public class Laser extends Bullets {
     @Override
     public void threading() {
         Thread movement = new Thread(this::move);
+        movement.setName("S - Laser");
         movement.start();
     }
 
@@ -35,7 +36,6 @@ public class Laser extends Bullets {
                 //TODO: change Skin to fit the direction
                 case "left":
                     setX(getX() - getSpeed());
-                    System.out.println("left");
                     break;
                 case "right":
                     setX(getX() + getSpeed());
