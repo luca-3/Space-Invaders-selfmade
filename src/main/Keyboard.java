@@ -45,6 +45,7 @@ public class Keyboard implements KeyListener {
             case 's' -> this.sKey = false;
             case 'd' -> this.dKey = false;
             case ' ' -> this.spaceKey = false;
+            case 'p' -> Main.setPause(!Main.isPause());
         }
     }
 

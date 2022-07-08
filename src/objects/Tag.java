@@ -36,12 +36,14 @@ public class Tag extends GameObjects{
             } else {
                 getJLabel().setText(text + min + ":" + sec);
             }
+
         } else if(data.equals("lives")){
             getJLabel().setIcon(Player.getLivesIcon((int) Main.getDataTags().get(data), getHeight()));
 
-        }
+        } else if(data.equals("score")){
+            getJLabel().setIcon(Player.getScoreIcon((int) Main.getDataTags().get(data), getWidth()));
 
-        else{
+        } else{
             int value = (int) Main.getDataTags().get(data);
             getJLabel().setText(text + value);
         }

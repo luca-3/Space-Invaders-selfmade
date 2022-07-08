@@ -13,31 +13,26 @@ import java.util.Collections;
 import java.util.Random;
 
 public class EnemyHandler {
-
     private static int levelMap = 15;
 
-    public static void loopCheckCollison() {
-        while (true) {
-            checkCollisionPvE();
-
-        }
-    }
-
     public static void checkCollisionPvE() {
-        Player p = Main.getPlayer();
-        ArrayList<ArrayList> enemys = Enemies.getInstances();
+        while(!Main.isPause()){
+            Player p = Main.getPlayer();
+            ArrayList<ArrayList> enemys = Enemies.getInstances();
 
-        for (int j = 0; j < enemys.size(); j++) {
-            for (int i = 0; i < enemys.get(j).size(); i++) {
-                JLabel enemy = null;
+            for (int j = 0; j < enemys.size(); j++) {
+                for (int i = 0; i < enemys.get(j).size(); i++) {
+                    JLabel enemy = null;
 
-                GameObjects temp = (GameObjects) enemys.get(j).get(i);
-                enemy = temp.getJLabel();
+                    GameObjects temp = (GameObjects) enemys.get(j).get(i);
+                    enemy = temp.getJLabel();
 
-                if (Util.rectCollision(p.getJLabel(), enemy) && !Main.getPlayer().isInvulnerable()) Main.getPlayer().gotHit();
+                    if (Util.rectCollision(p.getJLabel(), enemy) && !Main.getPlayer().isInvulnerable()) Main.getPlayer().gotHit();
+                }
             }
+            Util.sleep(200);
         }
-        Util.sleep(200);
+
     }
 
     public static void gernarateLevel() {

@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 public class Main {
     static HashMap<String, Integer> daten;
+
     private static boolean pause;
     private static boolean colorsInverted = false;
 
@@ -59,7 +60,7 @@ public class Main {
 
         Util.sleep(2000);
 
-        Thread loopColision = new Thread(() -> EnemyHandler.loopCheckCollison());
+        Thread loopColision = new Thread(() -> EnemyHandler.checkCollisionPvE());
         loopColision.setName("T - loopColision");
         loopColision.start();
 
@@ -67,6 +68,19 @@ public class Main {
         colisionBullets.setName("T - colisionBullets");
         colisionBullets.start();
 
+    }
+
+    public static void restartGame(){
+        setPause(true);
+        Util.sleep(1000);
+
+        Enemies.createLists();
+        Bullets.createLists();
+        daten = new HashMap<>();
+
+        player.reset();
+
+        startThreading();
     }
 
     /*
@@ -96,8 +110,12 @@ public class Main {
         return pause;
     }
 
+
     public static void setPause(boolean pause) {
-        pause = pause;
+        Main.pause = pause;
+        if (pause) {
+            //TODO: Pause-Screen
+        }
     }
 
     public static Screen getScreen() {

@@ -40,8 +40,8 @@ public class Bullethandler {
                     Enemies enemy = (Enemies) enemys.get(k).get(l);
                     if (Util.rectCollision(bullet.getJLabel(), enemy.getJLabel())){
                         enemy.manipulateHealthpoints(-1);
-                        System.out.println("Enemy got hit");
                         bullet.gotHit();
+                        Main.getPlayer().manipulateScore(10);
                     }
                 }
             }

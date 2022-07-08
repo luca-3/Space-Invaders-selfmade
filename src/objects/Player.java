@@ -119,7 +119,7 @@ public class Player extends GameObjects {
                 Laser.createInstance(getX(), getY() + getHeight(), true, "right");
             }
             while (Main.isPause()) Util.sleep(100);
-            Util.sleep(200);
+            Util.sleep(400);
         }
     }
 
@@ -128,6 +128,15 @@ public class Player extends GameObjects {
         String iconPath = String.format("resources/player/heart%d.png", numberOfLives);
         int width = 40 * numberOfLives - 8;
         Icon icon = Util.resizeImage(width, heightJLabel, iconPath);
+
+        return icon;
+    }
+
+    public static Icon getScoreIcon(int score, int widthJLabel) {
+        int numberOfDigits = (score == 0) ? 0 : Math.min(score / 100, 22);
+        String iconPath = String.format("resources/player/scorebar/scorebar-%d.png", numberOfDigits);
+        int height = widthJLabel / 24 * 5;
+        Icon icon = Util.resizeImage(widthJLabel, height , iconPath);
 
         return icon;
     }
@@ -158,7 +167,7 @@ public class Player extends GameObjects {
     }
 
 
-    public void addToScore(int score) {
+    public void manipulateScore(int score) {
         this.score += score;
 
         //TODO: Score im Screen aktualisieren

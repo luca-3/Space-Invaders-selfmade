@@ -48,7 +48,7 @@ public class Laser extends Bullets {
                     break;
             }
 
-            Util.sleep(100);
+            Util.sleep(20);
         }
     }
 
