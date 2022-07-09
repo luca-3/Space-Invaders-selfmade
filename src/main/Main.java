@@ -36,8 +36,6 @@ public class Main {
         pause = false;
         Util.startTimer();
 
-        new EnemyHandler();
-
     }
 
 
