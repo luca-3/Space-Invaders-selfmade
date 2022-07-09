@@ -24,12 +24,24 @@ public class Main {
         //no Dependencies
         Enemies.createLists();
         Bullets.createLists();
+
         daten = new HashMap<>();
 
         //Dependencies within the creation of the Object
         s = new Screen();
+        HomeScreen s= new HomeScreen();
+
+
+
+    }
+    public static void startGame(){
+
+        //Dependencies within the creation of the Object
+
         player = new Player();
-        s.generateTags();
+        s.startGame();
+
+
 
         startThreading();
 
