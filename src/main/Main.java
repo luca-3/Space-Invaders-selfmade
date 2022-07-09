@@ -52,7 +52,7 @@ public class Main {
         updaterTags.setName("T - updaterTags");
         updaterTags.start();
 
-        Thread levelSpawn = new Thread(() -> EnemyHandler.gernarateLevel());
+        Thread levelSpawn = new Thread(() -> EnemyHandler.generateLevel());
         levelSpawn.setName("T - levelSpawn");
         levelSpawn.start();
 

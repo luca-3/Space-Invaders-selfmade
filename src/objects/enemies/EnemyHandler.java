@@ -9,7 +9,6 @@ import objects.enemies.types.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class EnemyHandler {
@@ -35,7 +34,7 @@ public class EnemyHandler {
 
     }
 
-    public static void gernarateLevel() {
+    public static void generateLevel() {
         while(!Main.isPause()){
             int x = levelMap;
             int numberEnemies = (int) (2.216883 - 0.7697576 * x + Math.pow(0.8798266 * x, 2) - Math.pow(0.1099424 * x, 3) + Math.pow(0.005293009 * x, 4) - Math.pow(0.00008628167 * x, 5));
