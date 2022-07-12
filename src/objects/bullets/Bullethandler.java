@@ -40,12 +40,15 @@ public class Bullethandler {
                 for (int l = 0; l < enemys.get(k).size(); l++) {
 
                     Enemies enemy = (Enemies) enemys.get(k).get(l);
-
-                    if (enemy.getJLabel() != null && Util.rectCollision(bullet.getJLabel(), enemy.getJLabel())){
-                        enemy.manipulateHealthpoints(-1);
-                        bullet.gotHit();
-                        Main.getPlayer().manipulateScore(10);
+                    if(enemy != null){
+                        if (enemy.getJLabel() != null && Util.rectCollision(bullet.getJLabel(), enemy.getJLabel())){
+                            enemy.manipulateHealthpoints(-1);
+                            bullet.gotHit();
+                            Main.getPlayer().manipulateScore(10);
+                        }
                     }
+
+
                 }
             }
         }
