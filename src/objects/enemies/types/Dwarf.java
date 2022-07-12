@@ -2,6 +2,7 @@ package objects.enemies.types;
 
 import main.Main;
 import main.Util;
+import objects.bullets.types.Laser;
 import objects.enemies.Enemies;
 
 import java.util.Random;
@@ -21,7 +22,7 @@ public class Dwarf extends Enemies {
 
     private Dwarf(){
         super(-500, -400, Main.getScreen().getMonitorWidth()/21, Main.getScreen().getMonitorHeight()/11, 3, "resources/enemies/zwerg.png");
-        setSpeed(1);
+        setSpeed(0.7);
         findXandYforSpwan();
         threading();
 
@@ -38,11 +39,28 @@ public class Dwarf extends Enemies {
 
     public void move() {
         while (isAlive()) {
+            while(getY() > 10){
+                setY(getY() - getSpeed());
+                setX(getX() - getSpeed());
+                Util.sleep(20);
+            }
+            Laser.createInstance(getX(), getY(), false, "down");
+            Util.sleep(1200);
+            while(getY() < Main.getScreen().getMonitorHeight()-400){ //TODO: Dynamischer Wert
+                setY(getY() + getSpeed());
+                Util.sleep(20);
+                checkIfOutOfScreen();
+            }
+
+
+            /*
             setX(getX()-10);
            // setY (getY()-20);  // TODO 15 nur temporaren Wert , --> hier dynamisch Wert impletieren und Thread (High/Down Move) //
 
             checkIfOutOfScreen();
             Util.sleep(20);
+
+             */
         }
     }
 
