@@ -34,6 +34,9 @@ public class Screen extends JFrame {
           add(layeredPane);
 
 
+        Keyboard k = Keyboard.getInstance();
+        this.addKeyListener(k);
+
 
     }
 
@@ -58,9 +61,6 @@ public class Screen extends JFrame {
 
 
 
-
-        Keyboard k = Keyboard.getInstance();
-        this.addKeyListener(k);
 
         this.setVisible(true);
     }

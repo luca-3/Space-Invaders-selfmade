@@ -37,47 +37,56 @@ public class HomeScreen  {
 
     public void setHomescreen() {
         homeScreen = new JPanel();
-        background = new JLabel();
 
 
-        this.homeScreen.setBounds(0, 0, Main.getScreen().getMonitorWidth(), Main.getScreen().getMonitorHeight());
+
+        this.homeScreen.setBounds(-1, 0, Main.getScreen().getMonitorWidth(), Main.getScreen().getMonitorHeight());
         this.homeScreen.setVisible(true);
+        this.homeScreen.setLayout(null);
+        this.homeScreen.setBackground(Color.blue);
 
-        this.background.setBounds(0, 0, Main.getScreen().getMonitorWidth(), Main.getScreen().getMonitorHeight());
-        background.setIcon(Util.resizeImage( Main.getScreen().getMonitorWidth(), Main.getScreen().getMonitorHeight(), "resources/enemies/affe.png"));
-        this.background.setVisible(true);
 
-        this.homeScreen.add(background);
-         Main.getScreen().getLayeredPane().add(homeScreen);
+
+
+
 
 
     }
 
     public void setButton() {
+
+        int tempWidth= (int)((double)Main.getScreen().getMonitorWidth()/4.8);
+
         start = new JButton("Spiel starten");
-        start.setBounds((homeScreen.getWidth() / 2), 200, 2000, 50);
+        start.setBounds(Main.getScreen().getMonitorWidth()/2-(tempWidth/2),(int)((double)Main.getScreen().getMonitorHeight()/5.4),(int)((double)Main.getScreen().getMonitorWidth()/4.8), (int)((double) Main.getScreen().getMonitorHeight()/18));
         start.setBackground(buttonbackground);
-        Main.getScreen().getLayeredPane().add(start);
+        homeScreen.add(start);
+
 
         ende = new JButton("Spiel enden");
-        ende.setBounds((homeScreen.getWidth() / 2), 400, 2000, 50);
+        ende.setBounds(Main.getScreen().getMonitorWidth()/2-(tempWidth/2),(int)((double)Main.getScreen().getMonitorHeight()/2.7),(int) ((double) Main.getScreen().getMonitorWidth()/4.8) ,(int)((double) Main.getScreen().getMonitorHeight()/18));
         ende.setBackground(buttonbackground);
-        Main.getScreen().getLayeredPane().add(ende);
+        homeScreen.add(ende);
 
-        items = new JButton("items");
-        items.setBounds((homeScreen.getWidth() / 2), 600, 2000, 50);
-        items.setBackground(buttonbackground);
-        Main.getScreen().getLayeredPane().add(items);
 
 
         settings = new JButton(" Settings");
-        settings.setBounds((homeScreen.getWidth() / 2), 800, 2000, 50);
+        settings.setBounds(Main.getScreen().getMonitorWidth()/2-(tempWidth/2),(int)((double)Main.getScreen().getMonitorHeight()/1.8),(int) ((double) Main.getScreen().getMonitorWidth()/4.8),(int)((double) Main.getScreen().getMonitorHeight()/18));
         settings.setBackground(buttonbackground);
-        Main.getScreen().getLayeredPane().add(settings);
+        homeScreen.add(settings);
+
+        Main.getScreen().getLayeredPane().add(homeScreen);
 
 
-        while(homeScreenisActiv){
-          Scanner sc = new Scanner(System.in);
+        while(Keyboard.isSPressed()==false){
+
+            if(Keyboard.isSPressed()){
+                removePanels();
+                Main.startGame();
+
+            }
+
+            Scanner sc = new Scanner(System.in);
             System.out.println("Gebe Zahl ein");
             int a=sc.nextInt();
             testA(a);
