@@ -27,15 +27,6 @@ public class Kitty extends Enemies {
         threading();
     }
 
-    public void findXandYforSpwan() {
-        Random r = new Random();
-        int y = getScreen().getMonitorHeight();
-        int x = getScreen().getMonitorWidth();
-        setX( (int) (r.nextDouble( (x/(20)) , x) ));
-        setY((int) (r.nextDouble( 0,(y-Main.getScreen().getMonitorHeight()/19) - getHeight()) ));
-
-    }
-
 
     public void threading() {
         Thread move = new Thread(this::move);

@@ -27,8 +27,8 @@ public class Affe extends Enemies {
         threading();
     }
 
+    @Override
     public void findXandYforSpwan() {
-
         Random r = new Random();
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();

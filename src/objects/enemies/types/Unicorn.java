@@ -27,17 +27,10 @@ public class Unicorn extends Enemies {
         super(-500, -400, Main.getScreen().getMonitorWidth()/30, Main.getScreen().getMonitorHeight()/17, 4, "resources/enemies/unicorn.png");
         setSpeed(1.5);
         findXandYforSpwan();
+        berechneSteigung();
         threading();
     }
 
-    public void findXandYforSpwan(){
-        Random r = new Random();
-        int y = getScreen().getMonitorHeight();
-        int x = getScreen().getMonitorWidth();
-        setX( (int)  (r.nextDouble((x/(20)),x)));
-        setY((int) (r.nextDouble(0,(y-Main.getScreen().getMonitorHeight()/19)-getHeight())));
-        berechneSteigung();
-    }
 
     public void threading() {
         Thread move = new Thread(this::move);

@@ -1,10 +1,12 @@
 package objects.enemies;
 
 import main.Main;
+import main.Screen;
 import objects.GameObjects;
 import objects.enemies.types.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Enemies extends GameObjects {
 
@@ -67,6 +69,17 @@ public abstract class Enemies extends GameObjects {
 
             EnemyHandler.deleteDeadEnemies();
         }
+    }
+
+    public void findXandYforSpwan() {
+        Random r = new Random();
+        setX(
+                Main.getScreen().getMonitorWidth() + 20
+        );
+        setY(
+                (int) (r.nextDouble(0, Main.getScreen().getMonitorHeight() - getHeight())) //(getScreen().getMonitorWidth() - Main.getScreen().getMonitorHeight()/19) - getHeight())
+        );
+
     }
 
     public boolean isAlive() {
