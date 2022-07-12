@@ -40,12 +40,13 @@ public class Tag extends GameObjects{
         } else if(data.equals("lives")){
             getJLabel().setIcon(Player.getLivesIcon((int) Main.getDataTags().get(data), getHeight()));
 
-        } else if(data.equals("score")){
+        } else if(data.equals("score") && text == null){
             getJLabel().setIcon(Player.getScoreIcon((int) Main.getDataTags().get(data), getWidth()));
 
         } else{
             int value = (int) Main.getDataTags().get(data);
             getJLabel().setText(text + value);
+            System.out.println("Tag: " + text + " " + value);
         }
     }
 

@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Screen extends JFrame {
 
-    private Tag score, lives, time, level;
+    private Tag score, lives, time, level, nonGraphicScore;
 
     private JLayeredPane layeredPane;
 
@@ -55,7 +55,8 @@ public class Screen extends JFrame {
 
         JLabel backgrond = new JLabel();
         backgrond.setBounds(-1,0,this.monitorWidth, this.monitorHeight);
-        backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/background-sky-edit.png"));
+        //backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/background-sky-edit.png"));
+        backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/main_image_star-forming_region_carina_nircam_final-5mb-edit.png"));
         Main.getScreen().getLayeredPane().add(backgrond, 1);
         backgrond.setLocation(0,0); //to force the Background to render
 
@@ -68,11 +69,11 @@ public class Screen extends JFrame {
 
 
     public void generateTags() {
-          lives = new Tag(10, 10 ,120, 32, null, "Lives: ", "lives"); //height should be a multiple of 8
-        score = new Tag(10, 50,120, 20, null, "Score: ", "score");
-        level = new Tag(10, 80,120, 20, null, "Level: ", "level");
-        time = new Tag(10, 100,200, 20, null, "Time passed: ", "time");
-
+        lives = new Tag(10, 10 ,120, 32, null, "Lives: ", "lives"); //height should be a multiple of 8
+        score = new Tag(10, 50,120, 20, null, null, "score");
+        level = new Tag(10, 100,120, 20, null, "Level: ", "level");
+        time = new Tag(10, 120,200, 20, null, "Time passed: ", "time");
+        nonGraphicScore = new Tag(10, 70,120, 20, null, "Score: ", "score");
 
     }
 
@@ -82,6 +83,7 @@ public class Screen extends JFrame {
             lives.updateTag();
             level.updateTag();
             time.updateTag();
+            nonGraphicScore.updateTag();
             Util.sleep(200);
             while(Main.isPause()) Util.sleep(1000);
         }
