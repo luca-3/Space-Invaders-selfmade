@@ -10,7 +10,7 @@ import java.awt.*;
 public abstract class GameObjects {
 
     private int width, height, x, y;
-   private JLabel label;
+    private JLabel label;
     private Screen s;
     private Icon skin;
 

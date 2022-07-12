@@ -1,5 +1,6 @@
 package objects.bullets.types;
 
+import main.Main;
 import main.Util;
 import objects.bullets.Bullets;
 
@@ -9,8 +10,9 @@ public class Laser extends Bullets {
 
 
     public static void createInstance(int spawnX, int spawnY, boolean isPlayerFriendly, String direction) {
-        Laser temp = new Laser(spawnX,spawnY,40, 20, isPlayerFriendly, direction, "resources/enemies/affe.png");
-        getInstances().get(0).add(temp);
+        getInstances().add(
+                new Laser(spawnX,spawnY,40, 20, isPlayerFriendly, direction, "resources/enemies/affe.png")
+        );
     }
 
 
@@ -31,7 +33,7 @@ public class Laser extends Bullets {
 
     @Override
     public void move() {
-        while(getX() > 100){
+        while(getX() > 100 && getX() < Main.getScreen().getMonitorWidth() + 100){
             switch (getDirection()){
                 //TODO: change Skin to fit the direction
                 case "left":
@@ -50,6 +52,7 @@ public class Laser extends Bullets {
 
             Util.sleep(20);
         }
+        setAlive(false);
     }
 
     public String getDirection() {

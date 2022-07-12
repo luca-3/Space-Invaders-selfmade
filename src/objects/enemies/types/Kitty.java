@@ -31,8 +31,8 @@ public class Kitty extends Enemies {
         Random r = new Random();
         int y = getScreen().getMonitorHeight();
         int x = getScreen().getMonitorWidth();
-        setX( (int)  (r.nextDouble((x-x/(20)),x)));;
-        setY((int) (r.nextDouble(0,(y-Main.getScreen().getMonitorHeight()/19)-getHeight())));
+        setX( (int) (r.nextDouble( (x-x/(20)) , x) ));
+        setY((int) (r.nextDouble( 0,(y-Main.getScreen().getMonitorHeight()/19) - getHeight()) ));
 
     }
 
@@ -53,7 +53,7 @@ public class Kitty extends Enemies {
                 Util.sleep(100);
             }
             Util.sleep(1000);
-            YellowCharge.createInstance(getX(), getY(), false, "left");
+            YellowCharge.createInstance(getX(), getY() + 14, false, "left");
             Util.sleep(500);
 
             while (getX() < Main.getScreen().getMonitorWidth()) {

@@ -12,21 +12,22 @@ public class Bullethandler {
         //System.out.println("colisionBvE");
         while(!Main.isPause()){
             //System.out.println("loop - colisionBvE");
-            ArrayList<ArrayList> bullets = Bullets.getInstances();
+            ArrayList<Bullets> bullets = Bullets.getInstances();
+            //System.out.println(bullets.size() + " - " + bullets);
 
 
             for (int i = 0; i < bullets.size(); i++) {
-                for (int j = 0; j < bullets.get(i).size(); j++){
-                    Bullets bullet = (Bullets) bullets.get(i).get(j);
-
-                    //System.out.println(bullet.isAlive());
-                    if (bullet.isAlive()){
-                        checkCollisionWithPlayer(bullet);
-                        checkCollisionWithEnemys(bullet);
-                    }
+                //System.out.println(bullet.isAlive());
+                if (bullets.get(i).isAlive()){
+                    checkCollisionWithPlayer(bullets.get(i));
+                    checkCollisionWithEnemys(bullets.get(i));
+                } else if(!bullets.get(i).isAlive()) {
+                    bullets.get(i).removeJLabel();
+                    bullets.set(i, null);
+                    bullets.remove(i);
                 }
             }
-            Util.sleep(200);
+            Util.sleep(20);
         }
     }
 
@@ -37,7 +38,9 @@ public class Bullethandler {
         for (int k = 0; k < enemys.size(); k++) {
             if(bullet.isPlayerFriendly()){
                 for (int l = 0; l < enemys.get(k).size(); l++) {
+
                     Enemies enemy = (Enemies) enemys.get(k).get(l);
+
                     if (Util.rectCollision(bullet.getJLabel(), enemy.getJLabel())){
                         enemy.manipulateHealthpoints(-1);
                         bullet.gotHit();
@@ -58,15 +61,6 @@ public class Bullethandler {
                 System.out.println("Player got hit");
             }
         }
-    }
-
-
-    public static void deleteBullet(Bullets bullet){
-        bullet.setAlive(false);
-        bullet.getJLabel().setIcon(null);
-        //TODO: remove from ArrayList
-        bullet.getJLabel().setIcon(Util.resizeImage(bullet.getWidth(), bullet.getHeight(), "resources/enemies/unicorn.png"));
-
     }
 
 }

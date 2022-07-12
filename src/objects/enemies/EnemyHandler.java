@@ -101,9 +101,7 @@ public class EnemyHandler {
         for (int j = 0; j < enemys.size(); j++) {
             for (int i = 0; i < enemys.get(j).size(); i++) {
 
-                Enemies temp = (Enemies) enemys.get(j).get(i);
-
-                if (!temp.isAlive()) {
+                if (!((Enemies) enemys.get(j).get(i)).isAlive()) {
                     ((Enemies) enemys.get(j).get(i)).removeJLabel();
                     enemys.get(j).set(i, null);
                     enemys.get(j).remove(i);

@@ -8,8 +8,10 @@ public class YellowCharge extends Bullets {
     private String direction;
 
     public static void createInstance(int spawnX, int spawnY, boolean isPlayerFriendly, String direction) {
-        YellowCharge temp = new YellowCharge(spawnX,spawnY,40, 20, isPlayerFriendly, direction, "resources/bullets/red_laser.png");
-        getInstances().get(0).add(temp);
+        getInstances().add(
+                new YellowCharge(spawnX, spawnY,40, 20, isPlayerFriendly, direction, "resources/bullets/red-laser-left.png")
+        );
+
     }
 
 
@@ -48,6 +50,7 @@ public class YellowCharge extends Bullets {
 
             Util.sleep(100);
         }
+        setAlive(false);
     }
 
     public String getDirection() {

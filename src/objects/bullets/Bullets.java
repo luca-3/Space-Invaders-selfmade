@@ -14,7 +14,7 @@ public abstract class Bullets extends GameObjects {
 
     private boolean alive, isPlayerFriendly;
 
-    private static ArrayList<ArrayList> instances;
+    private static ArrayList<Bullets> instances;
 
     public Bullets(int x, int y, int width, int height, boolean isPlayerFriendly, String filepathSkin) {
         super(x, y, width, height, filepathSkin);
@@ -30,24 +30,16 @@ public abstract class Bullets extends GameObjects {
     public static void createLists(){
         instances = new ArrayList<>();
 
-        ArrayList<Laser> instancesL = new ArrayList<>();
-        ArrayList<Puffy> instancesP = new ArrayList<>();
-;
-
-        instances.add(instancesL);
-        instances.add(instancesP);
-
-
         System.out.println("I am really special");
     }
 
     public void gotHit(){
-        Bullethandler.deleteBullet(this);
-
+        setAlive(false);
+        getJLabel().setVisible(false);
     }
 
 
-    public static ArrayList<ArrayList> getInstances(){
+    public static ArrayList<Bullets> getInstances(){
         return instances;
     }
 

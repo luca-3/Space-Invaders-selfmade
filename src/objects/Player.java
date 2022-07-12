@@ -43,8 +43,8 @@ public class Player extends GameObjects {
         setLocation(500, 500);
         //TODO: Respawn Animation
 
-        //new Thread(() -> setInvulnerable(2000)).start();
-        setInvulnerable(2500);
+        new Thread(() -> setInvulnerable(2000)).start();
+        //setInvulnerable(2500);
     }
 
     private void setInvulnerable(int millis) {
