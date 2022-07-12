@@ -9,8 +9,21 @@ import java.util.Random;
 
 public class Unicorn extends Enemies {
 
+    class Vector { //Behilfsklasse
+        public Vector (int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+        int x;
+        int y;
+    }
+
     double steigung;
     double c;
+
+    private Vector velocity;
+
+
 
     public static void createInstance(){
         Unicorn temp = new Unicorn();
@@ -26,8 +39,8 @@ public class Unicorn extends Enemies {
     private Unicorn(){
         super(-500, -400, Main.getScreen().getMonitorWidth()/30, Main.getScreen().getMonitorHeight()/17, 4, "resources/enemies/unicorn.png");
         setSpeed(1.5);
+        velocity = new Vector(20, 20);
         findXandYforSpwan();
-        berechneSteigung();
         threading();
     }
 
@@ -39,38 +52,40 @@ public class Unicorn extends Enemies {
     }
 
     public void move() {
-        int i = 0;
+
 
         while (isAlive()) {
-            /*
-            i++;
-            if(i > 50){ //aktualisiert die Steigung jede Sekunde (50*20=1000ms)
-                berechneSteigung();
-                i = 0;
+
+            if(getX() > Main.getPlayer().getX()){
+                Vector newV = berechneSteigung();
+                velocity.x = (velocity.x * 5 + (newV.x)) / 6;
+                velocity.y = (velocity.y * 5 + (newV.y)) / 6;
+
             }
 
-            //setX(getX()-getRateSpeed());
-            setX(getX()-getSpeed());
-            setY( (int) (  ((double)getX() * steigung) + c ) );
+            setLocation(getX() - velocity.x, getY() - velocity.y);
             checkIfOutOfScreen();
 
             Util.sleep(20);
-             */
-            setX(getX()-getSpeed());
-            if(getX() < 100) setAlive(false);
-            Util.sleep(200);
+
         }
     }
 
+    public Vector berechneSteigung(){
+        /*
+        this.steigung = (getY() - (double)Main.getPlayer().getY()) / ((double) getX()- (double)Main.getPlayer().getX());
+        this.c = ((double) (Main.getPlayer().getY())) - ((double)Main.getPlayer().getX()*steigung);
+         */
 
-    public void berechneSteigung(){
-        this .steigung=  (getY()- (double)Main.getPlayer().getY())/((double) getX()- (double)Main.getPlayer().getX());  ;  // TODO formel passt nicht
-        this.c= ((double) (Main.getPlayer().getY())) -((double)Main.getPlayer().getX()*steigung);
+        int xDiff =  getX() - Main.getPlayer().getX();
+        int yDiff =  getY() - Main.getPlayer().getY();
+        xDiff = (xDiff > 0) ? 10 : -10;
+        yDiff = (yDiff > 0) ? (yDiff / 10) : -(yDiff / 10);
 
 
+
+        return new Vector(xDiff, yDiff);
     }
-
-
 
 
 }
