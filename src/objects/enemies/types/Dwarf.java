@@ -3,6 +3,7 @@ package objects.enemies.types;
 import main.Main;
 import main.Util;
 import objects.bullets.types.Laser;
+import objects.bullets.types.RainbowBlob;
 import objects.enemies.Enemies;
 
 import java.util.Random;
@@ -43,8 +44,10 @@ public class Dwarf extends Enemies {
                 setY(getY() - getSpeed());
                 setX(getX() - getSpeed());
                 Util.sleep(20);
+                checkIfOutOfScreen();
             }
-            Laser.createInstance(getX(), getY(), false, "down");
+            Util.sleep(400);
+            if(isAlive()) RainbowBlob.createInstance(getX(), getY(), false, "down");
             Util.sleep(1200);
             while(getY() < Main.getScreen().getMonitorHeight()-400){ //TODO: Dynamischer Wert
                 setY(getY() + getSpeed());
