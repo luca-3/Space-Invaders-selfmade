@@ -26,12 +26,12 @@ public abstract class GameObjects {
         label.setBounds(x, y, width, height);
         label.setBackground(Color.RED);
         label.setIcon(skin);
-        s.getLayeredPane().add(label);
+        s.getLayeredPane().add(label,1);
    }
 
     public void setLabel(JLabel label) {
         this.label = label;
-        s.getLayeredPane().add(label);
+        s.getLayeredPane().add(label,1);
     }
 
 

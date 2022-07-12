@@ -23,39 +23,57 @@ public class Screen extends JFrame {
 
         //initial settings for the window
         autoUpdateScreenDimensions();
-        this.setTitle("Blank");
+        this.setTitle("Game");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true); //TODO: Wenn der Monitor zu klein gezogen wird, soll eine Nachricht kommen, die den User auffordert das Fenster größer zu ziehen
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.getContentPane().setBackground(Color.BLACK);
+        //this.getContentPane().setBackground(Color.BLACK);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.setVisible(true);
-        this.setBackground(Color.black);
+          add(layeredPane);
 
+
+
+    }
+
+    public void startGame(){
+        backgroundSettings();
+        generateTags();
+
+
+
+    }
+    public  void backgroundSettings(){
         //Background
+
+
+
+
         JLabel backgrond = new JLabel();
         backgrond.setBounds(-1,0,this.monitorWidth, this.monitorHeight);
         backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/background-sky-edit.png"));
-        layeredPane.add(backgrond, 1);
-        add(layeredPane);
+        Main.getScreen().getLayeredPane().add(backgrond, 1);
         backgrond.setLocation(0,0); //to force the Background to render
 
-        //KeyListener
+
+
+
         Keyboard k = Keyboard.getInstance();
         this.addKeyListener(k);
 
         this.setVisible(true);
-
     }
 
 
 
     public void generateTags() {
-        lives = new Tag(10, 10 ,120, 32, null, "Lives: ", "lives"); //height should be a multiple of 8
+          lives = new Tag(10, 10 ,120, 32, null, "Lives: ", "lives"); //height should be a multiple of 8
         score = new Tag(10, 50,120, 20, null, "Score: ", "score");
         level = new Tag(10, 80,120, 20, null, "Level: ", "level");
         time = new Tag(10, 100,200, 20, null, "Time passed: ", "time");
+
+
     }
 
     public void updateTags(){
@@ -76,6 +94,11 @@ public class Screen extends JFrame {
         System.out.println("Screen Dimensions: " + monitorWidth + "  " + monitorHeight);
     }
 
+    public void removePanels(){
+
+        Main.getScreen().getLayeredPane().removeAll();
+        Main.getScreen().getLayeredPane().repaint();
+    }
 
     public int getMonitorHeight() {
         return monitorHeight;
