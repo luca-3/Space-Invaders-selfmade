@@ -103,8 +103,15 @@ public class EnemyHandler {
 
                 if (!((Enemies) enemys.get(j).get(i)).isAlive()) {
                     ((Enemies) enemys.get(j).get(i)).removeJLabel();
-                    enemys.get(j).set(i, null);
-                    enemys.get(j).remove(i);
+                    try{
+                        //because the method can run several times at the same time and then try to accesses objects that have already been deleted
+                        enemys.get(j).set(i, null);
+                        enemys.get(j).remove(i);
+                    }catch (Exception e){
+                        System.out.println("Error while deleting enemy: " + e);
+                    }
+
+
                 }
             }
         }
