@@ -56,7 +56,7 @@ public abstract class Enemies extends GameObjects {
     }
 
     public void checkIfOutOfScreen() {
-        if (getX() < 500 - getWidth()) {
+        if (getX() < 0) {
             setAlive(false);
         }
     }

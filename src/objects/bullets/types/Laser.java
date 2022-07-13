@@ -10,8 +10,7 @@ public class Laser extends Bullets {
 
 
     public static void createInstance(int spawnX, int spawnY, boolean isPlayerFriendly, String direction) {
-        getInstances().add(
-                new Laser(spawnX,spawnY,40, 20, isPlayerFriendly, direction, "resources/enemies/affe.png")
+        getInstances().add(new Laser(spawnX,spawnY,40, 20, isPlayerFriendly, direction, "resources/bullets/limegreen-laser-right.png")
         );
     }
 
@@ -33,7 +32,7 @@ public class Laser extends Bullets {
 
     @Override
     public void move() {
-        while(getX() > 100 && getX() < Main.getScreen().getMonitorWidth() + 100){
+        while(getX() > -getWidth() && getX() < Main.getScreen().getMonitorWidth() + 100){
             switch (getDirection()){
                 //TODO: change Skin to fit the direction
                 case "left":
