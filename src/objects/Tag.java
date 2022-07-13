@@ -46,7 +46,6 @@ public class Tag extends GameObjects{
         } else{
             int value = (int) Main.getDataTags().get(data);
             getJLabel().setText(text + value);
-            System.out.println("Tag: " + text + " " + value);
         }
     }
 
