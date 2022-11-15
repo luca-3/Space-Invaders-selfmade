@@ -4,11 +4,9 @@ package objects;
 import main.Keyboard;
 import main.Main;
 import main.Util;
-import objects.bullets.Bullets;
 import objects.bullets.types.Laser;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Player extends GameObjects {
 
@@ -111,7 +109,7 @@ public class Player extends GameObjects {
     }
 
     
-    public void spaceKeyMovement() {
+    public void shoot() {
         while (!Main.isPause()) {
             if (Keyboard.isSpacePressed()) {
 

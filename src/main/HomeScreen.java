@@ -108,7 +108,7 @@ public class HomeScreen  {
 
 
             removePanels();
-            System.out.println("Hallloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            System.out.println("Homescreen: Game started");
             Main.startGame();
 
 

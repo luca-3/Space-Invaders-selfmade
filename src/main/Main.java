@@ -20,7 +20,6 @@ public class Main {
     static Screen s;
 
     public static void main(String[] args) {
-
         //no Dependencies
         Enemies.createLists();
         Bullets.createLists();
@@ -30,24 +29,16 @@ public class Main {
         //Dependencies within the creation of the Object
         s = new Screen();
         HomeScreen s= new HomeScreen();
-
-
-
     }
     public static void startGame(){
-
         //Dependencies within the creation of the Object
-
         player = new Player();
         s.startGame();
-
-
 
         startThreading();
 
         pause = false;
         Util.startTimer();
-
     }
 
 
@@ -56,7 +47,7 @@ public class Main {
         movementPlayer.setName("T - movementPlayer");
         movementPlayer.start();
 
-        Thread spaceKeyPlayer = new Thread(() -> player.spaceKeyMovement());
+        Thread spaceKeyPlayer = new Thread(() -> player.shoot());
         spaceKeyPlayer.setName("T - spaceKeyPlayer");
         spaceKeyPlayer.start();
 

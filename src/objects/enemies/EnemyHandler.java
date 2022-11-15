@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class EnemyHandler {
-    private static int levelMap = 15;
+    private static int levelMap = 4;
 
     public static void checkCollisionPvE() {
         while(!Main.isPause()){
