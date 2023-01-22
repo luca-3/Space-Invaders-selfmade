@@ -56,7 +56,7 @@ public class Screen extends JFrame {
         JLabel backgrond = new JLabel();
         backgrond.setBounds(-1,0,this.monitorWidth, this.monitorHeight);
         //backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/background-sky-edit.png"));
-        backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/main_image_star-forming_region_carina_nircam_final-5mb-edit.png"));
+        backgrond.setIcon(Util.resizeImage(this.monitorWidth, this.monitorHeight, "resources/map/SpaceShooterAssetPack_BackGrounds.png")); //"resources/map/main_image_star-forming_region_carina_nircam_final-5mb-edit.png"));
         Main.getScreen().getLayeredPane().add(backgrond, 1);
         backgrond.setLocation(0,0); //to force the Background to render
 
