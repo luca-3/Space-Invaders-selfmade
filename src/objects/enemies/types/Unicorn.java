@@ -10,12 +10,14 @@ import java.util.Random;
 public class Unicorn extends Enemies {
 
     class Vector { //Behilfsklasse
+
+        int x;
+        int y;
         public Vector (int x, int y) {
             this.x = x;
             this.y = y;
         }
-        int x;
-        int y;
+
     }
 
     double steigung;
@@ -53,7 +55,6 @@ public class Unicorn extends Enemies {
 
     public void move() {
 
-
         while (isAlive()) {
 
             if(getX() > Main.getPlayer().getX()){
@@ -63,8 +64,8 @@ public class Unicorn extends Enemies {
 
             }
 
-            setLocation(getX() - velocity.x, getY() - velocity.y);
-            checkIfOutOfScreen();
+            super.setLocation(getX() - velocity.x, getY() - velocity.y);
+            super.checkIfOutOfScreen();
 
             Util.sleep(20);
 
@@ -80,9 +81,8 @@ public class Unicorn extends Enemies {
         int xDiff =  getX() - Main.getPlayer().getX();
         int yDiff =  getY() - Main.getPlayer().getY();
         xDiff = (xDiff > 0) ? 10 : -10;
-        yDiff = (yDiff > 0) ? (yDiff / 10) : -(yDiff / 10);
-
-
+        yDiff = (yDiff > 0) ? 10 : -10;
+        //yDiff = (yDiff > 0) ? (yDiff / 10) : -(yDiff / 10);
 
         return new Vector(xDiff, yDiff);
     }
