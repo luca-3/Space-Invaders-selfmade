@@ -17,19 +17,21 @@ public class EnemyHandler {
     public static void checkCollisionPvE() {
         while(!Main.isPause()){
             Player p = Main.getPlayer();
-            ArrayList<ArrayList> enemys = Enemies.getInstances();
+            if(!p.isInvulnerable()){
+                ArrayList<ArrayList> enemys = Enemies.getInstances();
 
-            for (int j = 0; j < enemys.size(); j++) {
-                for (int i = 0; i < enemys.get(j).size(); i++) {
-                    JLabel enemy = null;
+                for (int j = 0; j < enemys.size(); j++) {
+                    for (int i = 0; i < enemys.get(j).size(); i++) {
+                        JLabel enemy = null;
 
-                    GameObjects temp = (GameObjects) enemys.get(j).get(i);
-                    enemy = temp.getJLabel();
+                        GameObjects temp = (GameObjects) enemys.get(j).get(i);
+                        enemy = temp.getJLabel();
 
-                    if (Util.rectCollision(p.getJLabel(), enemy) && !Main.getPlayer().isInvulnerable()) Main.getPlayer().gotHit();
+                        if (Util.rectCollision(p.getJLabel(), enemy)) Main.getPlayer().gotHit();
+                    }
                 }
+                Util.sleep(200);
             }
-            Util.sleep(200);
         }
 
     }

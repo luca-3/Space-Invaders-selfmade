@@ -10,11 +10,15 @@ import java.util.Random;
 
 public abstract class Enemies extends GameObjects {
 
+    public abstract void move();
+
+    public abstract void threading();
+
+
     private int healthpoints;
 
     private int speed;
     private boolean alive = true;
-
 
     private static ArrayList<ArrayList> instances;
 
@@ -23,11 +27,6 @@ public abstract class Enemies extends GameObjects {
         this.healthpoints = healthpoints;
         this.alive = true;
     }
-
-
-    public abstract void move();
-
-    public abstract void threading();
 
     public static void createLists() {
         if (instances != null) {
