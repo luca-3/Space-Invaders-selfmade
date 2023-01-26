@@ -62,6 +62,7 @@ public class Player extends GameObjects {
     public void checkIfDead(){
         if(healthpoints <= 0){
             reset();
+            //TODO: Hier könnte man das Level zurücksetzen, die Gegnerliste leeren und so einen "neustart" auslösen
             //TODO: Game Over message
         }
     }
