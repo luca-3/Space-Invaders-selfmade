@@ -125,5 +125,26 @@ public class EnemyHandler {
     }
 
 
+    public static void reset() {
+        levelMap = 1;
+
+        ArrayList<ArrayList> enemys = Enemies.getInstances();
+
+        for(ArrayList l : enemys){
+            for(int i = 0; i < l.size(); i++){
+                ((Enemies) l.get(i)).removeJLabel();
+                ((Enemies) l.get(i)).setAlive(false);
+            }
+
+        }
+        deleteDeadEnemies();
+    }
+
+
+
+
+
+
+
 }
 

@@ -5,6 +5,7 @@ import main.Keyboard;
 import main.Main;
 import main.Util;
 import objects.bullets.types.Laser;
+import objects.enemies.EnemyHandler;
 
 import javax.swing.*;
 
@@ -63,6 +64,7 @@ public class Player extends GameObjects {
         if(healthpoints <= 0){
             reset();
             //TODO: Hier könnte man das Level zurücksetzen, die Gegnerliste leeren und so einen "neustart" auslösen
+            EnemyHandler.reset();
             //TODO: Game Over message
         }
     }
